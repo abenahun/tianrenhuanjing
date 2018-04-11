@@ -63,8 +63,8 @@ public class MyInterface{
 
 	private static final String TAG = "cc.MyInterface";
 	private static final int EXPIRY = 1200; // unit s，注册有效时间
-	private static final String DOMAIN = "iot.hismarttv.com";
-	private static final String DOMAIN_HTTP = "http://iotu.hismarttv.com:8080/sipserver/";
+	private static final String DOMAIN = "iot.tianren.com";
+	private static final String DOMAIN_HTTP = "http://iotu.tianren.com:8080/sipserver/";
 //	private static final String DOMAIN_HTTP = "http://203.130.46.105:8080/sipserver/";//for test
 	private final String httpKey = "lzky";
 	private boolean first = true ;    //去除HOT_FAILURE 信息

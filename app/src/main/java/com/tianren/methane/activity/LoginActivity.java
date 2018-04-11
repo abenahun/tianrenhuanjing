@@ -22,6 +22,7 @@ import com.tianren.methane.constant.Constant;
 import com.tianren.methane.constant.DefMsgConstants;
 import com.tianren.methane.jniutils.AESTool;
 import com.tianren.methane.jniutils.AllenEncode;
+import com.tianren.methane.jniutils.MyInterface;
 import com.tianren.methane.service.SipService;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
@@ -127,73 +128,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 break;
 
             case R.id.button:
+
 //                if (SipService.getMyInterface() != null) {
-//                    SipService.getMyInterface().setHandler(handler);
-//                    SipService.getMyCallBack().setHandler(handler);
+//                    SipService.getMyInterface().sendMsgInWAN(to, from, msg_body,domainStr);
 //                }
-//                Log.e("syl", "getValueFromTable==>"+getDevInfo(getValueFromTable("username", "")));
 
-                    if (SipService.getMyInterface() != null) {
-//                        SipService.getMyInterface().queryBindDeviceInfo();//获取绑定的设备信息
-
-                        String currentTime = String.valueOf(System.currentTimeMillis());
-                        JSONObject jsonSend = new JSONObject();
-                        try {
-                            String username = getValueFromTable("username", "");
-                            jsonSend.put("cmd", "queryBindDeviceinfo");
-                            jsonSend.put("user", AESTool.getInstance().content(username, AESTool.AES_KEY));
-                            jsonSend.put("timeStamp", currentTime);
-                            jsonSend.put("accessToken", AllenEncode.AllenEncode(currentTime + httpKey));
-                            jsonSend.put("sipUser", "");
-                            Log.d(TAG, "queryBindDeviceInfo--user: " + username);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                        Map<String, Object> parameters = new HashMap<>();
-                        parameters.put(Constant.CAPACITY_URL, jsonSend.toString());
-                        novate = new Novate.Builder(this)
-                                .connectTimeout(8)
-                                .baseUrl(Constant.BASE_URL)
-                                //.addApiManager(ApiManager.class)
-                                .addLog(true)
-                                .build();
-
-                        novate.post(Constant.ENTRYCAPACITY_URL, parameters,
-                                new MyBaseSubscriber<ResponseBody>(LoginActivity.this) {
-                                    @Override
-                                    public void onError(Throwable e) {
-                                        if (!TextUtils.isEmpty(e.getMessage())) {
-                                            ToastUtils.show(e.getMessage());
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onNext(ResponseBody responseBody) {
-                                        try {
-                                            String jstr = new String(responseBody.bytes());
-                                            ToastUtils.show(jstr);
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                });
-
-                       /* try {
-                            JSONTokener jsonParser = new JSONTokener(getResultByHttp(DOMAIN_HTTP + "HttpQueryBindDeviceinfo?param=" + jsonSend.toString()));//iot.hisense.com
-                            JSONObject jsonResult = (JSONObject) jsonParser.nextValue();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        } catch (Exception e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }*/
-                    }
                 break;
         }
     }
