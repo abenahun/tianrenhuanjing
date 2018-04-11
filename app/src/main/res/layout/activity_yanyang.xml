@@ -59,7 +59,8 @@
                     android:background="@color/maincolor"
                     android:text="数据统计"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/textsize13" />
+                    android:textSize="@dimen/textsize13"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <TextView
@@ -84,20 +85,77 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:minWidth="35dp"
+                    android:minWidth="75dp"
+                    android:text="名称"
+                    android:textColor="@color/textgray"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="含量"
+                    android:textColor="@color/textgray"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="正常值范围" />
+
+
+                <TextView
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:minWidth="75dp"
                     android:text="PH"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:text="7.60"
+                    android:text="7.6"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="6～10" />
+
+
+                <TextView
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:background="@drawable/shape_roate"
+                    android:gravity="center"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
+                    android:text="走势"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 
@@ -111,23 +169,40 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:minWidth="35dp"
+                    android:minWidth="75dp"
                     android:text="TS"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:text="2.85mg/L"
-                    android:textColor="@color/grassgreen"
+                    android:text="2.8mg/L"
+                    android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
-            </LinearLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="2.0～3.0mg/L" />
 
+
+                <TextView
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:background="@drawable/shape_roate"
+                    android:gravity="center"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
+                    android:text="走势"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -139,20 +214,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:minWidth="35dp"
+                    android:minWidth="75dp"
                     android:text="VS"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:text="54.84%"
-                    android:textColor="@color/grassgreen"
+                    android:text="20%"
+                    android:textColor="@color/textgray"
                     android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="20%～80%" />
+
+
+                <TextView
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:background="@drawable/shape_roate"
+                    android:gravity="center"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
+                    android:text="走势"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 
@@ -166,20 +259,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:minWidth="35dp"
+                    android:minWidth="75dp"
                     android:text="VFA"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:text="3341.17mg/L"
-                    android:textColor="@color/yellow"
+                    android:text="341mg/L"
+                    android:textColor="@color/textgray"
                     android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="200～641mg/L" />
+
+
+                <TextView
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:background="@drawable/shape_roate"
+                    android:gravity="center"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
+                    android:text="走势"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 
@@ -193,20 +304,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:minWidth="35dp"
+                    android:minWidth="75dp"
                     android:text="碱度"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:text="1232.12mg/L"
-                    android:textColor="@color/yellow"
+                    android:text="341mg/L"
+                    android:textColor="@color/textgray"
                     android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="200～641mg/L" />
+
+
+                <TextView
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:background="@drawable/shape_roate"
+                    android:gravity="center"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
+                    android:text="走势"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 
@@ -220,20 +349,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:minWidth="35dp"
+                    android:minWidth="75dp"
                     android:text="氨氮"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:text="2132mg/L"
-                    android:textColor="@color/red"
+                    android:text="341mg/L"
+                    android:textColor="@color/textgray"
                     android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="200～641mg/L" />
+
+
+                <TextView
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:background="@drawable/shape_roate"
+                    android:gravity="center"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
+                    android:text="走势"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 
@@ -247,20 +394,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:minWidth="35dp"
+                    android:minWidth="75dp"
                     android:text="COD"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:text="20211mg/L"
-                    android:textColor="@color/red"
+                    android:text="341mg/L"
+                    android:textColor="@color/textgray"
                     android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="200～641mg/L" />
+
+
+                <TextView
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:background="@drawable/shape_roate"
+                    android:gravity="center"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
+                    android:text="走势"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 
@@ -268,7 +433,8 @@
                 android:id="@+id/diagnosisChart"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_margin="8dp" />
+                android:layout_margin="8dp"
+                android:visibility="gone" />
 
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/cycleChart1"
@@ -276,13 +442,15 @@
                 android:layout_height="200dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="8dp"
+                android:visibility="gone" />
 
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/cycleChart2"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginBottom="8dp"
+                android:visibility="gone"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp" />
 
@@ -290,7 +458,8 @@
                 android:id="@+id/predictChart"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_margin="8dp" />
+                android:layout_margin="8dp"
+                android:visibility="gone" />
 
         </LinearLayout>
     </ScrollView>
