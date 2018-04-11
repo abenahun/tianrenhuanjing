@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">智能沼气</string>
+    <string name="title_activity_base_rx">BaseRxActivity</string>
+
+    <string name="connect_error">网络连接失败,请检查网络</string>
+    <string name="connect_timeout">连接超时,请稍后再试</string>
+    <string name="bad_network">服务器异常</string>
+    <string name="parse_error">解析服务器响应数据失败</string>
+    <string name="unknown_error">未知错误</string>
+    <string name="response_return_error">服务器返回数据失败</string>
+
+    <string name="home">首页</string>
+    <string name="guanli">管理</string>
+    <string name="zixun">资讯</string>
+    <string name="usercenter">我的</string>
+    <string name="renyuandignwei">人员定位</string>
+    <string name="shipinjiankong">视频监控</string>
+    <string name="chakanshipin">查看监控内容</string>
+    <string name="renyuanguiji">查看人员轨迹</string>
+
+    <string name="shouyunjiance">收运监测</string>
+    <string name="yuchuli">预处理</string>
+    <string name="yanyang">厌氧</string>
+    <string name="tuoliu">脱硫</string>
+    <string name="tuotan">脱碳</string>
+    <string name="qigui">气柜</string>
+    <string name="liuliangjiance">流量监测</string>
+    <string name="youjifei">有机肥</string>
+
+    <string name="jingjixiaoyi">经济效益</string>
+    <string name="nenghaofenxi">能耗分析</string>
+    <string name="shujutongji">数据统计</string>
+    <string name="xinxiluru">信息录入</string>
+
+    <string name="gongsiribao">公司日报</string>
+    <string name="baojingxinxi">报警信息</string>
+    <string name="shiyanshi">实  验  室</string>
+    <string name="gongsijieshao">公司介绍</string>
+
+
+    <string-array name="quyangdian">
+        <item >取样点1</item>
+        <item >取样点2</item>
+    </string-array>
+
+</resources>

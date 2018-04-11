@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+    <TextView
+        android:id="@+id/tv_ch4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textgray"
+        android:textSize="@dimen/textsize13"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="CH4浓度"/>
+
+
+
+    <TextView
+        android:id="@+id/tv_o2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textgray"
+        android:textSize="@dimen/textsize13"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="O2浓度"/>
+
+
+    <TextView
+        android:id="@+id/tv_h2s"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textgray"
+        android:textSize="@dimen/textsize13"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="H2S浓度"/>
+
+
+    <TextView
+        android:id="@+id/tv_co2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textgray"
+        android:textSize="@dimen/textsize13"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="CO2浓度"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textgray"
+            android:textSize="@dimen/textsize13"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:text="泄露状态：无泄露"/>
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/maincolor"
+            android:textSize="@dimen/textsize13"
+            android:layout_weight="1"
+            android:gravity="center|right"
+            android:paddingRight="8dp"
+            android:text="2018-01-01"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="3dp"
+        android:background="@color/backcolor"/>
+
+</LinearLayout>
