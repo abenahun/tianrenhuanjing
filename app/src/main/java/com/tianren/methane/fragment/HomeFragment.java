@@ -36,9 +36,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_home, null);
-        initFlipper();
-        initView();
+        view = inflater.inflate(R.layout.fragment_home_new, null);
+//        initFlipper();
+//        initView();
         return view;
     }
 
