@@ -92,7 +92,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="2m"
-                    android:textColor="@color/textgray"
+                    android:textColor="@color/green"
                     android:textSize="15sp" />
 
                 <TextView
@@ -144,10 +144,10 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:layout_marginLeft="5dp"
-
                     android:layout_width="0dp"
+
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
                     android:text="20 ～40 ℃" />
 
@@ -191,10 +191,10 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:layout_marginLeft="5dp"
-
                     android:layout_width="0dp"
+
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
                     android:text="20 ～40 ℃" />
 
@@ -238,9 +238,9 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:layout_marginLeft="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
                     android:text="20 ～40 ℃" />
 
@@ -284,9 +284,9 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:layout_marginLeft="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
                     android:text="20 ～40 ℃" />
 
@@ -326,13 +326,13 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="30 ℃"
-                    android:textColor="@color/red"
+                    android:textColor="@color/green"
                     android:textSize="15sp" />
 
                 <TextView
-                    android:layout_marginLeft="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
                     android:text="20 ～40 ℃" />
 
@@ -373,14 +373,14 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="30 ℃"
-                    android:textColor="@color/red"
+                    android:textColor="@color/green"
                     android:textSize="15sp" />
 
 
                 <TextView
-                    android:layout_marginLeft="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
                     android:text="20 ～40 ℃" />
 
@@ -420,14 +420,14 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="30 ℃"
-                    android:textColor="@color/red"
+                    android:textColor="@color/green"
                     android:textSize="15sp" />
 
 
                 <TextView
-                    android:layout_marginLeft="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
                     android:text="20 ～40 ℃" />
 
@@ -467,14 +467,14 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="30 ℃"
-                    android:textColor="@color/red"
+                    android:textColor="@color/green"
                     android:textSize="15sp" />
 
 
                 <TextView
-                    android:layout_marginLeft="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
                     android:text="20 ～40 ℃" />
 
@@ -494,6 +494,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
@@ -514,14 +515,14 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="30 A"
-                    android:textColor="@color/red"
+                    android:textColor="@color/green"
                     android:textSize="15sp" />
 
 
                 <TextView
-                    android:layout_marginLeft="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
                     android:text="10 ～50 A" />
 
