@@ -1,11 +1,14 @@
 package com.tianren.methane.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +16,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tianren.methane.R;
+import com.tianren.methane.constant.MsgDefCtrl;
 import com.tianren.methane.fragment.HomeFragment;
 import com.tianren.methane.fragment.ManagerFragment;
 import com.tianren.methane.fragment.MeFragment;
 import com.tianren.methane.fragment.NewsFragment;
+import com.tianren.methane.jniutils.CommandDev;
+import com.tianren.methane.jniutils.ParseDataFromDev;
+import com.tianren.methane.service.SipService;
 
 public class MainActivity extends BaseActivity {
     private TabLayout mTabLayout;
@@ -34,12 +41,22 @@ public class MainActivity extends BaseActivity {
     //Tab 数目
     private MyViewPagerAdapter mAdapter;
     private ViewPager mViewPager;
+    public static String userName;
+    public  static String mDeviceId;
+    private CommandDev commandDevObj = null;
+    private ParseDataFromDev dataParseDevObj = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
+
+        userName = getValueFromTable("username", "");
+        mDeviceId = "1001";//固定设备id
+
+        SipService.setMidlHandler(myHandler);
+        myHandler.sendEmptyMessage(MsgDefCtrl.MSG_FRESH_REFRIGERATOR);
     }
 
     private void initViews() {
@@ -90,6 +107,20 @@ public class MainActivity extends BaseActivity {
             return TAB_TITLES.length;
         }
     }
+
+    private Handler myHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case MsgDefCtrl.MSG_FRESH_REFRIGERATOR:
+//                    freshFridgeManageUI();
+                    myHandler.sendEmptyMessageDelayed(MsgDefCtrl.MSG_FRESH_REFRIGERATOR,5000);
+                    break;
+            }
+        }
+    };
+
 
 //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data) {

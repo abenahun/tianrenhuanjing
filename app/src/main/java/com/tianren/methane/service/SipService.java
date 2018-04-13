@@ -8,6 +8,7 @@ import com.tianren.methane.constant.MsgDefCtrl;
 import com.tianren.methane.jniutils.MsgBroadcastReceiver;
 import com.tianren.methane.jniutils.MyCallBack;
 import com.tianren.methane.jniutils.MyInterface;
+import com.tianren.methane.jniutils.ParseDataFromDev;
 
 import android.app.Service;
 import android.content.Context;
@@ -182,10 +183,10 @@ public class SipService extends Service {
 							
 							if(jsonObject.optString("cmdtype").equals("401")){
 								if(midlHandler != null ){
-//									boolean isOk = ParseDataFromDev.getInstance().freshQueryStatusFromWasher(midlHandler,revmsg);
-//									if (isOk) {
-//										midlHandler.sendEmptyMessage(MsgDefCtrl.MSG_WASHER_FRESH_QUERY_OK);
-//									}
+									boolean isOk = ParseDataFromDev.getInstance().freshQueryStatusFromWasher(midlHandler,revmsg);
+									if (isOk) {
+										midlHandler.sendEmptyMessage(MsgDefCtrl.MSG_WASHER_FRESH_QUERY_OK);
+									}
 								}
 							}
 					} catch (Exception e1) {
