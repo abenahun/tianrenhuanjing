@@ -18,11 +18,15 @@ import com.tamic.novate.Novate;
 import com.tamic.novate.Throwable;
 import com.tianren.methane.MyBaseSubscriber;
 import com.tianren.methane.R;
+import com.tianren.methane.bean.DevInfo;
 import com.tianren.methane.constant.Constant;
 import com.tianren.methane.constant.DefMsgConstants;
+import com.tianren.methane.constant.MsgDefCtrl;
 import com.tianren.methane.jniutils.AESTool;
 import com.tianren.methane.jniutils.AllenEncode;
+import com.tianren.methane.jniutils.CommandDev;
 import com.tianren.methane.jniutils.MyInterface;
+import com.tianren.methane.jniutils.ParseDataFromDev;
 import com.tianren.methane.service.SipService;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
@@ -36,7 +40,9 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -58,6 +64,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private boolean isChinese = true;    	   //是否为中文模式
     private final String httpKey = "lzky";
     private Novate novate;
+
+    private CommandDev commandDevObj = null;
+    private ParseDataFromDev dataParseDevObj = null;
+    private List<DevInfo> devInfoList;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,10 +135,27 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 //                    startWaitDlg();
                     handler.sendEmptyMessageDelayed(DefMsgConstants.MSG_LOGIN_TIME_OUT, Constant.TIME_OUT_LOGIN);//超时提醒
                 }
-
                 break;
 
             case R.id.button:
+
+                dataParseDevObj = ParseDataFromDev.getInstance();
+
+
+                DevInfo info = new DevInfo();
+                devInfoList = new ArrayList<DevInfo>();
+                info.setDevId("1001");
+                info.setDomain("11111");
+                info.setNickName("ceshi");
+                info.setType(DevInfo.TYPE_FR);
+                devInfoList.add(info);
+                // 查询冰箱温度信息,进入界面查询一次冰箱的参数:温度和模式
+                if (MainActivity.mDeviceId != null) {
+                    Log.e("syl", SipService.getMyInterface()+"");
+                    SipService.setMidlHandler(handler);
+                    handler.sendEmptyMessage(MsgDefCtrl.MSG_FRESH_REFRIGERATOR);
+                    dataParseDevObj.checkOnce(devInfoList);
+                }
 
 //                if (SipService.getMyInterface() != null) {
 //                    SipService.getMyInterface().sendMsgInWAN(to, from, msg_body,domainStr);
@@ -139,7 +167,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private MyHandler handler = new MyHandler(this);
 
-    public static class MyHandler extends Handler {
+    public class MyHandler extends Handler {
         WeakReference<LoginActivity> activityWeakReference;
         MyHandler(LoginActivity activity){
             this.activityWeakReference = new WeakReference<LoginActivity>(activity);
@@ -211,6 +239,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                 case DefMsgConstants.MSG_GET_BIND_DEV_INFO_FAIL:
                     Log.i(TAG, "DefMsgConstants.MSG_GET_BIND_DEV_INFO_FAIL");
+                    break;
+
+                case MsgDefCtrl.MSG_FRESH_REFRIGERATOR:
+//                    freshFridgeManageUI();
+                    Log.i(TAG, "`````````>"+msg.obj.toString());
+                    handler.sendEmptyMessageDelayed(MsgDefCtrl.MSG_FRESH_REFRIGERATOR,5000);
                     break;
                 default:
                     break;
