@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:minWidth="80dp"
-                    android:text="CO₂浓度"
+                    android:text="液位计2"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
@@ -90,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:text="40%"
+                    android:text="1m"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
@@ -98,7 +98,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="20%～50%" />
+                    android:text="1m～5m" />
 
 
                 <TextView
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:minWidth="80dp"
-                    android:text="沼气流量"
+                    android:text="温度计1"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
@@ -169,7 +169,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:minWidth="80dp"
-                    android:text="循环液流量"
+                    android:text="温度计2"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
@@ -213,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:minWidth="80dp"
-                    android:text="吸收塔循环液温度"
+                    android:text="温度计3"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
@@ -257,7 +257,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:minWidth="80dp"
-                    android:text="再生塔循环液温度"
+                    android:text="温度计4"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
@@ -301,7 +301,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:minWidth="80dp"
-                    android:text="净化器温度"
+                    android:text="温度计5"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
@@ -346,7 +346,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:minWidth="80dp"
-                    android:text="吸收塔"
+                    android:text="温度计6"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
@@ -391,7 +391,52 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:minWidth="80dp"
-                    android:text="再生塔"
+                    android:text="热水回水温度1"
+                    android:textColor="@color/textgray"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="1.5m"
+                    android:textColor="@color/red"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="1.5m～3m" />
+
+                <TextView
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:background="@drawable/shape_roate"
+                    android:gravity="center"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
+                    android:text="走势"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:minWidth="80dp"
+                    android:text="热水回水温度2"
                     android:textColor="@color/textgray"
                     android:textSize="15sp" />
 
