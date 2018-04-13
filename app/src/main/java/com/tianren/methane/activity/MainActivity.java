@@ -28,16 +28,15 @@ import com.tianren.methane.service.SipService;
 public class MainActivity extends BaseActivity {
     private TabLayout mTabLayout;
     //Tab 文字
-    private final int[] TAB_TITLES = new int[]{R.string.home,R.string.guanli,R.string.zixun,R.string.usercenter};
+    private final int[] TAB_TITLES = new int[]{R.string.home,R.string.guanli,R.string.usercenter};
     //Tab 图片
     private final int[] TAB_IMGS = new int[]
             {R.drawable.tab_home_select_drawable,
                     R.drawable.tab_zixun_select_drawable,
-                    R.drawable.tab_zixun_select_drawable,
                     R.drawable.tab_wode_select_drawable};
     //Fragment 数组
     private final Fragment[] TAB_FRAGMENTS = new Fragment[]
-            {new HomeFragment(), new ManagerFragment(), new NewsFragment(), new MeFragment()};
+            {new HomeFragment(), new ManagerFragment(), new MeFragment()};
     //Tab 数目
     private MyViewPagerAdapter mAdapter;
     private ViewPager mViewPager;

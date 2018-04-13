@@ -47,7 +47,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-    <LinearLayout
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="5dp"
@@ -215,6 +215,17 @@
         </LinearLayout>
 
     </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_entry"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/maincolor"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/xinxiluru"
+                android:layout_margin="5dp"
+                android:textColor="@color/white"/>
 
         </LinearLayout>
     </ScrollView>

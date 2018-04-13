@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tianren.methane.R;
+import com.tianren.methane.activity.DataEntryActivity;
 import com.tianren.methane.activity.LoginActivity;
 import com.tianren.methane.activity.MoveCarbonActivity;
 import com.tianren.methane.activity.MoveSulfurActivity;
@@ -22,7 +23,7 @@ import com.tianren.methane.activity.YanYangActivity;
 public class ManagerFragment extends BaseFragment implements View.OnClickListener {
 
     private View view;
-    private TextView tv_yanyang, tv_jiankong, tv_dingwei, tv_qigui, tv_tuoliu, tv_tuotan;
+    private TextView tv_yanyang, tv_jiankong, tv_dingwei, tv_qigui, tv_tuoliu, tv_tuotan,tv_entry;
 
 
     @Nullable
@@ -53,6 +54,9 @@ public class ManagerFragment extends BaseFragment implements View.OnClickListene
 
         tv_tuotan = (TextView) view.findViewById(R.id.tv_tuotan);
         tv_tuotan.setOnClickListener(this);
+
+        tv_entry= (TextView) view.findViewById(R.id.tv_entry);
+        tv_entry.setOnClickListener(this);
 
     }
 
@@ -93,6 +97,11 @@ public class ManagerFragment extends BaseFragment implements View.OnClickListene
             case R.id.tv_tuotan:
                 Intent intent_tuotan = new Intent(getActivity(), MoveCarbonActivity.class);
                 startActivity(intent_tuotan);
+                break;
+
+            case R.id.tv_entry:
+                Intent intent_entry = new Intent(getActivity(), DataEntryActivity.class);
+                startActivity(intent_entry);
                 break;
         }
     }
