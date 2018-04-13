@@ -1,28 +1,26 @@
-/**  
+/**
 * @Title: MyInterface.java
 * @Package com.hisense.acclient.utils.cc
 * @Description: TODO(用一句话描述该文件做什么)
-* @author lixiaolan  
+* @author lixiaolan
 * @date 2014-9-1 上午11:14:44
-* @version V1.0  
+* @version V1.0
 */
 
 package com.tianren.methane.jniutils;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.URLEncoder;
-import java.util.Enumeration;
-import java.util.HashMap;
-
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
-import org.json.JSONArray;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import com.hisense.hitv.hicloud.bean.account.AppCodeReply;
 import com.hisense.hitv.hicloud.bean.account.AppCodeSSO;
@@ -37,19 +35,18 @@ import com.hisense.hs_iot_interface.Iot_JNI_Interface;
 import com.tianren.methane.constant.DefMsgConstants;
 import com.tianren.methane.service.SipService;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.telephony.TelephonyManager;
-import android.util.Log;
-import android.widget.Toast;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.URLEncoder;
+import java.util.Enumeration;
+import java.util.HashMap;
 
 /**
  * @ClassName: MyInterface
@@ -73,19 +70,19 @@ public class MyInterface{
 	private boolean isSetrevmsg = false ;
 	private boolean isReregister = false ;//是否已经进行reregister
 	private boolean isThreadEnable = false;	//是否已经调用setThreadEnable函数
-	
+
 	private final int MSG_KILL_PROCESS = 111;
 	private final int MSG_STOP_SERVICE = 112;
 	private final int MSG_TOAST_SHOW = 113;//弹出toast消息，在子线程中弹，因此要发消息
 	private Context mContext;
-	
+
 	private static final String appKey = "1560000886";
 	private static final String appSecret = "e544cdgwt27i5tk2qv0j43tt28o5458p";
 	private String appCode = null;
 	private String token = "";
 	private String appCodeSSO = null;
 	private String tokenSSO = null;
-		
+
 	public MyInterface(){
 		Log.i(TAG, "MyInterface() function");
 	}
@@ -93,11 +90,11 @@ public class MyInterface{
 	public void setmContext(Context context) {
 		mContext = context;
 	}
-	
+
 	public void setIsThreadEnable(boolean isThreadEnable) {
 		this.isThreadEnable = isThreadEnable;
 	}
-	
+
 	public boolean getIsThreadEnable() {
 		return isThreadEnable;
 	}
@@ -105,11 +102,11 @@ public class MyInterface{
 	public void setInitWan(boolean isInitWan) {
 		this.isInitWan = isInitWan;
 	}
-	
+
 	public boolean getIsInitWan() {
 		return isInitWan;
 	}
-	
+
 	public void setFirst(boolean flag) {
 		this.first = flag;
 	}
@@ -117,29 +114,29 @@ public class MyInterface{
 	public boolean getFirst() {
 		return first;
 	}
-	
+
 	public void setIsReregister(boolean flag) {
 		this.isReregister = flag;
 	}
-	
+
 	public boolean getIsReregister() {
 		return isReregister;
 	}
-	
+
 	public void setNotificationReciveFlag(boolean flag){
 		mIsNotificationMsgCanRecive = flag;
 	}
-	
+
 	public boolean getNotificationReciveFlag(){
 		return mIsNotificationMsgCanRecive;
 	}
-	
+
 	public void destroyInstance(){
 		Log.d(TAG,"destroy interface instance! ");
 		logoffByUsr();
 		handler.sendEmptyMessageDelayed(MSG_STOP_SERVICE, 500);//延时原因：等收到注销成功或失败消息后，才是真正注销完成
 	}
-	
+
 	Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -171,16 +168,16 @@ public class MyInterface{
 			}
 		};
 	};
-		
+
 	// 初始化接口，只调用一次。初始化成功才可以使用别的广域网的接口。
 	public boolean init_wan() {
 		boolean res = Iot_JNI_Interface.hs_iot_init() == 0 ? true : false;// 0:成功,-1：failed;
 		return res;
 	}
-	
+
 	//已经注册的用户登录，先登录海视云服务器，成功后再登录王蒙服务器
 	public void loginByUsr(final String usr, final String pw){
-		
+
 		if (!getPhoneIpAddress().equals("")) {
 			haiSignon(usr, pw);
 		} else {
@@ -191,7 +188,7 @@ public class MyInterface{
 		}
 		Log.v(TAG, "sipHandler = " + sipHandler);
 	}
-	
+
 	//sip服务器登录
 	public void sipLogin(final String usr, final String pw) {
 		Log.i(TAG, "sipLogin--isInitWan = " + isInitWan + "--usr: " + usr + ", pw: " + pw);
@@ -214,7 +211,7 @@ public class MyInterface{
 			setrevmsg();
 			isSetrevmsg = true ;
 		}
-		
+
 		first = true ;
 		Log.v(TAG, "sipLogin--domain_login = " + getValueFromTable("domain_login", ""));
 		if (!getValueFromTable("domain_login", "").equals("")) {
@@ -223,13 +220,13 @@ public class MyInterface{
 			Iot_JNI_Interface.hs_iot_register(usr, AllenEncode.AllenEncode(pw).substring(0, 10), EXPIRY, DOMAIN, getPhoneIpAddress());//res=0:正常
 		}
 	}
-	
+
 	//若王蒙那有资源被回收，则重新进行一些初始化
 	public void reInit() {
 		setInitWan(false);//释放了资源，将初始化标志位 置false
 		setThreadEnable(false);
 		setIsThreadEnable(false);
-		
+
 		String username = getValueFromTable("username", "");
 		String password = getValueFromTable("password", "");
 		Log.i(TAG, "logoffByUsr--username: " + username + ", password: " + password);
@@ -238,11 +235,11 @@ public class MyInterface{
 			loginByUsr(username, password);
 		}
 	}
-	
+
 	//注销
 	public void logoffByUsr(){
-		haiLogout();//海视云注销	
-		
+		haiLogout();//海视云注销
+
 		//sip服务器log out
 		String username = getValueFromTable("username", "");
 		String password = getValueFromTable("password", "");
@@ -257,13 +254,13 @@ public class MyInterface{
 			}
 		}
 	}
-	
+
 	//资源释放
 	public void unInit() {
 		Log.i(TAG, "unInit");
 		Iot_JNI_Interface.hs_iot_uninit();
 	}
-	
+
 	//定时注册和接收消息使能设置接口
 	public boolean setThreadEnable(boolean isEnable) {
 		boolean res = true;
@@ -274,7 +271,7 @@ public class MyInterface{
 		}
 		return res;
 	}
-	
+
 	// 定时注册接口，底层会循环定时发送注册消息
 	public void reregister() {
 		new Thread() {
@@ -283,12 +280,12 @@ public class MyInterface{
 				// TODO Auto-generated method stub
 				Iot_JNI_Interface.hs_iot_reregister();
 			}
-		}.start();		
+		}.start();
 	}
-	
+
 	// 回调消息接收接口,使用回调的话需先调用此函数
 	public void setrevmsg(){
-		new Thread() {			
+		new Thread() {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
@@ -296,7 +293,7 @@ public class MyInterface{
 			}
 		}.start();
 	}
-	
+
 	public void createNewUser(final Handler handler, final String username, final String pwd, final boolean ifAddHaishiyunUser){
 		new Thread(){
 			public void run() {
@@ -316,12 +313,12 @@ public class MyInterface{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 				try {
 					String urlString = DOMAIN_HTTP + "HttpAddUSer?param=" + jsonSend.toString();
 					JSONTokener jsonParser = new JSONTokener(getResultByHttp(urlString));
 					JSONObject jsonResult = (JSONObject) jsonParser.nextValue();
-					if(200 == jsonResult.optInt("code")){		
+					if(200 == jsonResult.optInt("code")){
 						handler.sendEmptyMessage(DefMsgConstants.MSG_REGISTER_SUCCESS);
 					}else{
 						Message registerErrorMsg = new Message();
@@ -344,11 +341,11 @@ public class MyInterface{
 					e.printStackTrace();
 				} catch (Exception e) {
 					e.printStackTrace();
-				}				
-			};			
+				}
+			};
 		}.start();
 	}
-	
+
 	//获取绑定的设备信息（设备编号、昵称、条形码）
 	public void queryBindDeviceInfo() {
 		new Thread(){
@@ -368,11 +365,11 @@ public class MyInterface{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 				try {
 					JSONTokener jsonParser = new JSONTokener(getResultByHttp(DOMAIN_HTTP + "HttpQueryBindDeviceinfo?param=" + jsonSend.toString()));//iot.hisense.com
 					JSONObject jsonResult = (JSONObject) jsonParser.nextValue();
-					
+
 					if (sipHandler != null) {
 						if (jsonResult.optInt("code") == 200) {
 							Message msg = new Message();
@@ -398,7 +395,7 @@ public class MyInterface{
 			};
 		}.start();
 	}
-	
+
 	//上传设备昵称
 	public void updateNickname(final String deviceId, final String nickName) {
 		new Thread(){
@@ -420,7 +417,7 @@ public class MyInterface{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 				try {
 					JSONTokener jsonParser = new JSONTokener(getResultByHttp(DOMAIN_HTTP + "HttpUpdateNickname?param=" + jsonSend.toString()));//iot.hisense.com
 					JSONObject jsonResult = (JSONObject) jsonParser.nextValue();
@@ -450,7 +447,7 @@ public class MyInterface{
 			};
 		}.start();
 	}
-	
+
 	//上传条码
 	public void updateBarcode(final String deviceId, final String barcode) {
 		new Thread(){
@@ -471,11 +468,11 @@ public class MyInterface{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 				try {
 					JSONTokener jsonParser = new JSONTokener(getResultByHttp(DOMAIN_HTTP + "HttpUpdateBarcode?param=" + jsonSend.toString()));//iot.hisense.com
 					JSONObject jsonResult = (JSONObject) jsonParser.nextValue();
-					
+
 					Log.v(TAG, "jsonobj--updateBarcode = " + jsonResult.toString());
 					if (sipHandler != null) {
 						if (jsonResult.optInt("code") == 200) {
@@ -502,7 +499,7 @@ public class MyInterface{
 			};
 		}.start();
 	}
-	
+
 	//上传个人信息（姓名、性别、地址等）
 	public void updateUserInfo(final String name, final String sex, final String province, final String city, final String address, final String email) {
 		new Thread(){
@@ -530,11 +527,11 @@ public class MyInterface{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 				try {
 					JSONTokener jsonParser = new JSONTokener(getResultByHttp(DOMAIN_HTTP + "HttpUpdateUserinfo?param=" + jsonSend.toString()));
 					JSONObject jsonResult = (JSONObject) jsonParser.nextValue();
-					
+
 					Log.v(TAG, "jsonobj--updateUserInfo = " + jsonResult.toString());
 					if (sipHandler != null) {
 						if (jsonResult.optInt("code") == 200) {
@@ -558,7 +555,7 @@ public class MyInterface{
 			};
 		}.start();
 	}
-	
+
 	//获取用户信息（姓名、性别、地址等）
 	public void queryUserinfo() {
 		new Thread(){
@@ -578,12 +575,12 @@ public class MyInterface{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 				try {
-					
+
 					JSONTokener jsonParser = new JSONTokener(getResultByHttp(DOMAIN_HTTP + "HttpQueryUserinfo?param=" + jsonSend.toString()));
 					JSONObject jsonResult = (JSONObject) jsonParser.nextValue();
-					
+
 					if (sipHandler != null) {
 						if (jsonResult.optInt("code") == 200) {
 							Message msg = new Message();
@@ -606,7 +603,7 @@ public class MyInterface{
 			};
 		}.start();
 	}
-	
+
 	//绑定设备，入参：设备Id + 设备密码
 	public void bindDev(final String deviceId, final String devicePasswd, final String deviceDomain) {//
 		new Thread(){
@@ -623,14 +620,14 @@ public class MyInterface{
 					jsonSend.put("verifycode", AllenEncode.AllenEncode(deviceId + devicePasswd));
 					jsonSend.put("timeStamp", currentTime);
 					jsonSend.put("accessToken", AllenEncode.AllenEncode(currentTime + httpKey));
-					jsonSend.put("sipUser", "");					
+					jsonSend.put("sipUser", "");
 					Log.d(TAG, "bind--username = " + username + ", deviceId = " + deviceId + ", devicePasswd = " + devicePasswd + ", deviceDomain = " + deviceDomain);//
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 				try {
 					String urlString = DOMAIN_HTTP + "HttpUserBind?param=" + jsonSend.toString();
 					JSONTokener jsonParser = new JSONTokener(DataDownLoader.DownLoad(urlString));//iot.hisense.com
@@ -647,7 +644,7 @@ public class MyInterface{
 							bundle.putString("bindDevId", deviceId);
 							bundle.putString("bindDevDomain", deviceDomain);
 							bindSuccessMsg.obj = bundle;
-							sipHandler.sendMessage(bindSuccessMsg);						
+							sipHandler.sendMessage(bindSuccessMsg);
 						} else if (jsonResult.optInt("code") == 401) {
 							Message bindFailMsg = new Message();
 							bindFailMsg.what = DefMsgConstants.MSG_BIND_EXCESSIVE;
@@ -659,7 +656,7 @@ public class MyInterface{
 							bindFailMsg.obj = deviceId;
 							sipHandler.sendMessage(bindFailMsg);
 						}
-					}						
+					}
 				} catch (JSONException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -668,11 +665,11 @@ public class MyInterface{
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}							
+				}
 			};
 		}.start();
 	}
-	
+
 	//解绑，入参：设备编号
 	public void UnbindDev(final String deviceId) {
 		new Thread(){
@@ -687,16 +684,16 @@ public class MyInterface{
 					jsonSend.put("verifycode", AllenEncode.AllenEncode(username + deviceId));
 					jsonSend.put("timeStamp", currentTime);
 					jsonSend.put("accessToken", AllenEncode.AllenEncode(currentTime + httpKey));
-					jsonSend.put("sipUser", "");					
+					jsonSend.put("sipUser", "");
 					Log.d(TAG, "unbind--deviceId = "+ deviceId + ", username = " + username);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-													
+
 				try {
-					JSONTokener jsonParser = new JSONTokener(getResultByHttp(DOMAIN_HTTP + "HttpUserUnBind?param=" + jsonSend.toString()));//iot.hisense.com 	
+					JSONTokener jsonParser = new JSONTokener(getResultByHttp(DOMAIN_HTTP + "HttpUserUnBind?param=" + jsonSend.toString()));//iot.hisense.com
 					JSONObject jsonResult = (JSONObject) jsonParser.nextValue();
 					Log.v(TAG, "jsonobj--bind = " + jsonResult.toString());
 					Log.v(TAG, "code = " + jsonResult.optInt("code"));
@@ -712,7 +709,7 @@ public class MyInterface{
 							unbindFailMsg.obj = deviceId;
 							sipHandler.sendMessage(unbindFailMsg);
 						}
-					}					
+					}
 				} catch (JSONException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -721,11 +718,11 @@ public class MyInterface{
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}								
+				}
 			};
 		}.start();
 	}
-	
+
 	//密码找回
 	public void findPasswd(final String user) {
 		new Thread(){
@@ -746,12 +743,12 @@ public class MyInterface{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-								  	
+
 				try {
 					JSONTokener jsonParser = new JSONTokener(getResultByHttp(DOMAIN_HTTP + "HttpRetrievePasswd?param=" + jsonSend.toString()));//iot.hisense.com
 					JSONObject jsonResult = (JSONObject) jsonParser.nextValue();
 					Log.v(TAG, "jsonobj--bind = " + jsonResult.toString());
-					
+
 					if (sipHandler != null) {
 						Message resultMsg = new Message();
 						if (jsonResult.optInt("code") == 200) {
@@ -774,7 +771,7 @@ public class MyInterface{
 			};
 		}.start();
 	}
-	
+
 	//密码重置
 	public void resetPasswd(final String user, final String passwd, final String verifyCode) {
 		new Thread(){
@@ -796,12 +793,12 @@ public class MyInterface{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 				try {
 					JSONTokener jsonParser = new JSONTokener(getResultByHttp(DOMAIN_HTTP + "HttpResetPasswd?param=" + jsonSend.toString()));//iot.hisense.com
 					JSONObject jsonResult = (JSONObject) jsonParser.nextValue();
 					Log.v(TAG, "jsonobj--bind = " + jsonResult.toString());
-					
+
 					if (sipHandler != null) {
 						Message resultMsg = new Message();
 						if (jsonResult.optInt("code") == 200) {
@@ -825,7 +822,7 @@ public class MyInterface{
 			};
 		}.start();
 	}
-	
+
 	//密码修改
 	public void modifyPasswd(final String oldPasswd, final String newPasswd) {
 		Log.i(TAG, "modifyPasswd: newPasswd-" + newPasswd + ", token: " + token);
@@ -850,12 +847,12 @@ public class MyInterface{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 				try {
 					JSONTokener jsonParser = new JSONTokener(getResultByHttp(DOMAIN_HTTP + "HttpModifyPassword?param=" + jsonSend.toString()));//iot.hisense.com
 					JSONObject jsonResult = (JSONObject) jsonParser.nextValue();
 					Log.v(TAG, "jsonobj--bind = " + jsonResult.toString());
-					
+
 					if (sipHandler != null) {
 						Message resultMsg = new Message();
 						if (jsonResult.optInt("code") == 200) {
@@ -879,10 +876,10 @@ public class MyInterface{
 			};
 		}.start();
 	}
-	
+
 	//获取http返回结果
 	public String getResultByHttp(String strUrl) throws Exception {
-		
+
 		return DataDownLoader.DownLoad(strUrl);
 	}
 
@@ -915,9 +912,9 @@ public class MyInterface{
 			public void run() {
 				Iot_JNI_Interface.hs_lan_discovery_init();
 			}
-		}.start();	
+		}.start();
 	}
-	
+
 	/**
 	 * @Title: sendMsgInLan
 	 * @Description: 局域网消息发送接口
@@ -929,16 +926,16 @@ public class MyInterface{
 	 *            ：发送的消息内容
 	 * @return boolean
 	 */
-	
+
 	public boolean sendMsgInLan(String from_user, String to_user,
-			String msg_body) {		
+			String msg_body) {
 		boolean res = Iot_JNI_Interface.hs_lan_message_send(from_user, to_user,
 				msg_body) == 0 ? true : false;
 		return res;
 	}
-	
+
 	/***************** 局域网接口 end *******************/
-	
+
 	/**
 	 * @Title: sendMsgInWAN
 	 * @Description: 广域网发送消息
@@ -968,11 +965,11 @@ public class MyInterface{
 			}else{
 				res= Iot_JNI_Interface.hs_iot_sendmsg(to, usrname, msg, DOMAIN);
 			}
-			
+
 		}
 		return res;
 	}
-	
+
 	//获取手机的IP地址
 	public String getPhoneIpAddress() {
 		if (mContext != null) {
@@ -982,26 +979,26 @@ public class MyInterface{
 				} else {
 					return getLocalIpAddress();
 				}
-			} 
+			}
 		}
 		return "";
 	}
-	
-	private boolean detectNetwork() { 
+
+	private boolean detectNetwork() {
 		ConnectivityManager manager = null;
 		if (mContext != null) {
-			manager = (ConnectivityManager)mContext.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);  
+			manager = (ConnectivityManager)mContext.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 		}
-        if (manager == null) {  
-            return false;  
-        }  
-        NetworkInfo networkinfo = manager.getActiveNetworkInfo();  
-        if (networkinfo == null || !networkinfo.isAvailable()) {  
-            return false;  
-        }  
+        if (manager == null) {
+            return false;
+        }
+        NetworkInfo networkinfo = manager.getActiveNetworkInfo();
+        if (networkinfo == null || !networkinfo.isAvailable()) {
+            return false;
+        }
         return true;
 	}
-	
+
 	private String getCurrentNetType() {
 		String type = "";
 		NetworkInfo info = null;
@@ -1009,7 +1006,7 @@ public class MyInterface{
 			ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
 			info = cm.getActiveNetworkInfo();
 		}
-		
+
 		if (info == null) {
 			type = "null";
 		} else if (info.getType() == ConnectivityManager.TYPE_WIFI) {
@@ -1029,7 +1026,7 @@ public class MyInterface{
 		}
 		return type;
 	}
-	
+
 	private String getWifiIpAddress() {
 		if (mContext != null) {
 			WifiManager wifiManager = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
@@ -1041,11 +1038,11 @@ public class MyInterface{
 		}
         return "";
     }
-	
+
 	//3G
 	private String getLocalIpAddress(){
          try{
-             Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); 
+             Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
              while(en.hasMoreElements()){
                      NetworkInterface nif = en.nextElement();
                      Enumeration<InetAddress> enumIpAddr = nif.getInetAddresses();
@@ -1061,25 +1058,25 @@ public class MyInterface{
          }
          return "";
 	 }
-	
+
 	public String getValueFromTable(String key, String defaultValue){
 		if (mContext != null) {
-			SharedPreferences sp = mContext.getSharedPreferences("userInfo", Context.MODE_PRIVATE);  
-		    String value = sp.getString(key, defaultValue); 
+			SharedPreferences sp = mContext.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+		    String value = sp.getString(key, defaultValue);
 		    return value;
 		}
 	    return "";
 	}
-	
+
 	public void putValueToTable(String key, String value){
 		if (mContext != null) {
 			SharedPreferences sp = mContext.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-			SharedPreferences.Editor editor = sp.edit();  
-			editor.putString(key, value); 
+			SharedPreferences.Editor editor = sp.edit();
+			editor.putString(key, value);
 			editor.commit();
 		}
 	}
-	
+
 	//海视云登录
 	private void haiSignon(final String usr, final String pw) {
 		new Thread() {
@@ -1100,16 +1097,16 @@ public class MyInterface{
 				if(reply != null && reply.getReply() == 0)	{
 					Log.d(TAG, "signon hai_shi_yun success");
 					token = reply.getToken();//海视云登录成功后，获取到的token
-					
+
 					createNewUser(handler, usr, pw, true);
 				} else {
 					Log.e(TAG, "hai_shi_yun signon fail");//海视云登录失败，不用出来，直接登录sip
 					sipLogin(usr, pw);
 				}
 			}
-		}.start();	
+		}.start();
 	}
-	
+
 	/**检查手机号是否已经注册过*/
 	public void validateMobile(final String mobilePhone) {
 		appAuthSSOBlock();
@@ -1128,7 +1125,7 @@ public class MyInterface{
 			}
 		}
 	}
-	
+
 	//开线程检查手机号是否已经注册过
 	public void validateMobileThread(final String mobilePhone) {
 		new Thread() {
@@ -1152,7 +1149,7 @@ public class MyInterface{
 			}
 		}.start();
 	}
-	
+
 	//hai shi yun log out
 	private void haiLogout() {
 		new Thread() {
@@ -1171,7 +1168,7 @@ public class MyInterface{
 			}
 		}.start();
 	}
-	
+
 	/** 应用认证 获取appCode（线程阻塞）*/
 	public void appAuthBlock() {
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -1190,7 +1187,7 @@ public class MyInterface{
 			}
 		}
 	}
-	
+
 	/**SSO应用认证, 有用户登录时返回token, 否则返回appCode（线程阻塞）*/
 	public void appAuthSSOBlock() {
 		HashMap<String, String> map = new HashMap<String, String>();
