@@ -99,7 +99,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="10ppm～100ppm" />
+                    android:text="10～100ppm" />
 
 
                 <TextView
@@ -143,10 +143,11 @@
 
 
                 <TextView
+                    android:id="@+id/textView5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="20 ℃～40 ℃" />
+                    android:text="20 ～40 ℃" />
 
                 <TextView
                     android:layout_width="45dp"
@@ -191,7 +192,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="500m³～1500m³" />
+                    android:text="500～1500m³" />
 
                 <TextView
                     android:layout_width="45dp"
@@ -236,7 +237,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="2.0PH～8.0PH" />
+                    android:text="2.0～8.0PH" />
 
                 <TextView
                     android:layout_width="45dp"
@@ -282,7 +283,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="20m³～70m³" />
+                    android:text="20～70m³" />
 
                 <TextView
                     android:layout_width="45dp"
@@ -327,7 +328,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="10m³～60m³" />
+                    android:text="10～60m³" />
 
                 <TextView
                     android:layout_width="45dp"
@@ -372,7 +373,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="0kPa～3kPa" />
+                    android:text="0～3kPa" />
 
 
                 <TextView
@@ -418,7 +419,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="0m～3mg" />
+                    android:text="0～3m" />
 
 
                 <TextView
@@ -464,7 +465,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="0mg～3mg" />
+                    android:text="0～3mg" />
 
 
                 <TextView

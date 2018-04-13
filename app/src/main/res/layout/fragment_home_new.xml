@@ -75,7 +75,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/tianren" />
 
@@ -206,7 +206,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="14dp"
-                        android:paddingLeft="10dp"
+                        android:paddingLeft="5dp"
                         android:text="今日总产气量"
                         android:textColor="#999"
                         android:textSize="14sp" />
@@ -240,7 +240,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="14dp"
-                        android:paddingLeft="10dp"
+                        android:paddingLeft="5dp"
                         android:text="厌氧状态"
                         android:textColor="#999"
                         android:textSize="14sp" />
@@ -274,10 +274,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="14dp"
-                        android:paddingLeft="10dp"
+                        android:paddingLeft="5dp"
                         android:text="气柜状态"
                         android:textColor="#999"
-                        android:textSize="14sp"  />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="80dp"
@@ -314,10 +314,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="14dp"
-                        android:paddingLeft="10dp"
+                        android:paddingLeft="5dp"
                         android:text="今日总耗电量"
                         android:textColor="#999"
-                        android:textSize="14sp"  />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="80dp"
@@ -348,10 +348,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="14dp"
-                        android:paddingLeft="10dp"
+                        android:paddingLeft="5dp"
                         android:text="今日总耗热量"
                         android:textColor="#999"
-                        android:textSize="14sp"  />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="80dp"
@@ -382,10 +382,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="14dp"
-                        android:paddingLeft="10dp"
+                        android:paddingLeft="5dp"
                         android:text="今日总耗水量"
                         android:textColor="#999"
-                        android:textSize="14sp"  />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="80dp"
