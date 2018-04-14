@@ -950,7 +950,7 @@ public class MyInterface{
 		/*boolean res = Iot_JNI_Interface.hs_iot_sendmsg(to, usrname, msg) == 0 ? true
 				: false;*/
 		int res = -4;
-		if(domainStr != null && !domainStr.equals("")   ){
+		if(domainStr != null && !domainStr.equals("")){
 			res = Iot_JNI_Interface.hs_iot_sendmsg(to, usrname, msg, domainStr);
 		}else{
 			Log.e(TAG,"******************************DEFAULT :");
@@ -966,7 +966,6 @@ public class MyInterface{
 			}else{
 				res= Iot_JNI_Interface.hs_iot_sendmsg(to, usrname, msg, DOMAIN);
 			}
-
 		}
 		return res;
 	}
@@ -988,7 +987,8 @@ public class MyInterface{
 	private boolean detectNetwork() {
 		ConnectivityManager manager = null;
 		if (mContext != null) {
-			manager = (ConnectivityManager)mContext.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+			manager = (ConnectivityManager)mContext.getApplicationContext().
+					getSystemService(Context.CONNECTIVITY_SERVICE);
 		}
         if (manager == null) {
             return false;

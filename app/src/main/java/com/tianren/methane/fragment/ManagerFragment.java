@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tianren.methane.R;
@@ -23,7 +24,8 @@ import com.tianren.methane.activity.YanYangActivity;
 public class ManagerFragment extends BaseFragment implements View.OnClickListener {
 
     private View view;
-    private TextView tv_yanyang, tv_jiankong, tv_dingwei, tv_qigui, tv_tuoliu, tv_tuotan,tv_entry;
+    private LinearLayout ll_yanyang, ll_yuchuli, ll_qigui, ll_tuoliu, ll_tuotan;
+    private TextView tv_entry;
 
 
     @Nullable
@@ -37,23 +39,20 @@ public class ManagerFragment extends BaseFragment implements View.OnClickListene
 
     private void initView() {
 
-        tv_yanyang = (TextView) view.findViewById(R.id.tv_yanyang);
-        tv_yanyang.setOnClickListener(this);
+        ll_yanyang = (LinearLayout) view.findViewById(R.id.ll_yanyang);
+        ll_yanyang.setOnClickListener(this);
 
-        tv_jiankong = (TextView) view.findViewById(R.id.tv_jiankong);
-        tv_jiankong.setOnClickListener(this);
+        ll_yuchuli = (LinearLayout) view.findViewById(R.id.ll_yuchuli);
+        ll_yuchuli.setOnClickListener(this);
 
-        tv_dingwei = (TextView) view.findViewById(R.id.tv_dingwei);
-        tv_dingwei.setOnClickListener(this);
+        ll_tuoliu = (LinearLayout) view.findViewById(R.id.ll_tuoliu);
+        ll_tuoliu.setOnClickListener(this);
 
-        tv_qigui = (TextView) view.findViewById(R.id.tv_qigui);
-        tv_qigui.setOnClickListener(this);
+        ll_tuotan = (LinearLayout) view.findViewById(R.id.ll_tuotan);
+        ll_tuotan.setOnClickListener(this);
 
-        tv_tuoliu = (TextView) view.findViewById(R.id.tv_tuoliu);
-        tv_tuoliu.setOnClickListener(this);
-
-        tv_tuotan = (TextView) view.findViewById(R.id.tv_tuotan);
-        tv_tuotan.setOnClickListener(this);
+        ll_qigui = (LinearLayout) view.findViewById(R.id.ll_qigui);
+        ll_qigui.setOnClickListener(this);
 
         tv_entry= (TextView) view.findViewById(R.id.tv_entry);
         tv_entry.setOnClickListener(this);
@@ -70,31 +69,27 @@ public class ManagerFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_qigui:
+            case R.id.ll_qigui:
                 Intent intent_qigui = new Intent(getActivity(), QiGuiActivity.class);
                 startActivity(intent_qigui);
                 break;
 
-            case R.id.tv_yanyang:
+            case R.id.ll_yanyang:
                 Intent intent_yanyang = new Intent(getActivity(), YanYangActivity.class);
                 startActivity(intent_yanyang);
                 break;
 
-            case R.id.tv_jiankong:
+            case R.id.ll_yuchuli:
                 Intent intent2 = new Intent(getActivity(), LoginActivity.class);
                 startActivityForResult(intent2, 1);
                 break;
 
-            case R.id.tv_dingwei:
-
-                break;
-
-            case R.id.tv_tuoliu:
+            case R.id.ll_tuoliu:
                 Intent intent_tuoliu = new Intent(getActivity(), MoveSulfurActivity.class);
                 startActivity(intent_tuoliu);
                 break;
 
-            case R.id.tv_tuotan:
+            case R.id.ll_tuotan:
                 Intent intent_tuotan = new Intent(getActivity(), MoveCarbonActivity.class);
                 startActivity(intent_tuotan);
                 break;

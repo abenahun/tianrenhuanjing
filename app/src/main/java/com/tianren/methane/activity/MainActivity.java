@@ -92,6 +92,8 @@ public class MainActivity extends BaseActivity {
                     public void onNext(ResponseBody responseBody) {
                         try {
                             String jstr = new String(responseBody.bytes());
+//                            ToastUtils.show(jstr);
+
                             Gson gson = new Gson();
                             sensorDataMap = gson.fromJson(jstr, new TypeToken<Map<String, SensorBean>>() {
                             }.getType());
