@@ -26,6 +26,8 @@ public class ManagerFragment extends BaseFragment implements View.OnClickListene
     private View view;
     private LinearLayout ll_yanyang, ll_yuchuli, ll_qigui, ll_tuoliu, ll_tuotan;
     private TextView tv_entry;
+    private LinearLayout ll_back;
+    private TextView tv_title;
 
 
     @Nullable
@@ -56,6 +58,11 @@ public class ManagerFragment extends BaseFragment implements View.OnClickListene
 
         tv_entry= (TextView) view.findViewById(R.id.tv_entry);
         tv_entry.setOnClickListener(this);
+
+        ll_back = (LinearLayout) view.findViewById(R.id.ll_back);
+        ll_back.setVisibility(View.GONE);
+        tv_title = (TextView) view.findViewById(R.id.tv_title);
+        tv_title.setText("管理");
 
     }
 

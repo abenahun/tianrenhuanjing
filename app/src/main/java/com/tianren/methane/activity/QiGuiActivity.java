@@ -41,7 +41,6 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
 
     private TextView tv_qiguishaixuan;
     private Button btn_data;
-    private View view;
     private String[] items = {"pro00000001.1", "pro00000002.1", "pro00000003.1", "pro00000004.1"};
 
     private LineChart mLineChart;
@@ -66,9 +65,9 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void initView() {
-        ll_back = (LinearLayout) view.findViewById(R.id.ll_back);
+        ll_back = (LinearLayout) findViewById(R.id.ll_back);
         ll_back.setOnClickListener(this);
-        tv_title = (TextView) view.findViewById(R.id.tv_title);
+        tv_title = (TextView) findViewById(R.id.tv_title);
         tv_title.setText("气柜");
 
         recyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recyclerView);
