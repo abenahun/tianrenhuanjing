@@ -24,6 +24,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.tianren.methane.R;
 import com.tianren.methane.adapter.ModelAdapter;
 import com.tianren.methane.constant.Constant;
+import com.tianren.methane.utils.ToastUtils;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 
 import java.util.ArrayList;
@@ -55,16 +56,20 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qigui);
+        if (sensorDataMap.size() == 0) {
+            ToastUtils.show("暂无数据");
+            finish();
+        }
         initView();
 //        initChart();
         loadData();
     }
 
     private void initView() {
-//        ll_back = (LinearLayout) view.findViewById(R.id.ll_back);
-//        ll_back.setOnClickListener(this);
-//        tv_title = (TextView) view.findViewById(R.id.tv_title);
-//        tv_title.setText("气柜" );
+        ll_back = (LinearLayout) view.findViewById(R.id.ll_back);
+        ll_back.setOnClickListener(this);
+        tv_title = (TextView) view.findViewById(R.id.tv_title);
+        tv_title.setText("气柜");
 
         recyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recyclerView);
         adapter = new ModelAdapter(this);

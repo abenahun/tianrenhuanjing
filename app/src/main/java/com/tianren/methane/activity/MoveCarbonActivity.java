@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.tianren.methane.R;
 import com.tianren.methane.adapter.ModelAdapter;
+import com.tianren.methane.utils.ToastUtils;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 
 import java.util.ArrayList;
@@ -31,6 +32,10 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_move_carbon);
+        if (sensorDataMap.size() == 0) {
+            ToastUtils.show("暂无数据");
+            finish();
+        }
         initView();
         loadData();
     }
