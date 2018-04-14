@@ -88,6 +88,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
@@ -95,33 +96,32 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_margin="14dp"
-                        android:paddingLeft="5dp"
                         android:text="产气量效益"
-                        android:textColor="#999"
+                        android:textColor="@color/textgray"
                         android:textSize="14sp"/>
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="14dp"
-                        android:background="@drawable/shape_circle_red"
                         android:gravity="center"
                         android:padding="6dp"
                         android:text="200Nm³/H"
-                        android:textColor="#333"
+                        android:textColor="@color/textblack"
                         android:textSize="14sp"/>
                 </LinearLayout>
 
                 <View
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
-                    android:background="@color/backcolor"/>
+                    android:background="@color/gray_cc"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
@@ -129,33 +129,31 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_margin="14dp"
-                        android:paddingLeft="5dp"
                         android:text="总效益"
-                        android:textColor="#999"
+                        android:textColor="@color/textgray"
                         android:textSize="14sp"/>
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginBottom="14dp"
-                        android:background="@drawable/shape_circle_green"
                         android:gravity="center"
                         android:padding="6dp"
                         android:text="2000元"
-                        android:textColor="#333"
-                        android:textSize="14sp"/>
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/textsize18"/>
                 </LinearLayout>
 
                 <View
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
-                    android:background="@color/backcolor"/>
+                    android:background="@color/gray_cc"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
@@ -163,21 +161,18 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_margin="14dp"
-                        android:paddingLeft="5dp"
                         android:text="产电效益"
-                        android:textColor="#999"
+                        android:textColor="@color/textgray"
                         android:textSize="14sp"/>
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="14dp"
-                        android:background="@drawable/shape_circle_red"
-                        android:gravity="center"
                         android:padding="6dp"
-                        android:text="良好"
-                        android:textColor="#333"
+                        android:text="1000kw/h"
+                        android:textColor="@color/textblack"
                         android:textSize="14sp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -194,41 +189,95 @@
                 android:paddingBottom="14dp"
                 android:paddingTop="14dp">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tv_jingji"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:drawablePadding="12dp"
-                    android:drawableTop="@mipmap/jingjixiaoyi"
-                    android:gravity="center"
-                    android:text="总能耗\n100"
-                    android:textColor="@color/textblack"
+                    android:drawableTop="@mipmap/zongnenghao"
+                    android:text="总能耗"
+                    android:textColor="@color/textgray"
                     android:textSize="@dimen/textsize13" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textblack"
+                        android:textSize="@dimen/textsize13"
+                        android:layout_marginTop="5dp"
+                        android:text="1000"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
                 <TextView
                     android:id="@+id/tv_nenghao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawablePadding="12dp"
-                    android:drawableTop="@mipmap/nenghaofenxi"
+                    android:drawableTop="@mipmap/shuihao"
                     android:gravity="center"
-                    android:text="水耗\n100"
-                    android:textColor="@color/textblack"
+                    android:text="水耗"
+                    android:textColor="@color/textgray"
                     android:textSize="@dimen/textsize13" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textblack"
+                        android:textSize="@dimen/textsize13"
+                        android:layout_marginTop="5dp"
+                        android:text="1000"/>
+
+                </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
                 <TextView
                     android:id="@+id/tv_tongji"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawablePadding="12dp"
-                    android:drawableTop="@mipmap/shujutongji"
+                    android:drawableTop="@mipmap/dianhao"
                     android:gravity="center"
-                    android:text="电耗\n100"
-                    android:textColor="@color/textblack"
+                    android:text="电耗"
+                    android:textColor="@color/textgray"
                     android:textSize="@dimen/textsize13" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textblack"
+                            android:textSize="@dimen/textsize13"
+                            android:layout_marginTop="5dp"
+                            android:text="1000"/>
+
+                    </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tv_ribao"
@@ -236,11 +285,22 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawablePadding="12dp"
-                    android:drawableTop="@mipmap/gongsiribao"
+                    android:drawableTop="@mipmap/rehao"
                     android:gravity="center"
-                    android:text="热耗\n100"
-                    android:textColor="@color/textblack"
+                    android:text="热耗"
+                    android:textColor="@color/textgray"
                     android:textSize="@dimen/textsize13" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/textblack"
+                                android:textSize="@dimen/textsize13"
+                                android:layout_marginTop="5dp"
+                                android:text="1000"/>
+
+                        </LinearLayout>
+
             </LinearLayout>
 
             <View
