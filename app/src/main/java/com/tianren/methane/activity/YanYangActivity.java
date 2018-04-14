@@ -43,7 +43,7 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yanyang);
-        if (sensorDataMap.size() == 0) {
+        if (sensorDataMap.keySet().size() == 0) {
             ToastUtils.show("暂无数据");
             finish();
         }

@@ -56,7 +56,7 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qigui);
-        if (sensorDataMap.size() == 0) {
+        if (sensorDataMap.keySet().size() == 0) {
             ToastUtils.show("暂无数据");
             finish();
         }

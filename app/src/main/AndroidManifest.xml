@@ -36,6 +36,7 @@
         <activity android:name=".activity.YanYangActivity"/>
         <activity android:name=".activity.MoveSulfurActivity"></activity>
         <activity android:name=".activity.MoveCarbonActivity"></activity>
+        <activity android:name=".activity.PreHandleActivity"></activity>
 
 
         <service

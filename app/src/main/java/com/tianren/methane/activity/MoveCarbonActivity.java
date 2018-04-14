@@ -32,7 +32,7 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_move_carbon);
-        if (sensorDataMap.size() == 0) {
+        if (sensorDataMap.keySet().size() == 0) {
             ToastUtils.show("暂无数据");
             finish();
         }
@@ -66,6 +66,7 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
         list.add(getModel("d17"));
         list.add(getModel("d18"));
         list.add(getModel("d19"));
+        list.add(getModel("d20"));
         adapter.addItems(list);
     }
 

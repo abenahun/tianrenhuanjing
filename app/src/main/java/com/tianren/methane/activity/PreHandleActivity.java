@@ -19,10 +19,10 @@ import static com.tianren.methane.activity.MainActivity.modelMap;
 import static com.tianren.methane.activity.MainActivity.sensorDataMap;
 
 /**
- * Created by Qiu on 2018/4/10.
- * 脱硫
+ * Created by Mr.Qiu on 2018\4\14 0014.
  */
-public class MoveSulfurActivity extends BaseActivity implements View.OnClickListener {
+
+public class PreHandleActivity extends BaseActivity implements View.OnClickListener {
     private LinearLayout ll_back;
     private TextView tv_title;
     private SwipeMenuRecyclerView recyclerView;
@@ -31,7 +31,7 @@ public class MoveSulfurActivity extends BaseActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_move_sulfur);
+        setContentView(R.layout.activity_pre_handle);
         if (sensorDataMap.keySet().size() == 0) {
             ToastUtils.show("暂无数据");
             finish();
@@ -44,27 +44,26 @@ public class MoveSulfurActivity extends BaseActivity implements View.OnClickList
         ll_back = (LinearLayout) findViewById(R.id.ll_back);
         ll_back.setOnClickListener(this);
         tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_title.setText("脱硫");
+        tv_title.setText("预处理");
         recyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recyclerView);
         adapter = new ModelAdapter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemViewSwipeEnabled(false);
-        View headView = LayoutInflater.from(this).inflate(R.layout.head_sulfur, recyclerView, false);
+        View headView = LayoutInflater.from(this).inflate(R.layout.head_pre_handle, recyclerView, false);
         recyclerView.addHeaderView(headView);
         recyclerView.setAdapter(adapter);
     }
 
     private void loadData() {
         List<ModelAdapter.ModelBean> list = new ArrayList<>();
-        list.add(getModel("d1"));
-        list.add(getModel("d2"));
-        list.add(getModel("d3"));
-        list.add(getModel("d4"));
-        list.add(getModel("d5"));
-        list.add(getModel("d6"));
-        list.add(getModel("d7"));
-        list.add(getModel("d8"));
-        list.add(getModel("d9"));
+        list.add(getModel("d21"));
+        list.add(getModel("d22"));
+        list.add(getModel("d23"));
+        list.add(getModel("d24"));
+        list.add(getModel("d25"));
+        list.add(getModel("d26"));
+        list.add(getModel("d27"));
+        list.add(getModel("d28"));
         adapter.addItems(list);
     }
 
