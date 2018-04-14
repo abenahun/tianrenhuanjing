@@ -86,19 +86,22 @@
 
 
                 <TextView
+                    android:id="@+id/yeweiTV"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:text="1m"
-                    android:textColor="@color/textgray"
+                    android:text="2m"
+                    android:textColor="@color/green"
                     android:textSize="15sp" />
 
                 <TextView
+                    android:id="@+id/textView4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
-                    android:text="1m～5m" />
+                    android:text="1～3m" />
 
 
                 <TextView
@@ -131,19 +134,22 @@
 
 
                 <TextView
+                    android:id="@+id/tempTv1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:text="1000m³"
+                    android:text="30 ℃"
                     android:textColor="@color/green"
                     android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="0dp"
+
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
-                    android:text="500m³～1500m³" />
+                    android:text="20 ～40 ℃" />
 
                 <TextView
                     android:layout_width="45dp"
@@ -175,19 +181,22 @@
 
 
                 <TextView
+                    android:id="@+id/tempTv2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:text="80m³"
+                    android:text="30 ℃"
                     android:textColor="@color/green"
                     android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="0dp"
+
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
-                    android:text="50m³～90m³" />
+                    android:text="20 ～40 ℃" />
 
                 <TextView
                     android:layout_width="45dp"
@@ -219,6 +228,7 @@
 
 
                 <TextView
+                    android:id="@+id/tempTv3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -230,8 +240,9 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
-                    android:text="20 ℃～40 ℃" />
+                    android:text="20 ～40 ℃" />
 
                 <TextView
                     android:layout_width="45dp"
@@ -263,6 +274,7 @@
 
 
                 <TextView
+                    android:id="@+id/tempTv4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -274,8 +286,9 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
-                    android:text="20 ℃～40 ℃" />
+                    android:text="20 ～40 ℃" />
 
                 <TextView
                     android:layout_width="45dp"
@@ -307,19 +320,21 @@
 
 
                 <TextView
+                    android:id="@+id/tempTv5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="30 ℃"
-                    android:textColor="@color/red"
+                    android:textColor="@color/green"
                     android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
-                    android:text="20 ℃～40 ℃" />
+                    android:text="20 ～40 ℃" />
 
 
                 <TextView
@@ -352,20 +367,22 @@
 
 
                 <TextView
+                    android:id="@+id/tempTv6"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:text="1.5m"
-                    android:textColor="@color/red"
+                    android:text="30 ℃"
+                    android:textColor="@color/green"
                     android:textSize="15sp" />
 
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
-                    android:text="1.5m～3m" />
+                    android:text="20 ～40 ℃" />
 
                 <TextView
                     android:layout_width="45dp"
@@ -397,20 +414,22 @@
 
 
                 <TextView
+                    android:id="@+id/hotWaterTv1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:text="1.5m"
-                    android:textColor="@color/red"
+                    android:text="30 ℃"
+                    android:textColor="@color/green"
                     android:textSize="15sp" />
 
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
-                    android:text="1.5m～3m" />
+                    android:text="20 ～40 ℃" />
 
                 <TextView
                     android:layout_width="45dp"
@@ -442,20 +461,70 @@
 
 
                 <TextView
+                    android:id="@+id/hotWaterTv2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:text="1.5m"
-                    android:textColor="@color/red"
+                    android:text="30 ℃"
+                    android:textColor="@color/green"
                     android:textSize="15sp" />
 
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="2"
-                    android:text="1.5m～3m" />
+                    android:text="20 ～40 ℃" />
+
+                <TextView
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:background="@drawable/shape_roate"
+                    android:gravity="center"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
+                    android:text="走势"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:minWidth="80dp"
+                    android:text="电磁流量计"
+                    android:textColor="@color/textgray"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:id="@+id/electTv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="30 A"
+                    android:textColor="@color/green"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="2"
+                    android:text="10 ～50 A" />
 
                 <TextView
                     android:layout_width="45dp"

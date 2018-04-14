@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -29,6 +30,8 @@ import com.tianren.methane.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.tianren.methane.activity.MainActivity.modelMap;
+
 /**
  * Created by Qiu on 2018/4/09.
  */
@@ -44,6 +47,16 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
     private LinearLayout ll_back;
     private TextView tv_title;
 
+    private TextView phTv,
+            vfaTv,
+            vsTv,
+            alkaliTv,
+            andanTv,
+            codTv,
+            pressTv,
+            highTv,
+            tsTv,
+            tempTv1, tempTv2, tempTv3, tempTv4, tempTv5;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +64,9 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
         setContentView(R.layout.activity_yanyang);
         initView();
         initChart();
+        loadData();
     }
+
 
     private void initView() {
         ll_back = (LinearLayout) findViewById(R.id.ll_back);
@@ -67,6 +82,38 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
         btn_data = (Button) findViewById(R.id.btn_data);
         tv_qiguishaixuan.setOnClickListener(this);
         btn_data.setOnClickListener(this);
+
+        phTv = (TextView) findViewById(R.id.phTv);
+        vfaTv = (TextView) findViewById(R.id.vfaTv);
+        vsTv = (TextView) findViewById(R.id.vsTv);
+        alkaliTv = (TextView) findViewById(R.id.alkaliTv);
+        andanTv = (TextView) findViewById(R.id.andanTv);
+        codTv = (TextView) findViewById(R.id.codTv);
+        pressTv = (TextView) findViewById(R.id.pressTv);
+        highTv = (TextView) findViewById(R.id.highTv);
+        tsTv = (TextView) findViewById(R.id.tsTv);
+        tempTv1 = (TextView) findViewById(R.id.tempTv1);
+        tempTv2 = (TextView) findViewById(R.id.tempTv2);
+        tempTv3 = (TextView) findViewById(R.id.tempTv3);
+        tempTv4 = (TextView) findViewById(R.id.tempTv4);
+        tempTv5 = (TextView) findViewById(R.id.tempTv5);
+    }
+
+    private void loadData() {
+        phTv.setText((TextUtils.isEmpty(modelMap.get("d37")) ? "" : modelMap.get("d37")) + " ");
+        vfaTv.setText((TextUtils.isEmpty(modelMap.get("d38")) ? "" : modelMap.get("d38")) + " mg/L");
+        vsTv.setText((TextUtils.isEmpty(modelMap.get("d39")) ? "" : modelMap.get("d39")) + " %");
+        alkaliTv.setText((TextUtils.isEmpty(modelMap.get("d40")) ? "" : modelMap.get("d40")) + " mg/L");
+        andanTv.setText((TextUtils.isEmpty(modelMap.get("d41")) ? "" : modelMap.get("d41")) + " mg/L");
+        codTv.setText((TextUtils.isEmpty(modelMap.get("d42")) ? "" : modelMap.get("d42")) + " mg/L");
+        pressTv.setText((TextUtils.isEmpty(modelMap.get("d43")) ? "" : modelMap.get("d43")) + " kPa");
+        highTv.setText((TextUtils.isEmpty(modelMap.get("d44")) ? "" : modelMap.get("d44")) + " m");
+        tsTv.setText((TextUtils.isEmpty(modelMap.get("d45")) ? "" : modelMap.get("d45")) + " mg/L");
+        tempTv1.setText((TextUtils.isEmpty(modelMap.get("d46")) ? "" : modelMap.get("d46")) + " ℃");
+        tempTv2.setText((TextUtils.isEmpty(modelMap.get("d47")) ? "" : modelMap.get("d47")) + " ℃");
+        tempTv3.setText((TextUtils.isEmpty(modelMap.get("d48")) ? "" : modelMap.get("d48")) + " ℃");
+        tempTv4.setText((TextUtils.isEmpty(modelMap.get("d49")) ? "" : modelMap.get("d49")) + " ℃");
+        tempTv5.setText((TextUtils.isEmpty(modelMap.get("d50")) ? "" : modelMap.get("d50")) + " ℃");
     }
 
     private void initChart() {

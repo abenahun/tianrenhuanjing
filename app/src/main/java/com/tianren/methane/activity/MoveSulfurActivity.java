@@ -53,15 +53,15 @@ public class MoveSulfurActivity extends BaseActivity implements View.OnClickList
     }
 
     private void loadData() {
-        h2sTv.setText((TextUtils.isEmpty(modelMap.get("d1")) ? "" : modelMap.get("d1")) + "ppm");
-        carWaterTemTv.setText((TextUtils.isEmpty(modelMap.get("d2")) ? "" : modelMap.get("d2")) + "℃");
-        methTv.setText((TextUtils.isEmpty(modelMap.get("d3")) ? "" : modelMap.get("d3")) + "m³");
-        conWaterPhTv.setText((TextUtils.isEmpty(modelMap.get("d4")) ? "" : modelMap.get("d4")) + "PH");
-        airTv.setText((TextUtils.isEmpty(modelMap.get("d5")) ? "" : modelMap.get("d5")) + "m³");
-        conWaterTv.setText((TextUtils.isEmpty(modelMap.get("d6")) ? "" : modelMap.get("d6")) + "m³");
-        topTv.setText((TextUtils.isEmpty(modelMap.get("d7")) ? "" : modelMap.get("d7")) + "kPa");
-        taCenTv.setText((TextUtils.isEmpty(modelMap.get("d8")) ? "" : modelMap.get("d8")) + "m");
-        chiCenTv.setText((TextUtils.isEmpty(modelMap.get("d9")) ? "" : modelMap.get("d9")) + "m");
+        h2sTv.setText((TextUtils.isEmpty(modelMap.get("d1")) ? "" : modelMap.get("d1")) + " ppm");
+        carWaterTemTv.setText((TextUtils.isEmpty(modelMap.get("d2")) ? "" : modelMap.get("d2")) + " ℃");
+        methTv.setText((TextUtils.isEmpty(modelMap.get("d3")) ? "" : modelMap.get("d3")) + " m³");
+        conWaterPhTv.setText((TextUtils.isEmpty(modelMap.get("d4")) ? "" : modelMap.get("d4")) + " PH");
+        airTv.setText((TextUtils.isEmpty(modelMap.get("d5")) ? "" : modelMap.get("d5")) + " m³");
+        conWaterTv.setText((TextUtils.isEmpty(modelMap.get("d6")) ? "" : modelMap.get("d6")) + " m³");
+        topTv.setText((TextUtils.isEmpty(modelMap.get("d7")) ? "" : modelMap.get("d7")) + " kPa");
+        taCenTv.setText((TextUtils.isEmpty(modelMap.get("d8")) ? "" : modelMap.get("d8")) + " m");
+        chiCenTv.setText((TextUtils.isEmpty(modelMap.get("d9")) ? "" : modelMap.get("d9")) + " m");
     }
 
     @Override

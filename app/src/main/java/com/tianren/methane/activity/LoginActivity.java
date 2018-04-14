@@ -145,8 +145,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 DevInfo info = new DevInfo();
                 devInfoList = new ArrayList<DevInfo>();
                 info.setDevId("1001");
-                info.setDomain("11111");
-                info.setNickName("ceshi");
+                info.setDomain("iotac.tianren.com");
+                info.setNickName("1001");
                 info.setType(DevInfo.TYPE_FR);
                 devInfoList.add(info);
                 // 查询冰箱温度信息,进入界面查询一次冰箱的参数:温度和模式
@@ -243,7 +243,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                 case MsgDefCtrl.MSG_FRESH_REFRIGERATOR:
 //                    freshFridgeManageUI();
-                    Log.i(TAG, "`````````>"+msg.obj.toString());
+//                    Log.i(TAG, "`````````>"+msg.obj.toString());
                     handler.sendEmptyMessageDelayed(MsgDefCtrl.MSG_FRESH_REFRIGERATOR,5000);
                     break;
                 default:
