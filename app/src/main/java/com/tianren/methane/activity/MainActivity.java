@@ -1,6 +1,5 @@
 package com.tianren.methane.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,46 +8,37 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.tamic.novate.Novate;
 import com.tamic.novate.Throwable;
 import com.tianren.methane.MyBaseSubscriber;
 import com.tianren.methane.R;
-import com.tianren.methane.bean.DevInfo;
-import com.tianren.methane.bean.SensorDataBean;
+import com.tianren.methane.bean.SensorBean;
 import com.tianren.methane.constant.Constant;
-import com.tianren.methane.constant.MsgDefCtrl;
 import com.tianren.methane.fragment.HomeFragment;
 import com.tianren.methane.fragment.ManagerFragment;
 import com.tianren.methane.fragment.MeFragment;
-import com.tianren.methane.fragment.NewsFragment;
-import com.tianren.methane.jniutils.CommandDev;
-import com.tianren.methane.jniutils.MyInterface;
-import com.tianren.methane.jniutils.ParseDataFromDev;
-import com.tianren.methane.service.SipService;
 import com.tianren.methane.utils.ToastUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
 
 public class MainActivity extends BaseActivity {
+    private static final String TAG = "MainActivity";
     private TabLayout mTabLayout;
     //Tab 文字
-    private final int[] TAB_TITLES = new int[]{R.string.home,R.string.guanli,R.string.usercenter};
+    private final int[] TAB_TITLES = new int[]{R.string.home, R.string.guanli, R.string.usercenter};
     //Tab 图片
     private final int[] TAB_IMGS = new int[]
             {R.drawable.tab_home_select_drawable,
@@ -60,11 +50,11 @@ public class MainActivity extends BaseActivity {
     //Tab 数目
     private MyViewPagerAdapter mAdapter;
     private ViewPager mViewPager;
-    public  static String mDeviceId;
+    public static String mDeviceId;
     public static String userName;
     private Novate novate;
-    public static Map<String,String> modelMap = new HashMap<>();
-    private ArrayList<SensorDataBean> list = new ArrayList<>();
+    public static Map<String, String> modelMap = new HashMap<>();
+    public static Map<String, SensorBean> sensorDataMap = new HashMap<>();
 
 
     @Override
@@ -102,11 +92,9 @@ public class MainActivity extends BaseActivity {
                     public void onNext(ResponseBody responseBody) {
                         try {
                             String jstr = new String(responseBody.bytes());
-                            ToastUtils.show(jstr);
-
                             Gson gson = new Gson();
-
-                            Log.e("syl",jstr);
+                            sensorDataMap = gson.fromJson(jstr, new TypeToken<Map<String, SensorBean>>() {
+                            }.getType());
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -174,6 +162,9 @@ public class MainActivity extends BaseActivity {
         }
     };
 
+    /**
+     * 获取当前各种类型的数据集合
+     */
     private void getDeviceModel() {
         String res = "add_time:2018-04-13-09-17-23\n" +
                 "d1:5.04\n" +
