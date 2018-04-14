@@ -6,7 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.text.TextUtils;
+import android.support.v7.widget.LinearLayoutManager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -21,12 +22,15 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.tianren.methane.R;
+import com.tianren.methane.adapter.ModelAdapter;
 import com.tianren.methane.constant.Constant;
+import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.tianren.methane.activity.MainActivity.modelMap;
+import static com.tianren.methane.activity.MainActivity.sensorDataMap;
 
 /**
  * Created by Administrator on 2018/3/20.
@@ -44,21 +48,15 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
     private LinearLayout ll_back;
     private TextView tv_title;
 
-    private TextView neimoHighTv,//气柜内膜高度
-            gasTv,//气柜内外膜之间沼气泄漏状态
-            ch4Tv,//甲烷含量
-            oxyTv,//氧气含量
-            h2sTv,//硫化氢含量
-            co2Tv,//二氧化碳含量
-            pressureTv,//气柜内外膜之间压力
-            volTv;//气柜内膜容积
+    private SwipeMenuRecyclerView recyclerView;
+    private ModelAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qigui);
         initView();
-        initChart();
+//        initChart();
         loadData();
     }
 
@@ -67,21 +65,18 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
 //        ll_back.setOnClickListener(this);
 //        tv_title = (TextView) view.findViewById(R.id.tv_title);
 //        tv_title.setText("气柜" );
-        mLineChart = (LineChart) findViewById(R.id.lineChart);
-        barChart = (BarChart) findViewById(R.id.barChart);
-        tv_qiguishaixuan = (TextView) findViewById(R.id.tv_qiguishaixuan);
-        btn_data = (Button) findViewById(R.id.btn_data);
+
+        recyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recyclerView);
+        adapter = new ModelAdapter(this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setItemViewSwipeEnabled(false);
+        View headView = LayoutInflater.from(this).inflate(R.layout.head_qigui, recyclerView, false);
+        tv_qiguishaixuan = (TextView) headView.findViewById(R.id.tv_qiguishaixuan);
+        btn_data = (Button) headView.findViewById(R.id.btn_data);
         tv_qiguishaixuan.setOnClickListener(this);
         btn_data.setOnClickListener(this);
-
-        neimoHighTv = (TextView) findViewById(R.id.neimoHighTv);
-        gasTv = (TextView) findViewById(R.id.gasTv);
-        ch4Tv = (TextView) findViewById(R.id.ch4Tv);
-        oxyTv = (TextView) findViewById(R.id.oxyTv);
-        h2sTv = (TextView) findViewById(R.id.h2sTv);
-        co2Tv = (TextView) findViewById(R.id.co2Tv);
-        pressureTv = (TextView) findViewById(R.id.pressureTv);
-        volTv = (TextView) findViewById(R.id.volTv);
+        recyclerView.addHeaderView(headView);
+        recyclerView.setAdapter(adapter);
     }
 
     private void initChart() {
@@ -108,14 +103,20 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void loadData() {
-        neimoHighTv.setText((TextUtils.isEmpty(modelMap.get("d29")) ? "" : modelMap.get("d29")) + " m");
-        gasTv.setText((TextUtils.isEmpty(modelMap.get("d30")) ? "" : modelMap.get("d30")) + " %");
-        ch4Tv.setText((TextUtils.isEmpty(modelMap.get("d31")) ? "" : modelMap.get("d31")) + " %");
-        oxyTv.setText((TextUtils.isEmpty(modelMap.get("d32")) ? "" : modelMap.get("d32")) + " %");
-        h2sTv.setText((TextUtils.isEmpty(modelMap.get("d33")) ? "" : modelMap.get("d33")) + " %");
-        co2Tv.setText((TextUtils.isEmpty(modelMap.get("d34")) ? "" : modelMap.get("d34")) + " %");
-        pressureTv.setText((TextUtils.isEmpty(modelMap.get("d35")) ? "" : modelMap.get("d35")) + " kPa");
-        volTv.setText((TextUtils.isEmpty(modelMap.get("d36")) ? "" : modelMap.get("d36")) + " m³");
+        List<ModelAdapter.ModelBean> list = new ArrayList<>();
+        list.add(getModel("d29"));
+        list.add(getModel("d30"));
+        list.add(getModel("d31"));
+        list.add(getModel("d32"));
+        list.add(getModel("d33"));
+        list.add(getModel("d34"));
+        list.add(getModel("d35"));
+        list.add(getModel("d36"));
+        adapter.addItems(list);
+    }
+
+    public ModelAdapter.ModelBean getModel(String s) {
+        return new ModelAdapter.ModelBean(s, sensorDataMap.get(s).getNickName(), modelMap.get(s), sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum());
     }
 
     @Override
