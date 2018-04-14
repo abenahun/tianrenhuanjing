@@ -1,5 +1,6 @@
 package com.tianren.methane.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,24 +9,46 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.tamic.novate.Novate;
+import com.tamic.novate.Throwable;
+import com.tianren.methane.MyBaseSubscriber;
 import com.tianren.methane.R;
+import com.tianren.methane.bean.DevInfo;
+import com.tianren.methane.bean.SensorDataBean;
+import com.tianren.methane.constant.Constant;
+import com.tianren.methane.constant.MsgDefCtrl;
 import com.tianren.methane.fragment.HomeFragment;
 import com.tianren.methane.fragment.ManagerFragment;
 import com.tianren.methane.fragment.MeFragment;
+import com.tianren.methane.fragment.NewsFragment;
+import com.tianren.methane.jniutils.CommandDev;
+import com.tianren.methane.jniutils.MyInterface;
+import com.tianren.methane.jniutils.ParseDataFromDev;
+import com.tianren.methane.service.SipService;
+import com.tianren.methane.utils.ToastUtils;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import okhttp3.ResponseBody;
 
 public class MainActivity extends BaseActivity {
     private TabLayout mTabLayout;
     //Tab 文字
-    private final int[] TAB_TITLES = new int[]{R.string.home, R.string.guanli, R.string.usercenter};
+    private final int[] TAB_TITLES = new int[]{R.string.home,R.string.guanli,R.string.usercenter};
     //Tab 图片
     private final int[] TAB_IMGS = new int[]
             {R.drawable.tab_home_select_drawable,
@@ -37,10 +60,12 @@ public class MainActivity extends BaseActivity {
     //Tab 数目
     private MyViewPagerAdapter mAdapter;
     private ViewPager mViewPager;
-    public static String mDeviceId;
+    public  static String mDeviceId;
     public static String userName;
+    private Novate novate;
+    public static Map<String,String> modelMap = new HashMap<>();
+    private ArrayList<SensorDataBean> list = new ArrayList<>();
 
-    public static Map<String, String> modelMap = new HashMap<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +74,44 @@ public class MainActivity extends BaseActivity {
         initViews();
         userName = getValueFromTable("username", "");
         getDeviceModel();
+
+        initStaticData();
+
+    }
+
+    private void initStaticData() {
+        Map<String, Object> parameters = new HashMap<>();
+//        parameters.put(Constant.STATICDATANAME_URL, "");
+        novate = new Novate.Builder(this)
+                .connectTimeout(8)
+                .baseUrl(Constant.BASE_URL)
+                //.addApiManager(ApiManager.class)
+                .addLog(true)
+                .build();
+
+        novate.post(Constant.ALLDATA_URL + "/" + Constant.STATICDATANAME_URL, parameters,
+                new MyBaseSubscriber<ResponseBody>(MainActivity.this) {
+                    @Override
+                    public void onError(Throwable e) {
+                        if (!TextUtils.isEmpty(e.getMessage())) {
+                            ToastUtils.show(e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        try {
+                            String jstr = new String(responseBody.bytes());
+                            ToastUtils.show(jstr);
+
+                            Gson gson = new Gson();
+
+                            Log.e("syl",jstr);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 
     private void initViews() {
