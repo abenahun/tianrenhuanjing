@@ -12,6 +12,11 @@
 bin/
 gen/
 out/
+##----------idea----------
+*.iml
+.idea/
+*.ipr
+*.iws
 
 # Gradle files
 .gradle/
