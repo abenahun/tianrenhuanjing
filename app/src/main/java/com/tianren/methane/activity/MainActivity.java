@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.aloglibrary.ALog;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tamic.novate.Novate;
@@ -66,12 +67,11 @@ public class MainActivity extends BaseActivity {
         initViews();
         userName = getValueFromTable("username", "");
         getDeviceModel();
-
-        initStaticData();
+        getStaticData();
 
     }
 
-    private void initStaticData() {
+    private void getStaticData() {
         Map<String, Object> parameters = new HashMap<>();
 //        parameters.put(Constant.STATICDATANAME_URL, "");
         novate = new Novate.Builder(this)
@@ -176,6 +176,44 @@ public class MainActivity extends BaseActivity {
      * 获取当前各种类型的数据集合
      */
     private void getDeviceModel() {
+
+        Map<String, Object> parameters = new HashMap<>();
+//        parameters.put(Constant.STATICDATANAME_URL, "");
+        novate = new Novate.Builder(this)
+                .connectTimeout(8)
+                .baseUrl(Constant.BASE_URL)
+                //.addApiManager(ApiManager.class)
+                .addLog(true)
+                .build();
+
+        novate.post(Constant.ALLDATA_URL + "/" + Constant.REALDATANAME_URL, parameters,
+                new MyBaseSubscriber<ResponseBody>(MainActivity.this) {
+                    @Override
+                    public void onError(Throwable e) {
+                        if (!TextUtils.isEmpty(e.getMessage())) {
+                            ToastUtils.show(e.getMessage());
+                        }
+                        modelMap = null;
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        try {
+                            String jstr = new String(responseBody.bytes());
+//                            ToastUtils.show(jstr);
+                            if (StringUtil.isEmpty(jstr)){
+                                modelMap = null;
+                            }else{
+                                Gson gson = new Gson();
+                                modelMap = gson.fromJson(jstr, new TypeToken<Map<String, String>>() {
+                                }.getType());
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
         String res = "add_time:2018-04-13-09-17-23\n" +
                 "d1:5.04\n" +
                 "d2:35.21\n" +
@@ -227,7 +265,7 @@ public class MainActivity extends BaseActivity {
                 "d48:9.97\n" +
                 "d49:3.01\n" +
                 "d50:100.45";
-        String[] attr = res.split("\\n");
+       /* String[] attr = res.split("\\n");
         if (attr.length > 0) {
             for (int i = 1; i < attr.length; i++) {
                 if (!attr[i].contains(":")) {
@@ -236,7 +274,7 @@ public class MainActivity extends BaseActivity {
                 String[] tempArr = attr[i].split(":");
                 modelMap.put(tempArr[0], tempArr[1]);
             }
-        }
+        }*/
     }
 //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data) {

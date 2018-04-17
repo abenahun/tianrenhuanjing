@@ -20,9 +20,8 @@ public class Constant {
     public static final String CONSUMPTION_URL = "consumption";//消耗
 
     public static final String ALLDATA_URL = "/detailedData";
-    public static final String ALLDATANAME_URL = "appGetRealTimeData";//实时数据
-    //静态表数据
-    public static final String STATICDATANAME_URL = "appStaticData";
+    public static final String REALDATANAME_URL = "appGetRealTimeData";//实时数据
+    public static final String STATICDATANAME_URL = "appStaticData";//静态表数据
 
 
     public static final int MSG_LOGIN_SUCCESS  = 4;
