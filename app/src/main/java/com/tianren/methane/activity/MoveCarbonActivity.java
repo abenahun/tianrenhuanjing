@@ -32,10 +32,6 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_move_carbon);
-        if (sensorDataMap.keySet().size() == 0) {
-            ToastUtils.show("暂无数据");
-            finish();
-        }
         initView();
         loadData();
     }
@@ -56,22 +52,30 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
 
     private void loadData() {
         List<ModelAdapter.ModelBean> list = new ArrayList<>();
-        list.add(getModel("d10"));
-        list.add(getModel("d11"));
-        list.add(getModel("d12"));
-        list.add(getModel("d13"));
-        list.add(getModel("d14"));
-        list.add(getModel("d15"));
-        list.add(getModel("d16"));
-        list.add(getModel("d17"));
-        list.add(getModel("d18"));
-        list.add(getModel("d19"));
-        list.add(getModel("d20"));
+        if (sensorDataMap == null){
+            list = null;
+        }else {
+            list.add(getModel("d10"));
+            list.add(getModel("d11"));
+            list.add(getModel("d12"));
+            list.add(getModel("d13"));
+            list.add(getModel("d14"));
+            list.add(getModel("d15"));
+            list.add(getModel("d16"));
+            list.add(getModel("d17"));
+            list.add(getModel("d18"));
+            list.add(getModel("d19"));
+            list.add(getModel("d20"));
+        }
         adapter.addItems(list);
     }
 
     public ModelAdapter.ModelBean getModel(String s) {
+        if (sensorDataMap == null){
+            return null;
+        }else {
         return new ModelAdapter.ModelBean(s, sensorDataMap.get(s).getNickName(), modelMap.get(s), sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum());
+    }
     }
 
     @Override

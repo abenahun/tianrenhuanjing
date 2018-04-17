@@ -1,6 +1,7 @@
 package com.tianren.methane.fragment;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -24,6 +26,10 @@ import com.jph.takephoto.model.LubanOptions;
 import com.jph.takephoto.model.TResult;
 import com.jph.takephoto.model.TakePhotoOptions;
 import com.tianren.methane.R;
+import com.tianren.methane.activity.AboutUsActivity;
+import com.tianren.methane.activity.FeedBackActivity;
+import com.tianren.methane.activity.LinkServiceActivity;
+import com.tianren.methane.activity.ResetPwdActivity;
 import com.tianren.methane.view.ImgPickerPopupwindow;
 
 import java.io.File;
@@ -40,6 +46,7 @@ public class MeFragment extends TakePhotoFragment implements View.OnClickListene
     private CircleImageView img_header;
     //    ImageView img_header;
     private ImgPickerPopupwindow imgpop;//头像选择器
+    private LinearLayout ll_resetpwd,ll_feedback,ll_service,ll_aboutus,ll_baojing;
 
     @Nullable
     @Override
@@ -62,6 +69,8 @@ public class MeFragment extends TakePhotoFragment implements View.OnClickListene
         view.findViewById(R.id.ll_feedback).setOnClickListener(this);
         view.findViewById(R.id.ll_aboutus).setOnClickListener(this);
         view.findViewById(R.id.ll_baojing).setOnClickListener(this);
+        view.findViewById(R.id.ll_service).setOnClickListener(this);
+
 
 //        appbar= (AppBarLayout) view.findViewById(R.id.appbar);
 
@@ -191,12 +200,19 @@ public class MeFragment extends TakePhotoFragment implements View.OnClickListene
                 break;
 
             case R.id.ll_resetpwd://修改密码
+                getActivity().startActivity(new Intent(getActivity(), ResetPwdActivity.class));
                 break;
 
             case R.id.ll_feedback://意见反馈
+                getActivity().startActivity(new Intent(getActivity(), FeedBackActivity.class));
                 break;
 
             case R.id.ll_aboutus://关于我们
+                getActivity().startActivity(new Intent(getActivity(), AboutUsActivity.class));
+                break;
+
+            case R.id.ll_service://关于我们
+                getActivity().startActivity(new Intent(getActivity(), LinkServiceActivity.class));
                 break;
 
             case R.id.img_header://头像设置

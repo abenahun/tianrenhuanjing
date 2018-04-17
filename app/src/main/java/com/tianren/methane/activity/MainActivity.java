@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -26,6 +27,7 @@ import com.tianren.methane.constant.Constant;
 import com.tianren.methane.fragment.HomeFragment;
 import com.tianren.methane.fragment.ManagerFragment;
 import com.tianren.methane.fragment.MeFragment;
+import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 
 import java.io.IOException;
@@ -86,6 +88,7 @@ public class MainActivity extends BaseActivity {
                         if (!TextUtils.isEmpty(e.getMessage())) {
                             ToastUtils.show(e.getMessage());
                         }
+                        sensorDataMap = null;
                     }
 
                     @Override
@@ -94,9 +97,14 @@ public class MainActivity extends BaseActivity {
                             String jstr = new String(responseBody.bytes());
 //                            ToastUtils.show(jstr);
 
-                            Gson gson = new Gson();
-                            sensorDataMap = gson.fromJson(jstr, new TypeToken<Map<String, SensorBean>>() {
-                            }.getType());
+                            if (StringUtil.isEmpty(jstr)){
+
+                                sensorDataMap = null;
+                            }else{
+                                Gson gson = new Gson();
+                                sensorDataMap = gson.fromJson(jstr, new TypeToken<Map<String, SensorBean>>() {
+                                }.getType());
+                            }
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

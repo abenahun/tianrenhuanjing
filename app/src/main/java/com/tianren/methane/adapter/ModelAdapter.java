@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.tianren.methane.R;
 import com.tianren.methane.base.BaseRcAdapter;
+import com.tianren.methane.utils.StringUtil;
 
 /**
  * Created by Mr.Qiu on 2018\4\14 0014.
@@ -32,9 +33,15 @@ public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAda
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         ModelBean bean = getItems().get(position);
-        holder.name.setText(bean.getNickName());
-        holder.content.setText(TextUtils.isEmpty(bean.getData()) ? "" : bean.getData());
-        holder.range.setText(bean.getSuitableMinimum() + "～" + bean.getSuitableMaximum());
+        if (bean == null){
+            holder.name.setText("");
+            holder.content.setText("");
+            holder.range.setText("");
+        }else {
+            holder.name.setText( bean.getNickName());
+            holder.content.setText( bean.getData());
+            holder.range.setText(bean.getSuitableMinimum() + "～" + bean.getSuitableMaximum());
+        }
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

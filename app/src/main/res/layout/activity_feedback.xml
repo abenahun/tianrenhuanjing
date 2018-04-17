@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backcolor"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:id="@+id/ll_parent">
+    <include layout="@layout/layout_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/edt_content"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/white"
+                android:gravity="top"
+                android:hint="请在这里写下您的建议和遇到的问题，我们将不断进步（最多200个字）"
+                android:maxLength="200"
+                android:maxHeight="200dp"
+                android:textColor="#000000"
+                android:textColorHint="@color/textgray"
+                android:textSize="15sp" />
+            <LinearLayout
+                android:id="@+id/tv_add_pic"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/img_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="添加照片:(选填)" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edt_tel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:gravity="top"
+            android:hint="联系方式:(选填)"
+            android:digits="1234567890"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textColorHint="@color/textblack"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/bt_commit"
+            android:layout_width="303dp"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:layout_marginTop="80dp"
+            android:background="@color/maincolor"
+            android:text="提交"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

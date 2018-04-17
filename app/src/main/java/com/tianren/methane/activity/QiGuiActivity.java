@@ -55,10 +55,6 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qigui);
-        if (sensorDataMap.keySet().size() == 0) {
-            ToastUtils.show("暂无数据");
-            finish();
-        }
         initView();
 //        initChart();
         loadData();
@@ -108,19 +104,27 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
 
     private void loadData() {
         List<ModelAdapter.ModelBean> list = new ArrayList<>();
-        list.add(getModel("d29"));
-        list.add(getModel("d30"));
-        list.add(getModel("d31"));
-        list.add(getModel("d32"));
-        list.add(getModel("d33"));
-        list.add(getModel("d34"));
-        list.add(getModel("d35"));
-        list.add(getModel("d36"));
+        if (sensorDataMap == null){
+            list = null;
+        }else {
+            list.add(getModel("d29"));
+            list.add(getModel("d30"));
+            list.add(getModel("d31"));
+            list.add(getModel("d32"));
+            list.add(getModel("d33"));
+            list.add(getModel("d34"));
+            list.add(getModel("d35"));
+            list.add(getModel("d36"));
+        }
         adapter.addItems(list);
     }
 
     public ModelAdapter.ModelBean getModel(String s) {
+        if (sensorDataMap == null){
+            return null;
+        }else {
         return new ModelAdapter.ModelBean(s, sensorDataMap.get(s).getNickName(), modelMap.get(s), sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum());
+       }
     }
 
     @Override

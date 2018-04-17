@@ -32,10 +32,7 @@ public class PreHandleActivity extends BaseActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_handle);
-        if (sensorDataMap.keySet().size() == 0) {
-            ToastUtils.show("暂无数据");
-            finish();
-        }
+
         initView();
         loadData();
     }
@@ -56,19 +53,27 @@ public class PreHandleActivity extends BaseActivity implements View.OnClickListe
 
     private void loadData() {
         List<ModelAdapter.ModelBean> list = new ArrayList<>();
-        list.add(getModel("d21"));
-        list.add(getModel("d22"));
-        list.add(getModel("d23"));
-        list.add(getModel("d24"));
-        list.add(getModel("d25"));
-        list.add(getModel("d26"));
-        list.add(getModel("d27"));
-        list.add(getModel("d28"));
-        adapter.addItems(list);
+        if (sensorDataMap == null){
+            list = null;
+        }else {
+            list.add(getModel("d21"));
+            list.add(getModel("d22"));
+            list.add(getModel("d23"));
+            list.add(getModel("d24"));
+            list.add(getModel("d25"));
+            list.add(getModel("d26"));
+            list.add(getModel("d27"));
+            list.add(getModel("d28"));
+            adapter.addItems(list);
+        }
     }
 
     public ModelAdapter.ModelBean getModel(String s) {
+        if (sensorDataMap == null){
+            return null;
+        }else {
         return new ModelAdapter.ModelBean(s, sensorDataMap.get(s).getNickName(), modelMap.get(s), sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum());
+       }
     }
 
     @Override

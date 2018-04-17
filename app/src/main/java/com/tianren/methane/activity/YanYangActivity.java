@@ -43,10 +43,7 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yanyang);
-        if (sensorDataMap.keySet().size() == 0) {
-            ToastUtils.show("暂无数据");
-            finish();
-        }
+
         initView();
 //        initChart();
         loadData();
@@ -78,25 +75,34 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
 
     private void loadData() {
         List<ModelAdapter.ModelBean> list = new ArrayList<>();
-        list.add(getModel("d37"));
-        list.add(getModel("d38"));
-        list.add(getModel("d39"));
-        list.add(getModel("d40"));
-        list.add(getModel("d41"));
-        list.add(getModel("d42"));
-        list.add(getModel("d43"));
-        list.add(getModel("d44"));
-        list.add(getModel("d45"));
-        list.add(getModel("d46"));
-        list.add(getModel("d47"));
-        list.add(getModel("d48"));
-        list.add(getModel("d49"));
-        list.add(getModel("d50"));
+        if (sensorDataMap == null){
+            list = null;
+        }else {
+            list.add(getModel("d37"));
+            list.add(getModel("d38"));
+            list.add(getModel("d39"));
+            list.add(getModel("d40"));
+            list.add(getModel("d41"));
+            list.add(getModel("d42"));
+            list.add(getModel("d43"));
+            list.add(getModel("d44"));
+            list.add(getModel("d45"));
+            list.add(getModel("d46"));
+            list.add(getModel("d47"));
+            list.add(getModel("d48"));
+            list.add(getModel("d49"));
+            list.add(getModel("d50"));
+        }
         adapter.addItems(list);
     }
 
     public ModelAdapter.ModelBean getModel(String s) {
-        return new ModelAdapter.ModelBean(s, sensorDataMap.get(s).getNickName(), modelMap.get(s), sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum());
+        if (sensorDataMap == null){
+            return null;
+        }else {
+            return new ModelAdapter.ModelBean(s, sensorDataMap.get(s).getNickName(), modelMap.get(s),
+                    sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum());
+        }
     }
 //
 //    private void initChart() {

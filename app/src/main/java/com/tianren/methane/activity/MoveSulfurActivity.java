@@ -32,10 +32,7 @@ public class MoveSulfurActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_move_sulfur);
-        if (sensorDataMap.keySet().size() == 0) {
-            ToastUtils.show("暂无数据");
-            finish();
-        }
+
         initView();
         loadData();
     }
@@ -69,7 +66,11 @@ public class MoveSulfurActivity extends BaseActivity implements View.OnClickList
     }
 
     public ModelAdapter.ModelBean getModel(String s) {
-        return new ModelAdapter.ModelBean(s, sensorDataMap.get(s).getNickName(), modelMap.get(s), sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum());
+        if (sensorDataMap == null){
+            return null;
+        }else {
+            return new ModelAdapter.ModelBean(s, sensorDataMap.get(s).getNickName(), modelMap.get(s), sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum());
+        }
     }
 
     @Override

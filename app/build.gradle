@@ -53,6 +53,7 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     compile 'com.blankj:alog:0.0.1'
     compile 'com.yanzhenjie:recyclerview-swipe:1.1.2'
+
     compile files('libs/HiSDK1.04.31.0.0.jar')
     compile files('libs/Hs_Iot_Android.jar')
     compile files('libs/bcprov-jdk15on-152.jar')

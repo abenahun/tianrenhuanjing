@@ -10,6 +10,7 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:name="com.tianren.methane.App"
@@ -37,6 +38,11 @@
         <activity android:name=".activity.MoveSulfurActivity"></activity>
         <activity android:name=".activity.MoveCarbonActivity"></activity>
         <activity android:name=".activity.PreHandleActivity"></activity>
+
+        <activity android:name=".activity.AboutUsActivity"/>
+        <activity android:name=".activity.FeedBackActivity"/>
+        <activity android:name=".activity.LinkServiceActivity"/>
+        <activity android:name=".activity.ResetPwdActivity"/>
 
 
         <service
