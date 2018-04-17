@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.tianren.methane.R;
 import com.tianren.methane.adapter.ModelAdapter;
-import com.tianren.methane.utils.ToastUtils;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 
 import java.util.ArrayList;
@@ -52,9 +51,9 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
 
     private void loadData() {
         List<ModelAdapter.ModelBean> list = new ArrayList<>();
-        if (sensorDataMap == null){
+        if (sensorDataMap == null) {
             list = null;
-        }else {
+        } else {
             list.add(getModel("d10"));
             list.add(getModel("d11"));
             list.add(getModel("d12"));
@@ -71,11 +70,13 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
     }
 
     public ModelAdapter.ModelBean getModel(String s) {
-        if (sensorDataMap == null){
+        if (sensorDataMap == null) {
             return null;
-        }else {
-        return new ModelAdapter.ModelBean(s, sensorDataMap.get(s).getNickName(), modelMap.get(s), sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum());
-    }
+        } else {
+            return new ModelAdapter.ModelBean(s, sensorDataMap.get(s).getNickName(), modelMap.get(s),
+                    sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum(),
+                    sensorDataMap.get(s).getSensorUnit());
+        }
     }
 
     @Override

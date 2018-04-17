@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.tianren.methane.R;
 import com.tianren.methane.base.BaseRcAdapter;
-import com.tianren.methane.utils.StringUtil;
 
 /**
  * Created by Mr.Qiu on 2018\4\14 0014.
@@ -33,14 +32,14 @@ public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAda
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         ModelBean bean = getItems().get(position);
-        if (bean == null){
+        if (bean == null) {
             holder.name.setText("");
             holder.content.setText("");
             holder.range.setText("");
-        }else {
-            holder.name.setText( bean.getNickName());
-            holder.content.setText( bean.getData());
-            holder.range.setText(bean.getSuitableMinimum() + "～" + bean.getSuitableMaximum());
+        } else {
+            holder.name.setText(bean.getNickName());
+            holder.content.setText(bean.getData() + " " + (TextUtils.isEmpty(bean.getSensorUnit()) ? "" : bean.getSensorUnit()));
+            holder.range.setText(bean.getSuitableMinimum() + "～" + bean.getSuitableMaximum() + " " + bean.getSensorUnit());
         }
     }
 
@@ -60,15 +59,16 @@ public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAda
         private String nickName;
         private String data;
         private Double suitableMaximum;
-
         private Double suitableMinimum;
+        private String sensorUnit;
 
-        public ModelBean(String sensorName, String nickName, String data, Double suitableMaximum, Double suitableMinimum) {
+        public ModelBean(String sensorName, String nickName, String data, Double suitableMaximum, Double suitableMinimum, String sensorUnit) {
             this.sensorName = sensorName;
             this.nickName = nickName;
             this.data = data;
             this.suitableMaximum = suitableMaximum;
             this.suitableMinimum = suitableMinimum;
+            this.sensorUnit = sensorUnit;
         }
 
         public Double getSuitableMaximum() {
@@ -110,6 +110,14 @@ public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAda
 
         public void setData(String data) {
             this.data = data;
+        }
+
+        public String getSensorUnit() {
+            return sensorUnit;
+        }
+
+        public void setSensorUnit(String sensorUnit) {
+            this.sensorUnit = sensorUnit;
         }
     }
 }

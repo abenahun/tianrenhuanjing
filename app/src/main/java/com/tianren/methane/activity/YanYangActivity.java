@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.tianren.methane.R;
 import com.tianren.methane.adapter.ModelAdapter;
-import com.tianren.methane.utils.ToastUtils;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 
 import java.util.ArrayList;
@@ -75,9 +74,9 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
 
     private void loadData() {
         List<ModelAdapter.ModelBean> list = new ArrayList<>();
-        if (sensorDataMap == null){
+        if (sensorDataMap == null) {
             list = null;
-        }else {
+        } else {
             list.add(getModel("d37"));
             list.add(getModel("d38"));
             list.add(getModel("d39"));
@@ -97,11 +96,12 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
     }
 
     public ModelAdapter.ModelBean getModel(String s) {
-        if (sensorDataMap == null){
+        if (sensorDataMap == null) {
             return null;
-        }else {
+        } else {
             return new ModelAdapter.ModelBean(s, sensorDataMap.get(s).getNickName(), modelMap.get(s),
-                    sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum());
+                    sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum(),
+                    sensorDataMap.get(s).getSensorUnit());
         }
     }
 //

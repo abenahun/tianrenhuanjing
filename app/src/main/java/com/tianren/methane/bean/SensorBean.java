@@ -27,6 +27,8 @@ public class SensorBean {
 
     private Double lowErrorValue;
 
+    private String sensorUnit;
+
     private String errorMessage;
 
     private String sensorDesc;
@@ -129,6 +131,14 @@ public class SensorBean {
 
     public void setLowErrorValue(Double lowErrorValue) {
         this.lowErrorValue = lowErrorValue;
+    }
+
+    public String getSensorUnit() {
+        return sensorUnit;
+    }
+
+    public void setSensorUnit(String sensorUnit) {
+        this.sensorUnit = sensorUnit == null ? null : sensorUnit.trim();
     }
 
     public String getErrorMessage() {
