@@ -38,7 +38,14 @@ public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAda
             holder.range.setText("");
         } else {
             holder.name.setText(bean.getNickName());
-            holder.content.setText(bean.getData() + " " + (TextUtils.isEmpty(bean.getSensorUnit()) ? "" : bean.getSensorUnit()));
+            String sensorUnit = bean.getSensorUnit();
+            if (sensorUnit.contains("m3")) {
+                sensorUnit = sensorUnit.replace("m3", "m³");
+            }
+            if (sensorUnit.contains("m3")) {
+                sensorUnit = sensorUnit.replace("m2", "m²");
+            }
+            holder.content.setText(bean.getData() + " " + (TextUtils.isEmpty(sensorUnit) ? "" : bean.getSensorUnit()));
             holder.range.setText(bean.getSuitableMinimum() + "～" + bean.getSuitableMaximum() + " " + bean.getSensorUnit());
         }
     }
