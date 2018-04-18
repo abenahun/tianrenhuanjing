@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:minWidth="80dp"
+                android:minWidth="70dp"
                 android:text="名称"
                 android:textColor="@color/textgray"
                 android:textSize="15sp" />
