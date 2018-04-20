@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:circleimageview="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical"
     android:background="@color/backcolor"
-    android:id="@+id/ll_parent"
-    >
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/rl_header"
@@ -57,25 +55,26 @@
             android:id="@+id/tv_nick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/img_header"
+            android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             android:text="天人环境，欢迎您"
             android:textColor="@color/white"
-            android:textSize="@dimen/textsize16"
-            android:layout_below="@+id/img_header"
-            android:layout_centerInParent="true"/>
+            android:textSize="@dimen/textsize16" />
     </RelativeLayout>
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_weight="1"
-        android:layout_below="@+id/rl_header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:layout_below="@+id/rl_header"
+        android:layout_weight="1">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -94,15 +93,14 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="14dp"
                         android:layout_marginRight="14dp"
-                        android:visibility="gone" />
+                        android:src="@mipmap/me1" />
 
                     <TextView
 
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:paddingLeft="25dp"
                         android:text="报警信息"
                         android:textColor="@color/textblack"
                         android:textSize="@dimen/textsize13" />
@@ -118,7 +116,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/gray_cc"/>
+                    android:background="@color/gray_cc" />
 
                 <LinearLayout
                     android:id="@+id/ll_resetpwd"
@@ -133,15 +131,14 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="14dp"
                         android:layout_marginRight="14dp"
-                        android:visibility="gone" />
+                        android:src="@mipmap/me2" />
 
                     <TextView
                         android:id="@+id/tv_repass"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:paddingLeft="25dp"
                         android:text="修改密码"
                         android:textColor="@color/textblack"
                         android:textSize="@dimen/textsize13" />
@@ -157,7 +154,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/gray_cc"/>
+                    android:background="@color/gray_cc" />
 
                 <LinearLayout
                     android:id="@+id/ll_feedback"
@@ -172,14 +169,13 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="14dp"
                         android:layout_marginRight="14dp"
-                        android:visibility="gone" />
+                        android:src="@mipmap/me3" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:paddingLeft="25dp"
                         android:text="意见反馈"
                         android:textColor="@color/textblack"
                         android:textSize="@dimen/textsize13" />
@@ -210,15 +206,14 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="14dp"
                         android:layout_marginRight="14dp"
-                        android:visibility="gone" />
+                        android:src="@mipmap/me4" />
 
                     <TextView
                         android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:paddingLeft="25dp"
                         android:text="联系客服"
                         android:textColor="@color/textblack"
                         android:textSize="@dimen/textsize13" />
@@ -235,7 +230,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/gray_cc"/>
+                    android:background="@color/gray_cc" />
 
                 <LinearLayout
                     android:id="@+id/ll_aboutus"
@@ -250,15 +245,14 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="14dp"
                         android:layout_marginRight="14dp"
-                        android:visibility="gone" />
+                        android:src="@mipmap/me5" />
 
                     <TextView
                         android:id="@+id/textView"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:paddingLeft="25dp"
                         android:text="关于我们"
                         android:textColor="@color/textblack"
                         android:textSize="@dimen/textsize13" />
@@ -291,7 +285,6 @@
 
         </LinearLayout>
     </ScrollView>
-
 
 
 </LinearLayout>
