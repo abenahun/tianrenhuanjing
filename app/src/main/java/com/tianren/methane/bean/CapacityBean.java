@@ -6,7 +6,24 @@ public class CapacityBean {
     private String gasProduction;
 
     private String powerGeneration;
-    private String type;
+    private String entryType;
+    private String entryTime;
+
+    public String getEntryType() {
+        return entryType;
+    }
+
+    public void setEntryType(String entryType) {
+        this.entryType = entryType;
+    }
+
+    public String getEntryTime() {
+        return entryTime;
+    }
+
+    public void setEntryTime(String entryTime) {
+        this.entryTime = entryTime;
+    }
 
     public String getId() {
         return id;
@@ -14,14 +31,6 @@ public class CapacityBean {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getGasProduction() {

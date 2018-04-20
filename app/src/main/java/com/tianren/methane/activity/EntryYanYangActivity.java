@@ -1,19 +1,28 @@
 package com.tianren.methane.activity;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tamic.novate.Novate;
@@ -30,8 +39,11 @@ import com.tianren.methane.utils.ToastUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -46,18 +58,21 @@ import static com.tianren.methane.R.mipmap.novate;
 public class EntryYanYangActivity extends BaseActivity implements View.OnClickListener {
     private Novate novate;
     private LinearLayout ll_back;
-    private TextView tv_title;
+    private TextView tv_title,tv_time;
     private Button btn_submit;
     private Spinner spinner;
     private EditText et_ph, et_ts, et_vs, et_vfa, et_jiandu, et_andan, et_cod;
     private String ph, ts, vs, vfa, jiandu, andan, cod,quyangdian;
     private ArrayList<String> spinners;
+    private TimePickerView pvTime;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entryyanyang);
         initView();
+        initDatePicker();
+        initTimePicker();
     }
 
     private void initView() {
@@ -78,6 +93,8 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
         et_andan = (EditText) findViewById(R.id.et_andan);
         et_cod = (EditText) findViewById(R.id.et_cod);
         spinner = (Spinner) findViewById(R.id.spinner);
+        tv_time = (TextView) findViewById(R.id.tv_time);
+        tv_time.setOnClickListener(this);
 
         et_ph.addTextChangedListener(textWatcher);
         et_ts.addTextChangedListener(textWatcher);
@@ -115,6 +132,12 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
         });
     }
 
+    private void initDatePicker() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
+        String now = sdf.format(new Date());
+        tv_time.setText(now.toString());
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -123,6 +146,11 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.btn_submit:
                 submitData();
+                break;
+            case R.id.tv_time:
+                //时间选择器
+                pvTime.show();
+
                 break;
         }
     }
@@ -185,8 +213,9 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
         bean.setCod(cod);
         bean.setVs(vs);
         bean.setAlkalinity(jiandu);
-        bean.setSamplingPoint("取样1");
+        bean.setSamplingPoint(spinners.get(spinner.getSelectedItemPosition()).toString());
         bean.setAmmoniaNitrogen(andan);
+        bean.setEntryTime(tv_time.getText().toString());
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(Constant.YANYANG_URL, gson.toJson(bean).toString());
         novate = new Novate.Builder(this)
@@ -216,5 +245,51 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
                 }
             }
         });
+    }
+
+    private void initTimePicker() {//Dialog 模式下，在底部弹出
+
+        pvTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+//                Toast.makeText(EntryProductionBenefitActivity.this, tv_time.getText().toString(), Toast.LENGTH_SHORT).show();
+                Log.i("pvTime", "onTimeSelect");
+                tv_time.setText(getTime(date));
+
+            }
+        })
+                .setTimeSelectChangeListener(new OnTimeSelectChangeListener() {
+                    @Override
+                    public void onTimeSelectChanged(Date date) {
+                        Log.i("pvTime", "onTimeSelectChanged");
+                    }
+                })
+                .setType(new boolean[]{true, true, true, true, true, true})
+                .isDialog(true)
+                .build();
+
+        Dialog mDialog = pvTime.getDialog();
+        if (mDialog != null) {
+
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    Gravity.BOTTOM);
+
+            params.leftMargin = 0;
+            params.rightMargin = 0;
+            pvTime.getDialogContainerLayout().setLayoutParams(params);
+
+            Window dialogWindow = mDialog.getWindow();
+            if (dialogWindow != null) {
+                dialogWindow.setWindowAnimations(com.bigkoo.pickerview.R.style.picker_view_slide_anim);//修改动画样式
+                dialogWindow.setGravity(Gravity.BOTTOM);//改成Bottom,底部显示
+            }
+        }
+    }
+    private String getTime(Date date) {//可根据需要自行截取数据显示
+        Log.d("getTime()", "choice date millis: " + date.getTime());
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(date);
     }
 }

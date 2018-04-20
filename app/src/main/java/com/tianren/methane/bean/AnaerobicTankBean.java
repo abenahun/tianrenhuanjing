@@ -15,6 +15,15 @@ public class AnaerobicTankBean {
     private String alkalinity;//碱度
     private String ammoniaNitrogen;//氨氮
     private String samplingPoint;//取样点
+    private String entryTime;
+
+    public String getEntryTime() {
+        return entryTime;
+    }
+
+    public void setEntryTime(String entryTime) {
+        this.entryTime = entryTime;
+    }
 
     public String getVs() {
         return vs;
