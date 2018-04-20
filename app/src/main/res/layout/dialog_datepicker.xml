@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/iv_cancel"
+            android:layout_width="17dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/context9" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="日历" />
+
+        <ImageView
+            android:id="@+id/iv_ok"
+            android:layout_width="17dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/context10" />
+    </RelativeLayout>
+
+    <DatePicker
+        android:id="@+id/dp_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:calendarTextColor="#3caee6"
+        android:calendarViewShown="false">
+
+    </DatePicker>
+
+    <TextView
+        android:id="@+id/tv_date_tmp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <TimePicker
+        android:id="@+id/tp_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+    </TimePicker>
+
+    <TextView
+        android:id="@+id/tv_time_tmp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+    <!--<com.satsoftec.ipspcp.mobleClient.common.util.NumberPicker-->
+    <!--android:id="@+id/np_year"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:calendarViewShown="false">-->
+    <!--</com.satsoftec.ipspcp.mobleClient.common.util.NumberPicker>-->
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="年"/>-->
+    <!--<com.satsoftec.ipspcp.mobleClient.common.util.NumberPicker-->
+    <!--android:id="@+id/np_month"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:calendarViewShown="false">-->
+    <!--</com.satsoftec.ipspcp.mobleClient.common.util.NumberPicker>-->
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="年"/>-->
+    <!--<com.satsoftec.ipspcp.mobleClient.common.util.NumberPicker-->
+    <!--android:id="@+id/np_day"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:calendarViewShown="false">-->
+    <!--</com.satsoftec.ipspcp.mobleClient.common.util.NumberPicker>-->
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="年"/>-->
+</LinearLayout>

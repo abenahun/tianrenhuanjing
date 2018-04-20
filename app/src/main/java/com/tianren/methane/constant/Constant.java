@@ -14,6 +14,7 @@ public class Constant {
     public static final String ENTRYYANYANG_URL = "/tianren/entry/entryAnaerobicTankData";
     public static final String ENTRYCAPACITY_URL = "/tianren/entry/entryCapacity";
     public static final String ENTRYCONSUMPTION_URL = "/tianren/entry/entryConsumptionData";
+    public static final String ENTRYALARM_URL = "/alarm";
 
     public static final String YANYANG_URL = "anaerobicTankData";//厌氧
     public static final String CAPACITY_URL = "capacity";//产气量
@@ -22,6 +23,7 @@ public class Constant {
     public static final String ALLDATA_URL = "/tianren/detailedData";
     public static final String REALDATANAME_URL = "appGetRealTimeData";//实时数据
     public static final String STATICDATANAME_URL = "appStaticData";//静态表数据
+    public static final String ALARMLIST_URL = "getAlarmListForApp";//获取报警通知列表
 
 
     public static final int MSG_LOGIN_SUCCESS = 4;

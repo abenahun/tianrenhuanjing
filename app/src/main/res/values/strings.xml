@@ -39,8 +39,8 @@
 
 
     <string-array name="quyangdian">
-        <item >取样点1</item>
-        <item >取样点2</item>
+        <item>取样点1</item>
+        <item>取样点2</item>
     </string-array>
 
 </resources>

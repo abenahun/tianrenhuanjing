@@ -13,6 +13,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="dialogWindowAnim" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_out</item>
+    </style>
 
     <style name="ProgressDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
@@ -29,19 +33,19 @@
 
     <!--自定义dialog背景全透明无边框theme -->
     <style name="SrcbDialog" parent="android:style/Theme.Dialog">
-    <!--背景颜色及和透明程度-->
-    <item name="android:windowBackground">@android:color/transparent</item>
-    <!--是否去除标题 -->
-    <item name="android:windowNoTitle">true</item>
-    <!--是否去除边框-->
-    <item name="android:windowFrame">@null</item>
-    <!--是否浮现在activity之上-->
-    <item name="android:windowIsFloating">true</item>
-    <!--是否模糊-->
-    <item name="android:backgroundDimEnabled">false</item>
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
-    <style name="CustomTab" parent="Widget.Design.TabLayout" >
+    <style name="CustomTab" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/chartreuse</item>
         <item name="tabTextColor">@color/tan</item>
         <item name="tabSelectedTextColor">@color/red</item>

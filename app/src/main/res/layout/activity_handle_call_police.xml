@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.tianren.methane.activity.HandleCallPoliceActivity">
+
+    <include layout="@layout/layout_title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:background="@color/white"
+            android:gravity="start"
+            android:hint="输入一段话描述你的处理过程..."
+            android:maxLength="100"
+            android:padding="12dp"
+            android:textColor="#333"
+            android:textColorHint="#999"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/text_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/editText"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="14dp"
+            android:text="0/100"
+            android:textColor="#999"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/now_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/maincolor"
+            android:gravity="center"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:text="立即处理"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/l"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@+id/editText"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:text="测量日期"
+                android:textColor="#666" />
+
+            <EditText
+                android:id="@+id/et_date"
+                android:layout_width="130dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="13dp"
+                android:background="@drawable/border_edittext_style"
+                android:focusable="false"
+                android:gravity="center"
+                android:text="2016-11-12"
+                android:textColor="#666"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/context5" />
+
+            <TextView
+                android:id="@+id/tv_datepicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="选择日历"
+                android:textColor="#3caee6"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@+id/l"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:text="测量时间"
+                android:textColor="#666" />
+
+            <EditText
+                android:id="@+id/et_time"
+                android:layout_width="130dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="13dp"
+                android:background="@drawable/border_edittext_style"
+                android:focusable="false"
+                android:gravity="center"
+                android:text="2016-11-12"
+                android:textColor="#666"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/context6" />
+
+            <TextView
+                android:id="@+id/tv_timepicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="选择时间"
+                android:textColor="#3caee6"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>
