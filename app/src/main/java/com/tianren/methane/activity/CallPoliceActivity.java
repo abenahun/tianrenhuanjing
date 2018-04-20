@@ -4,17 +4,35 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.tamic.novate.Novate;
+import com.tamic.novate.Throwable;
+import com.tianren.methane.MyBaseSubscriber;
 import com.tianren.methane.R;
 import com.tianren.methane.adapter.CallPoliceAdapter;
 import com.tianren.methane.base.BasePopupWindow;
+import com.tianren.methane.bean.AlarmBean;
+import com.tianren.methane.constant.Constant;
+import com.tianren.methane.utils.StringUtil;
+import com.tianren.methane.utils.ToastUtils;
 import com.tianren.methane.view.RecycleViewDivider;
 import com.yanzhenjie.recyclerview.swipe.SwipeItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import okhttp3.ResponseBody;
 
 /**
  * @author Mr.Qiu
@@ -79,40 +97,42 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
 
     private void loadData() {
 
-//        Map<String, Object> parameters = new HashMap<>();
-//// parameters.put(Constant.STATICDATANAME_URL, "");
-//        Novate novate = new Novate.Builder(this)
-//                .connectTimeout(8)
-//                .baseUrl(Constant.BASE_URL)
-//                //.addApiManager(ApiManager.class)
-//                .addLog(true)
-//                .build();
-//
-//        novate.post(Constant.ALLDATA_URL + "/" + Constant.REALDATANAME_URL, parameters,
-//                new MyBaseSubscriber<ResponseBody>(CallPoliceActivity.this) {
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        if (!TextUtils.isEmpty(e.getMessage())) {
-//                            ToastUtils.show(e.getMessage());
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onNext(ResponseBody responseBody) {
-//                        try {
-//                            String jstr = new String(responseBody.bytes());
-//                            Log.e(TAG, "onNext: " + jstr);
-//                            if (StringUtil.isEmpty(jstr)) {
-//                            } else {
-//                                Gson gson = new Gson();
-//                                gson.fromJson(jstr, new TypeToken<List<AlarmBean>>() {
-//                                }.getType());
-//                            }
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                });
+        Map<String, Object> parameters = new HashMap<>();
+// parameters.put(Constant.STATICDATANAME_URL, "");
+        parameters.put("isDeal", 1);
+        parameters.put("pageNum", 1);
+        Novate novate = new Novate.Builder(this)
+                .connectTimeout(8)
+                .baseUrl(Constant.BASE_URL)
+                //.addApiManager(ApiManager.class)
+                .addLog(true)
+                .build();
+
+        novate.post(Constant.ENTRYALARM_URL, parameters,
+                new MyBaseSubscriber<ResponseBody>(CallPoliceActivity.this) {
+                    @Override
+                    public void onError(Throwable e) {
+                        if (!TextUtils.isEmpty(e.getMessage())) {
+                            ToastUtils.show(e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        try {
+                            String jstr = new String(responseBody.bytes());
+                            Log.e(TAG, "onNext: " + jstr);
+                            if (StringUtil.isEmpty(jstr)) {
+                            } else {
+                                Gson gson = new Gson();
+                                gson.fromJson(jstr, new TypeToken<List<AlarmBean>>() {
+                                }.getType());
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
         CallPoliceAdapter.CallPoliceBean item1 = new CallPoliceAdapter.CallPoliceBean();
         item1.setLevel(1);
         item1.setCallTime("2018-12-26 12:13:00");
