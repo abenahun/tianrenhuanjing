@@ -35,20 +35,22 @@ public class CallPoliceAdapter extends BaseRcAdapter<CallPoliceAdapter.CallPolic
         CallPoliceBean bean = getItems().get(position);
         holder.name.setText(TextUtils.isEmpty(bean.name) ? "" : bean.name);
         holder.state.setText(bean.state == 0 ? "未处理" : "已处理");
-        holder.level.setText("警告级别:( " + ((bean.level == 1) ? "超低" : (bean.level == 2) ? "低"
-                : (bean.level == 3) ? "高" : (bean.level == 4) ? "超高" : "错误") + ")");
         holder.callTime.setText("告警时间: " + (TextUtils.isEmpty(bean.callTime) ? "" : bean.callTime));
         switch (bean.level) {
             case 1:
+                holder.level.setText("警告级别:(超低)");
                 holder.levelIv.setImageResource(R.mipmap.level1);
                 break;
             case 2:
+                holder.level.setText("警告级别:(低)");
                 holder.levelIv.setImageResource(R.mipmap.level2);
                 break;
             case 3:
+                holder.level.setText("警告级别:(高)");
                 holder.levelIv.setImageResource(R.mipmap.level3);
                 break;
             case 4:
+                holder.level.setText("警告级别:(超高)");
                 holder.levelIv.setImageResource(R.mipmap.level4);
                 break;
             default:
@@ -71,8 +73,19 @@ public class CallPoliceAdapter extends BaseRcAdapter<CallPoliceAdapter.CallPolic
     }
 
     public static class CallPoliceBean {
-        private String name, callTime;
-        private int state, level;
+        private Integer id;
+        private String name,
+                callTime;
+        private int state,//是否处理
+                level;//警告级别
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
 
         public int getState() {
             return state;

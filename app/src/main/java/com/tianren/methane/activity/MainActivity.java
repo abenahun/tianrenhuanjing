@@ -14,9 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.blankj.aloglibrary.ALog;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tamic.novate.Novate;
@@ -56,7 +54,9 @@ public class MainActivity extends BaseActivity {
     public static String mDeviceId;
     public static String userName;
     private Novate novate;
+    //气柜厌氧脱硫脱碳数据
     public static Map<String, String> modelMap = new HashMap<>();
+    //静态表数据
     public static Map<String, SensorBean> sensorDataMap = new HashMap<>();
 
 
@@ -97,10 +97,10 @@ public class MainActivity extends BaseActivity {
                             String jstr = new String(responseBody.bytes());
 //                            ToastUtils.show(jstr);
 
-                            if (StringUtil.isEmpty(jstr)){
+                            if (StringUtil.isEmpty(jstr)) {
 
                                 sensorDataMap = null;
-                            }else{
+                            } else {
                                 Gson gson = new Gson();
                                 sensorDataMap = gson.fromJson(jstr, new TypeToken<Map<String, SensorBean>>() {
                                 }.getType());
@@ -201,9 +201,9 @@ public class MainActivity extends BaseActivity {
                         try {
                             String jstr = new String(responseBody.bytes());
 //                            ToastUtils.show(jstr);
-                            if (StringUtil.isEmpty(jstr)){
+                            if (StringUtil.isEmpty(jstr)) {
                                 modelMap = null;
-                            }else{
+                            } else {
                                 Gson gson = new Gson();
                                 modelMap = gson.fromJson(jstr, new TypeToken<Map<String, String>>() {
                                 }.getType());

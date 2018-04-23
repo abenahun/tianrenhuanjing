@@ -35,6 +35,8 @@ import java.util.Map;
 
 import okhttp3.ResponseBody;
 
+import static com.tianren.methane.activity.MainActivity.sensorDataMap;
+
 /**
  * @author Mr.Qiu
  */
@@ -48,6 +50,9 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
 
     private ImageView moreIv;
     private TextView moreTv;
+
+    private int page = 1;
+    private int isDeal = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,21 +91,26 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                refreshLayout.setRefreshing(false);
+                adapter.clear();
+                page = 1;
+                loadData();
             }
         });
         recyclerView.setLoadMoreListener(new SwipeMenuRecyclerView.LoadMoreListener() {
             @Override
             public void onLoadMore() {
+                page++;
+                loadData();
             }
         });
+        recyclerView.loadMoreFinish(false, true);
     }
 
     private void loadData() {
-
+        recyclerView.loadMoreFinish(false, true);
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("isDeal", 1);
-        parameters.put("pageNum", 1);
+        parameters.put("isDeal", isDeal);
+        parameters.put("pageNum", page);
         Novate novate = new Novate.Builder(this)
                 .connectTimeout(8)
                 .baseUrl(Constant.BASE_URL)
@@ -113,7 +123,10 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
                     public void onError(Throwable e) {
                         if (!TextUtils.isEmpty(e.getMessage())) {
                             ToastUtils.show(e.getMessage());
-                            ALog.e("syl",e.getMessage());
+                            ALog.e("syl", e.getMessage());
+                        }
+                        if (page == 1) {
+                            refreshLayout.setRefreshing(false);
                         }
                     }
 
@@ -122,42 +135,41 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
                         try {
                             String jstr = new String(responseBody.bytes());
                             Log.e(TAG, "onNext: " + jstr);
-                            if (StringUtil.isEmpty(jstr)) {
+                            if (StringUtil.isEmpty(jstr) || jstr.equals("true")) {
+                                recyclerView.loadMoreFinish(true, false);
                             } else {
                                 Gson gson = new Gson();
-                                gson.fromJson(jstr, new TypeToken<List<AlarmBean>>() {
+                                List<AlarmBean> list = gson.fromJson(jstr, new TypeToken<List<AlarmBean>>() {
                                 }.getType());
+                                if (list != null && list.size() != 0) {
+                                    for (int i = 0; i < list.size(); i++) {
+                                        AlarmBean alarmBean = list.get(i);
+                                        CallPoliceAdapter.CallPoliceBean item = new CallPoliceAdapter.CallPoliceBean();
+                                        item.setId(alarmBean.getId());
+                                        item.setState(alarmBean.getIsDeal());
+                                        for (String s : sensorDataMap.keySet()) {
+                                            if (sensorDataMap.get(s).getSensorId().equals(alarmBean.getId())) {
+                                                item.setName((sensorDataMap.get(s).getNickName()));
+                                            }
+                                        }
+                                        item.setCallTime(alarmBean.getAlarmTime().toString());
+                                        item.setLevel(alarmBean.getAlarmType());
+                                        adapter.addItem(item);
+                                    }
+                                    adapter.notifyDataSetChanged();
+                                    recyclerView.loadMoreFinish(false, true);
+                                } else {
+                                    recyclerView.loadMoreFinish(true, false);
+                                }
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        if (page == 1) {
+                            refreshLayout.setRefreshing(false);
+                        }
                     }
                 });
-        CallPoliceAdapter.CallPoliceBean item1 = new CallPoliceAdapter.CallPoliceBean();
-        item1.setLevel(1);
-        item1.setCallTime("2018-12-26 12:13:00");
-        item1.setName("智能传感器1");
-        item1.setState(1);
-        adapter.addItem(item1);
-        CallPoliceAdapter.CallPoliceBean item2 = new CallPoliceAdapter.CallPoliceBean();
-        item2.setLevel(2);
-        item2.setCallTime("2018-12-26 12:13:00");
-        item2.setName("智能传感器2");
-        item2.setState(1);
-        adapter.addItem(item2);
-        CallPoliceAdapter.CallPoliceBean item3 = new CallPoliceAdapter.CallPoliceBean();
-        item3.setLevel(3);
-        item3.setCallTime("2018-12-26 12:13:00");
-        item3.setName("智能传感器3");
-        item3.setState(1);
-        adapter.addItem(item3);
-        CallPoliceAdapter.CallPoliceBean item4 = new CallPoliceAdapter.CallPoliceBean();
-        item4.setLevel(4);
-        item4.setCallTime("2018-12-26 12:13:00");
-        item4.setName("智能传感器4");
-        item4.setState(2);
-        adapter.addItem(item4);
-        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -174,6 +186,10 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
                         moreIv.setVisibility(View.VISIBLE);
                         moreTv.setVisibility(View.GONE);
                         moreTv.setText("全部");
+                        adapter.clear();
+                        page = 1;
+                        isDeal = -1;
+                        loadData();
                         window.dismiss();
                     }
                 });
@@ -183,6 +199,10 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
                         moreIv.setVisibility(View.GONE);
                         moreTv.setVisibility(View.VISIBLE);
                         moreTv.setText("已处理");
+                        page = 1;
+                        isDeal = 1;
+                        adapter.clear();
+                        loadData();
                         window.dismiss();
                     }
                 });
@@ -193,6 +213,10 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
                         moreIv.setVisibility(View.GONE);
                         moreTv.setVisibility(View.VISIBLE);
                         moreTv.setText("未处理");
+                        isDeal = 0;
+                        page = 1;
+                        adapter.clear();
+                        loadData();
                         window.dismiss();
                     }
                 });
