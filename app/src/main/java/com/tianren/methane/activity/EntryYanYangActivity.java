@@ -217,7 +217,7 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
         bean.setAmmoniaNitrogen(andan);
         bean.setEntryTime(tv_time.getText().toString());
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put(Constant.YANYANG_URL, gson.toJson(bean).toString());
+        parameters.put("anaerobicTankData", gson.toJson(bean).toString());
         novate = new Novate.Builder(this)
                 .connectTimeout(8)
                 .baseUrl(Constant.BASE_URL)

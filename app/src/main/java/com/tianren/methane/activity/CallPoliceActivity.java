@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.aloglibrary.ALog;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tamic.novate.Novate;
@@ -98,13 +99,11 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
     private void loadData() {
 
         Map<String, Object> parameters = new HashMap<>();
-// parameters.put(Constant.STATICDATANAME_URL, "");
         parameters.put("isDeal", 1);
         parameters.put("pageNum", 1);
         Novate novate = new Novate.Builder(this)
                 .connectTimeout(8)
                 .baseUrl(Constant.BASE_URL)
-                //.addApiManager(ApiManager.class)
                 .addLog(true)
                 .build();
 
@@ -114,6 +113,7 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
                     public void onError(Throwable e) {
                         if (!TextUtils.isEmpty(e.getMessage())) {
                             ToastUtils.show(e.getMessage());
+                            ALog.e("syl",e.getMessage());
                         }
                     }
 

@@ -138,7 +138,7 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
         bean.setEntryType("1");
         bean.setEntryTime(tv_time.getText().toString());
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put(Constant.CONSUMPTION_URL, gson.toJson(bean).toString());
+        parameters.put("consumption", gson.toJson(bean).toString());
         novate = new Novate.Builder(this)
                 .connectTimeout(8)
                 .baseUrl(Constant.BASE_URL)

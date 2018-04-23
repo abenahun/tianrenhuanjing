@@ -135,7 +135,7 @@ public class EntryProductionBenefitActivity extends BaseActivity implements View
         bean.setEntryTime(tv_time.getText().toString());
         bean.setEntryType("1");
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put(Constant.CAPACITY_URL, gson.toJson(bean).toString());
+        parameters.put("capacity", gson.toJson(bean).toString());
         novate = new Novate.Builder(this)
                 .connectTimeout(8)
                 .baseUrl(Constant.BASE_URL)
