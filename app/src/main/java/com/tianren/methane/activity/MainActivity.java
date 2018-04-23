@@ -81,7 +81,7 @@ public class MainActivity extends BaseActivity {
                 .addLog(true)
                 .build();
 
-        novate.post(Constant.ALLDATA_URL + "/appStaticData", parameters,
+        novate.post(Constant.ENTRYSTATIC_URL, parameters,
                 new MyBaseSubscriber<ResponseBody>(MainActivity.this) {
                     @Override
                     public void onError(Throwable e) {
@@ -186,7 +186,7 @@ public class MainActivity extends BaseActivity {
                 .addLog(true)
                 .build();
 
-        novate.post(Constant.ALLDATA_URL + "/" + "appGetRealTimeData", parameters,
+        novate.post(Constant.ENTRYREALDATA_URL, parameters,
                 new MyBaseSubscriber<ResponseBody>(MainActivity.this) {
                     @Override
                     public void onError(Throwable e) {
