@@ -1,6 +1,7 @@
 package com.tianren.methane.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -38,11 +40,12 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
     private SwipeMenuRecyclerView recyclerView;
     private ModelAdapter adapter;
 
+    private ImageView moreIv;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yanyang);
-
         initView();
 //        initChart();
         loadData();
@@ -54,6 +57,10 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
         ll_back.setOnClickListener(this);
         tv_title = (TextView) findViewById(R.id.tv_title);
         tv_title.setText("厌氧");
+        moreIv = (ImageView) findViewById(R.id.moreIv);
+        moreIv.setImageResource(R.mipmap.call_police);
+        moreIv.setOnClickListener(this);
+        moreIv.setVisibility(View.VISIBLE);
 //        diagnosisChart = (LineChart) findViewById(R.id.diagnosisChart);
 //        cycleChart1 = (LineChart) findViewById(R.id.cycleChart1);
 //        cycleChart2 = (LineChart) findViewById(R.id.cycleChart2);
@@ -209,9 +216,13 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
 
             case R.id.btn_data:
                 break;
-
             case R.id.ll_back:
                 finish();
+                break;
+            case R.id.moreIv:
+                startActivity(new Intent(this, CallPoliceActivity.class));
+                break;
+            default:
                 break;
         }
     }

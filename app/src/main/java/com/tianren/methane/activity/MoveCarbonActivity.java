@@ -1,9 +1,11 @@
 package com.tianren.methane.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -26,7 +28,7 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
     private TextView tv_title;
     private SwipeMenuRecyclerView recyclerView;
     private ModelAdapter adapter;
-
+    private ImageView moreIv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,10 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
         ll_back.setOnClickListener(this);
         tv_title = (TextView) findViewById(R.id.tv_title);
         tv_title.setText("脱碳");
+        moreIv = (ImageView) findViewById(R.id.moreIv);
+        moreIv.setImageResource(R.mipmap.call_police);
+        moreIv.setOnClickListener(this);
+        moreIv.setVisibility(View.VISIBLE);
         recyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recyclerView);
         adapter = new ModelAdapter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -84,6 +90,11 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.ll_back:
                 finish();
+                break;
+            case R.id.moreIv:
+                startActivity(new Intent(this, CallPoliceActivity.class));
+                break;
+            default:
                 break;
         }
     }

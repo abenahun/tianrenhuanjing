@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -49,6 +50,7 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
 
     private SwipeMenuRecyclerView recyclerView;
     private ModelAdapter adapter;
+    private ImageView moreIv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,6 +66,10 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
         ll_back.setOnClickListener(this);
         tv_title = (TextView) findViewById(R.id.tv_title);
         tv_title.setText("气柜");
+        moreIv = (ImageView) findViewById(R.id.moreIv);
+        moreIv.setImageResource(R.mipmap.call_police);
+        moreIv.setOnClickListener(this);
+        moreIv.setVisibility(View.VISIBLE);
 
         recyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recyclerView);
         adapter = new ModelAdapter(this);
@@ -103,9 +109,9 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
 
     private void loadData() {
         List<ModelAdapter.ModelBean> list = new ArrayList<>();
-        if (sensorDataMap == null){
+        if (sensorDataMap == null) {
             list = null;
-        }else {
+        } else {
             list.add(getModel("d29"));
             list.add(getModel("d30"));
             list.add(getModel("d31"));
@@ -119,11 +125,11 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
     }
 
     public ModelAdapter.ModelBean getModel(String s) {
-        if (sensorDataMap == null){
+        if (sensorDataMap == null) {
             return null;
-        }else {
-        return new ModelAdapter.ModelBean(s, sensorDataMap.get(s).getNickName(), modelMap.get(s), sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum(),sensorDataMap.get(s).getSensorUnit());
-       }
+        } else {
+            return new ModelAdapter.ModelBean(s, sensorDataMap.get(s).getNickName(), modelMap.get(s), sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum(), sensorDataMap.get(s).getSensorUnit());
+        }
     }
 
     @Override
@@ -149,6 +155,11 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
 
             case R.id.ll_back:
                 finish();
+                break;
+            case R.id.moreIv:
+                startActivity(new Intent(this, CallPoliceActivity.class));
+                break;
+            default:
                 break;
         }
     }
