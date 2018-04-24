@@ -5,6 +5,7 @@ import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -15,6 +16,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.tianren.acommon.BaseResponse;
+import com.tianren.acommon.remote.WebServiceManage;
+import com.tianren.acommon.remote.callback.SCallBack;
+import com.tianren.acommon.service.AlarmService;
 import com.tianren.methane.R;
 import com.tianren.methane.utils.ToastUtils;
 
@@ -25,6 +30,7 @@ import java.util.Calendar;
  * @author Mr.Qiu
  */
 public class HandleCallPoliceActivity extends BaseActivity implements View.OnClickListener {
+    private static final String TAG = "HandleCallPoliceActivit";
     private LinearLayout ll_back;
     private TextView tv_title;
     private EditText editText, et_time, et_date;
@@ -83,6 +89,18 @@ public class HandleCallPoliceActivity extends BaseActivity implements View.OnCli
         });
         et_date.setText(convertDate(mYear, mMonth, mDay));
         et_time.setText(convertTime(hour, minute));
+        loadData();
+    }
+
+    private void loadData() {
+        WebServiceManage.getService(AlarmService.class).handleAlarm(32, "2012-12-12 08:55:00", "11111").setCallback(new SCallBack<BaseResponse<Boolean>>() {
+            @Override
+            public void callback(boolean isok, String msg, BaseResponse<Boolean> res) {
+                Log.e(TAG, "callback: " + isok);
+                Log.e(TAG, "callback: " + msg);
+                Log.e(TAG, "callback: " + res.getData());
+            }
+        });
     }
 
     @Override

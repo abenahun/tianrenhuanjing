@@ -3,7 +3,8 @@ package com.tianren.methane;
 import android.app.Application;
 import android.content.Context;
 
-import com.blankj.aloglibrary.ALog;
+import com.tianren.acommon.AppWsInfo;
+import com.tianren.acommon.remote.WebServiceManage;
 import com.tianren.methane.utils.Utils;
 
 /**
@@ -12,16 +13,16 @@ import com.tianren.methane.utils.Utils;
 
 public class App extends Application {
     private static App app;
+
     public static Context getAppContext() {
         return app;
     }
+
     @Override
     public void onCreate() {
         super.onCreate();
         Utils.init(this);
-        app=this;
-
-        ALog.Builder builder = new ALog.Builder(this);
-
+        app = this;
+        WebServiceManage.init(this, new AppWsInfo());
     }
 }
