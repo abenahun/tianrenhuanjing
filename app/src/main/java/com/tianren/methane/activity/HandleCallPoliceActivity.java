@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.tianren.methane.R;
+import com.tianren.methane.utils.ToastUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -91,6 +92,17 @@ public class HandleCallPoliceActivity extends BaseActivity implements View.OnCli
                 finish();
                 break;
             case R.id.now_submit:
+                String s = editText.getText().toString();
+                if (TextUtils.isEmpty(s)) {
+                    ToastUtils.show("描述不能为空!");
+                    break;
+                }
+                String date = et_date.getText().toString();
+                String time = et_time.getText().toString();
+                if (TextUtils.isEmpty(date) || TextUtils.isEmpty(time)) {
+                    ToastUtils.show("测量时间跟日期不能为空");
+                    return;
+                }
                 break;
             case R.id.tv_datepicker:
                 final AlertDialog dialog3 = new AlertDialog.Builder(this).setView(R.layout.dialog_datepicker).show();
@@ -169,6 +181,14 @@ public class HandleCallPoliceActivity extends BaseActivity implements View.OnCli
         }
     }
 
+    /**
+     * 日期转换
+     *
+     * @param year
+     * @param month
+     * @param day
+     * @return
+     */
     private String convertDate(int year, int month, int day) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, day);
@@ -176,6 +196,13 @@ public class HandleCallPoliceActivity extends BaseActivity implements View.OnCli
         return simpleDateFormat.format(calendar.getTime());
     }
 
+    /**
+     * 时间转换
+     *
+     * @param hour
+     * @param minute
+     * @return
+     */
     private String convertTime(int hour, int minute) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(0, 0, 0, hour, minute);

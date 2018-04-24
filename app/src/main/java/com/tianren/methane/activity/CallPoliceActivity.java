@@ -35,8 +35,6 @@ import java.util.Map;
 
 import okhttp3.ResponseBody;
 
-import static com.tianren.methane.activity.MainActivity.sensorDataMap;
-
 /**
  * @author Mr.Qiu
  */
@@ -145,13 +143,14 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
                                     for (int i = 0; i < list.size(); i++) {
                                         AlarmBean alarmBean = list.get(i);
                                         CallPoliceAdapter.CallPoliceBean item = new CallPoliceAdapter.CallPoliceBean();
-                                        item.setId(alarmBean.getId());
+                                        item.setId(alarmBean.getSensorId());
                                         item.setState(alarmBean.getIsDeal());
-                                        for (String s : sensorDataMap.keySet()) {
-                                            if (sensorDataMap.get(s).getSensorId().equals(alarmBean.getId())) {
-                                                item.setName((sensorDataMap.get(s).getNickName()));
-                                            }
-                                        }
+                                        item.setName(alarmBean.getSensor().getNickName());
+//                                        for (String s : sensorDataMap.keySet()) {
+//                                            if (sensorDataMap.get(s).getSensorId().equals(alarmBean.getSensorId())) {
+//                                                item.setName((sensorDataMap.get(s).getNickName()));
+//                                            }
+//                                        }
                                         item.setCallTime(alarmBean.getAlarmTime().toString());
                                         item.setLevel(alarmBean.getAlarmType());
                                         adapter.addItem(item);
