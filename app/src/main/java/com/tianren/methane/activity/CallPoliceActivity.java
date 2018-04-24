@@ -83,6 +83,8 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onItemClick(View itemView, int position) {
                 Intent intent = new Intent(CallPoliceActivity.this, HandleCallPoliceActivity.class);
+                Integer id = adapter.getItems().get(position).getId();
+                intent.putExtra("alarmId", id);
                 startActivity(intent);
             }
         });

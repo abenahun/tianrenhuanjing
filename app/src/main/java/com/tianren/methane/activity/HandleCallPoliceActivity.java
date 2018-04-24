@@ -5,7 +5,6 @@ import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -41,10 +40,13 @@ public class HandleCallPoliceActivity extends BaseActivity implements View.OnCli
     private int hour;
     private int minute;
 
+    private int alarmId = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_handle_call_police);
+        alarmId = getIntent().getIntExtra("alarmId", -1);
         Calendar ca = Calendar.getInstance();
         mYear = ca.get(Calendar.YEAR);
         mMonth = ca.get(Calendar.MONTH);
@@ -89,18 +91,6 @@ public class HandleCallPoliceActivity extends BaseActivity implements View.OnCli
         });
         et_date.setText(convertDate(mYear, mMonth, mDay));
         et_time.setText(convertTime(hour, minute));
-        loadData();
-    }
-
-    private void loadData() {
-        WebServiceManage.getService(AlarmService.class).handleAlarm(32, "2012-12-12 08:55:00", "11111").setCallback(new SCallBack<BaseResponse<Boolean>>() {
-            @Override
-            public void callback(boolean isok, String msg, BaseResponse<Boolean> res) {
-                Log.e(TAG, "callback: " + isok);
-                Log.e(TAG, "callback: " + msg);
-                Log.e(TAG, "callback: " + res.getData());
-            }
-        });
     }
 
     @Override
@@ -121,6 +111,15 @@ public class HandleCallPoliceActivity extends BaseActivity implements View.OnCli
                     ToastUtils.show("测量时间跟日期不能为空");
                     return;
                 }
+                WebServiceManage.getService(AlarmService.class).handleAlarm(alarmId, date + " " + time, s).setCallback(new SCallBack<BaseResponse<Boolean>>() {
+                    @Override
+                    public void callback(boolean isok, String msg, BaseResponse<Boolean> res) {
+                        showToast(msg);
+                        if (isok && res.getData()) {
+                            finish();
+                        }
+                    }
+                });
                 break;
             case R.id.tv_datepicker:
                 final AlertDialog dialog3 = new AlertDialog.Builder(this).setView(R.layout.dialog_datepicker).show();
