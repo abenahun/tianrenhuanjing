@@ -28,8 +28,10 @@ public class AppWsInfo extends WebServiceInfo {
                 }
                 if (t instanceof BaseResponse) {
                     ResultCheck.checkResult(((BaseResponse) t).getResult(), ((BaseResponse) t).getMessage());
+                    return ((BaseResponse) t).getMessage();
+                } else {
+                    return "返回类型不正确";
                 }
-                return "操作成功！";
             }
         };
     }

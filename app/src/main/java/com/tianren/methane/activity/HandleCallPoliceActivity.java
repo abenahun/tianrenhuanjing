@@ -114,7 +114,7 @@ public class HandleCallPoliceActivity extends BaseActivity implements View.OnCli
                 WebServiceManage.getService(AlarmService.class).handleAlarm(alarmId, date + " " + time, s).setCallback(new SCallBack<BaseResponse<Boolean>>() {
                     @Override
                     public void callback(boolean isok, String msg, BaseResponse<Boolean> res) {
-                        showToast(msg);
+                        ToastUtils.show(msg);
                         if (isok && res.getData()) {
                             finish();
                         }
