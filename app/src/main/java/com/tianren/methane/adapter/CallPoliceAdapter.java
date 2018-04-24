@@ -73,18 +73,27 @@ public class CallPoliceAdapter extends BaseRcAdapter<CallPoliceAdapter.CallPolic
     }
 
     public static class CallPoliceBean {
-        private Integer id;
+        private int alarmId;
+        private int sensorId;
         private String name,
                 callTime;
         private int state,//是否处理
                 level;//警告级别
 
-        public Integer getId() {
-            return id;
+        public int getAlarmId() {
+            return alarmId;
         }
 
-        public void setId(Integer id) {
-            this.id = id;
+        public void setAlarmId(int alarmId) {
+            this.alarmId = alarmId;
+        }
+
+        public int getSensorId() {
+            return sensorId;
+        }
+
+        public void setSensorId(int sensorId) {
+            this.sensorId = sensorId;
         }
 
         public int getState() {

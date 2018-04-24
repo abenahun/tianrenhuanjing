@@ -83,7 +83,7 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onItemClick(View itemView, int position) {
                 Intent intent = new Intent(CallPoliceActivity.this, HandleCallPoliceActivity.class);
-                Integer id = adapter.getItems().get(position).getId();
+                Integer id = adapter.getItems().get(position).getAlarmId();
                 intent.putExtra("alarmId", id);
                 startActivity(intent);
             }
@@ -136,6 +136,7 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
                             String jstr = new String(responseBody.bytes());
                             Log.e(TAG, "onNext: " + jstr);
                             if (StringUtil.isEmpty(jstr) || jstr.equals("true")) {
+                                adapter.notifyDataSetChanged();
                                 recyclerView.loadMoreFinish(true, false);
                             } else {
                                 Gson gson = new Gson();
@@ -145,14 +146,10 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
                                     for (int i = 0; i < list.size(); i++) {
                                         AlarmBean alarmBean = list.get(i);
                                         CallPoliceAdapter.CallPoliceBean item = new CallPoliceAdapter.CallPoliceBean();
-                                        item.setId(alarmBean.getSensorId());
+                                        item.setSensorId(alarmBean.getSensorId());
+                                        item.setAlarmId(alarmBean.getAlarmId());
                                         item.setState(alarmBean.getIsDeal());
                                         item.setName(alarmBean.getSensor().getNickName());
-//                                        for (String s : sensorDataMap.keySet()) {
-//                                            if (sensorDataMap.get(s).getSensorId().equals(alarmBean.getSensorId())) {
-//                                                item.setName((sensorDataMap.get(s).getNickName()));
-//                                            }
-//                                        }
                                         item.setCallTime(alarmBean.getAlarmTime().toString());
                                         item.setLevel(alarmBean.getAlarmType());
                                         adapter.addItem(item);
