@@ -41,6 +41,9 @@
         <activity android:name=".activity.FeedBackActivity" />
         <activity android:name=".activity.LinkServiceActivity" />
         <activity android:name=".activity.ResetPwdActivity" />
+        <activity android:name=".activity.RunningStatusActivity" />
+        <activity android:name=".activity.DataStatisticsActivity" />
+
 
         <service
             android:name=".service.SipService"

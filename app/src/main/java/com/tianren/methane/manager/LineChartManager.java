@@ -44,6 +44,10 @@ public class LineChartManager {
         //设置动画效果
         lineChart.animateY(1000, Easing.EasingOption.Linear);
         lineChart.animateX(1000, Easing.EasingOption.Linear);
+        lineChart.getAxisRight().setDrawGridLines(false);
+        lineChart.getAxisLeft().setDrawGridLines(false);
+        lineChart.getAxisRight().setEnabled(false); // 隐藏右边 的坐标轴
+        lineChart.getXAxis().setDrawGridLines(false);
 
         //折线图例 标签 设置
         Legend legend = lineChart.getLegend();
@@ -82,8 +86,8 @@ public class LineChartManager {
         lineDataSet.setValueTextSize(9f);
         //设置折线图填充
         lineDataSet.setDrawFilled(mode);
-        lineDataSet.setFormLineWidth(1f);
-        lineDataSet.setFormSize(15.f);
+        lineDataSet.setFormLineWidth(4f);
+        lineDataSet.setFormSize(15f);
         //线模式为圆滑曲线（默认折线）
         lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
     }

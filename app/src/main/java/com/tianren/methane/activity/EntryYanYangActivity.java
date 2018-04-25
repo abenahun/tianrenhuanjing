@@ -239,6 +239,7 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
             public void onNext(ResponseBody responseBody) {
                 try {
                     String jstr = new String(responseBody.bytes());
+                    Gson gson = new Gson();
                     Toast.makeText(EntryYanYangActivity.this, jstr , Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     e.printStackTrace();
