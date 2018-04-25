@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="14dp"
-        android:text="今日脱碳量 100吨"
+        android:text="今日产气量 100吨"
         android:textColor="@color/maincolor"
         android:textSize="16sp" />
 

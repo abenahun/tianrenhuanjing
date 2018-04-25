@@ -9,15 +9,15 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="14dp"
-        android:text="今日产气量 1000Vol"
+        android:text="今日脱硫量 1000Vol"
         android:textColor="@color/maincolor"
         android:textSize="16sp" />
 
     <ImageView
-        android:layout_gravity="center_horizontal"
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:background="@mipmap/movesulful" />
 
