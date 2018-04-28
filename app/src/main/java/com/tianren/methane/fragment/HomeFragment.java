@@ -76,7 +76,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
 
         MPChartHelper.setTwoBarChart(barChart1,xAxisValues,yAxisValues1,yAxisValues2,"总效益","总能耗");
 
-
     }
 
     private void initLineCharts() {

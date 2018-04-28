@@ -23,6 +23,7 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
+import com.blankj.aloglibrary.ALog;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tamic.novate.Novate;
@@ -32,6 +33,7 @@ import com.tianren.methane.ExempleActivity;
 import com.tianren.methane.MyBaseSubscriber;
 import com.tianren.methane.R;
 import com.tianren.methane.bean.AnaerobicTankBean;
+import com.tianren.methane.bean.EntryBean;
 import com.tianren.methane.constant.Constant;
 import com.tianren.methane.model.ResultModel;
 import com.tianren.methane.utils.StringUtil;
@@ -240,7 +242,14 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
                 try {
                     String jstr = new String(responseBody.bytes());
                     Gson gson = new Gson();
-                    Toast.makeText(EntryYanYangActivity.this, jstr , Toast.LENGTH_SHORT).show();
+                    EntryBean entryBean = gson.fromJson(jstr,EntryBean.class);
+                    if (entryBean.getResult()){
+                        ToastUtils.show(entryBean.getMessage());
+                        finish();
+                    }else {
+                        ToastUtils.show(entryBean.getMessage());
+                    }
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

@@ -325,7 +325,9 @@ public class MPChartHelper {
      * @param bartilte1
      * @param bartitle2
      */
-    public static void setTwoBarChart(BarChart barChart, List<Integer> xAxisValue, List<Float> yAxisValue1, List<Float> yAxisValue2, String bartilte1, String bartitle2) {
+    public static void setTwoBarChart(BarChart barChart, List<Integer> xAxisValue,
+                                      List<Float> yAxisValue1, List<Float> yAxisValue2,
+                                      String bartilte1, String bartitle2) {
         barChart.getDescription().setEnabled(false);//设置描述
         barChart.setPinchZoom(true);//设置按比例放缩柱状图
         barChart.setExtraBottomOffset(10);
@@ -423,7 +425,7 @@ public class MPChartHelper {
             dataSets.add(dataset2);
 
             BarData data = new BarData(dataSets);
-            data.setValueTextSize(6f);
+            data.setValueTextSize(10f);
             data.setBarWidth(0.9f);
             data.setValueFormatter(new IValueFormatter() {
                 @Override
@@ -797,7 +799,7 @@ public class MPChartHelper {
 
         PieData pieData = new PieData(dataSet);
         pieData.setValueFormatter(new PercentFormatter());
-        pieData.setValueTextSize(11f);
+        pieData.setValueTextSize(10f);
         pieData.setValueTextColor(Color.DKGRAY);
 
         pieChart.setData(pieData);

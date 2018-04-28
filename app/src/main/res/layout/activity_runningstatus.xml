@@ -6,11 +6,21 @@
 
     <include layout="@layout/layout_title"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lineChart"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_margin="20dp"/>
+        android:layout_margin="5dp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -25,18 +35,94 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:orientation="horizontal"
         android:gravity="center">
 
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/cycle2"
-        android:text="5"
-        android:gravity="center"
-        android:textColor="@color/red"
-        android:textSize="@dimen/textsize24"
-        android:textStyle="bold"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/leaf_l"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="每立方米产气1000m³，全国第5名"
+                android:textColor="@color/maincolor"
+                android:textSize="@dimen/textsize16"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="超过全国98%的用户"
+                android:textColor="@color/textgray"
+                android:padding="5dp"
+                android:textSize="@dimen/textsize13"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/leaf_r"/>
+
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_cc"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/leaf_l"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="每吨产气1000m³，全国第5名"
+            android:textColor="@color/maincolor"
+            android:textSize="@dimen/textsize16"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="超过全国98%的用户"
+            android:textColor="@color/textgray"
+            android:padding="5dp"
+            android:textSize="@dimen/textsize13"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/leaf_r"/>
+
+
+</LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

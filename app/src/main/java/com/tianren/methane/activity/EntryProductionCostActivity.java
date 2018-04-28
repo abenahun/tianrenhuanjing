@@ -26,6 +26,7 @@ import com.tianren.methane.MyBaseSubscriber;
 import com.tianren.methane.R;
 import com.tianren.methane.bean.CapacityBean;
 import com.tianren.methane.bean.ConsumptionBean;
+import com.tianren.methane.bean.EntryBean;
 import com.tianren.methane.constant.Constant;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
@@ -159,7 +160,14 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
                     public void onNext(ResponseBody responseBody) {
                         try {
                             String jstr = new String(responseBody.bytes());
-                            ToastUtils.show(jstr);
+                            Gson gson = new Gson();
+                            EntryBean entryBean = gson.fromJson(jstr,EntryBean.class);
+                            if (entryBean.getResult()){
+                                ToastUtils.show(entryBean.getMessage());
+                                finish();
+                            }else {
+                                ToastUtils.show(entryBean.getMessage());
+                            }
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

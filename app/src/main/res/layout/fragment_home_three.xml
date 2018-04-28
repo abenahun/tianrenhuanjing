@@ -237,8 +237,8 @@
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/bar_chart1"
                 android:layout_width="match_parent"
-                android:layout_margin="20dp"
-                android:layout_height="160dp"/>
+                android:layout_margin="5dp"
+                android:layout_height="200dp"/>
 
             </LinearLayout>
 
