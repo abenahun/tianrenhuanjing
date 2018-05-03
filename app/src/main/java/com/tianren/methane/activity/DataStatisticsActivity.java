@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
 import com.tianren.methane.R;
 import com.tianren.methane.utils.MPChartHelper;
 
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class DataStatisticsActivity extends BaseActivity implements View.OnClickListener{
 
-    private BarChart barChart1;
+    private LineChart lineChart;
     private List<String> xAxisValues;
     private List<Float> yAxisValues;
     private LinearLayout ll_back;
@@ -36,7 +37,7 @@ public class DataStatisticsActivity extends BaseActivity implements View.OnClick
 
         initView();
         initData();
-        MPChartHelper.setBarChart(barChart1,xAxisValues,yAxisValues,statisticsName,10,null);
+        MPChartHelper.setLineChart(lineChart,xAxisValues,yAxisValues,statisticsName,true);
     }
 
     private void initView(){
@@ -44,7 +45,7 @@ public class DataStatisticsActivity extends BaseActivity implements View.OnClick
         bundle = intent.getExtras();
         title = bundle.getString("title");
         statisticsName = bundle.getString("statisticsName");
-        barChart1=(BarChart)findViewById(R.id.barChart1);
+        lineChart=(LineChart)findViewById(R.id.lineChart);
         ll_back = (LinearLayout) findViewById(R.id.ll_back);
         ll_back.setOnClickListener(this);
         tv_title = (TextView) findViewById(R.id.tv_title);
@@ -54,9 +55,9 @@ public class DataStatisticsActivity extends BaseActivity implements View.OnClick
     private void initData(){
         xAxisValues = new ArrayList<>();
         yAxisValues = new ArrayList<>();
-        for(int i=0;i<10;++i){
+        for(int i=1;i<13;++i){
             xAxisValues.add(String.valueOf(i));
-            yAxisValues.add((float)(Math.random()*80+2000));
+            yAxisValues.add((float)(Math.random()*10+1000));
         }
     }
 

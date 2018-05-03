@@ -6,10 +6,10 @@
 
     <include layout="@layout/layout_title"/>
 
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/barChart1"
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lineChart"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_margin="20dp"/>
+        android:layout_margin="5dp"/>
 
 </LinearLayout>
