@@ -1,56 +1,68 @@
 package com.tianren.acommon.bean;
 
 public class ConsumptionBean {
-    private String id;
+    private Integer id;
 
-    private String entryType;
+    private Double powerConsumption;
 
-    private String waterConsumption;
+    private Double waterConsumption;
 
-    private String powerConsumption;
+    private Double airConsumption;
 
-    private String airConsumption;
+    private Double energyConsumption;
+
+    private Integer entryType;
 
     private String entryTime;
 
-    public String getId() {
+    private String addTime;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getEntryType() {
-        return entryType;
-    }
-
-    public void setEntryType(String entryType) {
-        this.entryType = entryType;
-    }
-
-    public String getWaterConsumption() {
-        return waterConsumption;
-    }
-
-    public void setWaterConsumption(String waterConsumption) {
-        this.waterConsumption = waterConsumption;
-    }
-
-    public String getPowerConsumption() {
+    public Double getPowerConsumption() {
         return powerConsumption;
     }
 
-    public void setPowerConsumption(String powerConsumption) {
+    public void setPowerConsumption(Double powerConsumption) {
         this.powerConsumption = powerConsumption;
     }
 
-    public String getAirConsumption() {
+    public Double getWaterConsumption() {
+        return waterConsumption;
+    }
+
+    public void setWaterConsumption(Double waterConsumption) {
+        this.waterConsumption = waterConsumption;
+    }
+
+    public Double getAirConsumption() {
         return airConsumption;
     }
 
-    public void setAirConsumption(String airConsumption) {
+    public void setAirConsumption(Double airConsumption) {
         this.airConsumption = airConsumption;
+    }
+
+    public Double getEnergyConsumption() {
+        return energyConsumption;
+    }
+
+    public void setEnergyConsumption(Double energyConsumption) {
+        this.energyConsumption = energyConsumption;
+    }
+
+    public Integer getEntryType() {
+        return entryType;
+    }
+
+    public void setEntryType(Integer entryType) {
+        this.entryType = entryType;
     }
 
     public String getEntryTime() {
@@ -59,5 +71,13 @@ public class ConsumptionBean {
 
     public void setEntryTime(String entryTime) {
         this.entryTime = entryTime;
+    }
+
+    public String getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(String addTime) {
+        this.addTime = addTime;
     }
 }

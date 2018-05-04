@@ -126,8 +126,8 @@ public class EntryProductionBenefitActivity extends BaseActivity implements View
 
         Gson gson = new Gson();
         CapacityBean bean = new CapacityBean();
-        bean.setGasProduction(chanqi);
-        bean.setPowerGeneration(chandian);
+        bean.setGasProduction(Integer.parseInt(chanqi));
+        bean.setPowerGeneration(Integer.parseInt(chandian));
         bean.setEntryTime(tv_time.getText().toString());
         bean.setEntryType(1);
         Map<String, Object> parameters = new HashMap<>();

@@ -73,13 +73,15 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void loadData() {
-        Log.e("111111111", "callback: getCapacity");
         WebServiceManage.getService(EntryService.class).getCapacity().setCallback(new SCallBack<BaseResponse<List<CapacityBean>>>() {
             @Override
             public void callback(boolean isok, String msg, BaseResponse<List<CapacityBean>> res) {
+                Log.e("isok", "callback: " + isok);
                 if (isok) {
-//                    airEarnings.setText(res.getData().get(0).getGasProduction() + "Nm³/H");
-//                    eleEarnings.setText(res.getData().get(0).getPowerGeneration() + "Nm³/H");
+                    Integer gasProduction = res.getData().get(0).getGasProduction();
+                    airEarnings.setText((gasProduction.equals(0) ? "0" : (gasProduction + "")) + "Nm³/H");
+                    Integer powerGeneration = res.getData().get(0).getPowerGeneration();
+                    eleEarnings.setText((powerGeneration.equals(0) ? "0" : (powerGeneration + "")) + "Nm³/H");
                 }
             }
         });
@@ -88,9 +90,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             public void callback(boolean isok, String msg, BaseResponse<List<ConsumptionBean>> res) {
                 if (isok) {
                     allConsume.setText("1000");
-//                    waterConsume.setText(res.getData().get(0).getWaterConsumption());
-//                    eleConsume.setText(res.getData().get(0).getPowerConsumption());
-//                    hotConsume.setText(res.getData().get(0).getAirConsumption());
+                    Double waterConsumption = res.getData().get(0).getWaterConsumption();
+                    waterConsume.setText(waterConsumption.equals(0) ? "0" : (waterConsumption + ""));
+                    Double powerConsumption = res.getData().get(0).getPowerConsumption();
+                    eleConsume.setText(powerConsumption.equals(0) ? "0" : (powerConsumption + ""));
+                    Double airConsumption = res.getData().get(0).getAirConsumption();
+                    hotConsume.setText(airConsumption.equals(0) ? "0" : (airConsumption + ""));
                 }
             }
         });

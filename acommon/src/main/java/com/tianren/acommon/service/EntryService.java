@@ -34,7 +34,7 @@ public class EntryService extends BaseWebService {
      */
     public WebTask<BaseResponse<List<ConsumptionBean>>> getConsumptionData() {
         Map<String, Object> p = new HashMap<>();
-        return request(getApi().getCapacity(p), new TypeToken<BaseResponse<List<ConsumptionBean>>>() {
+        return request(getApi().getConsumptionData(p), new TypeToken<BaseResponse<List<ConsumptionBean>>>() {
         }.getType());
     }
 }

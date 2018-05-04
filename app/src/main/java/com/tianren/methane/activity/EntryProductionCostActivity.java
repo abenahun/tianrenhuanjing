@@ -47,10 +47,10 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
 
     private Novate novate;
     private LinearLayout ll_back;
-    private TextView tv_title,tv_time;
+    private TextView tv_title, tv_time;
     private Button btn_submit;
-    private EditText et_haoshui,et_haodian,et_haoqi;
-    private String haoshui,haodian,haoqi;
+    private EditText et_haoshui, et_haodian, et_haoqi;
+    private String haoshui, haodian, haoqi;
     private TimePickerView pvTime;
 
     @Override
@@ -91,7 +91,7 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ll_back:
                 finish();
                 break;
@@ -109,33 +109,33 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
     }
 
     private void submitData() {
-        if (StringUtil.isEmpty(et_haodian.getText().toString())){
+        if (StringUtil.isEmpty(et_haodian.getText().toString())) {
             ToastUtils.show("请输入耗电量");
             return;
-        }else{
+        } else {
             haodian = et_haodian.getText().toString();
         }
 
-        if (StringUtil.isEmpty(et_haoqi.getText().toString())){
+        if (StringUtil.isEmpty(et_haoqi.getText().toString())) {
             ToastUtils.show("请输入耗气量");
             return;
-        }else{
+        } else {
             haoqi = et_haoqi.getText().toString();
         }
 
-        if (StringUtil.isEmpty(et_haoshui.getText().toString())){
+        if (StringUtil.isEmpty(et_haoshui.getText().toString())) {
             ToastUtils.show("请输入耗水量");
             return;
-        }else{
+        } else {
             haoshui = et_haoshui.getText().toString();
         }
 
         Gson gson = new Gson();
         ConsumptionBean bean = new ConsumptionBean();
-        bean.setPowerConsumption(haodian);
-        bean.setWaterConsumption(haoshui);
-        bean.setAirConsumption(haoqi);
-        bean.setEntryType("1");
+        bean.setPowerConsumption(Double.parseDouble(haodian));
+        bean.setWaterConsumption(Double.parseDouble(haoshui));
+        bean.setAirConsumption(Double.parseDouble(haoqi));
+        bean.setEntryType(1);
         bean.setEntryTime(tv_time.getText().toString());
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("consumption", gson.toJson(bean).toString());
@@ -160,11 +160,11 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
                         try {
                             String jstr = new String(responseBody.bytes());
                             Gson gson = new Gson();
-                            EntryBean entryBean = gson.fromJson(jstr,EntryBean.class);
-                            if (entryBean.getResult()){
+                            EntryBean entryBean = gson.fromJson(jstr, EntryBean.class);
+                            if (entryBean.getResult()) {
                                 ToastUtils.show(entryBean.getMessage());
                                 finish();
-                            }else {
+                            } else {
                                 ToastUtils.show(entryBean.getMessage());
                             }
                         } catch (IOException e) {
@@ -214,6 +214,7 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
             }
         }
     }
+
     private String getTime(Date date) {//可根据需要自行截取数据显示
         Log.d("getTime()", "choice date millis: " + date.getTime());
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
