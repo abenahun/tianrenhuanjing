@@ -8,6 +8,7 @@ import com.tianren.acommon.remote.BaseWebService;
 import com.tianren.acommon.remote.WebTask;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,9 +21,9 @@ public class EntryService extends BaseWebService {
      *
      * @return
      */
-    public WebTask<BaseResponse<CapacityBean>> getCapacity() {
+    public WebTask<BaseResponse<List<CapacityBean>>> getCapacity() {
         Map<String, Object> p = new HashMap<>();
-        return request(getApi().getCapacity(p), new TypeToken<BaseResponse<CapacityBean>>() {
+        return request(getApi().getCapacity(p), new TypeToken<BaseResponse<List<CapacityBean>>>() {
         }.getType());
     }
 
@@ -31,9 +32,9 @@ public class EntryService extends BaseWebService {
      *
      * @return
      */
-    public WebTask<BaseResponse<ConsumptionBean>> getConsumptionData() {
+    public WebTask<BaseResponse<List<ConsumptionBean>>> getConsumptionData() {
         Map<String, Object> p = new HashMap<>();
-        return request(getApi().getCapacity(p), new TypeToken<BaseResponse<ConsumptionBean>>() {
+        return request(getApi().getCapacity(p), new TypeToken<BaseResponse<List<ConsumptionBean>>>() {
         }.getType());
     }
 }

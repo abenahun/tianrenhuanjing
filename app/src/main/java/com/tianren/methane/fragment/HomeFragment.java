@@ -3,6 +3,7 @@ package com.tianren.methane.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,23 +73,24 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void loadData() {
-        WebServiceManage.getService(EntryService.class).getCapacity().setCallback(new SCallBack<BaseResponse<CapacityBean>>() {
+        Log.e("111111111", "callback: getCapacity");
+        WebServiceManage.getService(EntryService.class).getCapacity().setCallback(new SCallBack<BaseResponse<List<CapacityBean>>>() {
             @Override
-            public void callback(boolean isok, String msg, BaseResponse<CapacityBean> res) {
+            public void callback(boolean isok, String msg, BaseResponse<List<CapacityBean>> res) {
                 if (isok) {
-                    airEarnings.setText(res.getData().getGasProduction() + "Nm³/H");
-                    eleEarnings.setText(res.getData().getPowerGeneration() + "Nm³/H");
+//                    airEarnings.setText(res.getData().get(0).getGasProduction() + "Nm³/H");
+//                    eleEarnings.setText(res.getData().get(0).getPowerGeneration() + "Nm³/H");
                 }
             }
         });
-        WebServiceManage.getService(EntryService.class).getConsumptionData().setCallback(new SCallBack<BaseResponse<ConsumptionBean>>() {
+        WebServiceManage.getService(EntryService.class).getConsumptionData().setCallback(new SCallBack<BaseResponse<List<ConsumptionBean>>>() {
             @Override
-            public void callback(boolean isok, String msg, BaseResponse<ConsumptionBean> res) {
+            public void callback(boolean isok, String msg, BaseResponse<List<ConsumptionBean>> res) {
                 if (isok) {
                     allConsume.setText("1000");
-                    waterConsume.setText(res.getData().getWaterConsumption());
-                    eleConsume.setText(res.getData().getPowerConsumption());
-                    hotConsume.setText(res.getData().getAirConsumption());
+//                    waterConsume.setText(res.getData().get(0).getWaterConsumption());
+//                    eleConsume.setText(res.getData().get(0).getPowerConsumption());
+//                    hotConsume.setText(res.getData().get(0).getAirConsumption());
                 }
             }
         });

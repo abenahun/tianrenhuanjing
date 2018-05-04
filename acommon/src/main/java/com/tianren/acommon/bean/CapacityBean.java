@@ -1,19 +1,18 @@
 package com.tianren.acommon.bean;
 
 public class CapacityBean {
-    private String id;
-
+    private Integer id;
     private String gasProduction;
-
     private String powerGeneration;
-    private String entryType;
+    private Integer entryType;
     private String entryTime;
+    private String addTime;
 
-    public String getEntryType() {
+    public Integer getEntryType() {
         return entryType;
     }
 
-    public void setEntryType(String entryType) {
+    public void setEntryType(Integer entryType) {
         this.entryType = entryType;
     }
 
@@ -25,11 +24,11 @@ public class CapacityBean {
         this.entryTime = entryTime;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -47,5 +46,13 @@ public class CapacityBean {
 
     public void setPowerGeneration(String powerGeneration) {
         this.powerGeneration = powerGeneration;
+    }
+
+    public String getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(String addTime) {
+        this.addTime = addTime;
     }
 }

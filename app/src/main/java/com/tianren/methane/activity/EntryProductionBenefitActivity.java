@@ -47,10 +47,10 @@ public class EntryProductionBenefitActivity extends BaseActivity implements View
 
     private Novate novate;
     private LinearLayout ll_back;
-    private TextView tv_title,tv_time;
+    private TextView tv_title, tv_time;
     private Button btn_submit;
-    private EditText et_chanqi,et_chandian,et_time;
-    private String chanqi,chandian;
+    private EditText et_chanqi, et_chandian, et_time;
+    private String chanqi, chandian;
     private TimePickerView pvTime;
 
     @Override
@@ -91,7 +91,7 @@ public class EntryProductionBenefitActivity extends BaseActivity implements View
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ll_back:
                 finish();
                 break;
@@ -110,17 +110,17 @@ public class EntryProductionBenefitActivity extends BaseActivity implements View
     }
 
     private void submitData() {
-        if (StringUtil.isEmpty(et_chanqi.getText().toString())){
+        if (StringUtil.isEmpty(et_chanqi.getText().toString())) {
             ToastUtils.show("请输入产气量");
             return;
-        }else{
+        } else {
             chanqi = et_chanqi.getText().toString();
         }
 
-        if (StringUtil.isEmpty(et_chandian.getText().toString())){
+        if (StringUtil.isEmpty(et_chandian.getText().toString())) {
             ToastUtils.show("请输入产电量");
             return;
-        }else{
+        } else {
             chandian = et_chandian.getText().toString();
         }
 
@@ -129,7 +129,7 @@ public class EntryProductionBenefitActivity extends BaseActivity implements View
         bean.setGasProduction(chanqi);
         bean.setPowerGeneration(chandian);
         bean.setEntryTime(tv_time.getText().toString());
-        bean.setEntryType("1");
+        bean.setEntryType(1);
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("capacity", gson.toJson(bean).toString());
         novate = new Novate.Builder(this)
@@ -153,11 +153,11 @@ public class EntryProductionBenefitActivity extends BaseActivity implements View
                         try {
                             String jstr = new String(responseBody.bytes());
                             Gson gson = new Gson();
-                            EntryBean entryBean = gson.fromJson(jstr,EntryBean.class);
-                            if (entryBean.getResult()){
+                            EntryBean entryBean = gson.fromJson(jstr, EntryBean.class);
+                            if (entryBean.getResult()) {
                                 ToastUtils.show(entryBean.getMessage());
                                 finish();
-                            }else {
+                            } else {
                                 ToastUtils.show(entryBean.getMessage());
                             }
                         } catch (IOException e) {
@@ -207,6 +207,7 @@ public class EntryProductionBenefitActivity extends BaseActivity implements View
             }
         }
     }
+
     private String getTime(Date date) {//可根据需要自行截取数据显示
         Log.d("getTime()", "choice date millis: " + date.getTime());
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
