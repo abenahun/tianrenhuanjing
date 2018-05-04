@@ -246,6 +246,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 //                    Log.i(TAG, "`````````>"+msg.obj.toString());
                     handler.sendEmptyMessageDelayed(MsgDefCtrl.MSG_FRESH_REFRIGERATOR,5000);
                     break;
+
+                case 200:
+                    Log.e("syl","11111111111");
+                    break;
                 default:
                     break;
             }

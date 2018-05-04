@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.tianren.methane.R;
 import com.tianren.methane.activity.DataEntryActivity;
+import com.tianren.methane.activity.LoginActivity;
 import com.tianren.methane.activity.MoveCarbonActivity;
 import com.tianren.methane.activity.MoveSulfurActivity;
 import com.tianren.methane.activity.PreHandleActivity;
@@ -102,7 +103,10 @@ public class ManagerFragment extends BaseFragment implements View.OnClickListene
                 break;
 
             case R.id.tv_entry:
-                Intent intent_entry = new Intent(getActivity(), DataEntryActivity.class);
+               /* Intent intent_entry = new Intent(getActivity(), DataEntryActivity.class);
+                startActivity(intent_entry);*/
+
+                Intent intent_entry = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent_entry);
                 break;
         }

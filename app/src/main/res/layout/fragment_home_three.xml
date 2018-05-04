@@ -36,7 +36,7 @@
             android:layout_alignTop="@+id/imageView2"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/imageView2"
-            android:text="青岛"
+            android:text="湖州"
             android:textColor="@color/white"
             android:textSize="@dimen/textsize13" />
 
@@ -51,7 +51,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="项目1"
+                android:text="餐厨项目"
                 android:textColor="@color/white"
                 android:textSize="@dimen/textsize13" />
 
@@ -399,8 +399,6 @@
                         android:text="进料量"
                         android:textColor="@color/textgray"
                         android:textSize="@dimen/textsize15"/>
-
-
                 </LinearLayout>
 
             </LinearLayout>
