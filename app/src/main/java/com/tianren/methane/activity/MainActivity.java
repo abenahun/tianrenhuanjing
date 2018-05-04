@@ -68,7 +68,6 @@ public class MainActivity extends BaseActivity {
         userName = getValueFromTable("username", "");
         getDeviceModel();
         getStaticData();
-
     }
 
     private void getStaticData() {

@@ -1,7 +1,6 @@
 package com.tianren.methane.fragment;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -13,8 +12,13 @@ import android.widget.ViewFlipper;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.tianren.acommon.BaseResponse;
+import com.tianren.acommon.bean.CapacityBean;
+import com.tianren.acommon.bean.ConsumptionBean;
+import com.tianren.acommon.remote.WebServiceManage;
+import com.tianren.acommon.remote.callback.SCallBack;
+import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
-import com.tianren.methane.activity.DataEntryActivity;
 import com.tianren.methane.activity.DataStatisticsActivity;
 import com.tianren.methane.activity.RunningStatusActivity;
 import com.tianren.methane.manager.LineChartManager;
@@ -27,7 +31,7 @@ import java.util.List;
  * Created by Administrator on 2018/3/19.
  */
 
-public class HomeFragment extends BaseFragment implements View.OnClickListener{
+public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     private ArrayList<String> list_path;
     private ArrayList<String> list_title;
@@ -36,19 +40,18 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private ViewFlipper flipper;
     private List testList;
     private int count;
-
     private TextView tv_luru;
-
     private BarChart barChart1;
 
     private List<Integer> xAxisValues;
     private List<Float> yAxisValues1;
     private List<Float> yAxisValues2;
 
-    private LinearLayout ll_runningstatus,ll_zongnenghao,ll_shuihao,
-            ll_dianhao,ll_rehao,ll_chanqixiaoyi,
-            ll_zongxiaoyi,ll_chandianxiaoyi,ll_jinliaoliang;
-
+    private LinearLayout ll_runningstatus, ll_zongnenghao, ll_shuihao,
+            ll_dianhao, ll_rehao, ll_chanqixiaoyi,
+            ll_zongxiaoyi, ll_chandianxiaoyi, ll_jinliaoliang;
+    private TextView allConsume, waterConsume, eleConsume, hotConsume;
+    private TextView airEarnings, eleEarnings;
 
     @Nullable
     @Override
@@ -57,30 +60,58 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         view = inflater.inflate(R.layout.fragment_home_three, null);
 //        initFlipper();
         initView();
-
 //        initLineCharts();
         initBarCharts();
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        loadData();
+    }
+
+    private void loadData() {
+        WebServiceManage.getService(EntryService.class).getCapacity().setCallback(new SCallBack<BaseResponse<CapacityBean>>() {
+            @Override
+            public void callback(boolean isok, String msg, BaseResponse<CapacityBean> res) {
+                if (isok) {
+                    airEarnings.setText(res.getData().getGasProduction() + "Nm³/H");
+                    eleEarnings.setText(res.getData().getPowerGeneration() + "Nm³/H");
+                }
+            }
+        });
+        WebServiceManage.getService(EntryService.class).getConsumptionData().setCallback(new SCallBack<BaseResponse<ConsumptionBean>>() {
+            @Override
+            public void callback(boolean isok, String msg, BaseResponse<ConsumptionBean> res) {
+                if (isok) {
+                    allConsume.setText("1000");
+                    waterConsume.setText(res.getData().getWaterConsumption());
+                    eleConsume.setText(res.getData().getPowerConsumption());
+                    hotConsume.setText(res.getData().getAirConsumption());
+                }
+            }
+        });
+    }
+
     private void initBarCharts() {
-        barChart1=(BarChart)view.findViewById(R.id.bar_chart1);
+        barChart1 = (BarChart) view.findViewById(R.id.bar_chart1);
         xAxisValues = new ArrayList<>();
         yAxisValues1 = new ArrayList<>();
         yAxisValues2 = new ArrayList<>();
-        for(int i=1;i<8;++i){
+        for (int i = 1; i < 8; ++i) {
             xAxisValues.add(i);
-            yAxisValues1.add((float)(Math.random()*80+1500));
-            yAxisValues2.add((float)(Math.random()*80+1000));
+            yAxisValues1.add((float) (Math.random() * 80 + 1500));
+            yAxisValues2.add((float) (Math.random() * 80 + 1000));
         }
 
-        MPChartHelper.setTwoBarChart(barChart1,xAxisValues,yAxisValues1,yAxisValues2,"总效益","总能耗");
+        MPChartHelper.setTwoBarChart(barChart1, xAxisValues, yAxisValues1, yAxisValues2, "总效益", "总能耗");
 
     }
 
     private void initLineCharts() {
 
-        LineChart lineChart1 ;
+        LineChart lineChart1;
         lineChart1 = (LineChart) view.findViewById(R.id.line_chart1);
 //        LineChart lineChart2 = (LineChart) view.findViewById(R.id.line_chart2);
 
@@ -196,6 +227,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
 
         ll_jinliaoliang = (LinearLayout) view.findViewById(R.id.ll_jinliaoliang);
         ll_jinliaoliang.setOnClickListener(this);
+        allConsume = (TextView) view.findViewById(R.id.allConsume);
+        waterConsume = (TextView) view.findViewById(R.id.waterConsume);
+        eleConsume = (TextView) view.findViewById(R.id.eleConsume);
+        hotConsume = (TextView) view.findViewById(R.id.hotConsume);
     }
 
     private void initFlipper() {
@@ -218,7 +253,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ll_runningstatus:
                 Intent intent = new Intent(getActivity(), RunningStatusActivity.class);
                 startActivity(intent);
@@ -226,57 +261,57 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
 
             case R.id.ll_zongnenghao:
                 Intent intent2 = new Intent(getActivity(), DataStatisticsActivity.class);
-                intent2.putExtra("title","总能耗统计");
-                intent2.putExtra("statisticsName","总能耗统计表");
+                intent2.putExtra("title", "总能耗统计");
+                intent2.putExtra("statisticsName", "总能耗统计表");
                 startActivity(intent2);
                 break;
 
             case R.id.ll_shuihao:
                 Intent intent3 = new Intent(getActivity(), DataStatisticsActivity.class);
-                intent3.putExtra("title","水耗统计");
-                intent3.putExtra("statisticsName","水耗统计表");
+                intent3.putExtra("title", "水耗统计");
+                intent3.putExtra("statisticsName", "水耗统计表");
                 startActivity(intent3);
                 break;
 
             case R.id.ll_dianhao:
                 Intent intent4 = new Intent(getActivity(), DataStatisticsActivity.class);
-                intent4.putExtra("title","电耗统计");
-                intent4.putExtra("statisticsName","电耗统计表");
+                intent4.putExtra("title", "电耗统计");
+                intent4.putExtra("statisticsName", "电耗统计表");
                 startActivity(intent4);
                 break;
 
             case R.id.ll_rehao:
                 Intent intent5 = new Intent(getActivity(), DataStatisticsActivity.class);
-                intent5.putExtra("title","热耗统计");
-                intent5.putExtra("statisticsName","热耗统计表");
+                intent5.putExtra("title", "热耗统计");
+                intent5.putExtra("statisticsName", "热耗统计表");
                 startActivity(intent5);
                 break;
 
             case R.id.ll_chanqixiaoyi:
                 Intent intent6 = new Intent(getActivity(), DataStatisticsActivity.class);
-                intent6.putExtra("title","产气效益统计");
-                intent6.putExtra("statisticsName","产气效益统计表");
+                intent6.putExtra("title", "产气效益统计");
+                intent6.putExtra("statisticsName", "产气效益统计表");
                 startActivity(intent6);
                 break;
 
             case R.id.ll_zongxiaoyi:
                 Intent intent7 = new Intent(getActivity(), DataStatisticsActivity.class);
-                intent7.putExtra("title","总效益统计");
-                intent7.putExtra("statisticsName","总效益统计表");
+                intent7.putExtra("title", "总效益统计");
+                intent7.putExtra("statisticsName", "总效益统计表");
                 startActivity(intent7);
                 break;
 
             case R.id.ll_chandianxiaoyi:
                 Intent intent8 = new Intent(getActivity(), DataStatisticsActivity.class);
-                intent8.putExtra("title","产电效益统计");
-                intent8.putExtra("statisticsName","产电效益统计表");
+                intent8.putExtra("title", "产电效益统计");
+                intent8.putExtra("statisticsName", "产电效益统计表");
                 startActivity(intent8);
                 break;
 
             case R.id.ll_jinliaoliang:
                 Intent intent9 = new Intent(getActivity(), DataStatisticsActivity.class);
-                intent9.putExtra("title","进料量统计");
-                intent9.putExtra("statisticsName","进料量统计表");
+                intent9.putExtra("title", "进料量统计");
+                intent9.putExtra("statisticsName", "进料量统计表");
                 startActivity(intent9);
                 break;
 

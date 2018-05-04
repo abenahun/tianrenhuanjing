@@ -16,4 +16,16 @@ public interface InterfaceApi {
     @FormUrlEncoded
     @POST("alarm/writeDataForApp")
     Observable<ResponseBody> handleAlarm(@FieldMap Map<String, Object> maps);
+
+    @FormUrlEncoded
+    @POST("entry/getAnaerobicTankData")
+    Observable<ResponseBody> getAnaerobicTankData(@FieldMap Map<String, Object> maps);
+
+    @FormUrlEncoded
+    @POST("entry/getCapacity")
+    Observable<ResponseBody> getCapacity(@FieldMap Map<String, Object> maps);
+
+    @FormUrlEncoded
+    @POST("entry/getConsumptionData")
+    Observable<ResponseBody> getConsumptionData(@FieldMap Map<String, Object> maps);
 }

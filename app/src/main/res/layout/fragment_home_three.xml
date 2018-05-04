@@ -92,14 +92,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:src="@mipmap/zongnenghao"/>
+                        android:src="@mipmap/zongnenghao" />
 
                     <TextView
+                        android:id="@+id/allConsume"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1000"
                         android:textColor="@color/textblack"
-                        android:textSize="@dimen/textsize17"/>
+                        android:textSize="@dimen/textsize17" />
 
 
                     <TextView
@@ -110,7 +111,7 @@
                         android:drawablePadding="12dp"
                         android:text="总能耗"
                         android:textColor="@color/textgray"
-                        android:textSize="@dimen/textsize13"/>
+                        android:textSize="@dimen/textsize13" />
 
 
                 </LinearLayout>
@@ -127,14 +128,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:src="@mipmap/shuihao"/>
+                        android:src="@mipmap/shuihao" />
 
                     <TextView
+                        android:id="@+id/waterConsume"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1000"
                         android:textColor="@color/textblack"
-                        android:textSize="@dimen/textsize17"/>
+                        android:textSize="@dimen/textsize17" />
 
 
                     <TextView
@@ -147,7 +149,7 @@
                         android:gravity="center"
                         android:text="水耗"
                         android:textColor="@color/textgray"
-                        android:textSize="@dimen/textsize13"/>
+                        android:textSize="@dimen/textsize13" />
 
 
                 </LinearLayout>
@@ -164,15 +166,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:src="@mipmap/dianhao"/>
+                        android:src="@mipmap/dianhao" />
 
 
                     <TextView
+                        android:id="@+id/eleConsume"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1000"
                         android:textColor="@color/textblack"
-                        android:textSize="@dimen/textsize17"/>
+                        android:textSize="@dimen/textsize17" />
 
 
                     <TextView
@@ -185,7 +188,7 @@
                         android:gravity="center"
                         android:text="电耗"
                         android:textColor="@color/textgray"
-                        android:textSize="@dimen/textsize13"/>
+                        android:textSize="@dimen/textsize13" />
 
 
                 </LinearLayout>
@@ -202,14 +205,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:src="@mipmap/rehao"/>
+                        android:src="@mipmap/rehao" />
 
                     <TextView
+                        android:id="@+id/hotConsume"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1000"
                         android:textColor="@color/textblack"
-                        android:textSize="@dimen/textsize17"/>
+                        android:textSize="@dimen/textsize17" />
 
                     <TextView
                         android:id="@+id/tv_ribao"
@@ -221,7 +225,7 @@
                         android:gravity="center"
                         android:text="热耗"
                         android:textColor="@color/textgray"
-                        android:textSize="@dimen/textsize13"/>
+                        android:textSize="@dimen/textsize13" />
 
 
                 </LinearLayout>
@@ -229,16 +233,16 @@
             </LinearLayout>
 
             <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/backcolor"
-            android:orientation="vertical">
-
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/bar_chart1"
                 android:layout_width="match_parent"
-                android:layout_margin="5dp"
-                android:layout_height="200dp"/>
+                android:layout_height="wrap_content"
+                android:background="@color/backcolor"
+                android:orientation="vertical">
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/bar_chart1"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="5dp" />
 
             </LinearLayout>
 
@@ -260,23 +264,24 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:layout_margin="14dp"
+                        android:gravity="center"
                         android:text="产气效益"
                         android:textColor="@color/textgray"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/airEarnings"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="14dp"
+                        android:background="@drawable/cycle1"
                         android:gravity="center"
                         android:padding="6dp"
                         android:text="200Nm³/H"
-                        android:background="@drawable/cycle1"
                         android:textColor="@color/textblack"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -290,22 +295,22 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:layout_margin="14dp"
+                        android:gravity="center"
                         android:text="总效益"
                         android:textColor="@color/textgray"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginBottom="14dp"
+                        android:background="@drawable/cycle2"
                         android:gravity="center"
                         android:padding="6dp"
                         android:text="2000元"
-                        android:background="@drawable/cycle2"
                         android:textColor="@color/red"
-                        android:textSize="@dimen/textsize18"/>
+                        android:textSize="@dimen/textsize18" />
                 </LinearLayout>
 
 
@@ -320,23 +325,24 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:layout_margin="14dp"
+                        android:gravity="center"
                         android:text="产电效益"
                         android:textColor="@color/textgray"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/eleEarnings"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="14dp"
+                        android:background="@drawable/cycle1"
+                        android:gravity="center"
                         android:padding="6dp"
                         android:text="1000kw/h"
                         android:textColor="@color/textblack"
-                        android:gravity="center"
-                        android:background="@drawable/cycle1"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -359,7 +365,7 @@
                         android:layout_height="wrap_content"
                         android:text="优"
                         android:textColor="@color/red"
-                        android:textSize="@dimen/textsize24"/>
+                        android:textSize="@dimen/textsize24" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -367,7 +373,7 @@
                         android:layout_marginTop="5dp"
                         android:text="运行状态"
                         android:textColor="@color/textgray"
-                        android:textSize="@dimen/textsize15"/>
+                        android:textSize="@dimen/textsize15" />
 
 
                 </LinearLayout>
@@ -375,7 +381,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/backcolor"/>
+                    android:background="@color/backcolor" />
 
                 <LinearLayout
                     android:id="@+id/ll_jinliaoliang"
@@ -390,7 +396,7 @@
                         android:layout_height="wrap_content"
                         android:text="200吨"
                         android:textColor="@color/red"
-                        android:textSize="@dimen/textsize24"/>
+                        android:textSize="@dimen/textsize24" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -398,7 +404,7 @@
                         android:layout_marginTop="5dp"
                         android:text="进料量"
                         android:textColor="@color/textgray"
-                        android:textSize="@dimen/textsize15"/>
+                        android:textSize="@dimen/textsize15" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -406,8 +412,8 @@
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/line_chart2"
                 android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="300dp"/>
+                android:layout_height="300dp"
+                android:visibility="gone" />
 
         </LinearLayout>
     </ScrollView>

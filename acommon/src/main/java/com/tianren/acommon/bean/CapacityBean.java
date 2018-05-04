@@ -1,4 +1,4 @@
-package com.tianren.methane.bean;
+package com.tianren.acommon.bean;
 
 public class CapacityBean {
     private String id;

@@ -1,7 +1,6 @@
 package com.tianren.acommon.remote;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.tamic.novate.BaseSubscriber;
 import com.tamic.novate.Novate;
@@ -14,8 +13,6 @@ import java.lang.reflect.Type;
 
 import okhttp3.ResponseBody;
 import rx.Observable;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * @author Mr.Qiu
@@ -76,7 +73,6 @@ public class BaseWebService {
             public void onNext(ResponseBody res) {
                 try {
                     String str = new String(res.bytes());
-                    Log.e(TAG, "接口返回的json: " + str);
                     ResultType r;
                     r = new JsonResponseParser().fromJson(str, type);
                     String msg = resultHandle.handle(r);

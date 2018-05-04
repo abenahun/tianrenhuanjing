@@ -1,6 +1,4 @@
-package com.tianren.methane.bean;
-
-import java.util.Date;
+package com.tianren.acommon.bean;
 
 public class ConsumptionBean {
     private String id;
