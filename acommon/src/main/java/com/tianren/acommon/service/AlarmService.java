@@ -13,17 +13,20 @@ import java.util.Map;
  * @date 2018/4/23
  */
 public class AlarmService extends BaseWebService {
+
     /**
      * 处理报警通知
      *
      * @return
      */
+    private String HANDLE_ALARM = TIANREN_URL + "alarm/writeDataForApp";
+
     public WebTask<BaseResponse<Boolean>> handleAlarm(int alarmID, String dealTime, String dealMsg) {
         Map<String, Object> p = new HashMap<>();
         p.put("alarmDealId", alarmID);
         p.put("dealTime", dealTime);
         p.put("dealMsg", dealMsg);
-        return request(getApi().handleAlarm(p), new TypeToken<BaseResponse<Boolean>>() {
+        return request(HANDLE_ALARM, p, new TypeToken<BaseResponse<Boolean>>() {
         }.getType());
     }
 }

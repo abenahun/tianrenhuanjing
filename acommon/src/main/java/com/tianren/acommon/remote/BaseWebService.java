@@ -6,20 +6,23 @@ import com.tamic.novate.BaseSubscriber;
 import com.tamic.novate.Novate;
 import com.tamic.novate.Throwable;
 import com.tamic.novate.exception.NovateException;
-import com.tianren.acommon.InterfaceApi;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
-import rx.Observable;
 
 /**
  * @author Mr.Qiu
  * @date 2018/4/23
  */
 public class BaseWebService {
-    private static final String BASE_URL = "http://iot.tianren.com:8080/";
+    //    public static final String BASE_URL = "http://engineerlee.top:8080/";
+    //    public static final String TIANREN_URL = "";
+    public static final String TIANREN_URL = "tianren/";
+    public static final String BASE_URL = "http://iot.tianren.com:8080/";
+
     private static final Integer TIME_OUT = 8;
 
     protected Context context;
@@ -28,13 +31,6 @@ public class BaseWebService {
     public void setContext(Context context) {
         this.context = context;
         initNovate();
-    }
-
-    public InterfaceApi getApi() {
-        if (novate == null) {
-            initNovate();
-        }
-        return novate.create(InterfaceApi.class);
     }
 
     private ResultHandle resultHandle;
@@ -54,51 +50,83 @@ public class BaseWebService {
                 .build();
     }
 
-    public <ResultType> WebTask<ResultType> request(Observable<ResponseBody> o, final Type type) {
-        return request(o, WebServiceManage.defaultSingleTask, type);
+    public <ResultType> WebTask<ResultType> request(String url, Map<String, Object> o, final Type type) {
+        return request(url, o, WebServiceManage.defaultSingleTask, type);
     }
 
-    public <ResultType> WebTask<ResultType> requestUnSingle(Observable<ResponseBody> o, final Type type) {
-        return request(o, false, type);
+    public <ResultType> WebTask<ResultType> requestUnSingle(String url, Map<String, Object> o, final Type type) {
+        return request(url, o, false, type);
     }
 
-    public <ResultType> WebTask<ResultType> request(Observable<ResponseBody> o, final boolean singleTask, final Type type) {
+    public <ResultType> WebTask<ResultType> request(String url, Map<String, Object> parameters, final boolean singleTask, final Type type) {
         final WebTask<ResultType> webTask = new WebTask();
         if (singleTask) {
-            WebServiceManage.removeTask(o);
-            WebServiceManage.addTask(o, webTask);
+            WebServiceManage.removeTask(url);
+            WebServiceManage.addTask(url, webTask);
         }
-        novate.call(o, new BaseSubscriber<ResponseBody>() {
-            @Override
-            public void onNext(ResponseBody res) {
-                try {
-                    String str = new String(res.bytes());
-                    ResultType r;
-                    r = new JsonResponseParser().fromJson(str, type);
-                    String msg = resultHandle.handle(r);
-                    if (webTask.getCallback() != null) {
-                        webTask.getCallback().callback(true, msg, r);
+        novate.post(url, parameters,
+                new BaseSubscriber<ResponseBody>(context) {
+                    @Override
+                    public void onError(Throwable e) {
+                        Throwable throwable = NovateException.handleException(e);
+                        if (webTask.getCallback() != null) {
+                            webTask.getCallback().callback(false, throwable.getMessage(), null);
+                        }
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
 
-            @Override
-            public void onError(Throwable e) {
-                Throwable throwable = NovateException.handleException(e);
-                if (webTask.getCallback() != null) {
-                    webTask.getCallback().callback(false, throwable.getMessage(), null);
-                }
-            }
+                    @Override
+                    public void onNext(ResponseBody res) {
+                        try {
+                            String str = new String(res.bytes());
+                            ResultType r;
+                            r = new JsonResponseParser().fromJson(str, type);
+                            String msg = resultHandle.handle(r);
+                            if (webTask.getCallback() != null) {
+                                webTask.getCallback().callback(true, msg, r);
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-            @Override
-            public void onCompleted() {
-                if (singleTask) {
-                    WebServiceManage.removeTask(webTask);
-                }
-            }
-        });
+                    @Override
+                    public void onCompleted() {
+                        if (singleTask) {
+                            WebServiceManage.removeTask(webTask);
+                        }
+                    }
+                });
+//        novate.call(o, new BaseSubscriber<ResponseBody>() {
+//            @Override
+//            public void onNext(ResponseBody res) {
+//                try {
+//                    String str = new String(res.bytes());
+//                    ResultType r;
+//                    r = new JsonResponseParser().fromJson(str, type);
+//                    String msg = resultHandle.handle(r);
+//                    if (webTask.getCallback() != null) {
+//                        webTask.getCallback().callback(true, msg, r);
+//                    }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//                Throwable throwable = NovateException.handleException(e);
+//                if (webTask.getCallback() != null) {
+//                    webTask.getCallback().callback(false, throwable.getMessage(), null);
+//                }
+//            }
+//
+//            @Override
+//            public void onCompleted() {
+//                if (singleTask) {
+//                    WebServiceManage.removeTask(webTask);
+//                }
+//            }
+//        });
         return webTask;
     }
 }

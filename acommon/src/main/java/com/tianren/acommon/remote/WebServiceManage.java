@@ -6,9 +6,6 @@ import android.util.Log;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import okhttp3.ResponseBody;
-import rx.Observable;
-
 /**
  * @author Mr.Qiu
  * @date 2018/4/23
@@ -23,7 +20,7 @@ public class WebServiceManage {
     /**
      * 所有网络任务
      */
-    private static Map<Observable<ResponseBody>, WebTask> webTasks;
+    private static Map<String, WebTask> webTasks;
     /**
      * 所有接口
      */
@@ -35,7 +32,7 @@ public class WebServiceManage {
         return defaultHeadFeild;
     }
 
-    public static boolean defaultSingleTask = true;
+    public static boolean defaultSingleTask = false;
 
     public static synchronized void init(Context context, WebServiceInfo info) {
         if (!inited) {
@@ -72,7 +69,7 @@ public class WebServiceManage {
         }
     }
 
-    protected static void addTask(Observable<ResponseBody> o, WebTask<?> task) {
+    protected static void addTask(String o, WebTask<?> task) {
         webTasks.put(o, task);
     }
 
@@ -80,7 +77,7 @@ public class WebServiceManage {
         return webTasks.get(url);
     }
 
-    protected static void removeTask(Observable<ResponseBody> o) {
+    protected static void removeTask(String o) {
         WebTask<?> webTask = webTasks.get(o);
         if (webTask != null) {
             webTask.cancelTask();

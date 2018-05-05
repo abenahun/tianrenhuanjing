@@ -21,9 +21,11 @@ public class EntryService extends BaseWebService {
      *
      * @return
      */
+    private String GET_CAPACITY = TIANREN_URL + "entry/getCapacity";
+
     public WebTask<BaseResponse<List<CapacityBean>>> getCapacity() {
         Map<String, Object> p = new HashMap<>();
-        return request(getApi().getCapacity(p), new TypeToken<BaseResponse<List<CapacityBean>>>() {
+        return request(GET_CAPACITY, p, new TypeToken<BaseResponse<List<CapacityBean>>>() {
         }.getType());
     }
 
@@ -32,9 +34,11 @@ public class EntryService extends BaseWebService {
      *
      * @return
      */
+    private String GET_CONSUMPTIONDATA = TIANREN_URL + "entry/getConsumptionData";
+
     public WebTask<BaseResponse<List<ConsumptionBean>>> getConsumptionData() {
         Map<String, Object> p = new HashMap<>();
-        return request(getApi().getConsumptionData(p), new TypeToken<BaseResponse<List<ConsumptionBean>>>() {
+        return request(GET_CONSUMPTIONDATA, p, new TypeToken<BaseResponse<List<ConsumptionBean>>>() {
         }.getType());
     }
 }
