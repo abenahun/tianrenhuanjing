@@ -114,8 +114,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                initBarCharts();
                 loadData();
+                initBarCharts();
             }
         });
 
