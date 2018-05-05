@@ -34,4 +34,8 @@ public class Constant {
     public static final int MSG_LOAD_IMAGE = 8;
     public static final int MSG_LOGIN_TIME_OUT = 9;
     public static final int TIME_OUT_LOGIN = 15000;//登录超时
+
+    public static final String SP_USERNAME = "username";
+    public static final String SP_USERPASS = "userpass";
+
 }

@@ -30,6 +30,7 @@ import com.tianren.methane.jniutils.CommandDev;
 import com.tianren.methane.jniutils.MyInterface;
 import com.tianren.methane.jniutils.ParseDataFromDev;
 import com.tianren.methane.service.SipService;
+import com.tianren.methane.utils.SharedPreferenceUtil;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 import com.tianren.methane.view.WaitDialog;
@@ -205,6 +206,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 //                        activity.goToHomeActivity();
                         startActivity(new Intent(LoginActivity.this,MainActivity.class));
                     }
+                    SharedPreferenceUtil.saveSharedPreString
+                            (Constant.SP_USERNAME,et_username.getText().toString());
+                    SharedPreferenceUtil.saveSharedPreString
+                            (Constant.SP_USERPASS,et_username.getText().toString());
                     break;
                 case DefMsgConstants.MSG_LOGIN_FAILURE:
                     Log.i(TAG, "MSG_LOGIN_FAILURE---------");
