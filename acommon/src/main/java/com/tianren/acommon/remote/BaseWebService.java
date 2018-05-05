@@ -19,7 +19,7 @@ import rx.Observable;
  * @date 2018/4/23
  */
 public class BaseWebService {
-    private static final String BASE_URL = "http://engineerlee.top:8080/";
+    private static final String BASE_URL = "http://iot.tianren.com:8080/";
     private static final Integer TIME_OUT = 8;
 
     protected Context context;

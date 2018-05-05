@@ -238,6 +238,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         waterConsume = (TextView) view.findViewById(R.id.waterConsume);
         eleConsume = (TextView) view.findViewById(R.id.eleConsume);
         hotConsume = (TextView) view.findViewById(R.id.hotConsume);
+        airEarnings = (TextView) view.findViewById(R.id.airEarnings);
+        eleEarnings = (TextView) view.findViewById(R.id.eleEarnings);
     }
 
     private void initFlipper() {

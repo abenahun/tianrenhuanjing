@@ -13,19 +13,21 @@ import rx.Observable;
  * @date 2018/4/23
  */
 public interface InterfaceApi {
+    String TIANREN_URL = "tianren/";
+
     @FormUrlEncoded
-    @POST("alarm/writeDataForApp")
+    @POST(TIANREN_URL + "alarm/writeDataForApp")
     Observable<ResponseBody> handleAlarm(@FieldMap Map<String, Object> maps);
 
     @FormUrlEncoded
-    @POST("entry/getAnaerobicTankData")
+    @POST(TIANREN_URL + "entry/getAnaerobicTankData")
     Observable<ResponseBody> getAnaerobicTankData(@FieldMap Map<String, Object> maps);
 
     @FormUrlEncoded
-    @POST("entry/getCapacity")
+    @POST(TIANREN_URL + "entry/getCapacity")
     Observable<ResponseBody> getCapacity(@FieldMap Map<String, Object> maps);
 
     @FormUrlEncoded
-    @POST("entry/getConsumptionData")
+    @POST(TIANREN_URL + "entry/getConsumptionData")
     Observable<ResponseBody> getConsumptionData(@FieldMap Map<String, Object> maps);
 }
