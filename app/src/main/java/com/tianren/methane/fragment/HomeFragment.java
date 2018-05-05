@@ -3,6 +3,7 @@ package com.tianren.methane.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,6 +54,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             ll_zongxiaoyi, ll_chandianxiaoyi, ll_jinliaoliang;
     private TextView allConsume, waterConsume, eleConsume, hotConsume;
     private TextView airEarnings, eleEarnings;
+    private SwipeRefreshLayout refreshLayout;
 
     @Nullable
     @Override
@@ -62,14 +64,61 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 //        initFlipper();
         initView();
 //        initLineCharts();
-        initBarCharts();
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initBarCharts();
         loadData();
+    }
+
+    private void initView() {
+        /*tv_luru = (TextView) view.findViewById(R.id.tv_luru);
+        tv_luru.setOnClickListener(this);*/
+
+        ll_runningstatus = (LinearLayout) view.findViewById(R.id.ll_runningstatus);
+        ll_runningstatus.setOnClickListener(this);
+
+        ll_zongnenghao = (LinearLayout) view.findViewById(R.id.ll_zongnenghao);
+        ll_zongnenghao.setOnClickListener(this);
+
+        ll_shuihao = (LinearLayout) view.findViewById(R.id.ll_shuihao);
+        ll_shuihao.setOnClickListener(this);
+
+        ll_dianhao = (LinearLayout) view.findViewById(R.id.ll_dianhao);
+        ll_dianhao.setOnClickListener(this);
+
+        ll_rehao = (LinearLayout) view.findViewById(R.id.ll_rehao);
+        ll_rehao.setOnClickListener(this);
+
+        ll_chanqixiaoyi = (LinearLayout) view.findViewById(R.id.ll_chanqixiaoyi);
+        ll_chanqixiaoyi.setOnClickListener(this);
+
+        ll_zongxiaoyi = (LinearLayout) view.findViewById(R.id.ll_zongxiaoyi);
+        ll_zongxiaoyi.setOnClickListener(this);
+
+        ll_chandianxiaoyi = (LinearLayout) view.findViewById(R.id.ll_chandianxiaoyi);
+        ll_chandianxiaoyi.setOnClickListener(this);
+
+        ll_jinliaoliang = (LinearLayout) view.findViewById(R.id.ll_jinliaoliang);
+        ll_jinliaoliang.setOnClickListener(this);
+        allConsume = (TextView) view.findViewById(R.id.allConsume);
+        waterConsume = (TextView) view.findViewById(R.id.waterConsume);
+        eleConsume = (TextView) view.findViewById(R.id.eleConsume);
+        hotConsume = (TextView) view.findViewById(R.id.hotConsume);
+        airEarnings = (TextView) view.findViewById(R.id.airEarnings);
+        eleEarnings = (TextView) view.findViewById(R.id.eleEarnings);
+        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refreshLayout);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initBarCharts();
+                loadData();
+            }
+        });
+
     }
 
     private void loadData() {
@@ -97,6 +146,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     Double airConsumption = res.getData().get(0).getAirConsumption();
                     hotConsume.setText(airConsumption.equals(0) ? "0" : (airConsumption + ""));
                 }
+                refreshLayout.setRefreshing(false);
             }
         });
     }
@@ -202,44 +252,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
        /* lineChartManager2.showLineChart(xValues, yValues, names, colours);
         lineChartManager2.setYAxis(1000, 0, 5);
         lineChartManager2.setDescription("能耗表");*/
-    }
-
-    private void initView() {
-        /*tv_luru = (TextView) view.findViewById(R.id.tv_luru);
-        tv_luru.setOnClickListener(this);*/
-
-        ll_runningstatus = (LinearLayout) view.findViewById(R.id.ll_runningstatus);
-        ll_runningstatus.setOnClickListener(this);
-
-        ll_zongnenghao = (LinearLayout) view.findViewById(R.id.ll_zongnenghao);
-        ll_zongnenghao.setOnClickListener(this);
-
-        ll_shuihao = (LinearLayout) view.findViewById(R.id.ll_shuihao);
-        ll_shuihao.setOnClickListener(this);
-
-        ll_dianhao = (LinearLayout) view.findViewById(R.id.ll_dianhao);
-        ll_dianhao.setOnClickListener(this);
-
-        ll_rehao = (LinearLayout) view.findViewById(R.id.ll_rehao);
-        ll_rehao.setOnClickListener(this);
-
-        ll_chanqixiaoyi = (LinearLayout) view.findViewById(R.id.ll_chanqixiaoyi);
-        ll_chanqixiaoyi.setOnClickListener(this);
-
-        ll_zongxiaoyi = (LinearLayout) view.findViewById(R.id.ll_zongxiaoyi);
-        ll_zongxiaoyi.setOnClickListener(this);
-
-        ll_chandianxiaoyi = (LinearLayout) view.findViewById(R.id.ll_chandianxiaoyi);
-        ll_chandianxiaoyi.setOnClickListener(this);
-
-        ll_jinliaoliang = (LinearLayout) view.findViewById(R.id.ll_jinliaoliang);
-        ll_jinliaoliang.setOnClickListener(this);
-        allConsume = (TextView) view.findViewById(R.id.allConsume);
-        waterConsume = (TextView) view.findViewById(R.id.waterConsume);
-        eleConsume = (TextView) view.findViewById(R.id.eleConsume);
-        hotConsume = (TextView) view.findViewById(R.id.hotConsume);
-        airEarnings = (TextView) view.findViewById(R.id.airEarnings);
-        eleEarnings = (TextView) view.findViewById(R.id.eleEarnings);
     }
 
     private void initFlipper() {
