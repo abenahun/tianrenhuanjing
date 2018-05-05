@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.tianren.acommon.AppWsInfo;
 import com.tianren.acommon.remote.WebServiceManage;
+import com.tianren.methane.utils.SharedPreferenceUtil;
 import com.tianren.methane.utils.Utils;
 
 /**
@@ -24,5 +25,6 @@ public class App extends Application {
         Utils.init(this);
         app = this;
         WebServiceManage.init(this, new AppWsInfo());
+        SharedPreferenceUtil.init(this);
     }
 }
