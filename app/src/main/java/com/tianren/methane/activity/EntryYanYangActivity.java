@@ -41,6 +41,7 @@ import com.tianren.methane.utils.ToastUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -217,7 +218,11 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
         bean.setAlkalinity(jiandu);
         bean.setSamplingPoint(spinners.get(spinner.getSelectedItemPosition()).toString());
         bean.setAmmoniaNitrogen(andan);
-        bean.setEntryTime(tv_time.getText().toString());
+        try {
+            bean.setEntryTime(StringUtil.stringToDate(tv_time.getText().toString(),"yyyy-MM-dd HH:mm:ss"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("anaerobicTankData", gson.toJson(bean).toString());
         novate = new Novate.Builder(this)

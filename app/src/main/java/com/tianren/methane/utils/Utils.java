@@ -2,6 +2,10 @@ package com.tianren.methane.utils;
 
 import android.content.Context;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * <pre>
  *     author: Blankj
@@ -36,4 +40,6 @@ public class Utils {
         if (context != null) return context;
         throw new NullPointerException("u should init first");
     }
+
+
 }

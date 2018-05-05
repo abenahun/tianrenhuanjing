@@ -103,11 +103,11 @@ public class ManagerFragment extends BaseFragment implements View.OnClickListene
                 break;
 
             case R.id.tv_entry:
-               /* Intent intent_entry = new Intent(getActivity(), DataEntryActivity.class);
-                startActivity(intent_entry);*/
-
-                Intent intent_entry = new Intent(getActivity(), LoginActivity.class);
+                Intent intent_entry = new Intent(getActivity(), DataEntryActivity.class);
                 startActivity(intent_entry);
+
+               /* Intent intent_entry = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent_entry);*/
                 break;
         }
     }

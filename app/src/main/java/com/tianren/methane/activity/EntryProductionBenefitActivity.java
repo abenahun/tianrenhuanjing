@@ -31,6 +31,7 @@ import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -128,7 +129,11 @@ public class EntryProductionBenefitActivity extends BaseActivity implements View
         CapacityBean bean = new CapacityBean();
         bean.setGasProduction(Integer.parseInt(chanqi));
         bean.setPowerGeneration(Integer.parseInt(chandian));
-        bean.setEntryTime(tv_time.getText().toString());
+        try {
+            bean.setEntryTime(StringUtil.stringToDate(tv_time.getText().toString(),"yyyy-MM-dd HH:mm:ss"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         bean.setEntryType(1);
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("capacity", gson.toJson(bean).toString());

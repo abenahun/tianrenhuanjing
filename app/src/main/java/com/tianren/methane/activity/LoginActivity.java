@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tamic.novate.Novate;
@@ -69,6 +71,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private ParseDataFromDev dataParseDevObj = null;
     private List<DevInfo> devInfoList;
 
+    private LinearLayout ll_back;
+    private TextView tv_title;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +92,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 //        if (!passwd.equals("")) {
 //            et_passwd.setSelection(passwd.length());
 //        }
+
+        ll_back = (LinearLayout) findViewById(R.id.ll_back);
+        ll_back.setOnClickListener(this);
+        tv_title = (TextView) findViewById(R.id.tv_title);
+        tv_title.setText("登录");
+
         btn_login = (Button)findViewById(R.id.btn_login);
         button = (Button)findViewById(R.id.button);
         button.setOnClickListener(this);
@@ -138,9 +149,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 break;
 
             case R.id.button:
-
                 dataParseDevObj = ParseDataFromDev.getInstance();
-
 
                 DevInfo info = new DevInfo();
                 devInfoList = new ArrayList<DevInfo>();
@@ -162,6 +171,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 //                }
 
                 break;
+
+            case R.id.ll_back:
+                finish();
+                break;
         }
     }
 
@@ -180,7 +193,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                 case DefMsgConstants.MSG_LOGIN_SUCCESS:
                     Log.i(TAG, "MSG_LOGIN_SUCCESS---------");
-
                     ToastUtils.show("登录成功");
                     activity.ifReceSuccessMsg = true;
                     //保存用户名和密码
@@ -191,6 +203,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     //如果没有超时，自动登录，启EditAcFragment
                     if (activity.ifTimeOut == false) {
 //                        activity.goToHomeActivity();
+                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
                     }
                     break;
                 case DefMsgConstants.MSG_LOGIN_FAILURE:
@@ -243,14 +256,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                 case MsgDefCtrl.MSG_FRESH_REFRIGERATOR:
 //                    freshFridgeManageUI();
-//                    Log.i(TAG, "`````````>"+msg.obj.toString());
+//                    Log.i(TAG, "`````````1111111111111111111111111111" + msg.obj.toString());
                     handler.sendEmptyMessageDelayed(MsgDefCtrl.MSG_FRESH_REFRIGERATOR,5000);
                     break;
 
-                case 200:
-                    Log.e("syl","11111111111");
-                    break;
                 default:
+
                     break;
             }
         }

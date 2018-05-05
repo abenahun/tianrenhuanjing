@@ -53,9 +53,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="每立方米产气1000m³，全国第5名"
+                android:text="每立方米产气1000m³"
                 android:textColor="@color/maincolor"
-                android:textSize="@dimen/textsize16"/>
+                android:textSize="@dimen/textsize18"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -101,14 +101,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="每吨产气1000m³，全国第5名"
+            android:text="每吨产气1000m³"
             android:textColor="@color/maincolor"
-            android:textSize="@dimen/textsize16"/>
+            android:textSize="@dimen/textsize18"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="超过全国98%的用户"
+            android:text="超过全国95%的用户"
             android:textColor="@color/textgray"
             android:padding="5dp"
             android:textSize="@dimen/textsize13"/>

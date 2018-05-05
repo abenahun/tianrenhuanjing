@@ -634,7 +634,6 @@ public class MPChartHelper {
         MPChartMarkerView markerView = new MPChartMarkerView(lineChart.getContext(), R.layout.custom_marker_view);
         lineChart.setMarker(markerView);
 
-
         //x坐标轴设置
         IAxisValueFormatter xAxisFormatter = new StringAxisValueFormatter(xAxisValue);
         XAxis xAxis = lineChart.getXAxis();
@@ -692,6 +691,7 @@ public class MPChartHelper {
                 LineDataSet set = (LineDataSet) lineChart.getData().getDataSetByIndex(i);
                 set.setValues(entriesList.get(i));
                 set.setLabel(titles.get(i));
+                set.setMode(LineDataSet.Mode.CUBIC_BEZIER);//线模式为圆滑曲线（默认折线）
             }
 
             lineChart.getData().notifyDataChanged();
@@ -705,10 +705,12 @@ public class MPChartHelper {
                     set.setColor(lineColors[i % entriesList.size()]);
                     set.setCircleColor(lineColors[i % entriesList.size()]);
                     set.setCircleColorHole(Color.WHITE);
+                    set.setMode(LineDataSet.Mode.CUBIC_BEZIER);//线模式为圆滑曲线（默认折线）
                 } else {
                     set.setColor(LINE_COLORS[i % 3]);
                     set.setCircleColor(LINE_COLORS[i % 3]);
                     set.setCircleColorHole(Color.WHITE);
+                    set.setMode(LineDataSet.Mode.CUBIC_BEZIER);//线模式为圆滑曲线（默认折线）
                 }
 
                 if (entriesList.size() == 1) {
@@ -900,6 +902,7 @@ public class MPChartHelper {
         //lineDataSet.setValueTextColor(Color.rgb(254,116,139));
         lineDataSet.setAxisDependency(YAxis.AxisDependency.RIGHT);//设置线数据依赖于右侧y轴
         lineDataSet.setDrawValues(false);//不绘制线的数据
+        lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);//线模式为圆滑曲线（默认折线）
 
         LineData lineData = new LineData(lineDataSet);
         lineData.setValueTextSize(10f);

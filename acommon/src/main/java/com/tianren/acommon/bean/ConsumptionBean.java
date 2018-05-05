@@ -1,5 +1,7 @@
 package com.tianren.acommon.bean;
 
+import java.util.Date;
+
 public class ConsumptionBean {
     private Integer id;
 
@@ -13,9 +15,9 @@ public class ConsumptionBean {
 
     private Integer entryType;
 
-    private String entryTime;
+    private Date entryTime;
 
-    private String addTime;
+    private Date addTime;
 
     public Integer getId() {
         return id;
@@ -65,19 +67,19 @@ public class ConsumptionBean {
         this.entryType = entryType;
     }
 
-    public String getEntryTime() {
+    public Date getEntryTime() {
         return entryTime;
     }
 
-    public void setEntryTime(String entryTime) {
+    public void setEntryTime(Date entryTime) {
         this.entryTime = entryTime;
     }
 
-    public String getAddTime() {
+    public Date getAddTime() {
         return addTime;
     }
 
-    public void setAddTime(String addTime) {
+    public void setAddTime(Date addTime) {
         this.addTime = addTime;
     }
 }

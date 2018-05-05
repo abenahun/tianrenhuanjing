@@ -148,6 +148,7 @@ public class SipService extends Service {
 	new Handler() {
 		public void handleMessage(Message msg) {
 			revmsg = (String) msg.obj.toString();
+			Log.v(TAG, "revmsg ："+revmsg);
 			switch (msg.what) {
 			case MsgDefCtrl.MSG_RECEIVED_NOTIFY:
 				Log.v(TAG, "revmsg ："+revmsg);	

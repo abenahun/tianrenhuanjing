@@ -1,5 +1,7 @@
 package com.tianren.methane.bean;
 
+import java.util.Date;
+
 /**
  * User: Lee
  * Date: 2018/4/3 0003
@@ -15,13 +17,13 @@ public class AnaerobicTankBean {
     private String alkalinity;//碱度
     private String ammoniaNitrogen;//氨氮
     private String samplingPoint;//取样点
-    private String entryTime;
+    private Date entryTime;
 
-    public String getEntryTime() {
+    public Date getEntryTime() {
         return entryTime;
     }
 
-    public void setEntryTime(String entryTime) {
+    public void setEntryTime(Date entryTime) {
         this.entryTime = entryTime;
     }
 

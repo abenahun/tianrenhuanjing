@@ -35,6 +35,7 @@
             android:textColor="@color/textgray"
             android:textSize="@dimen/textsize13"
             android:hint="请输入用户名"
+            android:text="18561589055"
             android:layout_weight="1"
             android:inputType="numberDecimal"
             android:background="@null"/>
@@ -64,6 +65,7 @@
             android:textColor="@color/textgray"
             android:textSize="@dimen/textsize13"
             android:hint="请输入密码"
+            android:text="123456"
             android:layout_weight="1"
             android:inputType="numberDecimal"
             android:background="@null"/>

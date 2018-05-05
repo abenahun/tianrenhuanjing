@@ -31,6 +31,7 @@ import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -136,7 +137,11 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
         bean.setWaterConsumption(Double.parseDouble(haoshui));
         bean.setAirConsumption(Double.parseDouble(haoqi));
         bean.setEntryType(1);
-        bean.setEntryTime(tv_time.getText().toString());
+        try {
+            bean.setEntryTime(StringUtil.stringToDate(tv_time.getText().toString(),"yyyy-MM-dd HH:mm:ss"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("consumption", gson.toJson(bean).toString());
         novate = new Novate.Builder(this)
@@ -145,7 +150,6 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
                 //.addApiManager(ApiManager.class)
                 .addLog(true)
                 .build();
-
         novate.post(Constant.ENTRYCONSUMPTION_URL, parameters,
                 new MyBaseSubscriber<ResponseBody>(EntryProductionCostActivity.this) {
                     @Override
