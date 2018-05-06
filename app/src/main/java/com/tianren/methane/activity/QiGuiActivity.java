@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -127,7 +128,11 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
             list.add(getModel("d35"));
             list.add(getModel("d36"));
         }
-        adapter.addItems(list);
+        for (int i = 0; i < list.size(); i++) {
+            if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
+                adapter.addItem(list.get(i));
+            }
+        }
     }
 
     public ModelAdapter.ModelBean getModel(String s) {

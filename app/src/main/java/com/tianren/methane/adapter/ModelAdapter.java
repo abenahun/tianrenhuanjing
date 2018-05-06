@@ -49,7 +49,7 @@ public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAda
                     sensorUnit = sensorUnit.replace("m2", "m²");
                 }
             }
-            holder.content.setText(bean.getData() + " " + (TextUtils.isEmpty(sensorUnit) ? "" : sensorUnit));
+            holder.content.setText((TextUtils.isEmpty(bean.getData()) ? "" : bean.getData()) + " " + (TextUtils.isEmpty(sensorUnit) ? "" : sensorUnit));
             holder.range.setText(bean.getSuitableMinimum() + "～" + bean.getSuitableMaximum() + " " + sensorUnit);
             holder.trend_tv.setOnClickListener(new View.OnClickListener() {
                 @Override

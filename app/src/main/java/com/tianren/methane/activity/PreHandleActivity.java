@@ -3,6 +3,7 @@ package com.tianren.methane.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -75,7 +76,11 @@ public class PreHandleActivity extends BaseActivity implements View.OnClickListe
             list.add(getModel("d26"));
             list.add(getModel("d27"));
             list.add(getModel("d28"));
-            adapter.addItems(list);
+            for (int i = 0; i < list.size(); i++) {
+                if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
+                    adapter.addItem(list.get(i));
+                }
+            }
         }
     }
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -98,7 +99,11 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
             list.add(getModel("d49"));
             list.add(getModel("d50"));
         }
-        adapter.addItems(list);
+        for (int i = 0; i < list.size(); i++) {
+            if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
+                adapter.addItem(list.get(i));
+            }
+        }
     }
 
     public ModelAdapter.ModelBean getModel(String s) {

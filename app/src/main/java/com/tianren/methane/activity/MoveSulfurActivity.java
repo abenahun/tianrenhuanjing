@@ -3,6 +3,7 @@ package com.tianren.methane.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -74,7 +75,11 @@ public class MoveSulfurActivity extends BaseActivity implements View.OnClickList
             list.add(getModel("d7"));
             list.add(getModel("d8"));
             list.add(getModel("d9"));
-            adapter.addItems(list);
+            for (int i = 0; i < list.size(); i++) {
+                if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
+                    adapter.addItem(list.get(i));
+                }
+            }
         }
     }
 
