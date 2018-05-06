@@ -11,7 +11,12 @@ import android.widget.TextView;
 
 import com.tianren.methane.R;
 import com.tianren.methane.adapter.ModelAdapter;
+import com.tianren.methane.event.ModelEvent;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +39,7 @@ public class MoveSulfurActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_move_sulfur);
-
+        EventBus.getDefault().register(this);
         initView();
         loadData();
     }
@@ -49,7 +54,7 @@ public class MoveSulfurActivity extends BaseActivity implements View.OnClickList
         moreIv.setOnClickListener(this);
         moreIv.setVisibility(View.VISIBLE);
         recyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recyclerView);
-        adapter = new ModelAdapter(this,listener);
+        adapter = new ModelAdapter(this, listener);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemViewSwipeEnabled(false);
         View headView = LayoutInflater.from(this).inflate(R.layout.head_sulfur, recyclerView, false);
@@ -94,6 +99,17 @@ public class MoveSulfurActivity extends BaseActivity implements View.OnClickList
             default:
                 break;
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(ModelEvent event) {
+        loadData();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     private ModelAdapter.ModelListener listener = new ModelAdapter.ModelListener() {

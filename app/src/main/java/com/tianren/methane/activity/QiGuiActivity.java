@@ -25,7 +25,12 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.tianren.methane.R;
 import com.tianren.methane.adapter.ModelAdapter;
 import com.tianren.methane.constant.Constant;
+import com.tianren.methane.event.ModelEvent;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +61,7 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qigui);
+        EventBus.getDefault().register(this);
         initView();
 //        initChart();
         loadData();
@@ -162,6 +168,17 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
             default:
                 break;
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(ModelEvent event) {
+        loadData();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     private ModelAdapter.ModelListener listener = new ModelAdapter.ModelListener() {

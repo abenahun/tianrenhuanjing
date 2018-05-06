@@ -1,26 +1,17 @@
 package com.tianren.methane.service;
 
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
-import com.hisense.hs_iot_interface.CallBackFun;
-import com.tianren.methane.constant.MsgDefCtrl;
-import com.tianren.methane.jniutils.MsgBroadcastReceiver;
-import com.tianren.methane.jniutils.MyCallBack;
-import com.tianren.methane.jniutils.MyInterface;
-import com.tianren.methane.jniutils.ParseDataFromDev;
-
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.util.Log;
-import android.widget.Toast;
+
+import com.hisense.hs_iot_interface.CallBackFun;
+import com.tianren.methane.jniutils.MsgBroadcastReceiver;
+import com.tianren.methane.jniutils.MyCallBack;
+import com.tianren.methane.jniutils.MyInterface;
 
 public class SipService extends Service {
 
@@ -50,8 +41,7 @@ public class SipService extends Service {
 		Log.i(TAG, "onCreate--setCallfunc--isInitWan = " + myInterface.getIsInitWan());
 		
 		initImageLoaderConfig();
-		myCallBack.setServiceHandler(serHandler);
-		
+
 		mReceiver = new MsgBroadcastReceiver(this);
 		mReceiver.registerAction();
 	}
@@ -140,69 +130,4 @@ public class SipService extends Service {
 		}
 		super.onDestroy();
 	}
-	/**
-	 * @author CaoXiuxia
-	 * @Describe：服务器与手机之间收发信息的中转
-	 */
-	private Handler serHandler = 
-	new Handler() {
-		public void handleMessage(Message msg) {
-			revmsg = (String) msg.obj.toString();
-			Log.v(TAG, "revmsg ："+revmsg);
-			switch (msg.what) {
-			case MsgDefCtrl.MSG_RECEIVED_NOTIFY:
-				Log.v(TAG, "revmsg ："+revmsg);	
-				if (revmsg != null && !revmsg.equals(ERROR_REVMSG) ){
-					try {
-						JSONTokener jsonParser = new JSONTokener(revmsg);
-						JSONObject jsonObject = (JSONObject) jsonParser.nextValue();
-							//冰箱相关add by cxx
-							if (jsonObject.optString("cmdtype").equals("304") || jsonObject.optString("cmdtype").equals("404")) {
-								//设置冰箱的参数
-								if (midlHandler != null) {
-//									ParseDataFromDev.getInstance().freshSetStatusFromDev(midlHandler,revmsg);
-								}
-							}
-							if (jsonObject.optString("cmdtype").equals("301") || jsonObject.optString("cmdtype").equals("401") ) {
-								//查询冰箱的参数
-								Log.w(TAG, "recv 301 :"+revmsg);
-								int isQueryOk = -1;
-//								isQueryOk = ParseDataFromDev.getInstance().freshQueryStatusFromDev(midlHandler,revmsg);
-								switch (isQueryOk) {
-								case 301:
-									if (midlHandler != null) {
-										midlHandler.sendEmptyMessage(MsgDefCtrl.MSG_FRIGER_FRESH_QUERY_OK);
-									}
-									break;
-								case 401:
-									if (midlHandler != null) {
-										midlHandler.sendEmptyMessage(MsgDefCtrl.MSG_FRIGER_FRESH_QUERY_OK);
-									}
-									break;
-								}
-							}
-							
-							if(jsonObject.optString("cmdtype").equals("401")){
-								if(midlHandler != null ){
-									boolean isOk = ParseDataFromDev.getInstance().freshQueryStatusFromWasher(midlHandler,revmsg);
-									if (isOk) {
-										midlHandler.sendEmptyMessage(MsgDefCtrl.MSG_WASHER_FRESH_QUERY_OK);
-									}
-								}
-							}
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						Log.e(TAG,"recv msg format error! ");
-						e1.printStackTrace();
-					}						
-				}else {
-					Log.v(TAG, "revmsg = null !");
-				}
-				break;
-				
-			default:
-				break;
-			}
-		};
-	};
 }

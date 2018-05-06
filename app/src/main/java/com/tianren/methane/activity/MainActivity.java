@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,16 +22,22 @@ import com.tamic.novate.Novate;
 import com.tamic.novate.Throwable;
 import com.tianren.methane.MyBaseSubscriber;
 import com.tianren.methane.R;
+import com.tianren.methane.bean.DevInfo;
 import com.tianren.methane.bean.SensorBean;
 import com.tianren.methane.constant.Constant;
+import com.tianren.methane.constant.MsgDefCtrl;
 import com.tianren.methane.fragment.HomeFragment;
 import com.tianren.methane.fragment.ManagerFragment;
 import com.tianren.methane.fragment.MeFragment;
+import com.tianren.methane.jniutils.ParseDataFromDev;
+import com.tianren.methane.service.SipService;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -38,14 +45,11 @@ import okhttp3.ResponseBody;
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
     private TabLayout mTabLayout;
-    //Tab 文字
     private final int[] TAB_TITLES = new int[]{R.string.home, R.string.guanli, R.string.usercenter};
-    //Tab 图片
     private final int[] TAB_IMGS = new int[]
             {R.drawable.tab_home_select_drawable,
                     R.drawable.tab_zixun_select_drawable,
                     R.drawable.tab_wode_select_drawable};
-    //Fragment 数组
     private final Fragment[] TAB_FRAGMENTS = new Fragment[]
             {new HomeFragment(), new ManagerFragment(), new MeFragment()};
     //Tab 数目
@@ -59,6 +63,8 @@ public class MainActivity extends BaseActivity {
     //静态表数据
     public static Map<String, SensorBean> sensorDataMap = new HashMap<>();
 
+    private ParseDataFromDev dataParseDevObj = null;
+    private List<DevInfo> devInfoList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,15 +74,38 @@ public class MainActivity extends BaseActivity {
         userName = getValueFromTable("username", "");
         getDeviceModel();
         getStaticData();
+        getDeviceModelFromSip();
     }
 
+    private void getDeviceModelFromSip() {
+        dataParseDevObj = ParseDataFromDev.getInstance();
+
+        DevInfo info = new DevInfo();
+        devInfoList = new ArrayList<DevInfo>();
+        info.setDevId("1001");
+        info.setDomain("iotac.tianren.com");
+        info.setNickName("1001");
+        info.setType(DevInfo.TYPE_FR);
+        devInfoList.add(info);
+        if (MainActivity.mDeviceId != null) {
+            Log.e("syl", SipService.getMyInterface() + "");
+            SipService.setMidlHandler(myHandler);
+            myHandler.sendEmptyMessage(MsgDefCtrl.MSG_FRESH_REFRIGERATOR);
+            dataParseDevObj.checkOnce(devInfoList);
+        }
+//                if (SipService.getMyInterface() != null) {
+//                    SipService.getMyInterface().sendMsgInWAN(to, from, msg_body,domainStr);
+//                }
+    }
+
+    /**
+     * 获取静态表数据
+     */
     private void getStaticData() {
         Map<String, Object> parameters = new HashMap<>();
-//        parameters.put(Constant.STATICDATANAME_URL, "");
         novate = new Novate.Builder(this)
                 .connectTimeout(8)
                 .baseUrl(Constant.BASE_URL)
-                //.addApiManager(ApiManager.class)
                 .addLog(true)
                 .build();
 
@@ -94,10 +123,7 @@ public class MainActivity extends BaseActivity {
                     public void onNext(ResponseBody responseBody) {
                         try {
                             String jstr = new String(responseBody.bytes());
-//                            ToastUtils.show(jstr);
-
                             if (StringUtil.isEmpty(jstr)) {
-
                                 sensorDataMap = null;
                             } else {
                                 Gson gson = new Gson();
@@ -112,7 +138,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initViews() {
-        mDeviceId = "1001";//固定设备id
+        mDeviceId = "1001";
         mTabLayout = (TabLayout) findViewById(R.id.tablayout);
         setTabs(mTabLayout, this.getLayoutInflater(), TAB_TITLES, TAB_IMGS);
 
@@ -166,7 +192,11 @@ public class MainActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
-
+                case MsgDefCtrl.MSG_FRESH_REFRIGERATOR:
+                    myHandler.sendEmptyMessageDelayed(MsgDefCtrl.MSG_FRESH_REFRIGERATOR, 5000);
+                    break;
+                default:
+                    break;
             }
         }
     };
@@ -177,11 +207,9 @@ public class MainActivity extends BaseActivity {
     private void getDeviceModel() {
 
         Map<String, Object> parameters = new HashMap<>();
-//        parameters.put(Constant.STATICDATANAME_URL, "");
         novate = new Novate.Builder(this)
                 .connectTimeout(8)
                 .baseUrl(Constant.BASE_URL)
-                //.addApiManager(ApiManager.class)
                 .addLog(true)
                 .build();
 
@@ -199,7 +227,6 @@ public class MainActivity extends BaseActivity {
                     public void onNext(ResponseBody responseBody) {
                         try {
                             String jstr = new String(responseBody.bytes());
-//                            ToastUtils.show(jstr);
                             if (StringUtil.isEmpty(jstr)) {
                                 modelMap = null;
                             } else {
@@ -264,16 +291,6 @@ public class MainActivity extends BaseActivity {
                 "d48:9.97\n" +
                 "d49:3.01\n" +
                 "d50:100.45";
-       /* String[] attr = res.split("\\n");
-        if (attr.length > 0) {
-            for (int i = 1; i < attr.length; i++) {
-                if (!attr[i].contains(":")) {
-                    continue;
-                }
-                String[] tempArr = attr[i].split(":");
-                modelMap.put(tempArr[0], tempArr[1]);
-            }
-        }*/
     }
 //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
