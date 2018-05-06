@@ -67,7 +67,7 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
 //        predictChart = (RadarChart) findViewById(R.id.predictChart);
 
         recyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recyclerView);
-        adapter = new ModelAdapter(this);
+        adapter = new ModelAdapter(this, listener);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemViewSwipeEnabled(false);
         View headView = LayoutInflater.from(this).inflate(R.layout.head_yanyang, recyclerView, false);
@@ -259,4 +259,15 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
 //        predictChart.setData(data);
 //        predictChart.invalidate();
 //    }
+
+    private ModelAdapter.ModelListener listener = new ModelAdapter.ModelListener() {
+
+        @Override
+        public void onClick(ModelAdapter.ModelBean bean) {
+            Intent intent7 = new Intent(YanYangActivity.this, DataStatisticsActivity.class);
+            intent7.putExtra("title", "厌氧走势");
+            intent7.putExtra("statisticsName", "厌氧走势");
+            startActivity(intent7);
+        }
+    };
 }

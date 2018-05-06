@@ -49,7 +49,7 @@ public class MoveSulfurActivity extends BaseActivity implements View.OnClickList
         moreIv.setOnClickListener(this);
         moreIv.setVisibility(View.VISIBLE);
         recyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recyclerView);
-        adapter = new ModelAdapter(this);
+        adapter = new ModelAdapter(this,listener);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemViewSwipeEnabled(false);
         View headView = LayoutInflater.from(this).inflate(R.layout.head_sulfur, recyclerView, false);
@@ -95,4 +95,15 @@ public class MoveSulfurActivity extends BaseActivity implements View.OnClickList
                 break;
         }
     }
+
+    private ModelAdapter.ModelListener listener = new ModelAdapter.ModelListener() {
+
+        @Override
+        public void onClick(ModelAdapter.ModelBean bean) {
+            Intent intent7 = new Intent(MoveSulfurActivity.this, DataStatisticsActivity.class);
+            intent7.putExtra("title", "脱硫走势");
+            intent7.putExtra("statisticsName", "脱硫走势");
+            startActivity(intent7);
+        }
+    };
 }

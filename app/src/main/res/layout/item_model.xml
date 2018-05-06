@@ -42,6 +42,7 @@
 
 
         <TextView
+            android:id="@+id/trend_tv"
             android:layout_width="45dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="14dp"

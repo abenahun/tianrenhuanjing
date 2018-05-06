@@ -72,7 +72,7 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
         moreIv.setVisibility(View.VISIBLE);
 
         recyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recyclerView);
-        adapter = new ModelAdapter(this);
+        adapter = new ModelAdapter(this, listener);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemViewSwipeEnabled(false);
         View headView = LayoutInflater.from(this).inflate(R.layout.head_qigui, recyclerView, false);
@@ -163,4 +163,15 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
                 break;
         }
     }
+
+    private ModelAdapter.ModelListener listener = new ModelAdapter.ModelListener() {
+
+        @Override
+        public void onClick(ModelAdapter.ModelBean bean) {
+            Intent intent7 = new Intent(QiGuiActivity.this, DataStatisticsActivity.class);
+            intent7.putExtra("title", "气柜走势");
+            intent7.putExtra("statisticsName", "气柜走势");
+            startActivity(intent7);
+        }
+    };
 }

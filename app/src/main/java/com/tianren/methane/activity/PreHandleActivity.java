@@ -29,6 +29,7 @@ public class PreHandleActivity extends BaseActivity implements View.OnClickListe
     private SwipeMenuRecyclerView recyclerView;
     private ModelAdapter adapter;
     private ImageView moreIv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +49,7 @@ public class PreHandleActivity extends BaseActivity implements View.OnClickListe
         moreIv.setOnClickListener(this);
         moreIv.setVisibility(View.VISIBLE);
         recyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recyclerView);
-        adapter = new ModelAdapter(this);
+        adapter = new ModelAdapter(this,listener);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemViewSwipeEnabled(false);
         View headView = LayoutInflater.from(this).inflate(R.layout.head_pre_handle, recyclerView, false);
@@ -95,4 +96,15 @@ public class PreHandleActivity extends BaseActivity implements View.OnClickListe
                 break;
         }
     }
+
+    private ModelAdapter.ModelListener listener = new ModelAdapter.ModelListener() {
+
+        @Override
+        public void onClick(ModelAdapter.ModelBean bean) {
+            Intent intent7 = new Intent(PreHandleActivity.this, DataStatisticsActivity.class);
+            intent7.putExtra("title", "预处理走势");
+            intent7.putExtra("statisticsName", "预处理走势");
+            startActivity(intent7);
+        }
+    };
 }

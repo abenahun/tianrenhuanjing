@@ -29,6 +29,7 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
     private SwipeMenuRecyclerView recyclerView;
     private ModelAdapter adapter;
     private ImageView moreIv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +48,7 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
         moreIv.setOnClickListener(this);
         moreIv.setVisibility(View.VISIBLE);
         recyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recyclerView);
-        adapter = new ModelAdapter(this);
+        adapter = new ModelAdapter(this, listener);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemViewSwipeEnabled(false);
         View headView = LayoutInflater.from(this).inflate(R.layout.head_carbon, recyclerView, false);
@@ -98,4 +99,15 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
                 break;
         }
     }
+
+    private ModelAdapter.ModelListener listener = new ModelAdapter.ModelListener() {
+
+        @Override
+        public void onClick(ModelAdapter.ModelBean bean) {
+            Intent intent7 = new Intent(MoveCarbonActivity.this, DataStatisticsActivity.class);
+            intent7.putExtra("title", "脱碳走势");
+            intent7.putExtra("statisticsName", "脱碳走势");
+            startActivity(intent7);
+        }
+    };
 }

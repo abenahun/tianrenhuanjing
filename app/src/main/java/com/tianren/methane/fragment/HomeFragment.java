@@ -128,9 +128,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 Log.e("isok", "callback: " + isok);
                 if (isok) {
                     Integer gasProduction = res.getData().get(0).getGasProduction();
-                    airEarnings.setText((gasProduction.equals(0) ? "0" : (gasProduction + "")) + "Nm³/H");
+                    airEarnings.setText((gasProduction.equals(0) ? "0" : (gasProduction + "")) + "元");
                     Integer powerGeneration = res.getData().get(0).getPowerGeneration();
-                    eleEarnings.setText((powerGeneration.equals(0) ? "0" : (powerGeneration + "")) + "Nm³/H");
+                    eleEarnings.setText((powerGeneration.equals(0) ? "0" : (powerGeneration + "")) + "元");
                 }
             }
         });

@@ -17,10 +17,12 @@ import com.tianren.methane.base.BaseRcAdapter;
  */
 public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAdapter.MyViewHolder> {
     private LayoutInflater inflater;
+    private ModelListener listener;
 
-    public ModelAdapter(Context context) {
+    public ModelAdapter(Context context, ModelListener listener) {
         super(context);
         inflater = LayoutInflater.from(context);
+        this.listener = listener;
     }
 
     @Override
@@ -31,7 +33,7 @@ public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAda
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        ModelBean bean = getItems().get(position);
+        final ModelBean bean = getItems().get(position);
         if (bean == null) {
             holder.name.setText("");
             holder.content.setText("");
@@ -39,7 +41,7 @@ public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAda
         } else {
             holder.name.setText(bean.getNickName());
             String sensorUnit = bean.getSensorUnit();
-            if (sensorUnit!=null){
+            if (sensorUnit != null) {
                 if (sensorUnit.contains("m3")) {
                     sensorUnit = sensorUnit.replace("m3", "m³");
                 }
@@ -49,17 +51,24 @@ public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAda
             }
             holder.content.setText(bean.getData() + " " + (TextUtils.isEmpty(sensorUnit) ? "" : sensorUnit));
             holder.range.setText(bean.getSuitableMinimum() + "～" + bean.getSuitableMaximum() + " " + sensorUnit);
+            holder.trend_tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onClick(bean);
+                }
+            });
         }
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView name, content, range;
+        private TextView name, content, range, trend_tv;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.name);
             content = (TextView) itemView.findViewById(R.id.content);
             range = (TextView) itemView.findViewById(R.id.range);
+            trend_tv = (TextView) itemView.findViewById(R.id.trend_tv);
         }
     }
 
@@ -128,5 +137,9 @@ public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAda
         public void setSensorUnit(String sensorUnit) {
             this.sensorUnit = sensorUnit;
         }
+    }
+
+    public interface ModelListener {
+        void onClick(ModelBean bean);
     }
 }
