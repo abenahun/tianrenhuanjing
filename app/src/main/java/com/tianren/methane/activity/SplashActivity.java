@@ -128,7 +128,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
     private void goHome() {
         if (StringUtil.isEmpty(SharedPreferenceUtil.
                 getSharedPreString(Constant.SP_USERNAME))){
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
             SplashActivity.this.startActivity(intent);
             SplashActivity.this.finish();
         }else {
