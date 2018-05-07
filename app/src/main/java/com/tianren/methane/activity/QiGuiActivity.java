@@ -58,6 +58,7 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
     private ModelAdapter adapter;
     private ImageView moreIv;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
