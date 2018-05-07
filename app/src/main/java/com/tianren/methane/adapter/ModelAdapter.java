@@ -1,6 +1,7 @@
 package com.tianren.methane.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -49,8 +50,20 @@ public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAda
                     sensorUnit = sensorUnit.replace("m2", "m²");
                 }
             }
-            holder.content.setText((TextUtils.isEmpty(bean.getData()) ? "" : bean.getData()) + " " + (TextUtils.isEmpty(sensorUnit) ? "" : sensorUnit));
-            holder.range.setText(bean.getSuitableMinimum() + "～" + bean.getSuitableMaximum() + " " + sensorUnit);
+            try {
+                Double min = bean.getSuitableMinimum();
+                Double max = bean.getSuitableMaximum();
+                holder.range.setText(min + "～" + max + " " + sensorUnit);
+                double data = Double.parseDouble(bean.getData());
+                if (data > min && data < max) {
+                    holder.content.setTextColor(context.getResources().getColor(R.color.green));
+                } else {
+                    holder.content.setTextColor(Color.RED);
+                }
+                holder.content.setText((TextUtils.isEmpty(bean.getData()) ? "" : bean.getData()) + " " + (TextUtils.isEmpty(sensorUnit) ? "" : sensorUnit));
+            } catch (Exception e) {
+                holder.content.setText("空数据");
+            }
             holder.trend_tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

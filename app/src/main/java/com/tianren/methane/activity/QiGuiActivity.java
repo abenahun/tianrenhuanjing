@@ -58,6 +58,7 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
     private ModelAdapter adapter;
     private ImageView moreIv;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,18 +117,28 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
 
     private void loadData() {
         List<ModelAdapter.ModelBean> list = new ArrayList<>();
-        if (sensorDataMap == null) {
-            list = null;
-        } else {
-            list.add(getModel("d29"));
-            list.add(getModel("d30"));
-            list.add(getModel("d31"));
-            list.add(getModel("d32"));
-            list.add(getModel("d33"));
-            list.add(getModel("d34"));
-            list.add(getModel("d35"));
-            list.add(getModel("d36"));
-        }
+        ModelAdapter.ModelBean bean1 = new ModelAdapter.ModelBean("", "设计容量", "空数据", 0d, 0d, "m³");
+        ModelAdapter.ModelBean bean2 = new ModelAdapter.ModelBean("", "当前储气", "空数据", 0d, 0d, "m³");
+        ModelAdapter.ModelBean bean3 = new ModelAdapter.ModelBean("", "内膜高度", "空数据", 0d, 0d, "m³");
+        ModelAdapter.ModelBean bean4 = new ModelAdapter.ModelBean("", "内膜压力", "空数据", 0d, 0d, "m³");
+        ModelAdapter.ModelBean bean5 = new ModelAdapter.ModelBean("", "运行状态", "空数据", 0d, 0d, "m³");
+        list.add(bean1);
+        list.add(bean2);
+        list.add(bean3);
+        list.add(bean4);
+        list.add(bean5);
+//        if (sensorDataMap == null) {
+//            list = null;
+//        } else {
+//            list.add(getModel("d29"));
+//            list.add(getModel("d30"));
+//            list.add(getModel("d31"));
+//            list.add(getModel("d32"));
+//            list.add(getModel("d33"));
+//            list.add(getModel("d34"));
+//            list.add(getModel("d35"));
+//            list.add(getModel("d36"));
+//        }
         for (int i = 0; i < list.size(); i++) {
             if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
                 adapter.addItem(list.get(i));

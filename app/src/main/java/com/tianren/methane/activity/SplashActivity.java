@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+
 import com.tianren.methane.R;
 import com.tianren.methane.constant.Constant;
 import com.tianren.methane.constant.DefMsgConstants;
@@ -40,10 +41,10 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
     private static String TAG = "SplashActivity";
     private WaitDialog waitDialog; //登录等待对话框
     private static final int MSG_IMAGE_ANIMATE = 0;
-    private boolean ifTimeOut = false;    	   //是否超时
+    private boolean ifTimeOut = false;           //是否超时
     private boolean ifReceSuccessMsg = false;  //是否接收到登录成功的消息
     private boolean ifReceFailMsg = false;     //是否接收到登录失败的消息
-    private boolean isChinese = true;    	   //是否为中文模式
+    private boolean isChinese = true;           //是否为中文模式
     private final String httpKey = "lzky";
 
     /**
@@ -59,6 +60,8 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
                     break;
                 case GO_GUIDE:
                     goGuide();
+                    break;
+                default:
                     break;
             }
             super.handleMessage(msg);
@@ -92,16 +95,16 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         ifReceSuccessMsg = false; //标志复原
         ifReceFailMsg = false;
         ifTimeOut = false;
-            if (SipService.getMyInterface() != null) {
-                SipService.getMyInterface().setHandler(handler);
-                SipService.getMyCallBack().setHandler(handler);
-                SipService.getMyInterface().loginByUsr
-                        (SharedPreferenceUtil.getSharedPreString(Constant.SP_USERNAME),
-                                SharedPreferenceUtil.getSharedPreString(Constant.SP_USERPASS));
-            }
-            //点击登录，开启登录等待对话框
+        if (SipService.getMyInterface() != null) {
+            SipService.getMyInterface().setHandler(handler);
+            SipService.getMyCallBack().setHandler(handler);
+            SipService.getMyInterface().loginByUsr
+                    (SharedPreferenceUtil.getSharedPreString(Constant.SP_USERNAME),
+                            SharedPreferenceUtil.getSharedPreString(Constant.SP_USERPASS));
+        }
+        //点击登录，开启登录等待对话框
 //                    startWaitDlg();
-            handler.sendEmptyMessageDelayed(DefMsgConstants.MSG_LOGIN_TIME_OUT, Constant.TIME_OUT_LOGIN);//超时提醒
+        handler.sendEmptyMessageDelayed(DefMsgConstants.MSG_LOGIN_TIME_OUT, Constant.TIME_OUT_LOGIN);//超时提醒
     }
 
     private void init() {
@@ -127,11 +130,11 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
 
     private void goHome() {
         if (StringUtil.isEmpty(SharedPreferenceUtil.
-                getSharedPreString(Constant.SP_USERNAME))){
-            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                getSharedPreString(Constant.SP_USERNAME))) {
+            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             SplashActivity.this.startActivity(intent);
             SplashActivity.this.finish();
-        }else {
+        } else {
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             SplashActivity.this.startActivity(intent);
             SplashActivity.this.finish();
@@ -148,7 +151,8 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
 
     public class MyHandler extends Handler {
         WeakReference<SplashActivity> activityWeakReference;
-        MyHandler(SplashActivity activity){
+
+        MyHandler(SplashActivity activity) {
             this.activityWeakReference = new WeakReference<SplashActivity>(activity);
         }
 
@@ -205,7 +209,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
                     break;
 
                 case DefMsgConstants.MSG_GET_BIND_DEV_INFO_SUCCESS://获取绑定的设备信息 deviceId、昵称、条形码
-                    Log.i(TAG, "DefMsgConstants.MSG_GET_BIND_DEV_INFO_SUCCESS"+msg.obj.toString());
+                    Log.i(TAG, "DefMsgConstants.MSG_GET_BIND_DEV_INFO_SUCCESS" + msg.obj.toString());
                     break;
 
                 case DefMsgConstants.MSG_GET_BIND_DEV_INFO_FAIL:
@@ -215,7 +219,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
                 case MsgDefCtrl.MSG_FRESH_REFRIGERATOR:
 //                    freshFridgeManageUI();
 //                    Log.i(TAG, "`````````1111111111111111111111111111" + msg.obj.toString());
-                    handler.sendEmptyMessageDelayed(MsgDefCtrl.MSG_FRESH_REFRIGERATOR,5000);
+                    handler.sendEmptyMessageDelayed(MsgDefCtrl.MSG_FRESH_REFRIGERATOR, 5000);
                     break;
 
                 default:

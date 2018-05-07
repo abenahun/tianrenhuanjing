@@ -53,7 +53,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             ll_dianhao, ll_rehao, ll_chanqixiaoyi,
             ll_zongxiaoyi, ll_chandianxiaoyi, ll_jinliaoliang;
     private TextView allConsume, waterConsume, eleConsume, hotConsume;
-    private TextView airEarnings, eleEarnings;
+    private TextView airEarnings, eleEarnings, allEarnings;
     private SwipeRefreshLayout refreshLayout;
 
     @Nullable
@@ -110,6 +110,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         hotConsume = (TextView) view.findViewById(R.id.hotConsume);
         airEarnings = (TextView) view.findViewById(R.id.airEarnings);
         eleEarnings = (TextView) view.findViewById(R.id.eleEarnings);
+        allEarnings = (TextView) view.findViewById(R.id.allEarnings);
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refreshLayout);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -131,6 +132,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     airEarnings.setText((gasProduction.equals(0) ? "0" : (gasProduction + "")) + "元");
                     Integer powerGeneration = res.getData().get(0).getPowerGeneration();
                     eleEarnings.setText((powerGeneration.equals(0) ? "0" : (powerGeneration + "")) + "元");
+                    allEarnings.setText((gasProduction + powerGeneration) + "元");
                 }
             }
         });
@@ -138,13 +140,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void callback(boolean isok, String msg, BaseResponse<List<ConsumptionBean>> res) {
                 if (isok) {
-                    allConsume.setText("1000");
                     Double waterConsumption = res.getData().get(0).getWaterConsumption();
                     waterConsume.setText(waterConsumption.equals(0) ? "0" : (waterConsumption + ""));
                     Double powerConsumption = res.getData().get(0).getPowerConsumption();
                     eleConsume.setText(powerConsumption.equals(0) ? "0" : (powerConsumption + ""));
                     Double airConsumption = res.getData().get(0).getAirConsumption();
                     hotConsume.setText(airConsumption.equals(0) ? "0" : (airConsumption + ""));
+                    allConsume.setText((waterConsumption + powerConsumption + airConsumption) + "");
                 }
                 refreshLayout.setRefreshing(false);
             }
