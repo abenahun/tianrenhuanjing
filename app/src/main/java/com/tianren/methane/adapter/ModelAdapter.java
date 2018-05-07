@@ -50,16 +50,20 @@ public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAda
                     sensorUnit = sensorUnit.replace("m2", "m²");
                 }
             }
-            double data = Double.parseDouble(bean.getData());
-            Double min = bean.getSuitableMinimum();
-            Double max = bean.getSuitableMaximum();
-            if (data > min && data < max) {
-                holder.content.setTextColor(context.getResources().getColor(R.color.green));
-            } else {
-                holder.content.setTextColor(Color.RED);
+            try {
+                Double min = bean.getSuitableMinimum();
+                Double max = bean.getSuitableMaximum();
+                holder.range.setText(min + "～" + max + " " + sensorUnit);
+                double data = Double.parseDouble(bean.getData());
+                if (data > min && data < max) {
+                    holder.content.setTextColor(context.getResources().getColor(R.color.green));
+                } else {
+                    holder.content.setTextColor(Color.RED);
+                }
+                holder.content.setText((TextUtils.isEmpty(bean.getData()) ? "" : bean.getData()) + " " + (TextUtils.isEmpty(sensorUnit) ? "" : sensorUnit));
+            } catch (Exception e) {
+                holder.content.setText("空数据");
             }
-            holder.content.setText((TextUtils.isEmpty(bean.getData()) ? "" : bean.getData()) + " " + (TextUtils.isEmpty(sensorUnit) ? "" : sensorUnit));
-            holder.range.setText(min + "～" + max + " " + sensorUnit);
             holder.trend_tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

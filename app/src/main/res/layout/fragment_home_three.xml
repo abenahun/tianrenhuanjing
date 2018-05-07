@@ -369,7 +369,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="优"
+                            android:text="469吨"
                             android:textColor="@color/red"
                             android:textSize="@dimen/textsize24" />
 
@@ -377,7 +377,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="运行状态"
+                            android:text="提油量"
                             android:textColor="@color/textgray"
                             android:textSize="@dimen/textsize15" />
 
