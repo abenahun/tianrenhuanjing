@@ -1,6 +1,7 @@
 package com.tianren.methane.fragment;
 
 import android.Manifest;
+import android.app.Application;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -25,12 +26,15 @@ import com.jph.takephoto.model.CropOptions;
 import com.jph.takephoto.model.LubanOptions;
 import com.jph.takephoto.model.TResult;
 import com.jph.takephoto.model.TakePhotoOptions;
+import com.tianren.methane.App;
 import com.tianren.methane.R;
 import com.tianren.methane.activity.AboutUsActivity;
 import com.tianren.methane.activity.CallPoliceActivity;
 import com.tianren.methane.activity.FeedBackActivity;
 import com.tianren.methane.activity.LinkServiceActivity;
+import com.tianren.methane.activity.LoginActivity;
 import com.tianren.methane.activity.ResetPwdActivity;
+import com.tianren.methane.utils.SharedPreferenceUtil;
 import com.tianren.methane.view.ImgPickerPopupwindow;
 
 import java.io.File;
@@ -201,6 +205,13 @@ public class MeFragment extends TakePhotoFragment implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.quit_button:
+                Application application = getActivity().getApplication();
+                ((App) getActivity().getApplication()).closeAllActivity();
+                SharedPreferenceUtil.clearSave();
+                //开启登录界面
+                Intent intent = new Intent(application, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                application.startActivity(intent);
                 break;
 
             case R.id.ll_resetpwd://修改密码
