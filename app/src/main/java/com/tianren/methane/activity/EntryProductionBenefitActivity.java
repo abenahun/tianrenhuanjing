@@ -50,8 +50,8 @@ public class EntryProductionBenefitActivity extends BaseActivity implements View
     private LinearLayout ll_back;
     private TextView tv_title, tv_time;
     private Button btn_submit;
-    private EditText et_chanqi, et_chandian, et_time;
-    private String chanqi, chandian;
+    private EditText et_chanqi, et_chandian,et_tiyou;
+    private String chanqi, chandian,tiyou;
     private TimePickerView pvTime;
 
     @Override
@@ -75,11 +75,13 @@ public class EntryProductionBenefitActivity extends BaseActivity implements View
 
         et_chanqi = (EditText) findViewById(R.id.et_chanqi);
         et_chandian = (EditText) findViewById(R.id.et_chandian);
+        et_tiyou = (EditText) findViewById(R.id.et_tiyou);
         tv_time = (TextView) findViewById(R.id.tv_time);
         tv_time.setOnClickListener(this);
 
         et_chanqi.addTextChangedListener(textWatcher);
         et_chanqi.addTextChangedListener(textWatcher);
+        et_tiyou.addTextChangedListener(textWatcher);
 
 
     }
@@ -104,7 +106,6 @@ public class EntryProductionBenefitActivity extends BaseActivity implements View
             case R.id.tv_time:
                 //时间选择器
                 pvTime.show();
-
                 break;
 
         }
@@ -125,10 +126,18 @@ public class EntryProductionBenefitActivity extends BaseActivity implements View
             chandian = et_chandian.getText().toString();
         }
 
+        if (StringUtil.isEmpty(et_tiyou.getText().toString())) {
+            ToastUtils.show("请输入产电量");
+            return;
+        } else {
+            tiyou = et_tiyou.getText().toString();
+        }
+
         Gson gson = new Gson();
         CapacityBean bean = new CapacityBean();
-        bean.setGasProduction(Integer.parseInt(chanqi));
-        bean.setPowerGeneration(Integer.parseInt(chandian));
+        bean.setGasProduction(Double.parseDouble(chanqi));
+        bean.setPowerGeneration(Double.parseDouble(chandian));
+        bean.setLiftingCapacity(Double.parseDouble(tiyou));
         try {
             bean.setEntryTime(StringUtil.stringToDate(tv_time.getText().toString(),"yyyy-MM-dd HH:mm:ss"));
         } catch (ParseException e) {

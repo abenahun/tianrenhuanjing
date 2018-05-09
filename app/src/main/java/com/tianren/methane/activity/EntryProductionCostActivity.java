@@ -50,8 +50,8 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
     private LinearLayout ll_back;
     private TextView tv_title, tv_time;
     private Button btn_submit;
-    private EditText et_haoshui, et_haodian, et_haoqi;
-    private String haoshui, haodian, haoqi;
+    private EditText et_haoshui, et_haodian, et_haoqi,et_jinliao;
+    private String haoshui, haodian, haoqi,jinliao;
     private TimePickerView pvTime;
 
     @Override
@@ -76,12 +76,14 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
         et_haoshui = (EditText) findViewById(R.id.et_haoshui);
         et_haodian = (EditText) findViewById(R.id.et_haodian);
         et_haoqi = (EditText) findViewById(R.id.et_haoqi);
+        et_jinliao = (EditText) findViewById(R.id.et_jinliao);
         tv_time = (TextView) findViewById(R.id.tv_time);
         tv_time.setOnClickListener(this);
 
         et_haoshui.addTextChangedListener(textWatcher);
         et_haodian.addTextChangedListener(textWatcher);
         et_haoqi.addTextChangedListener(textWatcher);
+        et_jinliao.addTextChangedListener(textWatcher);
     }
 
     private void initDatePicker() {
@@ -130,12 +132,20 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
         } else {
             haoshui = et_haoshui.getText().toString();
         }
+        if (StringUtil.isEmpty(et_jinliao.getText().toString())) {
+            ToastUtils.show("请输入耗水量");
+            return;
+        } else {
+            jinliao = et_jinliao.getText().toString();
+        }
+
 
         Gson gson = new Gson();
         ConsumptionBean bean = new ConsumptionBean();
         bean.setPowerConsumption(Double.parseDouble(haodian));
         bean.setWaterConsumption(Double.parseDouble(haoshui));
         bean.setAirConsumption(Double.parseDouble(haoqi));
+        bean.setFeedAmount(Double.parseDouble(jinliao));
         bean.setEntryType(1);
         try {
             bean.setEntryTime(StringUtil.stringToDate(tv_time.getText().toString(),"yyyy-MM-dd HH:mm:ss"));

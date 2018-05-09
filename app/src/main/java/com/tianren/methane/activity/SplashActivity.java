@@ -46,9 +46,8 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
     private boolean ifReceFailMsg = false;     //是否接收到登录失败的消息
     private boolean isChinese = true;           //是否为中文模式
     private final String httpKey = "lzky";
-
-    /**
-     * Handler:跳转到不同界�?
+    /**6
+     * Handler:跳转到不同界面
      */
     private Handler mHandler = new Handler() {
 

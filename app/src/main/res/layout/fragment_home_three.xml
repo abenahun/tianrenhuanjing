@@ -367,6 +367,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_tiyou"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="469吨"
@@ -398,6 +399,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_jinliao"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="200吨"

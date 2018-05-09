@@ -153,6 +153,51 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:text="进料量"
+            android:textColor="@color/textblack"
+            android:textSize="@dimen/textsize18"
+            android:paddingLeft="20dp"/>
+
+
+        <EditText
+            android:id="@+id/et_jinliao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textgray"
+            android:textSize="@dimen/textsize13"
+            android:hint="请输入进料量"
+            android:inputType="numberDecimal"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@null"/>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="吨"
+            android:textColor="@color/textblack"
+            android:textSize="@dimen/textsize15"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="8dp"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/gray_cc"
+        android:layout_margin="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="14dp">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:text="录入时间"
             android:textColor="@color/textblack"
             android:textSize="@dimen/textsize18"

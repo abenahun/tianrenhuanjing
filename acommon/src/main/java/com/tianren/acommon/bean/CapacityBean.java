@@ -5,15 +5,25 @@ import java.util.Date;
 public class CapacityBean {
     private Integer id;
 
-    private Integer gasProduction;
+    private Double gasProduction;
 
-    private Integer powerGeneration;
+    private Double powerGeneration;
 
     private Integer entryType;
+
+    private Double liftingCapacity;
 
     private Date entryTime;
 
     private String addTime;
+
+    public Double getLiftingCapacity() {
+        return liftingCapacity;
+    }
+
+    public void setLiftingCapacity(Double liftingCapacity) {
+        this.liftingCapacity = liftingCapacity;
+    }
 
     public Integer getId() {
         return id;
@@ -23,19 +33,19 @@ public class CapacityBean {
         this.id = id;
     }
 
-    public Integer getGasProduction() {
+    public Double getGasProduction() {
         return gasProduction;
     }
 
-    public void setGasProduction(Integer gasProduction) {
+    public void setGasProduction(Double gasProduction) {
         this.gasProduction = gasProduction;
     }
 
-    public Integer getPowerGeneration() {
+    public Double getPowerGeneration() {
         return powerGeneration;
     }
 
-    public void setPowerGeneration(Integer powerGeneration) {
+    public void setPowerGeneration(Double powerGeneration) {
         this.powerGeneration = powerGeneration;
     }
 

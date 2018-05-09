@@ -13,11 +13,21 @@ public class ConsumptionBean {
 
     private Double energyConsumption;
 
+    private Double feedAmount;
+
     private Integer entryType;
 
     private Date entryTime;
 
     private Date addTime;
+
+    public Double getFeedAmount() {
+        return feedAmount;
+    }
+
+    public void setFeedAmount(Double feedAmount) {
+        this.feedAmount = feedAmount;
+    }
 
     public Integer getId() {
         return id;
