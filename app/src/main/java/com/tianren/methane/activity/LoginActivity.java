@@ -159,6 +159,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     if (activity.ifTimeOut == false) {
 //                        activity.goToHomeActivity();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
                     }
                     SharedPreferenceUtil.saveSharedPreString
                             (Constant.SP_USERNAME, et_username.getText().toString());
