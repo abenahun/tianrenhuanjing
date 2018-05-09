@@ -117,11 +117,11 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
 
     private void loadData() {
         List<ModelAdapter.ModelBean> list = new ArrayList<>();
-        ModelAdapter.ModelBean bean1 = new ModelAdapter.ModelBean("", "设计容量", "空数据", 0d, 0d, "m³");
-        ModelAdapter.ModelBean bean2 = new ModelAdapter.ModelBean("", "当前储气", "空数据", 0d, 0d, "m³");
-        ModelAdapter.ModelBean bean3 = new ModelAdapter.ModelBean("", "内膜高度", "空数据", 0d, 0d, "m³");
-        ModelAdapter.ModelBean bean4 = new ModelAdapter.ModelBean("", "内膜压力", "空数据", 0d, 0d, "m³");
-        ModelAdapter.ModelBean bean5 = new ModelAdapter.ModelBean("", "运行状态", "空数据", 0d, 0d, "m³");
+        ModelAdapter.ModelBean bean1 = new ModelAdapter.ModelBean("", "设计容量", "2000", -1d, 1d, "m³");
+        ModelAdapter.ModelBean bean2 = new ModelAdapter.ModelBean("", "当前储气", "空数据", -1d, 1d, "m³");
+        ModelAdapter.ModelBean bean3 = new ModelAdapter.ModelBean("", "内膜高度", "空数据", -1d, 1d, "m³");
+        ModelAdapter.ModelBean bean4 = new ModelAdapter.ModelBean("", "内膜压力", "空数据", -1d, 1d, "m³");
+        ModelAdapter.ModelBean bean5 = new ModelAdapter.ModelBean("", "运行状态", "空数据", -1d, 1d, "m³");
         list.add(bean1);
         list.add(bean2);
         list.add(bean3);
