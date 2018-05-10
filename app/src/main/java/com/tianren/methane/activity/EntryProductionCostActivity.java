@@ -22,9 +22,10 @@ import com.bigkoo.pickerview.view.TimePickerView;
 import com.google.gson.Gson;
 import com.tamic.novate.Novate;
 import com.tamic.novate.Throwable;
+import com.tianren.acommon.bean.ConsumptionBean;
+import com.tianren.acommon.remote.BaseWebService;
 import com.tianren.methane.MyBaseSubscriber;
 import com.tianren.methane.R;
-import com.tianren.acommon.bean.ConsumptionBean;
 import com.tianren.methane.bean.EntryBean;
 import com.tianren.methane.constant.Constant;
 import com.tianren.methane.utils.StringUtil;
@@ -50,8 +51,8 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
     private LinearLayout ll_back;
     private TextView tv_title, tv_time;
     private Button btn_submit;
-    private EditText et_haoshui, et_haodian, et_haoqi,et_jinliao;
-    private String haoshui, haodian, haoqi,jinliao;
+    private EditText et_haoshui, et_haodian, et_haoqi, et_jinliao;
+    private String haoshui, haodian, haoqi, jinliao;
     private TimePickerView pvTime;
 
     @Override
@@ -148,7 +149,7 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
         bean.setFeedAmount(Double.parseDouble(jinliao));
         bean.setEntryType(1);
         try {
-            bean.setEntryTime(StringUtil.stringToDate(tv_time.getText().toString(),"yyyy-MM-dd HH:mm:ss"));
+            bean.setEntryTime(StringUtil.stringToDate(tv_time.getText().toString(), "yyyy-MM-dd HH:mm:ss"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -156,7 +157,7 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
         parameters.put("consumption", gson.toJson(bean).toString());
         novate = new Novate.Builder(this)
                 .connectTimeout(8)
-                .baseUrl(Constant.BASE_URL)
+                .baseUrl(BaseWebService.BASE_URL)
                 //.addApiManager(ApiManager.class)
                 .addLog(true)
                 .build();

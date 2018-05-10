@@ -22,9 +22,10 @@ import com.bigkoo.pickerview.view.TimePickerView;
 import com.google.gson.Gson;
 import com.tamic.novate.Novate;
 import com.tamic.novate.Throwable;
+import com.tianren.acommon.bean.CapacityBean;
+import com.tianren.acommon.remote.BaseWebService;
 import com.tianren.methane.MyBaseSubscriber;
 import com.tianren.methane.R;
-import com.tianren.acommon.bean.CapacityBean;
 import com.tianren.methane.bean.EntryBean;
 import com.tianren.methane.constant.Constant;
 import com.tianren.methane.utils.StringUtil;
@@ -148,7 +149,7 @@ public class EntryProductionBenefitActivity extends BaseActivity implements View
         parameters.put("capacity", gson.toJson(bean).toString());
         novate = new Novate.Builder(this)
                 .connectTimeout(8)
-                .baseUrl(Constant.BASE_URL)
+                .baseUrl(BaseWebService.BASE_URL)
                 //.addApiManager(ApiManager.class)
                 .addLog(true)
                 .build();

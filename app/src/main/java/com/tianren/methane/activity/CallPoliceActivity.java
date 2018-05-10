@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tamic.novate.Novate;
 import com.tamic.novate.Throwable;
+import com.tianren.acommon.remote.BaseWebService;
 import com.tianren.methane.MyBaseSubscriber;
 import com.tianren.methane.R;
 import com.tianren.methane.adapter.CallPoliceAdapter;
@@ -113,7 +114,7 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
         parameters.put("pageNum", page);
         Novate novate = new Novate.Builder(this)
                 .connectTimeout(8)
-                .baseUrl(Constant.BASE_URL)
+                .baseUrl(BaseWebService.BASE_URL)
                 .addLog(true)
                 .build();
 

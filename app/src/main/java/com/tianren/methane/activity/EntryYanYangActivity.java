@@ -23,24 +23,19 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
-import com.blankj.aloglibrary.ALog;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.tamic.novate.Novate;
-import com.tamic.novate.NovateResponse;
 import com.tamic.novate.Throwable;
-import com.tianren.methane.ExempleActivity;
+import com.tianren.acommon.remote.BaseWebService;
 import com.tianren.methane.MyBaseSubscriber;
 import com.tianren.methane.R;
 import com.tianren.methane.bean.AnaerobicTankBean;
 import com.tianren.methane.bean.EntryBean;
 import com.tianren.methane.constant.Constant;
-import com.tianren.methane.model.ResultModel;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,8 +45,6 @@ import java.util.Locale;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
-
-import static com.tianren.methane.R.mipmap.novate;
 
 
 /**
@@ -227,7 +220,7 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
         parameters.put("anaerobicTankData", gson.toJson(bean).toString());
         novate = new Novate.Builder(this)
                 .connectTimeout(8)
-                .baseUrl(Constant.BASE_URL)
+                .baseUrl(BaseWebService.BASE_URL)
                 //.addApiManager(ApiManager.class)
                 .addLog(true)
                 .build();

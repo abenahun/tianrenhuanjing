@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tamic.novate.Novate;
 import com.tamic.novate.Throwable;
+import com.tianren.acommon.remote.BaseWebService;
 import com.tianren.methane.MyBaseSubscriber;
 import com.tianren.methane.R;
 import com.tianren.methane.bean.DevInfo;
@@ -105,7 +106,7 @@ public class MainActivity extends BaseActivity {
         Map<String, Object> parameters = new HashMap<>();
         novate = new Novate.Builder(this)
                 .connectTimeout(8)
-                .baseUrl(Constant.BASE_URL)
+                .baseUrl(BaseWebService.BASE_URL)
                 .addLog(true)
                 .build();
 
@@ -209,7 +210,7 @@ public class MainActivity extends BaseActivity {
         Map<String, Object> parameters = new HashMap<>();
         novate = new Novate.Builder(this)
                 .connectTimeout(8)
-                .baseUrl(Constant.BASE_URL)
+                .baseUrl(BaseWebService.BASE_URL)
                 .addLog(true)
                 .build();
 
