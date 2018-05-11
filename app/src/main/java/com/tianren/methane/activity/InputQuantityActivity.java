@@ -1,5 +1,6 @@
 package com.tianren.methane.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +42,7 @@ public class InputQuantityActivity extends BaseActivity implements View.OnClickL
         moreIv = (ImageView) findViewById(R.id.moreIv);
         moreIv.setVisibility(View.VISIBLE);
         moreIv.setImageResource(R.mipmap.history);
+        moreIv.setOnClickListener(this);
         initDatePicker();
     }
 
@@ -51,6 +53,10 @@ public class InputQuantityActivity extends BaseActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.btn_submit:
+                break;
+            case R.id.moreIv:
+                Intent intent = new Intent(this, InputQuantityHisActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;
