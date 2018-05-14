@@ -1,58 +1,49 @@
 package com.tianren.methane.activity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tianren.methane.R;
-import com.tianren.methane.adapter.ModelAdapter;
-import com.tianren.methane.event.ModelEvent;
-import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
+import com.tianren.methane.fragment.YanYangFragment1;
+import com.tianren.methane.fragment.YanYangFragment2;
+import com.tianren.methane.fragment.YanYangFragment3;
+import com.tianren.methane.fragment.YanYangFragment4;
+import com.tianren.methane.fragment.YanYangFragment5;
+import com.tianren.methane.fragment.YanYangFragment6;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.tianren.methane.activity.MainActivity.modelMap;
-import static com.tianren.methane.activity.MainActivity.sensorDataMap;
+import static android.support.design.widget.TabLayout.MODE_SCROLLABLE;
 
 /**
  * @author Qiu
  * @date 2018/4/09
  */
 public class YanYangActivity extends BaseActivity implements View.OnClickListener {
-
-    private TextView tv_qiguishaixuan;
-    private Button btn_data;
-    private String[] items = {"厌氧罐 No1", "厌氧罐 No2", "厌氧罐 No3"};
-
     private LinearLayout ll_back;
     private TextView tv_title;
-    private SwipeMenuRecyclerView recyclerView;
-    private ModelAdapter adapter;
-
     private ImageView moreIv;
+
+    private TabLayout mTabLayout;
+    private final String[] TAB_TITLES = new String[]{"工艺流程", "稳定指数", "智能进料", "聚类分析", "智能搅拌", "产气排名"};
+    private final Fragment[] TAB_FRAGMENTS = new Fragment[]
+            {new YanYangFragment1(), new YanYangFragment2(), new YanYangFragment3(), new YanYangFragment4(), new YanYangFragment5(), new YanYangFragment6()};
+    private MyViewPagerAdapter mAdapter;
+    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yanyang);
-        EventBus.getDefault().register(this);
         initView();
-        loadData();
     }
 
 
@@ -66,74 +57,23 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
         moreIv.setOnClickListener(this);
         moreIv.setVisibility(View.VISIBLE);
 
-        recyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recyclerView);
-        adapter = new ModelAdapter(this, listener);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setItemViewSwipeEnabled(false);
-        View headView = LayoutInflater.from(this).inflate(R.layout.head_yanyang, recyclerView, false);
-        tv_qiguishaixuan = (TextView) headView.findViewById(R.id.tv_qiguishaixuan);
-        btn_data = (Button) headView.findViewById(R.id.btn_data);
-        tv_qiguishaixuan.setOnClickListener(this);
-        btn_data.setOnClickListener(this);
-        recyclerView.addHeaderView(headView);
-        recyclerView.setAdapter(adapter);
-    }
-
-    private void loadData() {
-        List<ModelAdapter.ModelBean> list = new ArrayList<>();
-        if (sensorDataMap == null) {
-            list = null;
-        } else {
-            list.add(getModel("d37"));
-            list.add(getModel("d38"));
-            list.add(getModel("d39"));
-            list.add(getModel("d40"));
-            list.add(getModel("d41"));
-            list.add(getModel("d42"));
-            list.add(getModel("d43"));
-            list.add(getModel("d44"));
-            list.add(getModel("d45"));
-            list.add(getModel("d46"));
-            list.add(getModel("d47"));
-            list.add(getModel("d48"));
-            list.add(getModel("d49"));
-            list.add(getModel("d50"));
-            for (int i = 0; i < list.size(); i++) {
-                if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
-                    adapter.addItem(list.get(i));
-                }
-            }
+        mTabLayout = (TabLayout) findViewById(R.id.tablayout);
+        for (int i = 0; i < TAB_TITLES.length; i++) {
+            TabLayout.Tab tab = mTabLayout.newTab();
+            tab.setText(TAB_TITLES[i]);
+            mTabLayout.addTab(tab);
         }
+        mTabLayout.setTabMode(MODE_SCROLLABLE);
+        mAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        mViewPager.setAdapter(mAdapter);
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
+        mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
     }
-
-    public ModelAdapter.ModelBean getModel(String s) {
-        if (sensorDataMap == null) {
-            return null;
-        } else {
-            return new ModelAdapter.ModelBean(s, sensorDataMap.get(s).getNickName(), modelMap.get(s),
-                    sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum(),
-                    sensorDataMap.get(s).getSensorUnit());
-        }
-    }
-
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_qiguishaixuan:
-                AlertDialog dialog = new AlertDialog.Builder(YanYangActivity.this).setTitle("厌氧罐筛选")
-                        .setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                tv_qiguishaixuan.setText(items[which]);
-                                dialog.dismiss();
-                            }
-                        }).create();
-                dialog.show();
-                break;
-
-            case R.id.btn_data:
-                break;
             case R.id.ll_back:
                 finish();
                 break;
@@ -145,25 +85,23 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(ModelEvent event) {
-        loadData();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
-
-    private ModelAdapter.ModelListener listener = new ModelAdapter.ModelListener() {
+    /**
+     * @description: ViewPager 适配器
+     */
+    private class MyViewPagerAdapter extends FragmentPagerAdapter {
+        public MyViewPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
 
         @Override
-        public void onClick(ModelAdapter.ModelBean bean) {
-            Intent intent7 = new Intent(YanYangActivity.this, DataStatisticsActivity.class);
-            intent7.putExtra("title", "厌氧走势");
-            intent7.putExtra("statisticsName", "厌氧走势");
-            startActivity(intent7);
+        public Fragment getItem(int position) {
+            return TAB_FRAGMENTS[position];
         }
-    };
+
+        @Override
+        public int getCount() {
+            return TAB_TITLES.length;
+        }
+    }
+
 }

@@ -8,42 +8,22 @@
 
     <include layout="@layout/layout_title" />
 
-    <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
-        android:id="@+id/recyclerView"
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
+        style="@style/CustomTab"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"></com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView>
+        android:layout_height="@dimen/tab_height"></android.support.design.widget.TabLayout>
 
-    <!--<com.github.mikephil.charting.charts.LineChart-->
-    <!--android:id="@+id/diagnosisChart"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="300dp"-->
-    <!--android:layout_margin="8dp"-->
-    <!--android:visibility="gone" />-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/textgray" />
 
-    <!--<com.github.mikephil.charting.charts.LineChart-->
-    <!--android:id="@+id/cycleChart1"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="200dp"-->
-    <!--android:layout_marginLeft="8dp"-->
-    <!--android:layout_marginRight="8dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:visibility="gone" />-->
-
-    <!--<com.github.mikephil.charting.charts.LineChart-->
-    <!--android:id="@+id/cycleChart2"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="200dp"-->
-    <!--android:layout_marginBottom="8dp"-->
-    <!--android:layout_marginLeft="8dp"-->
-    <!--android:layout_marginRight="8dp"-->
-    <!--android:visibility="gone" />-->
-
-    <!--<com.github.mikephil.charting.charts.RadarChart-->
-    <!--android:id="@+id/predictChart"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="300dp"-->
-    <!--android:layout_margin="8dp"-->
-    <!--android:visibility="gone" />-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"></android.support.v4.view.ViewPager>
 
 </LinearLayout>
