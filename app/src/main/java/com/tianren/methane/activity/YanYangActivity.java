@@ -98,10 +98,10 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
             list.add(getModel("d48"));
             list.add(getModel("d49"));
             list.add(getModel("d50"));
-        }
-        for (int i = 0; i < list.size(); i++) {
-            if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
-                adapter.addItem(list.get(i));
+            for (int i = 0; i < list.size(); i++) {
+                if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
+                    adapter.addItem(list.get(i));
+                }
             }
         }
     }
