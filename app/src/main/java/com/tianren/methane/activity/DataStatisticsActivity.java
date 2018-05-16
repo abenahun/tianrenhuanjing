@@ -16,7 +16,10 @@ import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
 import com.tianren.methane.utils.MPChartHelper;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,8 +52,8 @@ public class DataStatisticsActivity extends BaseActivity implements View.OnClick
         bundle = intent.getExtras();
         title = bundle.getString("title");
         statisticsName = bundle.getString("statisticsName");
-        tableName = bundle.getString("tableName");
-        columnName = bundle.getString("columnName");
+        tableName = intent.getStringExtra("tableName");
+        columnName = intent.getStringExtra("columnName");
         lineChart = (LineChart) findViewById(R.id.lineChart);
         ll_back = (LinearLayout) findViewById(R.id.ll_back);
         ll_back.setOnClickListener(this);
@@ -65,13 +68,17 @@ public class DataStatisticsActivity extends BaseActivity implements View.OnClick
             xAxisValues.add(String.valueOf(i));
             yAxisValues.add((float) (Math.random() * 10 + 1000));
         }
-
-        WebServiceManage.getService(EntryService.class).getHistoricalData(tableName, columnName, "2018-5-6", "2018-5-16").setCallback(new SCallBack<BaseResponse<List<String>>>() {
-            @Override
-            public void callback(boolean isok, String msg, BaseResponse<List<String>> res) {
-                Log.e("1111111", "callback: " + isok);
-            }
-        });
+        Log.e("!", "initData: " + tableName);
+        Log.e("!", "initData: " + columnName);
+        Log.e("!", "initData: " + getMonthAgo());
+        if (tableName != null) {
+            WebServiceManage.getService(EntryService.class).getHistoricalData(tableName, columnName, getMonthAgo(), getNowTime()).setCallback(new SCallBack<BaseResponse<List<String>>>() {
+                @Override
+                public void callback(boolean isok, String msg, BaseResponse<List<String>> res) {
+                    Log.e("1111111", "callback: " + isok);
+                }
+            });
+        }
     }
 
     @Override
@@ -83,5 +90,31 @@ public class DataStatisticsActivity extends BaseActivity implements View.OnClick
             default:
                 break;
         }
+    }
+
+    /**
+     * 获取当前年月日时分秒
+     *
+     * @return
+     */
+    public static String getNowTime() {
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(now);
+        return date;
+    }
+
+    /**
+     * 获取一个月前的日期
+     *
+     * @return
+     */
+    public static String getMonthAgo() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.MONTH, -1);
+        String monthAgo = simpleDateFormat.format(calendar.getTime());
+        return monthAgo;
     }
 }
