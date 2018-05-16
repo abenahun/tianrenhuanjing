@@ -25,6 +25,14 @@ import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 import com.tianren.methane.view.WaitDialog;
 
+import org.zoolu.net.IpAddress;
+import org.zoolu.sip.address.NameAddress;
+import org.zoolu.sip.address.SipURL;
+import org.zoolu.sip.call.RegistrationClient;
+import org.zoolu.sip.call.RegistrationClientListener;
+import org.zoolu.sip.provider.SipProvider;
+import org.zoolu.sip.provider.SipStack;
+
 import java.lang.ref.WeakReference;
 
 /**
@@ -32,7 +40,6 @@ import java.lang.ref.WeakReference;
  */
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
-    private static String TAG = "LoginActivity";
     private WaitDialog waitDialog; //登录等待对话框
     private static final int MSG_IMAGE_ANIMATE = 0;
     private Button btn_login, button;
@@ -91,6 +98,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
+    private static final String TAG = "Mjsip-Test-App|| ";
+    private IpAddress ip;
+
     @Override
     public void onClick(View v) {
 
@@ -123,7 +133,29 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 break;
 
             case R.id.button:
+                if (!SipStack.isInit()) {
+                    SipStack.init();
+                    Log.v(TAG, "Stack.init");
+                }
+                ip = IpAddress.getLocalHostAddress();
+                SipProvider sipProvider = new SipProvider(ip.toString(), 8080);
+                SipURL registrar = new SipURL("");
+                NameAddress target_url = new NameAddress("");
+                NameAddress from_url = new NameAddress("");
+                RegistrationClient reg = new RegistrationClient(sipProvider, registrar, from_url,
+                        target_url, "18561589055", "", "123456", new RegistrationClientListener() {
+                    @Override
+                    public void onRegistrationSuccess(RegistrationClient registrationClient, NameAddress nameAddress, NameAddress nameAddress1, String s) {
+                    }
 
+                    @Override
+                    public void onRegistrationFailure(RegistrationClient registrationClient, NameAddress nameAddress, NameAddress nameAddress1, String s) {
+
+                    }
+                });
+
+                reg.register();
+                Log.v(TAG, "reg.register()");
                 break;
 
             case R.id.ll_back:
