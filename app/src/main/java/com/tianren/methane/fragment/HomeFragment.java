@@ -303,7 +303,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 Intent intent3 = new Intent(getActivity(), DataStatisticsActivity.class);
                 intent3.putExtra("title", "水耗统计");
                 intent3.putExtra("statisticsName", "水耗统计表");
-                intent3.putExtra("tableName", StringUtil.humpToLine2("Consumption"));
+                intent3.putExtra("tableName", "Consumption");
                 intent3.putExtra("columnName", StringUtil.humpToLine2("waterConsumption"));
                 startActivity(intent3);
                 break;
