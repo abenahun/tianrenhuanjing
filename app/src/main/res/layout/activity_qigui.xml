@@ -8,6 +8,13 @@
 
     <include layout="@layout/layout_title" />
 
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
+        style="@style/CustomTab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tab_height">
+    </android.support.design.widget.TabLayout>
+
     <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

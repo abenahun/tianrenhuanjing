@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/qigui_jingao"
+                        android:text="警告"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:textSize="@dimen/textsize20"
+                        android:textStyle="bold"
+                        android:textColor="@color/baojing"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="处理量过大"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:textSize="@dimen/textsize17"
+                        android:textColor="@color/textblack"
+                        android:paddingTop="5dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2018-05-15 11:11:11"
+                        android:gravity="center|right"
+                        android:paddingLeft="8dp"
+                        android:textSize="@dimen/textsize13"
+                        android:textColor="@color/textgray"
+                        android:paddingTop="5dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_cc"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/qigui_chaogao"
+                        android:text="超高预警"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:textSize="@dimen/textsize20"
+                        android:textStyle="bold"
+                        android:textColor="@color/red"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="甲烷浓度超标"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:textSize="@dimen/textsize17"
+                        android:textColor="@color/textblack"
+                        android:paddingTop="5dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2018-05-15 11:11:11"
+                        android:gravity="center|right"
+                        android:paddingLeft="8dp"
+                        android:textSize="@dimen/textsize13"
+                        android:textColor="@color/textgray"
+                        android:paddingTop="5dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_cc"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/qigui_jingao"
+                        android:text="警告"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:textSize="@dimen/textsize20"
+                        android:textStyle="bold"
+                        android:textColor="@color/baojing"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="内膜压力小"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:textSize="@dimen/textsize17"
+                        android:textColor="@color/textblack"
+                        android:paddingTop="5dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2018-05-15 11:11:11"
+                        android:gravity="center|right"
+                        android:paddingLeft="8dp"
+                        android:textSize="@dimen/textsize13"
+                        android:textColor="@color/textgray"
+                        android:paddingTop="5dp" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

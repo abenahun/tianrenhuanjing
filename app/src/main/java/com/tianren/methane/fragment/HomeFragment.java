@@ -126,7 +126,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void loadData() {
-        WebServiceManage.getService(EntryService.class).getCapacity().setCallback(new SCallBack<BaseResponse<List<CapacityBean>>>() {
+        WebServiceManage.getService(EntryService.class).getCapacity().
+                setCallback(new SCallBack<BaseResponse<List<CapacityBean>>>() {
             @Override
             public void callback(boolean isok, String msg, BaseResponse<List<CapacityBean>> res) {
                 Log.e("isok", "callback: " + isok);
@@ -141,7 +142,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 }
             }
         });
-        WebServiceManage.getService(EntryService.class).getConsumptionData().setCallback(new SCallBack<BaseResponse<List<ConsumptionBean>>>() {
+        WebServiceManage.getService(EntryService.class).getConsumptionData().
+                setCallback(new SCallBack<BaseResponse<List<ConsumptionBean>>>() {
             @Override
             public void callback(boolean isok, String msg, BaseResponse<List<ConsumptionBean>> res) {
                 if (isok) {

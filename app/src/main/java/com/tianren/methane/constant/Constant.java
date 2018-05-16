@@ -8,11 +8,11 @@ public class Constant {
     /**
      * http请求的baseUrl
      */
-    public static final String BASE_URL = "http://engineerlee.top:8080/";
-    public static final String TIANREN_URL = "";
+//    public static final String BASE_URL = "http://engineerlee.top:8080/";
+//    public static final String TIANREN_URL = "";
     //http://engineerlee.top:8080/entry/entryAnaerobicTankData?anaerobicTankData
-//    public static final String TIANREN_URL = "tianren/";
-//    public static final String BASE_URL = "http://iot.tianren.com:8080/";
+    public static final String TIANREN_URL = "tianren/";
+    public static final String BASE_URL = "http://iot.tianren.com:8080/";
 
     /**
      * activity页面传参
