@@ -138,19 +138,20 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     Log.v(TAG, "Stack.init");
                 }
                 ip = IpAddress.getLocalHostAddress();
-                SipProvider sipProvider = new SipProvider(ip.toString(), 8080);
-                SipURL registrar = new SipURL("");
-                NameAddress target_url = new NameAddress("");
-                NameAddress from_url = new NameAddress("");
+                SipProvider sipProvider = new SipProvider(null);
+                SipURL registrar = new SipURL("iotac.tianren.com");
+                NameAddress target_url = new NameAddress("1001");
+                NameAddress from_url = new NameAddress("18561589055");
                 RegistrationClient reg = new RegistrationClient(sipProvider, registrar, from_url,
                         target_url, "18561589055", "", "123456", new RegistrationClientListener() {
                     @Override
                     public void onRegistrationSuccess(RegistrationClient registrationClient, NameAddress nameAddress, NameAddress nameAddress1, String s) {
+                        Log.e(TAG, "onRegistrationSuccess: ");
                     }
 
                     @Override
                     public void onRegistrationFailure(RegistrationClient registrationClient, NameAddress nameAddress, NameAddress nameAddress1, String s) {
-
+                        Log.e(TAG, "onRegistrationFailure: ");
                     }
                 });
 

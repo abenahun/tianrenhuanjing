@@ -41,4 +41,22 @@ public class EntryService extends BaseWebService {
         return request(GET_CONSUMPTIONDATA, p, new TypeToken<BaseResponse<List<ConsumptionBean>>>() {
         }.getType());
     }
+
+    /**
+     * 获取历史数据
+     *
+     * @return
+     */
+    private String GET_HISTORICALDATA = TIANREN_URL + "entry/getHistoricalData";
+
+    public WebTask<BaseResponse<List<String>>> getHistoricalData(String tableName, String columnName,
+                                                                 String startTime, String endTime) {
+        Map<String, Object> p = new HashMap<>();
+        p.put("tableName", tableName);
+        p.put("columnName", columnName);
+        p.put("startTime", startTime);
+        p.put("endTime", endTime);
+        return request(GET_HISTORICALDATA, p, new TypeToken<BaseResponse<List<String>>>() {
+        }.getType());
+    }
 }
