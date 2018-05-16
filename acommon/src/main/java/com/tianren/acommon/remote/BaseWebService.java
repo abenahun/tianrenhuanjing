@@ -1,6 +1,7 @@
 package com.tianren.acommon.remote;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.tamic.novate.BaseSubscriber;
 import com.tamic.novate.Novate;
@@ -65,6 +66,11 @@ public class BaseWebService {
             WebServiceManage.removeTask(url);
             WebServiceManage.addTask(url, webTask);
         }
+        String rq = "";
+        for (String s : parameters.keySet()) {
+            rq += (s + ":" + parameters.get(s) + " ");
+        }
+        Log.e("BaseWebService", "request: " + rq);
         novate.post(url, parameters,
                 new BaseSubscriber<ResponseBody>(context) {
                     @Override
