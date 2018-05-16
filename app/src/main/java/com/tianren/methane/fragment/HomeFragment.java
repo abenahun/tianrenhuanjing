@@ -25,6 +25,7 @@ import com.tianren.methane.activity.DataStatisticsActivity;
 import com.tianren.methane.activity.RunningStatusActivity;
 import com.tianren.methane.manager.LineChartManager;
 import com.tianren.methane.utils.MPChartHelper;
+import com.tianren.methane.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,38 +129,38 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private void loadData() {
         WebServiceManage.getService(EntryService.class).getCapacity().
                 setCallback(new SCallBack<BaseResponse<List<CapacityBean>>>() {
-            @Override
-            public void callback(boolean isok, String msg, BaseResponse<List<CapacityBean>> res) {
-                Log.e("isok", "callback: " + isok);
-                if (isok) {
-                    Double gasProduction = res.getData().get(0).getGasProduction();
-                    airEarnings.setText((gasProduction.equals(0) ? "0" : (gasProduction + "")) + "元");
-                    Double powerGeneration = res.getData().get(0).getPowerGeneration();
-                    eleEarnings.setText((powerGeneration.equals(0) ? "0" : (powerGeneration + "")) + "元");
-                    allEarnings.setText((gasProduction + powerGeneration) + "元");
-                    Double tiyou = res.getData().get(0).getLiftingCapacity();
-                    tv_tiyou.setText((tiyou.equals(0) ? "0" : (tiyou + "")) + "元");
-                }
-            }
-        });
+                    @Override
+                    public void callback(boolean isok, String msg, BaseResponse<List<CapacityBean>> res) {
+                        Log.e("isok", "callback: " + isok);
+                        if (isok) {
+                            Double gasProduction = res.getData().get(0).getGasProduction();
+                            airEarnings.setText((gasProduction.equals(0) ? "0" : (gasProduction + "")) + "元");
+                            Double powerGeneration = res.getData().get(0).getPowerGeneration();
+                            eleEarnings.setText((powerGeneration.equals(0) ? "0" : (powerGeneration + "")) + "元");
+                            allEarnings.setText((gasProduction + powerGeneration) + "元");
+                            Double tiyou = res.getData().get(0).getLiftingCapacity();
+                            tv_tiyou.setText((tiyou.equals(0) ? "0" : (tiyou + "")) + "元");
+                        }
+                    }
+                });
         WebServiceManage.getService(EntryService.class).getConsumptionData().
                 setCallback(new SCallBack<BaseResponse<List<ConsumptionBean>>>() {
-            @Override
-            public void callback(boolean isok, String msg, BaseResponse<List<ConsumptionBean>> res) {
-                if (isok) {
-                    Double waterConsumption = res.getData().get(0).getWaterConsumption();
-                    waterConsume.setText(waterConsumption.equals(0) ? "0" : (waterConsumption + ""));
-                    Double powerConsumption = res.getData().get(0).getPowerConsumption();
-                    eleConsume.setText(powerConsumption.equals(0) ? "0" : (powerConsumption + ""));
-                    Double airConsumption = res.getData().get(0).getAirConsumption();
-                    hotConsume.setText(airConsumption.equals(0) ? "0" : (airConsumption + ""));
-                    allConsume.setText((waterConsumption + powerConsumption + airConsumption) + "");
-                    Double jinliao = res.getData().get(0).getFeedAmount();
-                    tv_jinliao.setText(jinliao.equals(0) ? "0" : (jinliao + "")+"吨");
-                }
-                refreshLayout.setRefreshing(false);
-            }
-        });
+                    @Override
+                    public void callback(boolean isok, String msg, BaseResponse<List<ConsumptionBean>> res) {
+                        if (isok) {
+                            Double waterConsumption = res.getData().get(0).getWaterConsumption();
+                            waterConsume.setText(waterConsumption.equals(0) ? "0" : (waterConsumption + ""));
+                            Double powerConsumption = res.getData().get(0).getPowerConsumption();
+                            eleConsume.setText(powerConsumption.equals(0) ? "0" : (powerConsumption + ""));
+                            Double airConsumption = res.getData().get(0).getAirConsumption();
+                            hotConsume.setText(airConsumption.equals(0) ? "0" : (airConsumption + ""));
+                            allConsume.setText((waterConsumption + powerConsumption + airConsumption) + "");
+                            Double jinliao = res.getData().get(0).getFeedAmount();
+                            tv_jinliao.setText(jinliao.equals(0) ? "0" : (jinliao + "") + "吨");
+                        }
+                        refreshLayout.setRefreshing(false);
+                    }
+                });
     }
 
     private void initBarCharts() {
@@ -302,6 +303,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 Intent intent3 = new Intent(getActivity(), DataStatisticsActivity.class);
                 intent3.putExtra("title", "水耗统计");
                 intent3.putExtra("statisticsName", "水耗统计表");
+                intent3.putExtra("tableName", StringUtil.humpToLine2("consumption"));
+                intent3.putExtra("columnName", StringUtil.humpToLine2("waterConsumption"));
                 startActivity(intent3);
                 break;
 

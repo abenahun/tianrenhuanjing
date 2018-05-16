@@ -16,6 +16,8 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by ang on 17/3/21.
@@ -401,16 +403,16 @@ public class StringUtil {
      * 将double转为数值，并最多保留num位小数。
      *
      * @param d
-     * @param num 小数个数
+     * @param num      小数个数
      * @param defValue 默认值。当d为null时，返回该值。
      * @return
      */
-    public static String double2String(Double d, int num, String defValue){
-        if(d==null){
+    public static String double2String(Double d, int num, String defValue) {
+        if (d == null) {
             return defValue;
         }
 
-        return double2String(d,num);
+        return double2String(d, num);
     }
 
     // formatType格式为yyyy-MM-dd HH:mm:ss//yyyy年MM月dd日 HH时mm分ss秒
@@ -428,5 +430,20 @@ public class StringUtil {
         Date date = null;
         date = formatter.parse(strTime);
         return date;
+    }
+
+    /**
+     * 驼峰转下划线
+     */
+    public static Pattern humpPattern = Pattern.compile("[A-Z]");
+
+    public static String humpToLine2(String str) {
+        Matcher matcher = humpPattern.matcher(str);
+        StringBuffer sb = new StringBuffer();
+        while (matcher.find()) {
+            matcher.appendReplacement(sb, "_" + matcher.group(0).toLowerCase());
+        }
+        matcher.appendTail(sb);
+        return sb.toString();
     }
 }
