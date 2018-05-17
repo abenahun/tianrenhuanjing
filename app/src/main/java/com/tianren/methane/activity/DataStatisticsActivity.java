@@ -44,7 +44,6 @@ public class DataStatisticsActivity extends BaseActivity implements View.OnClick
 
         initView();
         initData();
-        MPChartHelper.setLineChart(lineChart, xAxisValues, yAxisValues, statisticsName, true);
     }
 
     private void initView() {
@@ -64,18 +63,22 @@ public class DataStatisticsActivity extends BaseActivity implements View.OnClick
     private void initData() {
         xAxisValues = new ArrayList<>();
         yAxisValues = new ArrayList<>();
-        for (int i = 1; i < 13; ++i) {
-            xAxisValues.add(String.valueOf(i));
-            yAxisValues.add((float) (Math.random() * 10 + 1000));
-        }
-        Log.e("!", "initData: " + tableName);
-        Log.e("!", "initData: " + columnName);
-        Log.e("!", "initData: " + getMonthAgo());
+
         if (tableName != null) {
-            WebServiceManage.getService(EntryService.class).getHistoricalData(tableName, columnName, getMonthAgo(), getNowTime()).setCallback(new SCallBack<BaseResponse<List<String>>>() {
+            WebServiceManage.getService(EntryService.class).
+                    getHistoricalData(tableName, columnName, getMonthAgo(), getNowTime()).
+                    setCallback(new SCallBack<BaseResponse<List<String>>>() {
                 @Override
                 public void callback(boolean isok, String msg, BaseResponse<List<String>> res) {
                     Log.e("1111111", "callback: " + isok);
+
+                    for (int i = 0; i < res.getData().size(); ++i) {
+                        xAxisValues.add(String.valueOf(i));
+                        yAxisValues.add(Float.parseFloat(res.getData().get(i)));
+                    }
+
+                    MPChartHelper.setLineChart(lineChart, xAxisValues, yAxisValues, statisticsName, true);
+
                 }
             });
         }

@@ -5,13 +5,13 @@ import java.util.Date;
 public class CapacityBean {
     private Integer id;
 
-    private Double gasProduction;
+    private Double gasProduction;//产气
 
-    private Double powerGeneration;
+    private Double powerGeneration;//产电
 
     private Integer entryType;
 
-    private Double liftingCapacity;
+    private Double liftingCapacity;//提油量
 
     private Date entryTime;
 

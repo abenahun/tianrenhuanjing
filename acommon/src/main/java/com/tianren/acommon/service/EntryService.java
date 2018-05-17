@@ -1,5 +1,7 @@
 package com.tianren.acommon.service;
 
+import android.util.Log;
+
 import com.google.gson.reflect.TypeToken;
 import com.tianren.acommon.BaseResponse;
 import com.tianren.acommon.bean.CapacityBean;
@@ -56,6 +58,7 @@ public class EntryService extends BaseWebService {
         p.put("columnName", columnName);
         p.put("startTime", startTime);
         p.put("endTime", endTime);
+        Log.e("syl","历史数据查询参数===》"+p.toString());
         return request(GET_HISTORICALDATA, p, new TypeToken<BaseResponse<List<String>>>() {
         }.getType());
     }

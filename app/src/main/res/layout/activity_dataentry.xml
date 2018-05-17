@@ -125,6 +125,7 @@
         android:background="@color/backcolor" />
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/ll_enter"
         android:layout_width="match_parent"
         android:layout_height="54dp"

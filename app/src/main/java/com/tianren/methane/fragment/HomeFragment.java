@@ -288,7 +288,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_runningstatus:
-                Intent intent = new Intent(getActivity(), RunningStatusActivity.class);
+                Intent intent = new Intent(getActivity(), DataStatisticsActivity.class);
+                intent.putExtra("title", "提油量统计");
+                intent.putExtra("statisticsName", "提油量统计表");
+                intent.putExtra("tableName", "Capacity");
+                intent.putExtra("columnName", StringUtil.humpToLine2("liftingCapacity"));
                 startActivity(intent);
                 break;
 
@@ -312,6 +316,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 Intent intent4 = new Intent(getActivity(), DataStatisticsActivity.class);
                 intent4.putExtra("title", "电耗统计");
                 intent4.putExtra("statisticsName", "电耗统计表");
+                intent4.putExtra("tableName", "Consumption");
+                intent4.putExtra("columnName", StringUtil.humpToLine2("powerConsumption"));
                 startActivity(intent4);
                 break;
 
@@ -319,6 +325,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 Intent intent5 = new Intent(getActivity(), DataStatisticsActivity.class);
                 intent5.putExtra("title", "热耗统计");
                 intent5.putExtra("statisticsName", "热耗统计表");
+                intent5.putExtra("tableName", "Consumption");
+                intent5.putExtra("columnName", StringUtil.humpToLine2("airConsumption"));
                 startActivity(intent5);
                 break;
 
@@ -326,6 +334,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 Intent intent6 = new Intent(getActivity(), DataStatisticsActivity.class);
                 intent6.putExtra("title", "产气效益统计");
                 intent6.putExtra("statisticsName", "产气效益统计表");
+                intent6.putExtra("tableName", "Capacity");
+                intent6.putExtra("columnName", StringUtil.humpToLine2("gasProduction"));
                 startActivity(intent6);
                 break;
 
@@ -333,6 +343,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 Intent intent7 = new Intent(getActivity(), DataStatisticsActivity.class);
                 intent7.putExtra("title", "总效益统计");
                 intent7.putExtra("statisticsName", "总效益统计表");
+
                 startActivity(intent7);
                 break;
 
@@ -340,6 +351,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 Intent intent8 = new Intent(getActivity(), DataStatisticsActivity.class);
                 intent8.putExtra("title", "产电效益统计");
                 intent8.putExtra("statisticsName", "产电效益统计表");
+                intent8.putExtra("tableName", "Capacity");
+                intent8.putExtra("columnName", StringUtil.humpToLine2("powerGeneration"));
                 startActivity(intent8);
                 break;
 
@@ -347,6 +360,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 Intent intent9 = new Intent(getActivity(), DataStatisticsActivity.class);
                 intent9.putExtra("title", "进料量统计");
                 intent9.putExtra("statisticsName", "进料量统计表");
+                intent9.putExtra("tableName", "Consumption");
+                intent9.putExtra("columnName", StringUtil.humpToLine2("feedAmount"));
                 startActivity(intent9);
                 break;
 

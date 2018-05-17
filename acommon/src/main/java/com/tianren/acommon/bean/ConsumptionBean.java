@@ -7,13 +7,13 @@ public class ConsumptionBean {
 
     private Double powerConsumption;
 
-    private Double waterConsumption;
+    private Double waterConsumption;//水耗
 
-    private Double airConsumption;
+    private Double airConsumption;//气耗
 
-    private Double energyConsumption;
+    private Double energyConsumption;//电耗
 
-    private Double feedAmount;
+    private Double feedAmount;//进料量
 
     private Integer entryType;
 
