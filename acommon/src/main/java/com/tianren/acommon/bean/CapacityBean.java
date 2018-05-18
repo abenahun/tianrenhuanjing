@@ -1,7 +1,5 @@
 package com.tianren.acommon.bean;
 
-import java.util.Date;
-
 public class CapacityBean {
     private Integer id;
 
@@ -13,7 +11,7 @@ public class CapacityBean {
 
     private Double liftingCapacity;//提油量
 
-    private Date entryTime;
+    private String entryTime;
 
     private String addTime;
 
@@ -57,11 +55,11 @@ public class CapacityBean {
         this.entryType = entryType;
     }
 
-    public Date getEntryTime() {
+    public String getEntryTime() {
         return entryTime;
     }
 
-    public void setEntryTime(Date entryTime) {
+    public void setEntryTime(String entryTime) {
         this.entryTime = entryTime;
     }
 

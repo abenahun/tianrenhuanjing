@@ -3,7 +3,6 @@ package com.tianren.methane.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -65,19 +64,15 @@ public class DataStatisticsActivity extends BaseActivity implements View.OnClick
 
         if (tableName != null) {
             WebServiceManage.getService(EntryService.class).
-                    getHistoricalData(tableName, columnName, getMonthAgo(), getNowTime()).
+                    getHistoricalData(tableName, columnName, getMonthAgo(), getNowTime(), "desc").
                     setCallback(new SCallBack<BaseResponse<List<String>>>() {
                         @Override
                         public void callback(boolean isok, String msg, BaseResponse<List<String>> res) {
-                            Log.e("1111111", "callback: " + isok);
-
                             for (int i = 0; i < res.getData().size(); ++i) {
                                 xAxisValues.add(String.valueOf(i));
                                 yAxisValues.add(Float.parseFloat(res.getData().get(i)));
                             }
-
                             MPChartHelper.setLineChart(lineChart, xAxisValues, yAxisValues, statisticsName, true);
-
                         }
                     });
         }

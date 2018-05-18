@@ -3,7 +3,6 @@ package com.tianren.methane.activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -21,25 +20,18 @@ import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.google.gson.Gson;
 import com.tamic.novate.Novate;
-import com.tamic.novate.Throwable;
+import com.tianren.acommon.BaseResponse;
 import com.tianren.acommon.bean.ConsumptionBean;
-import com.tianren.acommon.remote.BaseWebService;
-import com.tianren.methane.MyBaseSubscriber;
+import com.tianren.acommon.remote.WebServiceManage;
+import com.tianren.acommon.remote.callback.SCallBack;
+import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
-import com.tianren.methane.bean.EntryBean;
-import com.tianren.methane.constant.Constant;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
-
-import okhttp3.ResponseBody;
 
 /**
  * Created by Administrator on 2018/4/2.
@@ -148,45 +140,55 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
         bean.setAirConsumption(Double.parseDouble(haoqi));
         bean.setFeedAmount(Double.parseDouble(jinliao));
         bean.setEntryType(1);
-        try {
-            bean.setEntryTime(StringUtil.stringToDate(tv_time.getText().toString(), "yyyy-MM-dd HH:mm:ss"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("consumption", gson.toJson(bean).toString());
-        novate = new Novate.Builder(this)
-                .connectTimeout(8)
-                .baseUrl(BaseWebService.BASE_URL)
-                //.addApiManager(ApiManager.class)
-                .addLog(true)
-                .build();
-        novate.post(Constant.ENTRYCONSUMPTION_URL, parameters,
-                new MyBaseSubscriber<ResponseBody>(EntryProductionCostActivity.this) {
-                    @Override
-                    public void onError(Throwable e) {
-                        if (!TextUtils.isEmpty(e.getMessage())) {
-                            ToastUtils.show(e.getMessage());
-                        }
-                    }
-
-                    @Override
-                    public void onNext(ResponseBody responseBody) {
-                        try {
-                            String jstr = new String(responseBody.bytes());
-                            Gson gson = new Gson();
-                            EntryBean entryBean = gson.fromJson(jstr, EntryBean.class);
-                            if (entryBean.getResult()) {
-                                ToastUtils.show(entryBean.getMessage());
-                                finish();
-                            } else {
-                                ToastUtils.show(entryBean.getMessage());
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+            bean.setEntryTime(tv_time.getText().toString());
+//        try {
+//            bean.setEntryTime(StringUtil.stringToDate(tv_time.getText().toString(), "yyyy-MM-dd HH:mm:ss"));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+        WebServiceManage.getService(EntryService.class).entryConsumptionData(gson.toJson(bean).toString()).setCallback(new SCallBack<BaseResponse<Boolean>>() {
+            @Override
+            public void callback(boolean isok, String msg, BaseResponse<Boolean> res) {
+                ToastUtils.show(msg);
+                if (isok && res.getData()) {
+                    finish();
+                }
+            }
+        });
+//        Map<String, Object> parameters = new HashMap<>();
+//        parameters.put("consumption", gson.toJson(bean).toString());
+//        novate = new Novate.Builder(this)
+//                .connectTimeout(8)
+//                .baseUrl(BaseWebService.BASE_URL)
+//                //.addApiManager(ApiManager.class)
+//                .addLog(true)
+//                .build();
+//        novate.post(Constant.ENTRYCONSUMPTION_URL, parameters,
+//                new MyBaseSubscriber<ResponseBody>(EntryProductionCostActivity.this) {
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        if (!TextUtils.isEmpty(e.getMessage())) {
+//                            ToastUtils.show(e.getMessage());
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onNext(ResponseBody responseBody) {
+//                        try {
+//                            String jstr = new String(responseBody.bytes());
+//                            Gson gson = new Gson();
+//                            EntryBean entryBean = gson.fromJson(jstr, EntryBean.class);
+//                            if (entryBean.getResult()) {
+//                                ToastUtils.show(entryBean.getMessage());
+//                                finish();
+//                            } else {
+//                                ToastUtils.show(entryBean.getMessage());
+//                            }
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
     }
 
     private void initTimePicker() {//Dialog 模式下，在底部弹出

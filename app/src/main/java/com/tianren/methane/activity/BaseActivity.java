@@ -26,9 +26,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         ((App) getApplication()).addActivities(this);
     }
 
-    protected void showToast(String msg) {
-    }
-
     TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {

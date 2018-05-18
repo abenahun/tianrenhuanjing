@@ -4,37 +4,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.blankj.aloglibrary.ALog;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.tamic.novate.Novate;
-import com.tamic.novate.Throwable;
-import com.tianren.acommon.remote.BaseWebService;
-import com.tianren.methane.MyBaseSubscriber;
+import com.tianren.acommon.BaseResponse;
+import com.tianren.acommon.bean.AlarmBean;
+import com.tianren.acommon.remote.WebServiceManage;
+import com.tianren.acommon.remote.callback.SCallBack;
+import com.tianren.acommon.service.AlarmService;
 import com.tianren.methane.R;
 import com.tianren.methane.adapter.CallPoliceAdapter;
 import com.tianren.methane.base.BasePopupWindow;
-import com.tianren.methane.bean.AlarmBean;
-import com.tianren.methane.constant.Constant;
-import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 import com.tianren.methane.view.RecycleViewDivider;
 import com.yanzhenjie.recyclerview.swipe.SwipeItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import okhttp3.ResponseBody;
 
 /**
  * @author Mr.Qiu
@@ -109,66 +97,99 @@ public class CallPoliceActivity extends BaseActivity implements View.OnClickList
 
     private void loadData() {
         recyclerView.loadMoreFinish(false, true);
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("isDeal", isDeal);
-        parameters.put("pageNum", page);
-        Novate novate = new Novate.Builder(this)
-                .connectTimeout(8)
-                .baseUrl(BaseWebService.BASE_URL)
-                .addLog(true)
-                .build();
-
-        novate.post(Constant.ENTRYALARM_URL, parameters,
-                new MyBaseSubscriber<ResponseBody>(CallPoliceActivity.this) {
-                    @Override
-                    public void onError(Throwable e) {
-                        if (!TextUtils.isEmpty(e.getMessage())) {
-                            ToastUtils.show(e.getMessage());
-                            ALog.e("syl", e.getMessage());
+        WebServiceManage.getService(AlarmService.class).getAlarmListForApp(isDeal, page).setCallback(new SCallBack<BaseResponse<List<AlarmBean>>>() {
+            @Override
+            public void callback(boolean isok, String msg, BaseResponse<List<AlarmBean>> res) {
+                if (isok) {
+                    List<AlarmBean> list = res.getData();
+                    if (list != null && list.size() != 0) {
+                        for (int i = 0; i < list.size(); i++) {
+                            AlarmBean alarmBean = list.get(i);
+                            CallPoliceAdapter.CallPoliceBean item = new CallPoliceAdapter.CallPoliceBean();
+                            item.setSensorId(alarmBean.getSensorId());
+                            item.setAlarmId(alarmBean.getAlarmId());
+                            item.setState(alarmBean.getIsDeal());
+                            item.setName(alarmBean.getSensor().getNickName());
+                            item.setCallTime(alarmBean.getAlarmTime().toString());
+                            item.setLevel(alarmBean.getAlarmType());
+                            adapter.addItem(item);
                         }
-                        if (page == 1) {
-                            refreshLayout.setRefreshing(false);
-                        }
+                        adapter.notifyDataSetChanged();
+                        recyclerView.loadMoreFinish(false, true);
+                    } else {
+                        recyclerView.loadMoreFinish(true, false);
                     }
-
-                    @Override
-                    public void onNext(ResponseBody responseBody) {
-                        try {
-                            String jstr = new String(responseBody.bytes());
-                            Log.e(TAG, "onNext: " + jstr);
-                            if (StringUtil.isEmpty(jstr) || jstr.equals("true")) {
-                                adapter.notifyDataSetChanged();
-                                recyclerView.loadMoreFinish(true, false);
-                            } else {
-                                Gson gson = new Gson();
-                                List<AlarmBean> list = gson.fromJson(jstr, new TypeToken<List<AlarmBean>>() {
-                                }.getType());
-                                if (list != null && list.size() != 0) {
-                                    for (int i = 0; i < list.size(); i++) {
-                                        AlarmBean alarmBean = list.get(i);
-                                        CallPoliceAdapter.CallPoliceBean item = new CallPoliceAdapter.CallPoliceBean();
-                                        item.setSensorId(alarmBean.getSensorId());
-                                        item.setAlarmId(alarmBean.getAlarmId());
-                                        item.setState(alarmBean.getIsDeal());
-                                        item.setName(alarmBean.getSensor().getNickName());
-                                        item.setCallTime(alarmBean.getAlarmTime().toString());
-                                        item.setLevel(alarmBean.getAlarmType());
-                                        adapter.addItem(item);
-                                    }
-                                    adapter.notifyDataSetChanged();
-                                    recyclerView.loadMoreFinish(false, true);
-                                } else {
-                                    recyclerView.loadMoreFinish(true, false);
-                                }
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        if (page == 1) {
-                            refreshLayout.setRefreshing(false);
-                        }
+                    if (page == 1) {
+                        refreshLayout.setRefreshing(false);
                     }
-                });
+                } else {
+                    ToastUtils.show(msg);
+                    if (page == 1) {
+                        refreshLayout.setRefreshing(false);
+                    }
+                }
+            }
+        });
+//        Map<String, Object> parameters = new HashMap<>();
+//        parameters.put("isDeal", isDeal);
+//        parameters.put("pageNum", page);
+//        Novate novate = new Novate.Builder(this)
+//                .connectTimeout(8)
+//                .baseUrl(BaseWebService.BASE_URL)
+//                .addLog(true)
+//                .build();
+//
+//        novate.post(Constant.ENTRYALARM_URL, parameters,
+//                new MyBaseSubscriber<ResponseBody>(CallPoliceActivity.this) {
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        if (!TextUtils.isEmpty(e.getMessage())) {
+//                            ToastUtils.show(e.getMessage());
+//                            ALog.e("syl", e.getMessage());
+//                        }
+//                        if (page == 1) {
+//                            refreshLayout.setRefreshing(false);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onNext(ResponseBody responseBody) {
+//                        try {
+//                            String jstr = new String(responseBody.bytes());
+//                            Log.e(TAG, "onNext: " + jstr);
+//                            if (StringUtil.isEmpty(jstr) || jstr.equals("true")) {
+//                                adapter.notifyDataSetChanged();
+//                                recyclerView.loadMoreFinish(true, false);
+//                            } else {
+//                                Gson gson = new Gson();
+//                                List<AlarmBean> list = gson.fromJson(jstr, new TypeToken<List<AlarmBean>>() {
+//                                }.getType());
+//                                if (list != null && list.size() != 0) {
+//                                    for (int i = 0; i < list.size(); i++) {
+//                                        AlarmBean alarmBean = list.get(i);
+//                                        CallPoliceAdapter.CallPoliceBean item = new CallPoliceAdapter.CallPoliceBean();
+//                                        item.setSensorId(alarmBean.getSensorId());
+//                                        item.setAlarmId(alarmBean.getAlarmId());
+//                                        item.setState(alarmBean.getIsDeal());
+//                                        item.setName(alarmBean.getSensor().getNickName());
+//                                        item.setCallTime(alarmBean.getAlarmTime().toString());
+//                                        item.setLevel(alarmBean.getAlarmType());
+//                                        adapter.addItem(item);
+//                                    }
+//                                    adapter.notifyDataSetChanged();
+//                                    recyclerView.loadMoreFinish(false, true);
+//                                } else {
+//                                    recyclerView.loadMoreFinish(true, false);
+//                                }
+//                            }
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                        if (page == 1) {
+//                            refreshLayout.setRefreshing(false);
+//                        }
+//                    }
+//                });
     }
 
     @Override

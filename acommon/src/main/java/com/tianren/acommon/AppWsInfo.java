@@ -5,6 +5,7 @@ import com.tianren.acommon.remote.ResultCheck;
 import com.tianren.acommon.remote.ResultHandle;
 import com.tianren.acommon.remote.WebServiceInfo;
 import com.tianren.acommon.service.AlarmService;
+import com.tianren.acommon.service.DetailedDataService;
 import com.tianren.acommon.service.EntryService;
 
 /**
@@ -16,7 +17,8 @@ public class AppWsInfo extends WebServiceInfo {
     public Class<?>[] getInterFaceClass() {
         return new Class<?>[]{
                 AlarmService.class,
-                EntryService.class
+                EntryService.class,
+                DetailedDataService.class
         };
     }
 

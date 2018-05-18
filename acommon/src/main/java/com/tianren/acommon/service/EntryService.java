@@ -52,14 +52,57 @@ public class EntryService extends BaseWebService {
     private String GET_HISTORICALDATA = TIANREN_URL + "entry/getHistoricalData";
 
     public WebTask<BaseResponse<List<String>>> getHistoricalData(String tableName, String columnName,
-                                                                 String startTime, String endTime) {
+                                                                 String startTime, String endTime, String sort) {
         Map<String, Object> p = new HashMap<>();
         p.put("tableName", tableName);
         p.put("columnName", columnName);
         p.put("startTime", startTime);
         p.put("endTime", endTime);
-        Log.e("syl","历史数据查询参数===》"+p.toString());
+        p.put("sort", sort);
+        Log.e("syl", "历史数据查询参数===》" + p.toString());
         return request(GET_HISTORICALDATA, p, new TypeToken<BaseResponse<List<String>>>() {
+        }.getType());
+    }
+
+    /**
+     * 生产成本录入
+     *
+     * @return
+     */
+    private String ENTRYCONSUMPTIONDATA = TIANREN_URL + "entry/entryConsumptionData";
+
+    public WebTask<BaseResponse<Boolean>> entryConsumptionData(String consumption) {
+        Map<String, Object> p = new HashMap<>();
+        p.put("consumption", consumption);
+        return request(ENTRYCONSUMPTIONDATA, p, new TypeToken<BaseResponse<Boolean>>() {
+        }.getType());
+    }
+
+    /**
+     * 录入生产效益
+     *
+     * @return
+     */
+    private String ENTRYCAPACITY = TIANREN_URL + "entry/entryCapacity";
+
+    public WebTask<BaseResponse<Boolean>> entryCapacity(String capacity) {
+        Map<String, Object> p = new HashMap<>();
+        p.put("capacity", capacity);
+        return request(ENTRYCAPACITY, p, new TypeToken<BaseResponse<Boolean>>() {
+        }.getType());
+    }
+
+    /**
+     * 智能厌氧反应罐录入
+     *
+     * @return
+     */
+    private String ENTRYANAEROBICTANKDATA = TIANREN_URL + "entry/entryAnaerobicTankData";
+
+    public WebTask<BaseResponse<Boolean>> entryAnaerobicTankData(String anaerobicTankData) {
+        Map<String, Object> p = new HashMap<>();
+        p.put("caanaerobicTankDatapacity", anaerobicTankData);
+        return request(ENTRYANAEROBICTANKDATA, p, new TypeToken<BaseResponse<Boolean>>() {
         }.getType());
     }
 }

@@ -9,39 +9,32 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.tamic.novate.Novate;
-import com.tamic.novate.Throwable;
-import com.tianren.acommon.remote.BaseWebService;
-import com.tianren.methane.MyBaseSubscriber;
+import com.tianren.acommon.BaseResponse;
+import com.tianren.acommon.bean.SensorBean;
+import com.tianren.acommon.remote.WebServiceManage;
+import com.tianren.acommon.remote.callback.SCallBack;
+import com.tianren.acommon.service.DetailedDataService;
 import com.tianren.methane.R;
 import com.tianren.methane.bean.DevInfo;
-import com.tianren.methane.bean.SensorBean;
-import com.tianren.methane.constant.Constant;
 import com.tianren.methane.constant.MsgDefCtrl;
 import com.tianren.methane.fragment.HomeFragment;
 import com.tianren.methane.fragment.ManagerFragment;
 import com.tianren.methane.fragment.MeFragment;
 import com.tianren.methane.jniutils.ParseDataFromDev;
 import com.tianren.methane.service.SipService;
-import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import okhttp3.ResponseBody;
 
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
@@ -103,39 +96,50 @@ public class MainActivity extends BaseActivity {
      * 获取静态表数据
      */
     private void getStaticData() {
-        Map<String, Object> parameters = new HashMap<>();
-        novate = new Novate.Builder(this)
-                .connectTimeout(8)
-                .baseUrl(BaseWebService.BASE_URL)
-                .addLog(true)
-                .build();
-
-        novate.post(Constant.ENTRYSTATIC_URL, parameters,
-                new MyBaseSubscriber<ResponseBody>(MainActivity.this) {
-                    @Override
-                    public void onError(Throwable e) {
-                        if (!TextUtils.isEmpty(e.getMessage())) {
-                            ToastUtils.show(e.getMessage());
-                        }
-                        sensorDataMap = null;
-                    }
-
-                    @Override
-                    public void onNext(ResponseBody responseBody) {
-                        try {
-                            String jstr = new String(responseBody.bytes());
-                            if (StringUtil.isEmpty(jstr)) {
-                                sensorDataMap = null;
-                            } else {
-                                Gson gson = new Gson();
-                                sensorDataMap = gson.fromJson(jstr, new TypeToken<Map<String, SensorBean>>() {
-                                }.getType());
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+        WebServiceManage.getService(DetailedDataService.class).appStaticData().setCallback(new SCallBack<BaseResponse<Map<String, SensorBean>>>() {
+            @Override
+            public void callback(boolean isok, String msg, BaseResponse<Map<String, SensorBean>> res) {
+                if (isok) {
+                    sensorDataMap = res.getData();
+                } else {
+                    ToastUtils.show("静态表数据获取失败");
+                    sensorDataMap = null;
+                }
+            }
+        });
+//        Map<String, Object> parameters = new HashMap<>();
+//        novate = new Novate.Builder(this)
+//                .connectTimeout(8)
+//                .baseUrl(BaseWebService.BASE_URL)
+//                .addLog(true)
+//                .build();
+//
+//        novate.post(Constant.ENTRYSTATIC_URL, parameters,
+//                new MyBaseSubscriber<ResponseBody>(MainActivity.this) {
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        if (!TextUtils.isEmpty(e.getMessage())) {
+//                            ToastUtils.show(e.getMessage());
+//                        }
+//                        sensorDataMap = null;
+//                    }
+//
+//                    @Override
+//                    public void onNext(ResponseBody responseBody) {
+//                        try {
+//                            String jstr = new String(responseBody.bytes());
+//                            if (StringUtil.isEmpty(jstr)) {
+//                                sensorDataMap = null;
+//                            } else {
+//                                Gson gson = new Gson();
+//                                sensorDataMap = gson.fromJson(jstr, new TypeToken<Map<String, SensorBean>>() {
+//                                }.getType());
+//                            }
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
     }
 
     private void initViews() {
@@ -207,39 +211,50 @@ public class MainActivity extends BaseActivity {
      */
     private void getDeviceModel() {
 
-        Map<String, Object> parameters = new HashMap<>();
-        novate = new Novate.Builder(this)
-                .connectTimeout(8)
-                .baseUrl(BaseWebService.BASE_URL)
-                .addLog(true)
-                .build();
-
-        novate.post(Constant.ENTRYREALDATA_URL, parameters,
-                new MyBaseSubscriber<ResponseBody>(MainActivity.this) {
-                    @Override
-                    public void onError(Throwable e) {
-                        if (!TextUtils.isEmpty(e.getMessage())) {
-                            ToastUtils.show(e.getMessage());
-                        }
-                        modelMap = null;
-                    }
-
-                    @Override
-                    public void onNext(ResponseBody responseBody) {
-                        try {
-                            String jstr = new String(responseBody.bytes());
-                            if (StringUtil.isEmpty(jstr)) {
-                                modelMap = null;
-                            } else {
-                                Gson gson = new Gson();
-                                modelMap = gson.fromJson(jstr, new TypeToken<Map<String, String>>() {
-                                }.getType());
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+        WebServiceManage.getService(DetailedDataService.class).appGetRealTimeData().setCallback(new SCallBack<BaseResponse<Map<String, String>>>() {
+            @Override
+            public void callback(boolean isok, String msg, BaseResponse<Map<String, String>> res) {
+                if (isok) {
+                    modelMap = res.getData();
+                } else {
+                    ToastUtils.show("数据获取失败");
+                }
+            }
+        });
+//        Map<String, Object> parameters = new HashMap<>();
+//        novate = new Novate.Builder(this)
+//                .connectTimeout(8)
+//                .baseUrl(BaseWebService.BASE_URL)
+//                .addLog(true)
+//                .build();
+//
+//        novate.post(Constant.ENTRYREALDATA_URL, parameters,
+//                new MyBaseSubscriber<ResponseBody>(MainActivity.this) {
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        if (!TextUtils.isEmpty(e.getMessage())) {
+//                            ToastUtils.show(e.getMessage());
+//                        }
+//                        modelMap = null;
+//                    }
+//
+//                    @Override
+//                    public void onNext(ResponseBody responseBody) {
+//                        try {
+//                            String jstr = new String(responseBody.bytes());
+//                            Log.e(TAG, "onNext: " + jstr);
+//                            if (StringUtil.isEmpty(jstr)) {
+//                                modelMap = null;
+//                            } else {
+//                                Gson gson = new Gson();
+//                                modelMap = gson.fromJson(jstr, new TypeToken<Map<String, String>>() {
+//                                }.getType());
+//                            }
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
 
         String res = "add_time:2018-04-13-09-17-23\n" +
                 "d1:5.04\n" +
@@ -293,9 +308,4 @@ public class MainActivity extends BaseActivity {
                 "d49:3.01\n" +
                 "d50:100.45";
     }
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        String str = data.getExtras().getString(CaptureActivity.EXTRA_STRING);
-//        super.onActivityResult(requestCode, resultCode, data);
-//    }
 }

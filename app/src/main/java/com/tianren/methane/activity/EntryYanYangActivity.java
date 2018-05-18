@@ -3,7 +3,6 @@ package com.tianren.methane.activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -25,26 +24,20 @@ import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.google.gson.Gson;
 import com.tamic.novate.Novate;
-import com.tamic.novate.Throwable;
-import com.tianren.acommon.remote.BaseWebService;
-import com.tianren.methane.MyBaseSubscriber;
+import com.tianren.acommon.BaseResponse;
+import com.tianren.acommon.remote.WebServiceManage;
+import com.tianren.acommon.remote.callback.SCallBack;
+import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
 import com.tianren.methane.bean.AnaerobicTankBean;
-import com.tianren.methane.bean.EntryBean;
-import com.tianren.methane.constant.Constant;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
-
-import okhttp3.ResponseBody;
 
 
 /**
@@ -54,11 +47,11 @@ import okhttp3.ResponseBody;
 public class EntryYanYangActivity extends BaseActivity implements View.OnClickListener {
     private Novate novate;
     private LinearLayout ll_back;
-    private TextView tv_title,tv_time;
+    private TextView tv_title, tv_time;
     private Button btn_submit;
     private Spinner spinner;
     private EditText et_ph, et_ts, et_vs, et_vfa, et_jiandu, et_andan, et_cod;
-    private String ph, ts, vs, vfa, jiandu, andan, cod,quyangdian;
+    private String ph, ts, vs, vfa, jiandu, andan, cod, quyangdian;
     private ArrayList<String> spinners;
     private TimePickerView pvTime;
 
@@ -120,6 +113,7 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
 
                 quyangdian = spinners.get(position).toString();
             }
+
             //没被选取时的操作
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -152,52 +146,52 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void submitData() {
-        if (StringUtil.isEmpty(et_ph.getText().toString())){
+        if (StringUtil.isEmpty(et_ph.getText().toString())) {
             ToastUtils.show("请输入pH值");
             return;
-        }else{
+        } else {
             ph = et_ph.getText().toString();
         }
 
-        if (StringUtil.isEmpty(et_ts.getText().toString())){
+        if (StringUtil.isEmpty(et_ts.getText().toString())) {
             ToastUtils.show("请输入TS值");
             return;
-        }else{
+        } else {
             ts = et_ts.getText().toString();
         }
 
-        if (StringUtil.isEmpty(et_vs.getText().toString())){
+        if (StringUtil.isEmpty(et_vs.getText().toString())) {
             ToastUtils.show("请输入VS值");
             return;
-        }else{
+        } else {
             vs = et_vs.getText().toString();
         }
 
-        if (StringUtil.isEmpty(et_vfa.getText().toString())){
+        if (StringUtil.isEmpty(et_vfa.getText().toString())) {
             ToastUtils.show("请输入VFA值");
             return;
-        }else{
+        } else {
             vfa = et_vfa.getText().toString();
         }
 
-        if (StringUtil.isEmpty(et_jiandu.getText().toString())){
+        if (StringUtil.isEmpty(et_jiandu.getText().toString())) {
             ToastUtils.show("请输入碱度值");
             return;
-        }else{
+        } else {
             jiandu = et_jiandu.getText().toString();
         }
 
-        if (StringUtil.isEmpty(et_andan.getText().toString())){
+        if (StringUtil.isEmpty(et_andan.getText().toString())) {
             ToastUtils.show("请输入氨氮值");
             return;
-        }else{
+        } else {
             andan = et_andan.getText().toString();
         }
 
-        if (StringUtil.isEmpty(et_cod.getText().toString())){
+        if (StringUtil.isEmpty(et_cod.getText().toString())) {
             ToastUtils.show("请输入COD值");
             return;
-        }else{
+        } else {
             cod = et_cod.getText().toString();
         }
 
@@ -212,47 +206,58 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
         bean.setSamplingPoint(spinners.get(spinner.getSelectedItemPosition()).toString());
         bean.setAmmoniaNitrogen(andan);
         try {
-            bean.setEntryTime(StringUtil.stringToDate(tv_time.getText().toString(),"yyyy-MM-dd HH:mm:ss"));
+            bean.setEntryTime(StringUtil.stringToDate(tv_time.getText().toString(), "yyyy-MM-dd HH:mm:ss"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("anaerobicTankData", gson.toJson(bean).toString());
-        novate = new Novate.Builder(this)
-                .connectTimeout(8)
-                .baseUrl(BaseWebService.BASE_URL)
-                //.addApiManager(ApiManager.class)
-                .addLog(true)
-                .build();
-
-        novate.post(Constant.ENTRYYANYANG_URL, parameters,
-                new MyBaseSubscriber<ResponseBody>(EntryYanYangActivity.this) {
+        WebServiceManage.getService(EntryService.class).entryAnaerobicTankData(gson.toJson(bean).toString()).setCallback(new SCallBack<BaseResponse<Boolean>>() {
             @Override
-            public void onError(Throwable e) {
-                if (!TextUtils.isEmpty(e.getMessage())) {
-                    Toast.makeText(EntryYanYangActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-            @Override
-            public void onNext(ResponseBody responseBody) {
-                try {
-                    String jstr = new String(responseBody.bytes());
-                    Gson gson = new Gson();
-                    EntryBean entryBean = gson.fromJson(jstr,EntryBean.class);
-                    if (entryBean.getResult()){
-                        ToastUtils.show(entryBean.getMessage());
-                        finish();
-                    }else {
-                        ToastUtils.show(entryBean.getMessage());
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
+            public void callback(boolean isok, String msg, BaseResponse<Boolean> res) {
+                if (isok && res.getData()) {
+                    ToastUtils.show(res.getMessage());
+                    finish();
+                } else {
+                    Toast.makeText(EntryYanYangActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
             }
         });
+//        Map<String, Object> parameters = new HashMap<>();
+//        parameters.put("anaerobicTankData", gson.toJson(bean).toString());
+//        novate = new Novate.Builder(this)
+//                .connectTimeout(8)
+//                .baseUrl(BaseWebService.BASE_URL)
+//                //.addApiManager(ApiManager.class)
+//                .addLog(true)
+//                .build();
+//
+//        novate.post(Constant.ENTRYYANYANG_URL, parameters,
+//                new MyBaseSubscriber<ResponseBody>(EntryYanYangActivity.this) {
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        if (!TextUtils.isEmpty(e.getMessage())) {
+//                            Toast.makeText(EntryYanYangActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(ResponseBody responseBody) {
+//                        try {
+//                            String jstr = new String(responseBody.bytes());
+//                            Gson gson = new Gson();
+//                            EntryBean entryBean = gson.fromJson(jstr, EntryBean.class);
+//                            if (entryBean.getResult()) {
+//                                ToastUtils.show(entryBean.getMessage());
+//                                finish();
+//                            } else {
+//                                ToastUtils.show(entryBean.getMessage());
+//                            }
+//
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
     }
 
     private void initTimePicker() {//Dialog 模式下，在底部弹出
@@ -295,6 +300,7 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
             }
         }
     }
+
     private String getTime(Date date) {//可根据需要自行截取数据显示
         Log.d("getTime()", "choice date millis: " + date.getTime());
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

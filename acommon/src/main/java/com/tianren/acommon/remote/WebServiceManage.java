@@ -1,7 +1,6 @@
 package com.tianren.acommon.remote;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -61,7 +60,6 @@ public class WebServiceManage {
     }
 
     public static <T extends BaseWebService> T getService(Class<T> clazz) {
-        Log.e(TAG, "getService: " + wservice);
         if (wservice.containsKey(clazz)) {
             return (T) wservice.get(clazz);
         } else {
