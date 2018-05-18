@@ -23,9 +23,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Administrator on 2018/4/24.
+ * @author Administrator
+ * @date 2018/4/24
  */
-
 public class DataStatisticsActivity extends BaseActivity implements View.OnClickListener {
 
     private LineChart lineChart;
@@ -35,7 +35,6 @@ public class DataStatisticsActivity extends BaseActivity implements View.OnClick
     private TextView tv_title;
     private String statisticsName, title, tableName, columnName;
     private Bundle bundle;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,19 +67,19 @@ public class DataStatisticsActivity extends BaseActivity implements View.OnClick
             WebServiceManage.getService(EntryService.class).
                     getHistoricalData(tableName, columnName, getMonthAgo(), getNowTime()).
                     setCallback(new SCallBack<BaseResponse<List<String>>>() {
-                @Override
-                public void callback(boolean isok, String msg, BaseResponse<List<String>> res) {
-                    Log.e("1111111", "callback: " + isok);
+                        @Override
+                        public void callback(boolean isok, String msg, BaseResponse<List<String>> res) {
+                            Log.e("1111111", "callback: " + isok);
 
-                    for (int i = 0; i < res.getData().size(); ++i) {
-                        xAxisValues.add(String.valueOf(i));
-                        yAxisValues.add(Float.parseFloat(res.getData().get(i)));
-                    }
+                            for (int i = 0; i < res.getData().size(); ++i) {
+                                xAxisValues.add(String.valueOf(i));
+                                yAxisValues.add(Float.parseFloat(res.getData().get(i)));
+                            }
 
-                    MPChartHelper.setLineChart(lineChart, xAxisValues, yAxisValues, statisticsName, true);
+                            MPChartHelper.setLineChart(lineChart, xAxisValues, yAxisValues, statisticsName, true);
 
-                }
-            });
+                        }
+                    });
         }
     }
 
