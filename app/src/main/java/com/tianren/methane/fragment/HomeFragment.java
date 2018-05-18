@@ -22,7 +22,6 @@ import com.tianren.acommon.remote.callback.SCallBack;
 import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
 import com.tianren.methane.activity.DataStatisticsActivity;
-import com.tianren.methane.activity.RunningStatusActivity;
 import com.tianren.methane.manager.LineChartManager;
 import com.tianren.methane.utils.MPChartHelper;
 import com.tianren.methane.utils.StringUtil;
@@ -149,11 +148,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     public void callback(boolean isok, String msg, BaseResponse<List<ConsumptionBean>> res) {
                         if (isok) {
                             Double waterConsumption = res.getData().get(0).getWaterConsumption();
-                            waterConsume.setText(waterConsumption.equals(0) ? "0" : (waterConsumption + ""));
+                            waterConsume.setText(waterConsumption.equals(0) ? "0" : (waterConsumption + "") + "吨");
                             Double powerConsumption = res.getData().get(0).getPowerConsumption();
-                            eleConsume.setText(powerConsumption.equals(0) ? "0" : (powerConsumption + ""));
+                            eleConsume.setText(powerConsumption.equals(0) ? "0" : (powerConsumption + "") + "m³");
                             Double airConsumption = res.getData().get(0).getAirConsumption();
-                            hotConsume.setText(airConsumption.equals(0) ? "0" : (airConsumption + ""));
+                            hotConsume.setText(airConsumption.equals(0) ? "0" : (airConsumption + "") + "kw");
                             allConsume.setText((waterConsumption + powerConsumption + airConsumption) + "");
                             Double jinliao = res.getData().get(0).getFeedAmount();
                             tv_jinliao.setText(jinliao.equals(0) ? "0" : (jinliao + "") + "吨");
@@ -297,10 +296,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 break;
 
             case R.id.ll_zongnenghao:
-                Intent intent2 = new Intent(getActivity(), DataStatisticsActivity.class);
-                intent2.putExtra("title", "总能耗统计");
-                intent2.putExtra("statisticsName", "总能耗统计表");
-                startActivity(intent2);
+//                Intent intent2 = new Intent(getActivity(), DataStatisticsActivity.class);
+//                intent2.putExtra("title", "总能耗统计");
+//                intent2.putExtra("statisticsName", "总能耗统计表");
+//                startActivity(intent2);
                 break;
 
             case R.id.ll_shuihao:
@@ -340,11 +339,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 break;
 
             case R.id.ll_zongxiaoyi:
-                Intent intent7 = new Intent(getActivity(), DataStatisticsActivity.class);
-                intent7.putExtra("title", "总效益统计");
-                intent7.putExtra("statisticsName", "总效益统计表");
-
-                startActivity(intent7);
+//                Intent intent7 = new Intent(getActivity(), DataStatisticsActivity.class);
+//                intent7.putExtra("title", "总效益统计");
+//                intent7.putExtra("statisticsName", "总效益统计表");
+//
+//                startActivity(intent7);
                 break;
 
             case R.id.ll_chandianxiaoyi:

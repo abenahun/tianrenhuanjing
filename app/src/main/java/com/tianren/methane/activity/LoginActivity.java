@@ -133,36 +133,40 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 break;
 
             case R.id.button:
-                if (!SipStack.isInit()) {
-                    SipStack.init();
-                    Log.v(TAG, "Stack.init");
-                }
-                ip = IpAddress.getLocalHostAddress();
-                SipProvider sipProvider = new SipProvider(null);
-                SipURL registrar = new SipURL("iotac.tianren.com");
-                NameAddress target_url = new NameAddress("1001");
-                NameAddress from_url = new NameAddress("18561589055");
-                RegistrationClient reg = new RegistrationClient(sipProvider, registrar, from_url,
-                        target_url, "18561589055", "", "123456", new RegistrationClientListener() {
-                    @Override
-                    public void onRegistrationSuccess(RegistrationClient registrationClient, NameAddress nameAddress, NameAddress nameAddress1, String s) {
-                        Log.e(TAG, "onRegistrationSuccess: ");
-                    }
-
-                    @Override
-                    public void onRegistrationFailure(RegistrationClient registrationClient, NameAddress nameAddress, NameAddress nameAddress1, String s) {
-                        Log.e(TAG, "onRegistrationFailure: ");
-                    }
-                });
-
-                reg.register();
-                Log.v(TAG, "reg.register()");
+                toRegister();
                 break;
 
             case R.id.ll_back:
                 finish();
                 break;
         }
+    }
+
+    private void toRegister() {
+        if (!SipStack.isInit()) {
+            SipStack.init();
+            Log.v(TAG, "Stack.init");
+        }
+        ip = IpAddress.getLocalHostAddress();
+        SipProvider sipProvider = new SipProvider("");
+        SipURL registrar = new SipURL("iotac.tianren.com");
+        NameAddress target_url = new NameAddress("1001");
+        NameAddress from_url = new NameAddress("18561589055");
+        RegistrationClient reg = new RegistrationClient(sipProvider, registrar, from_url,
+                target_url, "18561589055", "", "123456", new RegistrationClientListener() {
+            @Override
+            public void onRegistrationSuccess(RegistrationClient registrationClient, NameAddress nameAddress, NameAddress nameAddress1, String s) {
+                Log.e(TAG, "onRegistrationSuccess: ");
+            }
+
+            @Override
+            public void onRegistrationFailure(RegistrationClient registrationClient, NameAddress nameAddress, NameAddress nameAddress1, String s) {
+                Log.e(TAG, "onRegistrationFailure: ");
+            }
+        });
+        reg.register();
+
+
     }
 
     private MyHandler handler = new MyHandler(this);
