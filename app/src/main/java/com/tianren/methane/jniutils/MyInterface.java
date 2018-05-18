@@ -1118,15 +1118,16 @@ public class MyInterface {
                 HiSDKInfo info = new HiSDKInfo();
                 HiCloudAccountService service = HiCloudServiceFactory.getHiCloudAccountService(info);
                 SignonReplyInfo reply = service.signon(map);
-                if (reply != null && reply.getReply() == 0) {
-                    Log.d(TAG, "signon hai_shi_yun success");
-                    token = reply.getToken();//海视云登录成功后，获取到的token
-
-                    createNewUser(handler, usr, pw, true);
-                } else {
-                    Log.e(TAG, "hai_shi_yun signon fail");//海视云登录失败，不用出来，直接登录sip
+//                if (reply != null && reply.getReply() == 0) {
+//                    Log.d(TAG, "signon hai_shi_yun success");
+//                    token = reply.getToken();//海视云登录成功后，获取到的token
+//
+//                    createNewUser(handler, usr, pw, true);
+//                } else {
+//                    Log.e(TAG, "hai_shi_yun signon fail");//海视云登录失败，不用出来，直接登录sip
+//                    sipLogin(usr, pw);
+//                }
                     sipLogin(usr, pw);
-                }
             }
         }.start();
     }
