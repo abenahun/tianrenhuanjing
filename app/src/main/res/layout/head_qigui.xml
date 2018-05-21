@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:src="@mipmap/pic_qigui" />
+        android:src="@mipmap/gas" />
 
     <LinearLayout
         android:layout_width="match_parent"

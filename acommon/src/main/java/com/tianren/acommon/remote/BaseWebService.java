@@ -19,7 +19,7 @@ import okhttp3.ResponseBody;
  * @date 2018/4/23
  */
 public class BaseWebService {
-    //    public static final String BASE_URL = "http://192.168.2.249:8080/";
+//    public static final String BASE_URL = "http://192.168.2.250:8080/";
 //    public static final String TIANREN_URL = "";
     public static final String BASE_URL = "http://engineerlee.top:8080/";
     public static final String TIANREN_URL = "tianren/";

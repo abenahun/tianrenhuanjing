@@ -140,7 +140,7 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
         bean.setAirConsumption(Double.parseDouble(haoqi));
         bean.setFeedAmount(Double.parseDouble(jinliao));
         bean.setEntryType(1);
-            bean.setEntryTime(tv_time.getText().toString());
+        bean.setEntryTime(tv_time.getText().toString());
 //        try {
 //            bean.setEntryTime(StringUtil.stringToDate(tv_time.getText().toString(), "yyyy-MM-dd HH:mm:ss"));
 //        } catch (ParseException e) {
@@ -223,7 +223,6 @@ public class EntryProductionCostActivity extends BaseActivity implements View.On
             params.leftMargin = 0;
             params.rightMargin = 0;
             pvTime.getDialogContainerLayout().setLayoutParams(params);
-
             Window dialogWindow = mDialog.getWindow();
             if (dialogWindow != null) {
                 dialogWindow.setWindowAnimations(com.bigkoo.pickerview.R.style.picker_view_slide_anim);//修改动画样式

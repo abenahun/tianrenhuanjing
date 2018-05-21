@@ -29,7 +29,6 @@ import com.tianren.methane.R;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -132,7 +131,7 @@ public class EntryProductionBenefitActivity extends BaseActivity implements View
         bean.setGasProduction(Double.parseDouble(chanqi));
         bean.setPowerGeneration(Double.parseDouble(chandian));
         bean.setLiftingCapacity(Double.parseDouble(tiyou));
-            bean.setEntryTime(tv_time.getText().toString());
+        bean.setEntryTime(tv_time.getText().toString());
 //        try {
 //            bean.setEntryTime(StringUtil.stringToDate(tv_time.getText().toString(), "yyyy-MM-dd HH:mm:ss"));
 //        } catch (ParseException e) {
@@ -144,6 +143,7 @@ public class EntryProductionBenefitActivity extends BaseActivity implements View
             @Override
             public void callback(boolean isok, String msg, BaseResponse<Boolean> res) {
                 if (isok && res.getData()) {
+                    ToastUtils.show(msg);
                     finish();
                 } else {
                     ToastUtils.show(msg);
