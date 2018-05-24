@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.tianren.methane.R;
@@ -46,6 +47,8 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
     private ModelAdapter adapter;
     private View view;
 
+    private RadioButton real_date, test_date;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,10 +72,31 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
         View headView = LayoutInflater.from(getActivity()).inflate(R.layout.head_yanyang, recyclerView, false);
         tv_qiguishaixuan = (TextView) headView.findViewById(R.id.tv_qiguishaixuan);
         btn_data = (Button) headView.findViewById(R.id.btn_data);
+        real_date = (RadioButton) headView.findViewById(R.id.real_date);
+        test_date = (RadioButton) headView.findViewById(R.id.test_date);
+
         tv_qiguishaixuan.setOnClickListener(this);
         btn_data.setOnClickListener(this);
         recyclerView.addHeaderView(headView);
         recyclerView.setAdapter(adapter);
+        real_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!real_date.isChecked()) {
+                    real_date.setChecked(false);
+                    test_date.setChecked(true);
+                }
+            }
+        });
+        test_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!test_date.isChecked()) {
+                    real_date.setChecked(true);
+                    test_date.setChecked(false);
+                }
+            }
+        });
     }
 
     private void loadData() {
