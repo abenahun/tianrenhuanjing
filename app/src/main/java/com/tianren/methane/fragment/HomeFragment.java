@@ -150,9 +150,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                             Double waterConsumption = res.getData().get(0).getWaterConsumption();
                             waterConsume.setText(waterConsumption.equals(0) ? "0" : (waterConsumption + "") + "吨");
                             Double powerConsumption = res.getData().get(0).getPowerConsumption();
-                            eleConsume.setText(powerConsumption.equals(0) ? "0" : (powerConsumption + "") + "m³");
+                            eleConsume.setText(powerConsumption.equals(0) ? "0" : (powerConsumption + "") + "kw");
                             Double airConsumption = res.getData().get(0).getAirConsumption();
-                            hotConsume.setText(airConsumption.equals(0) ? "0" : (airConsumption + "") + "kw");
+                            hotConsume.setText(airConsumption.equals(0) ? "0" : (airConsumption + "") + "m³");
                             allConsume.setText((waterConsumption + powerConsumption + airConsumption) + "");
                             Double jinliao = res.getData().get(0).getFeedAmount();
                             tv_jinliao.setText(jinliao.equals(0) ? "0" : (jinliao + "") + "吨");
