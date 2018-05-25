@@ -9,10 +9,14 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.tianren.acommon.BaseResponse;
@@ -47,12 +51,14 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
     private TextView tv_qiguishaixuan;
     private Button btn_data;
     private String[] items = {"厌氧罐 No1", "厌氧罐 No2", "厌氧罐 No3"};
-
+    private Spinner spinner;
     private SwipeMenuRecyclerView recyclerView;
     private ModelAdapter adapter;
     private View view;
 
     private TextView real_date, lab_date;
+    private ArrayAdapter<String> spinnerAdapter;
+    private List<Map<String, String>> labList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,6 +85,7 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
         btn_data = (Button) headView.findViewById(R.id.btn_data);
         real_date = (TextView) headView.findViewById(R.id.real_date);
         lab_date = (TextView) headView.findViewById(R.id.test_date);
+        spinner = (Spinner) headView.findViewById(R.id.spinner);
 
         tv_qiguishaixuan.setOnClickListener(this);
         btn_data.setOnClickListener(this);
@@ -89,6 +96,7 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
             @Override
             public void onClick(View v) {
                 if (!real_date.isSelected()) {
+                    spinner.setVisibility(View.GONE);
                     real_date.setSelected(true);
                     lab_date.setSelected(false);
                     adapter.clear();
@@ -100,11 +108,37 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
             @Override
             public void onClick(View v) {
                 if (!lab_date.isSelected()) {
+                    spinner.setVisibility(View.VISIBLE);
                     real_date.setSelected(false);
                     lab_date.setSelected(true);
                     adapter.clear();
                     loadLabData();
                 }
+            }
+        });
+
+
+        spinnerAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_dropdown_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                adapter.clear();
+                Map<String, String> map = labList.get(position);
+                for (String i : map.keySet()) {
+                    ModelAdapter.ModelBean labModel = getLabModel(i, map.get(i));
+                    if (labModel != null) {
+                        adapter.addItem(labModel);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }
@@ -142,7 +176,15 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
             @Override
             public void callback(boolean isok, String msg, BaseResponse<List<Map<String, String>>> res) {
                 if (isok) {
-                    Map<String, String> map = res.getData().get(0);
+                    labList = res.getData();
+                    for (int i = 0; i < labList.size(); i++) {
+                        String samplingPoint = labList.get(i).get("samplingPoint");
+                        spinnerAdapter.add(samplingPoint);
+                        Log.e(TAG, "callback: " + samplingPoint);
+                    }
+                    spinnerAdapter.notifyDataSetChanged();
+
+                    Map<String, String> map = labList.get(0);
                     for (String i : map.keySet()) {
                         ModelAdapter.ModelBean labModel = getLabModel(i, map.get(i));
                         if (labModel != null) {
