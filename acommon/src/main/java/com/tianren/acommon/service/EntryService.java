@@ -105,4 +105,18 @@ public class EntryService extends BaseWebService {
         return request(ENTRYANAEROBICTANKDATA, p, new TypeToken<BaseResponse<Boolean>>() {
         }.getType());
     }
+
+    /**
+     * 获取实验室数据
+     *
+     * @return
+     */
+    private String GETANAEROBICTANKDATA = TIANREN_URL + "entry/getAnaerobicTankData";
+
+    public WebTask<BaseResponse<List<Map<String, String>>>> getAnaerobicTankData() {
+        Map<String, Object> p = new HashMap<>();
+        return request(GETANAEROBICTANKDATA, p, new TypeToken<BaseResponse<List<Map<String, String>>>>() {
+        }.getType());
+    }
+
 }

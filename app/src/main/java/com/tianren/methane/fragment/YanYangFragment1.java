@@ -13,13 +13,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.tianren.acommon.BaseResponse;
+import com.tianren.acommon.remote.WebServiceManage;
+import com.tianren.acommon.remote.callback.SCallBack;
+import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
 import com.tianren.methane.activity.DataStatisticsActivity;
 import com.tianren.methane.adapter.ModelAdapter;
 import com.tianren.methane.event.ModelEvent;
+import com.tianren.methane.utils.ToastUtils;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -28,6 +32,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static com.tianren.methane.activity.MainActivity.modelMap;
 import static com.tianren.methane.activity.MainActivity.sensorDataMap;
@@ -38,7 +43,7 @@ import static com.tianren.methane.activity.MainActivity.sensorDataMap;
  * @author qiushengtao
  */
 public class YanYangFragment1 extends BaseFragment implements View.OnClickListener {
-
+    private static final String TAG = "YanYangFragment1";
     private TextView tv_qiguishaixuan;
     private Button btn_data;
     private String[] items = {"厌氧罐 No1", "厌氧罐 No2", "厌氧罐 No3"};
@@ -47,7 +52,7 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
     private ModelAdapter adapter;
     private View view;
 
-    private RadioButton real_date, test_date;
+    private TextView real_date, lab_date;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,7 +65,7 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_yan_yang_fragment1, container, false);
         initView();
-        loadData();
+        loadRealData();
         return view;
     }
 
@@ -72,34 +77,39 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
         View headView = LayoutInflater.from(getActivity()).inflate(R.layout.head_yanyang, recyclerView, false);
         tv_qiguishaixuan = (TextView) headView.findViewById(R.id.tv_qiguishaixuan);
         btn_data = (Button) headView.findViewById(R.id.btn_data);
-        real_date = (RadioButton) headView.findViewById(R.id.real_date);
-        test_date = (RadioButton) headView.findViewById(R.id.test_date);
+        real_date = (TextView) headView.findViewById(R.id.real_date);
+        lab_date = (TextView) headView.findViewById(R.id.test_date);
 
         tv_qiguishaixuan.setOnClickListener(this);
         btn_data.setOnClickListener(this);
         recyclerView.addHeaderView(headView);
         recyclerView.setAdapter(adapter);
+        real_date.setSelected(true);
         real_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!real_date.isChecked()) {
-                    real_date.setChecked(false);
-                    test_date.setChecked(true);
+                if (!real_date.isSelected()) {
+                    real_date.setSelected(true);
+                    lab_date.setSelected(false);
+                    adapter.clear();
+                    loadRealData();
                 }
             }
         });
-        test_date.setOnClickListener(new View.OnClickListener() {
+        lab_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!test_date.isChecked()) {
-                    real_date.setChecked(true);
-                    test_date.setChecked(false);
+                if (!lab_date.isSelected()) {
+                    real_date.setSelected(false);
+                    lab_date.setSelected(true);
+                    adapter.clear();
+                    loadLabData();
                 }
             }
         });
     }
 
-    private void loadData() {
+    private void loadRealData() {
         List<ModelAdapter.ModelBean> list = new ArrayList<>();
         if (sensorDataMap == null) {
             list = null;
@@ -123,7 +133,28 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
                     adapter.addItem(list.get(i));
                 }
             }
+            adapter.notifyDataSetChanged();
         }
+    }
+
+    private void loadLabData() {
+        WebServiceManage.getService(EntryService.class).getAnaerobicTankData().setCallback(new SCallBack<BaseResponse<List<Map<String, String>>>>() {
+            @Override
+            public void callback(boolean isok, String msg, BaseResponse<List<Map<String, String>>> res) {
+                if (isok) {
+                    Map<String, String> map = res.getData().get(0);
+                    for (String i : map.keySet()) {
+                        ModelAdapter.ModelBean labModel = getLabModel(i, map.get(i));
+                        if (labModel != null) {
+                            adapter.addItem(labModel);
+                        }
+                    }
+                    adapter.notifyDataSetChanged();
+                } else {
+                    ToastUtils.show(msg);
+                }
+            }
+        });
     }
 
     public ModelAdapter.ModelBean getModel(String s) {
@@ -131,6 +162,19 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
             return null;
         } else {
             return new ModelAdapter.ModelBean(s, sensorDataMap.get(s).getNickName(), modelMap.get(s),
+                    sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum(),
+                    sensorDataMap.get(s).getSensorUnit());
+        }
+    }
+
+    public ModelAdapter.ModelBean getLabModel(String s, String data) {
+        if (sensorDataMap == null) {
+            return null;
+        } else {
+            if (sensorDataMap.get(s) == null) {
+                return null;
+            }
+            return new ModelAdapter.ModelBean(s, sensorDataMap.get(s).getNickName(), data,
                     sensorDataMap.get(s).getSuitableMaximum(), sensorDataMap.get(s).getSuitableMinimum(),
                     sensorDataMap.get(s).getSensorUnit());
         }
@@ -161,7 +205,9 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(ModelEvent event) {
-        loadData();
+        if (real_date.isSelected()) {
+            loadRealData();
+        }
     }
 
     @Override
