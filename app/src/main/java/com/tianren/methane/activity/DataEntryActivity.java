@@ -15,7 +15,7 @@ import com.tianren.methane.R;
 
 public class DataEntryActivity extends BaseActivity implements View.OnClickListener {
 
-    private LinearLayout ll_yanyang, ll_chengben, ll_xiaoyi, ll_back, ll_enter;
+    private LinearLayout ll_yanyang, ll_chengben, ll_xiaoyi, ll_back, ll_enter, ll_statement;
     private TextView tv_title;
 
     @Override
@@ -36,11 +36,13 @@ public class DataEntryActivity extends BaseActivity implements View.OnClickListe
         ll_chengben = (LinearLayout) findViewById(R.id.ll_chengben);
         ll_xiaoyi = (LinearLayout) findViewById(R.id.ll_xiaoyi);
         ll_enter = (LinearLayout) findViewById(R.id.ll_enter);
+        ll_statement = (LinearLayout) findViewById(R.id.ll_statement);
 
         ll_yanyang.setOnClickListener(this);
         ll_chengben.setOnClickListener(this);
         ll_xiaoyi.setOnClickListener(this);
         ll_enter.setOnClickListener(this);
+        ll_statement.setOnClickListener(this);
     }
 
     @Override
@@ -68,6 +70,10 @@ public class DataEntryActivity extends BaseActivity implements View.OnClickListe
             case R.id.ll_enter:
                 Intent intent4 = new Intent(DataEntryActivity.this, InputQuantityActivity.class);
                 startActivity(intent4);
+                break;
+            case R.id.ll_statement:
+                Intent intent5 = new Intent(DataEntryActivity.this, ReportEntryActivity.class);
+                startActivity(intent5);
                 break;
             default:
                 break;
