@@ -24,9 +24,11 @@
             android:layout_height="wrap_content"
             android:text="今日产气量:1000立方"
             android:textSize="16sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="产气量: 同比昨日上升10立方米"
             android:textSize="16sp" />
 
