@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.tianren.methane.R;
 import com.tianren.methane.activity.DataEntryActivity;
-import com.tianren.methane.activity.LoginActivity;
 import com.tianren.methane.activity.MoveCarbonActivity;
 import com.tianren.methane.activity.MoveSulfurActivity;
 import com.tianren.methane.activity.PreHandleActivity;
@@ -52,12 +51,12 @@ public class ManagerFragment extends BaseFragment implements View.OnClickListene
         ll_tuoliu.setOnClickListener(this);
 
         ll_tuotan = (LinearLayout) view.findViewById(R.id.ll_tuotan);
-        ll_tuotan.setOnClickListener(this);
+//        ll_tuotan.setOnClickListener(this);
 
         ll_qigui = (LinearLayout) view.findViewById(R.id.ll_qigui);
         ll_qigui.setOnClickListener(this);
 
-        tv_entry= (TextView) view.findViewById(R.id.tv_entry);
+        tv_entry = (TextView) view.findViewById(R.id.tv_entry);
         tv_entry.setOnClickListener(this);
 
         ll_back = (LinearLayout) view.findViewById(R.id.ll_back);
