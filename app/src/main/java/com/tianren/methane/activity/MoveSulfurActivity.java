@@ -66,15 +66,15 @@ public class MoveSulfurActivity extends BaseActivity implements View.OnClickList
     private void loadData() {
         if (sensorDataMap != null) {
             List<ModelAdapter.ModelBean> list = new ArrayList<>();
-            list.add(getModel("d1"));
-            list.add(getModel("d2"));
-            list.add(getModel("d3"));
-            list.add(getModel("d4"));
-            list.add(getModel("d5"));
-            list.add(getModel("d6"));
-            list.add(getModel("d7"));
-            list.add(getModel("d8"));
             list.add(getModel("d9"));
+            list.add(getModel("d10"));
+            list.add(getModel("d11"));
+            list.add(getModel("d12"));
+            list.add(getModel("d13"));
+            list.add(getModel("d14"));
+            list.add(getModel("d15"));
+            list.add(getModel("d16"));
+            list.add(getModel("d17"));
             for (int i = 0; i < list.size(); i++) {
                 if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
                     adapter.addItem(list.get(i));

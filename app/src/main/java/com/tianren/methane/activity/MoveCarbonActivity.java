@@ -68,17 +68,17 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
         if (sensorDataMap == null) {
             list = null;
         } else {
-            list.add(getModel("d10"));
-            list.add(getModel("d11"));
-            list.add(getModel("d12"));
-            list.add(getModel("d13"));
-            list.add(getModel("d14"));
-            list.add(getModel("d15"));
-            list.add(getModel("d16"));
-            list.add(getModel("d17"));
             list.add(getModel("d18"));
             list.add(getModel("d19"));
             list.add(getModel("d20"));
+            list.add(getModel("d21"));
+            list.add(getModel("d22"));
+            list.add(getModel("d23"));
+            list.add(getModel("d24"));
+            list.add(getModel("d25"));
+            list.add(getModel("d26"));
+            list.add(getModel("d27"));
+            list.add(getModel("d28"));
             for (int i = 0; i < list.size(); i++) {
                 if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
                     adapter.addItem(list.get(i));

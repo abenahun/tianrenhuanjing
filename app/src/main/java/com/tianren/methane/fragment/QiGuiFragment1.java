@@ -13,17 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.LineChart;
 import com.tianren.methane.R;
 import com.tianren.methane.activity.CallPoliceActivity;
 import com.tianren.methane.activity.DataStatisticsActivity;
 import com.tianren.methane.activity.ListActivity;
-import com.tianren.methane.activity.QiGuiActivity;
 import com.tianren.methane.adapter.ModelAdapter;
 import com.tianren.methane.constant.Constant;
 import com.tianren.methane.event.ModelEvent;
@@ -86,28 +81,28 @@ public class QiGuiFragment1 extends BaseFragment implements View.OnClickListener
 
     private void loadData() {
         List<ModelAdapter.ModelBean> list = new ArrayList<>();
-        ModelAdapter.ModelBean bean1 = new ModelAdapter.ModelBean("", "设计容量", "2000", -1d, 1d, "m³");
-        ModelAdapter.ModelBean bean2 = new ModelAdapter.ModelBean("", "当前储气", "空数据", -1d, 1d, "m³");
-        ModelAdapter.ModelBean bean3 = new ModelAdapter.ModelBean("", "内膜高度", "空数据", -1d, 1d, "m³");
-        ModelAdapter.ModelBean bean4 = new ModelAdapter.ModelBean("", "内膜压力", "空数据", -1d, 1d, "m³");
-        ModelAdapter.ModelBean bean5 = new ModelAdapter.ModelBean("", "运行状态", "空数据", -1d, 1d, "m³");
-        list.add(bean1);
-        list.add(bean2);
-        list.add(bean3);
-        list.add(bean4);
-        list.add(bean5);
-//        if (sensorDataMap == null) {
-//            list = null;
-//        } else {
-//            list.add(getModel("d29"));
-//            list.add(getModel("d30"));
-//            list.add(getModel("d31"));
-//            list.add(getModel("d32"));
-//            list.add(getModel("d33"));
-//            list.add(getModel("d34"));
-//            list.add(getModel("d35"));
-//            list.add(getModel("d36"));
-//        }
+//        ModelAdapter.ModelBean bean1 = new ModelAdapter.ModelBean("", "设计容量", "2000", -1d, 1d, "m³");
+//        ModelAdapter.ModelBean bean2 = new ModelAdapter.ModelBean("", "当前储气", "空数据", -1d, 1d, "m³");
+//        ModelAdapter.ModelBean bean3 = new ModelAdapter.ModelBean("", "内膜高度", "空数据", -1d, 1d, "m³");
+//        ModelAdapter.ModelBean bean4 = new ModelAdapter.ModelBean("", "内膜压力", "空数据", -1d, 1d, "m³");
+//        ModelAdapter.ModelBean bean5 = new ModelAdapter.ModelBean("", "运行状态", "空数据", -1d, 1d, "m³");
+//        list.add(bean1);
+//        list.add(bean2);
+//        list.add(bean3);
+//        list.add(bean4);
+//        list.add(bean5);
+        if (sensorDataMap == null) {
+            list = null;
+        } else {
+            list.add(getModel("d1"));
+            list.add(getModel("d2"));
+            list.add(getModel("d3"));
+            list.add(getModel("d4"));
+            list.add(getModel("d5"));
+            list.add(getModel("d6"));
+            list.add(getModel("d7"));
+            list.add(getModel("d8"));
+        }
         for (int i = 0; i < list.size(); i++) {
             if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
                 adapter.addItem(list.get(i));

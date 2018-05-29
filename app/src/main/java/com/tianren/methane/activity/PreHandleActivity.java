@@ -3,7 +3,6 @@ package com.tianren.methane.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,9 +17,6 @@ import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.tianren.methane.activity.MainActivity.modelMap;
 import static com.tianren.methane.activity.MainActivity.sensorDataMap;
@@ -64,24 +60,24 @@ public class PreHandleActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void loadData() {
-        List<ModelAdapter.ModelBean> list = new ArrayList<>();
-        if (sensorDataMap == null) {
-            list = null;
-        } else {
-            list.add(getModel("d21"));
-            list.add(getModel("d22"));
-            list.add(getModel("d23"));
-            list.add(getModel("d24"));
-            list.add(getModel("d25"));
-            list.add(getModel("d26"));
-            list.add(getModel("d27"));
-            list.add(getModel("d28"));
-            for (int i = 0; i < list.size(); i++) {
-                if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
-                    adapter.addItem(list.get(i));
-                }
-            }
-        }
+//        List<ModelAdapter.ModelBean> list = new ArrayList<>();
+//        if (sensorDataMap == null) {
+//            list = null;
+//        } else {
+//            list.add(getModel("d21"));
+//            list.add(getModel("d22"));
+//            list.add(getModel("d23"));
+//            list.add(getModel("d24"));
+//            list.add(getModel("d25"));
+//            list.add(getModel("d26"));
+//            list.add(getModel("d27"));
+//            list.add(getModel("d28"));
+//            for (int i = 0; i < list.size(); i++) {
+//                if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
+//                    adapter.addItem(list.get(i));
+//                }
+//            }
+//        }
     }
 
     public ModelAdapter.ModelBean getModel(String s) {

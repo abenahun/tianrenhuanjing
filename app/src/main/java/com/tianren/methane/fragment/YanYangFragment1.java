@@ -148,20 +148,13 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
         if (sensorDataMap == null) {
             list = null;
         } else {
-            list.add(getModel("d37"));
-            list.add(getModel("d38"));
-            list.add(getModel("d39"));
-            list.add(getModel("d40"));
-            list.add(getModel("d41"));
-            list.add(getModel("d42"));
-            list.add(getModel("d43"));
-            list.add(getModel("d44"));
-            list.add(getModel("d45"));
-            list.add(getModel("d46"));
-            list.add(getModel("d47"));
-            list.add(getModel("d48"));
-            list.add(getModel("d49"));
-            list.add(getModel("d50"));
+            list.add(getModel("ph"));
+            list.add(getModel("ts"));
+            list.add(getModel("vs"));
+            list.add(getModel("vfa"));
+            list.add(getModel("alkalinity"));
+            list.add(getModel("ammoniaNitrogen"));
+            list.add(getModel("cod"));
             for (int i = 0; i < list.size(); i++) {
                 if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
                     adapter.addItem(list.get(i));
