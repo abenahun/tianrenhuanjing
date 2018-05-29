@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:paddingTop="25dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="日发电量(Kw/h)"
+            android:textColor="@color/text1"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/ele_product"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:background="@drawable/shape_edit"
+            android:hint="请输入..."
+            android:padding="8dp"
+            android:textColorHint="@color/text3"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="17dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="日供电量(Kw/h)"
+            android:textColor="@color/text1"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/ele_provide"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:background="@drawable/shape_edit"
+            android:hint="请输入"
+            android:padding="8dp"
+            android:textColorHint="@color/text3"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="17dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="日站用电率(T)"
+            android:textColor="@color/text1"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/ele_day_use_rate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:background="@drawable/shape_edit"
+            android:hint="请输入"
+            android:padding="8dp"
+            android:textColorHint="@color/text3"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="17dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="月计划完成量(T)"
+            android:textColor="@color/text1"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/ele_finish_plan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:background="@drawable/shape_edit"
+            android:hint="请输入"
+            android:padding="8dp"
+            android:textColorHint="@color/text3"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="17dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="月完成量(T)"
+            android:textColor="@color/text1"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/ele_finish_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:background="@drawable/shape_edit"
+            android:hint="请输入"
+            android:padding="8dp"
+            android:textColorHint="@color/text3"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="17dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="本月完成率(%)"
+            android:textColor="@color/text1"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/ele_finish_rate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:background="@drawable/shape_edit"
+            android:hint="请输入..."
+            android:padding="8dp"
+            android:textColorHint="@color/text3"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="17dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="日厂用电量(Kw/h)"
+            android:textColor="@color/text1"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/ele_use_factory_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:background="@drawable/shape_edit"
+            android:hint="请输入"
+            android:padding="8dp"
+            android:textColorHint="@color/text3"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="17dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="日网用电量(Kw/h)"
+            android:textColor="@color/text1"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/ele_use_net_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:background="@drawable/shape_edit"
+            android:hint="请输入"
+            android:padding="8dp"
+            android:textColorHint="@color/text3"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="17dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="月计划网用电量(Kw/h)"
+            android:textColor="@color/text1"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/ele_plan_use_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:background="@drawable/shape_edit"
+            android:hint="请输入"
+            android:padding="8dp"
+            android:textColorHint="@color/text3"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="17dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:paddingBottom="25dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="网用电率(%)"
+            android:textColor="@color/text1"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/ele_net_rate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:background="@drawable/shape_edit"
+            android:hint="请输入"
+            android:padding="8dp"
+            android:textColorHint="@color/text3"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

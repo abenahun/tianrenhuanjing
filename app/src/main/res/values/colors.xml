@@ -12,6 +12,10 @@
     <color name="barchart">#B5C2CA</color>
 
 
+    <color name="background">#f0f1f5</color>
+    <color name="text1">#2e2e2e</color>
+    <color name="text3">#8f8f8f</color>
+
     <color name="division_line">#cccccc</color>
     <color name="division_line2">#e5e5e5</color>
     <color name="transparent">#00000000</color><!--透明色 -->

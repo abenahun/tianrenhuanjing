@@ -57,7 +57,10 @@
         <activity android:name=".activity.HandleCallPoliceActivity" />
         <activity android:name=".activity.InputQuantityActivity" />
         <activity android:name=".activity.InputQuantityHisActivity" />
-        <activity android:name=".activity.ReportEntryActivity"></activity>
+        <activity
+            android:name=".activity.ReportEntryActivity"
+            android:windowSoftInputMode="stateHidden">>
+        </activity>
     </application>
 
 </manifest>
