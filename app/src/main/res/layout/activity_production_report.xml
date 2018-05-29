@@ -1,0 +1,1145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/pro_bg">
+
+    <include layout="@layout/layout_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="17dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="安全生产(天)"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_anquanshengchan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="113.71"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/pro_linecolor"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="报表时间"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_baobiaoshijian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2018.5.28"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="厨房垃圾"
+        android:gravity="center_vertical"
+        android:textColor="@color/pro_texttitle"
+        android:paddingLeft="14dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当日进厂量（T）"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/pro_textgray"
+                android:textSize="@dimen/textsize13"/>
+
+            <TextView
+                android:id="@+id/tv_cc_jinchang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="113.71"
+                android:textColor="@color/pro_textblack"
+                android:textSize="@dimen/textsize15"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+        
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/pro_linecolor"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当日处理量（T）"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/pro_textgray"
+                android:textSize="@dimen/textsize13"/>
+
+            <TextView
+                android:id="@+id/tv_cc_chuli"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="185.85"
+                android:textColor="@color/pro_textblack"
+                android:textSize="@dimen/textsize15"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+        
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/pro_linecolor"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="月计划完成量（T）"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/pro_textgray"
+                android:textSize="@dimen/textsize13"/>
+
+            <TextView
+                android:id="@+id/tv_cc_yuejihua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="113.71"
+                android:textColor="@color/pro_textblack"
+                android:textSize="@dimen/textsize15"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/pro_linecolor"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="月完成量（T）"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/pro_textgray"
+                android:textSize="@dimen/textsize13"/>
+
+            <TextView
+                android:id="@+id/tv_cc_yuewancheng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="185.85"
+                android:textColor="@color/pro_textblack"
+                android:textSize="@dimen/textsize15"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/pro_linecolor"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="本月完成率（%）"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/pro_textgray"
+                android:textSize="@dimen/textsize13"/>
+
+            <TextView
+                android:id="@+id/tv_cc_wanchenglv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="113.71"
+                android:textColor="@color/pro_textblack"
+                android:textSize="@dimen/textsize15"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="餐饮垃圾"
+        android:gravity="center_vertical"
+        android:textColor="@color/pro_texttitle"
+        android:paddingLeft="14dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当日进厂量（T）"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/pro_textgray"
+                android:textSize="@dimen/textsize13"/>
+
+            <TextView
+                android:id="@+id/tv_cy_jinchang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="113.71"
+                android:textColor="@color/pro_textblack"
+                android:textSize="@dimen/textsize15"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/pro_linecolor"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当日处理量（T）"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/pro_textgray"
+                android:textSize="@dimen/textsize13"/>
+
+            <TextView
+                android:id="@+id/tv_cy_chuli"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="185.85"
+                android:textColor="@color/pro_textblack"
+                android:textSize="@dimen/textsize15"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/pro_linecolor"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="月计划完成量（T）"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/pro_textgray"
+                android:textSize="@dimen/textsize13"/>
+
+            <TextView
+                android:id="@+id/tv_cy_yuejihua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="113.71"
+                android:textColor="@color/pro_textblack"
+                android:textSize="@dimen/textsize15"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/pro_linecolor"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="月完成量（T）"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/pro_textgray"
+                android:textSize="@dimen/textsize13"/>
+
+            <TextView
+                android:id="@+id/tv_cy_yuewancheng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="185.85"
+                android:textColor="@color/pro_textblack"
+                android:textSize="@dimen/textsize15"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/pro_linecolor"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="本月完成率（%）"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/pro_textgray"
+                android:textSize="@dimen/textsize13"/>
+
+            <TextView
+                android:id="@+id/tv_cy_wanchenglv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="113.71"
+                android:textColor="@color/pro_textblack"
+                android:textSize="@dimen/textsize15"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="提油"
+        android:gravity="center_vertical"
+        android:textColor="@color/pro_texttitle"
+        android:paddingLeft="14dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="月计划完成量（T）"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/pro_textgray"
+                android:textSize="@dimen/textsize13"/>
+
+            <TextView
+                android:id="@+id/tv_ty_yuejihua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="113.71"
+                android:textColor="@color/pro_textblack"
+                android:textSize="@dimen/textsize15"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/pro_linecolor"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="月完成量（T）"
+                android:textColor="@color/pro_textgray"
+                android:textSize="@dimen/textsize13"/>
+
+            <TextView
+                android:id="@+id/tv_ty_yuewancheng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="185.85"
+                android:textColor="@color/pro_textblack"
+                android:textSize="@dimen/textsize15"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/pro_linecolor"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="本月完成率（%）"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/pro_textgray"
+                android:textSize="@dimen/textsize13"/>
+
+            <TextView
+                android:id="@+id/tv_ty_wanchenglv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="113.71"
+                android:textColor="@color/pro_textblack"
+                android:textSize="@dimen/textsize15"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="产沼"
+                android:gravity="center_vertical"
+                android:textColor="@color/pro_texttitle"
+                android:paddingLeft="14dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="日进料量(1号罐)(T)"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_cz_jinliao1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="113.71"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/pro_linecolor"/>
+
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="日进料量(2号罐)(T)"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_cz_jinliao2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="185.85"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/pro_linecolor"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="当日产气(㎡)"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_cz_chanqi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="113.71"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/pro_linecolor"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="月计划完成量(㎡)"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_cz_yuejihua"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="113.71"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/pro_linecolor"/>
+
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="月完成量(㎡)"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_cz_yuewancheng"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="185.85"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/pro_linecolor"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="月完成率（%）"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_cz_wanchenglv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="113.71"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="发、用电"
+                android:gravity="center_vertical"
+                android:textColor="@color/pro_texttitle"
+                android:paddingLeft="14dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="日发电量(kw/h)"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_yyd_fadian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="113.71"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/pro_linecolor"/>
+
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="日供电量(kw/h)"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_yyd_gongdian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="185.85"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/pro_linecolor"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="日用电率(%)"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_yyd_yongdianlv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="113.71"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/pro_linecolor"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="月计划完成量(kw/h)"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_yyd_yuejihua"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="113.71"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/pro_linecolor"/>
+
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="月完成量(kw/h)"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_yyd_yuewancheng"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="185.85"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/pro_linecolor"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="月完成率（%）"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_yyd_wanchenglv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="113.71"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/pro_linecolor"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="日长用电量(kw/h)"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_yyd_richangyongdian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="113.71"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/pro_linecolor"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="日网用电量(kw/h)"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_yyd_riwangyongdian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="185.85"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/pro_linecolor"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="月计划网用电量(kw/h)"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_yyd_yuejihuawang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="113.71"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/pro_linecolor"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="网用电率(%)"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/pro_textgray"
+                        android:textSize="@dimen/textsize13"/>
+
+                    <TextView
+                        android:id="@+id/tv_yyd_wangyongdianlv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="185.85"
+                        android:textColor="@color/pro_textblack"
+                        android:textSize="@dimen/textsize15"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -21,9 +21,9 @@ import okhttp3.ResponseBody;
 public class BaseWebService {
 //    public static final String BASE_URL = "http://192.168.2.250:8080/";
 //    public static final String TIANREN_URL = "";
-    public static final String BASE_URL = "http://engineerlee.top:8080/";
+//    public static final String BASE_URL = "http://engineerlee.top:8080/";
     public static final String TIANREN_URL = "tianren/";
-//    public static final String BASE_URL = "http://iot.tianren.com:8080/";
+    public static final String BASE_URL = "http://iot.tianren.com:8080/";
 
     private static final Integer TIME_OUT = 8;
 

@@ -22,6 +22,7 @@ import com.tianren.acommon.remote.callback.SCallBack;
 import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
 import com.tianren.methane.activity.DataStatisticsActivity;
+import com.tianren.methane.activity.ProductReportActivity;
 import com.tianren.methane.manager.LineChartManager;
 import com.tianren.methane.utils.MPChartHelper;
 import com.tianren.methane.utils.StringUtil;
@@ -327,6 +328,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 intent5.putExtra("tableName", "Consumption");
                 intent5.putExtra("columnName", StringUtil.humpToLine2("airConsumption"));
                 startActivity(intent5);
+
                 break;
 
             case R.id.ll_chanqixiaoyi:

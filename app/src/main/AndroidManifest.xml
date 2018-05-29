@@ -44,6 +44,7 @@
         <activity android:name=".activity.ResetPwdActivity" />
         <activity android:name=".activity.RunningStatusActivity" />
         <activity android:name=".activity.DataStatisticsActivity" />
+        <activity android:name=".activity.ProductReportActivity" />
 
         <service
             android:name=".service.SipService"
