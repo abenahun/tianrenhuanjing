@@ -119,4 +119,18 @@ public class EntryService extends BaseWebService {
         }.getType());
     }
 
+    /**
+     * 录入报表数据
+     *
+     * @return
+     */
+    private String ENTRYPRODATA = TIANREN_URL + "entry/entryProData";
+
+    public WebTask<BaseResponse<Boolean>> entryProData(String report) {
+        Map<String, Object> p = new HashMap<>();
+        p.put("report", report);
+        return request(ENTRYPRODATA, p, new TypeToken<BaseResponse<Boolean>>() {
+        }.getType());
+    }
+
 }

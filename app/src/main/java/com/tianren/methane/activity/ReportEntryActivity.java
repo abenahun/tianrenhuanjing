@@ -6,7 +6,17 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.tianren.acommon.BaseResponse;
+import com.tianren.acommon.bean.ReportBean;
+import com.tianren.acommon.remote.WebServiceManage;
+import com.tianren.acommon.remote.callback.SCallBack;
+import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
+import com.tianren.methane.utils.DateUtil;
+import com.tianren.methane.utils.ToastUtils;
+
+import java.util.Date;
 
 /**
  * @author qiushengtao
@@ -91,6 +101,8 @@ public class ReportEntryActivity extends BaseActivity implements View.OnClickLis
         water_bad_introduce_day = (EditText) findViewById(R.id.water_bad_introduce_day);
         water_bad_introduce_plan = (EditText) findViewById(R.id.water_bad_introduce_plan);
         water_bad_introduce_month = (EditText) findViewById(R.id.water_bad_introduce_month);
+
+        report_time.setText(DateUtil.format("yyyy-MM-dd HH:mm:ss", new Date()));
     }
 
     @Override
@@ -100,10 +112,69 @@ public class ReportEntryActivity extends BaseActivity implements View.OnClickLis
                 finish();
                 break;
             case R.id.moreTv:
-
+                commit();
                 break;
             default:
                 break;
         }
+    }
+
+    /**
+     * 报表保存并提交
+     */
+    private void commit() {
+        String reportDays = report_day.getText().toString();
+        String reportTime = report_time.getText().toString();
+        String kitchenEnter = kitchen_enter.getText().toString();
+        String kitchenDeal = kitchen_deal.getText().toString();
+        String kitchenPlan = kitchen_finish_plan.getText().toString();
+        String kitchenFinish = kitchen_finish_data.getText().toString();
+        String kitchenRate = kitchen_finish_rate.getText().toString();
+
+        String repastEnter = repast_enter.getText().toString();
+        String repastDeal = repast_deal.getText().toString();
+        String repastPlan = repast_finish_plan.getText().toString();
+        String repastFinish = repast_finish_data.getText().toString();
+        String repastRate = repast_finish_rate.getText().toString();
+
+        String oilPlan = oil_finish_plan.getText().toString();
+        String oilFinish = oil_finish_data.getText().toString();
+        String oilRate = oil_finish_rate.getText().toString();
+
+        String gasEnter1 = gas_enter1.getText().toString();
+        String gasEnter2 = gas_enter2.getText().toString();
+        String gasPlan = gas_finish_plan.getText().toString();
+        String gasFinish = gas_finish_data.getText().toString();
+        String gasRate = gas_finish_rate.getText().toString();
+
+        String eleProduct = ele_product.getText().toString();
+        String eleProvider = ele_provide.getText().toString();
+        String eleDayUseRate = ele_day_use_rate.getText().toString();
+        String elePlan = ele_finish_plan.getText().toString();
+        String eleFinish = ele_finish_data.getText().toString();
+        String eleDayRate = ele_finish_rate.getText().toString();
+        String eleUseFactoryData = ele_use_factory_data.getText().toString();
+        String eleUseNetData = ele_use_net_data.getText().toString();
+        String elePlanUseData = ele_plan_use_data.getText().toString();
+        String eleNetRate = ele_net_rate.getText().toString();
+
+        String waterFiltrateProduct = water_filtrate_product.getText().toString();
+        String waterRepertory = water_repertory.getText().toString();
+        String waterGasProduct = water_gas_product.getText().toString();
+        String waterBadIntroduceDay = water_bad_introduce_day.getText().toString();
+        String waterBadIntroducePlan = water_bad_introduce_plan.getText().toString();
+        String waterBadIntroduceMonth = water_bad_introduce_month.getText().toString();
+        ReportBean bean = new ReportBean();
+
+        String s = new Gson().toJson(bean);
+        WebServiceManage.getService(EntryService.class).entryProData(s).setCallback(new SCallBack<BaseResponse<Boolean>>() {
+            @Override
+            public void callback(boolean isok, String msg, BaseResponse<Boolean> res) {
+                ToastUtils.show(msg);
+                if (isok && res.getData()) {
+
+                }
+            }
+        });
     }
 }
