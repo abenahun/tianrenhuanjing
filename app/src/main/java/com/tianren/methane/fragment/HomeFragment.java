@@ -22,9 +22,9 @@ import com.tianren.acommon.remote.callback.SCallBack;
 import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
 import com.tianren.methane.activity.DataStatisticsActivity;
-import com.tianren.methane.activity.ProductReportActivity;
 import com.tianren.methane.manager.LineChartManager;
 import com.tianren.methane.utils.MPChartHelper;
+import com.tianren.methane.utils.MathUtils;
 import com.tianren.methane.utils.StringUtil;
 
 import java.util.ArrayList;
@@ -55,16 +55,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             ll_zongxiaoyi, ll_chandianxiaoyi, ll_jinliaoliang;
     private TextView allConsume, waterConsume, eleConsume, hotConsume;
     private TextView airEarnings, eleEarnings, allEarnings;
-    private TextView tv_tiyou, tv_jinliao;
+    private TextView tv_handle1, tv_handle2, tv_produce1, tv_produce2;
     private SwipeRefreshLayout refreshLayout;
 
-    private TextView tv_anquanshengchan,tv_baobiaoshijian,
-            tv_cc_jinchang,tv_cc_chuli,tv_cc_yuejihua,tv_cc_yuewancheng,tv_cc_wanchenglv,
-            tv_cy_jinchang,tv_cy_chuli,tv_cy_yuejihua,tv_cy_yuewancheng,tv_cy_wanchenglv,
-            tv_ty_yuejihua,tv_ty_yuewancheng,tv_ty_wanchenglv,
-            tv_cz_jinliao1,tv_cz_jinliao2,tv_cz_chanqi,tv_cz_yuejihua,tv_cz_yuewancheng,tv_cz_wanchenglv,
-            tv_yyd_fadian,tv_yyd_gongdian,tv_yyd_yongdianlv,tv_yyd_yuejihua,tv_yyd_yuewancheng,
-            tv_yyd_wanchenglv,tv_yyd_richangyongdian,tv_yyd_riwangyongdian;
+    private TextView tv_anquanshengchan, tv_baobiaoshijian,
+            tv_cc_jinchang, tv_cc_chuli, tv_cc_yuejihua, tv_cc_yuewancheng, tv_cc_wanchenglv,
+            tv_cy_jinchang, tv_cy_chuli, tv_cy_yuejihua, tv_cy_yuewancheng, tv_cy_wanchenglv,
+            tv_ty_yuejihua, tv_ty_yuewancheng, tv_ty_wanchenglv,
+            tv_cz_jinliao1, tv_cz_jinliao2, tv_cz_chanqi, tv_cz_yuejihua, tv_cz_yuewancheng, tv_cz_wanchenglv,
+            tv_yyd_fadian, tv_yyd_gongdian, tv_yyd_yongdianlv, tv_yyd_yuejihua, tv_yyd_yuewancheng,
+            tv_yyd_wanchenglv, tv_yyd_richangyongdian, tv_yyd_riwangyongdian;
 
     @Nullable
     @Override
@@ -121,8 +121,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         airEarnings = (TextView) view.findViewById(R.id.airEarnings);
         eleEarnings = (TextView) view.findViewById(R.id.eleEarnings);
         allEarnings = (TextView) view.findViewById(R.id.allEarnings);
-        tv_tiyou = (TextView) view.findViewById(R.id.tv_tiyou);
-        tv_jinliao = (TextView) view.findViewById(R.id.tv_jinliao);
+        tv_handle1 = (TextView) view.findViewById(R.id.tv_handle1);
+        tv_handle2 = (TextView) view.findViewById(R.id.tv_handle2);
+        tv_produce1 = (TextView) view.findViewById(R.id.tv_produce1);
+        tv_produce2 = (TextView) view.findViewById(R.id.tv_produce2);
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refreshLayout);
 
         tv_anquanshengchan = (TextView) view.findViewById(R.id.tv_anquanshengchan);//安全生产
@@ -164,7 +166,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         });
 
 
-
     }
 
     private void loadData() {
@@ -175,12 +176,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                         Log.e("isok", "callback: " + isok);
                         if (isok) {
                             Double gasProduction = res.getData().get(0).getGasProduction();
-                            airEarnings.setText((gasProduction.equals(0) ? "0" : (gasProduction + "")) + "元");
+                            airEarnings.setText((gasProduction.equals(0) ? "0" : (MathUtils.scale(gasProduction) + "")) + "元");
                             Double powerGeneration = res.getData().get(0).getPowerGeneration();
-                            eleEarnings.setText((powerGeneration.equals(0) ? "0" : (powerGeneration + "")) + "元");
-                            allEarnings.setText((gasProduction + powerGeneration) + "元");
-                            Double tiyou = res.getData().get(0).getLiftingCapacity();
-                            tv_tiyou.setText((tiyou.equals(0) ? "0" : (tiyou + "")) + "元");
+                            eleEarnings.setText((powerGeneration.equals(0) ? "0" : (MathUtils.scale(powerGeneration) + "")) + "元");
+                            allEarnings.setText(MathUtils.scale((gasProduction + powerGeneration + 3500)) + "元");
                         }
                     }
                 });
@@ -190,14 +189,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     public void callback(boolean isok, String msg, BaseResponse<List<ConsumptionBean>> res) {
                         if (isok) {
                             Double waterConsumption = res.getData().get(0).getWaterConsumption();
-                            waterConsume.setText(waterConsumption.equals(0) ? "0" : (waterConsumption + "") + "吨");
+                            waterConsume.setText(waterConsumption.equals(0) ? "0" : (MathUtils.scale2(waterConsumption) + "") + "吨");
                             Double powerConsumption = res.getData().get(0).getPowerConsumption();
-                            eleConsume.setText(powerConsumption.equals(0) ? "0" : (powerConsumption + "") + "kw");
+                            eleConsume.setText(powerConsumption.equals(0) ? "0" : (MathUtils.scale2(powerConsumption) + "") + "kw");
                             Double airConsumption = res.getData().get(0).getAirConsumption();
-                            hotConsume.setText(airConsumption.equals(0) ? "0" : (airConsumption + "") + "m³");
-                            allConsume.setText((waterConsumption + powerConsumption + airConsumption) + "");
-                            Double jinliao = res.getData().get(0).getFeedAmount();
-                            tv_jinliao.setText(jinliao.equals(0) ? "0" : (jinliao + "") + "吨");
+//                            hotConsume.setText(airConsumption.equals(0) ? "0" : (MathUtils.scale2(airConsumption) + "") + "m³");
+                            allConsume.setText(MathUtils.scale2((waterConsumption + powerConsumption + airConsumption)) + "元");
                         }
                         refreshLayout.setRefreshing(false);
                     }
@@ -215,7 +212,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             yAxisValues2.add((float) (Math.random() * 80 + 1000));
         }
 
-        MPChartHelper.setTwoBarChart(barChart1, xAxisValues, yAxisValues1, yAxisValues2, "总效益", "总能耗");
+        MPChartHelper.setTwoBarChart(barChart1, xAxisValues, yAxisValues1, yAxisValues2, "总收益", "总能耗");
 
     }
 
