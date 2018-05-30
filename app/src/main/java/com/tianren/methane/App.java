@@ -3,11 +3,14 @@ package com.tianren.methane;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.util.DisplayMetrics;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tianren.acommon.AppWsInfo;
 import com.tianren.acommon.remote.WebServiceManage;
 import com.tianren.methane.utils.SharedPreferenceUtil;
 import com.tianren.methane.utils.Utils;
+import com.uuch.adlibrary.utils.DisplayUtil;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -42,6 +45,19 @@ public class App extends Application {
         app = this;
         WebServiceManage.init(this, new AppWsInfo());
         SharedPreferenceUtil.init(this);
+        initDisplayOpinion();
+        Fresco.initialize(this);//初始化
+    }
+
+    //广告工具初始化参数
+    private void initDisplayOpinion() {
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        DisplayUtil.density = dm.density;
+        DisplayUtil.densityDPI = dm.densityDpi;
+        DisplayUtil.screenWidthPx = dm.widthPixels;
+        DisplayUtil.screenhightPx = dm.heightPixels;
+        DisplayUtil.screenWidthDip = DisplayUtil.px2dip(getApplicationContext(), dm.widthPixels);
+        DisplayUtil.screenHightDip = DisplayUtil.px2dip(getApplicationContext(), dm.heightPixels);
     }
 
     public synchronized void closeAllActivity() {

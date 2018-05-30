@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tamic.novate.Novate;
 import com.tianren.acommon.BaseResponse;
@@ -30,6 +31,8 @@ import com.tianren.methane.fragment.MeFragment;
 import com.tianren.methane.jniutils.ParseDataFromDev;
 import com.tianren.methane.service.SipService;
 import com.tianren.methane.utils.ToastUtils;
+import com.uuch.adlibrary.AdManager;
+import com.uuch.adlibrary.bean.AdInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,6 +62,7 @@ public class MainActivity extends BaseActivity {
 
     private ParseDataFromDev dataParseDevObj = null;
     private List<DevInfo> devInfoList;
+    private ArrayList<AdInfo> advList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,7 +72,7 @@ public class MainActivity extends BaseActivity {
         userName = getValueFromTable("username", "");
         getDeviceModel();
         getStaticData();
-        getDeviceModelFromSip();
+//        getDeviceModelFromSip();
     }
 
     private void getDeviceModelFromSip() {
@@ -91,6 +95,36 @@ public class MainActivity extends BaseActivity {
 //                    SipService.getMyInterface().sendMsgInWAN(to, from, msg_body,domainStr);
 //                }
     }
+
+    /**
+     * 初始化数据
+     */
+    private void initAdData() {
+        advList = new ArrayList<>();
+        AdInfo adInfo = new AdInfo();
+        adInfo.setActivityImg("https://raw.githubusercontent.com/yipianfengye/android-adDialog/master/images/testImage1.png");
+        advList.add(adInfo);
+
+        adInfo = new AdInfo();
+        adInfo.setActivityImg("https://raw.githubusercontent.com/yipianfengye/android-adDialog/master/images/testImage2.png");
+        advList.add(adInfo);
+    }
+
+
+    private void showAd(){
+        /**
+         * 创建广告活动管理对象
+         */
+        AdManager adManager = new AdManager(MainActivity.this, advList);
+        adManager.setOnImageClickListener(new AdManager.OnImageClickListener() {
+            @Override
+            public void onImageClick(View view, AdInfo advInfo) {
+                Toast.makeText(MainActivity.this, "您点击了ViewPagerItem...", Toast.LENGTH_SHORT).show();
+            }
+        });
+        adManager.showAdDialog(30);
+    }
+
 
     /**
      * 获取静态表数据

@@ -58,6 +58,14 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private TextView tv_tiyou, tv_jinliao;
     private SwipeRefreshLayout refreshLayout;
 
+    private TextView tv_anquanshengchan,tv_baobiaoshijian,
+            tv_cc_jinchang,tv_cc_chuli,tv_cc_yuejihua,tv_cc_yuewancheng,tv_cc_wanchenglv,
+            tv_cy_jinchang,tv_cy_chuli,tv_cy_yuejihua,tv_cy_yuewancheng,tv_cy_wanchenglv,
+            tv_ty_yuejihua,tv_ty_yuewancheng,tv_ty_wanchenglv,
+            tv_cz_jinliao1,tv_cz_jinliao2,tv_cz_chanqi,tv_cz_yuejihua,tv_cz_yuewancheng,tv_cz_wanchenglv,
+            tv_yyd_fadian,tv_yyd_gongdian,tv_yyd_yongdianlv,tv_yyd_yuejihua,tv_yyd_yuewancheng,
+            tv_yyd_wanchenglv,tv_yyd_richangyongdian,tv_yyd_riwangyongdian;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -116,6 +124,37 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         tv_tiyou = (TextView) view.findViewById(R.id.tv_tiyou);
         tv_jinliao = (TextView) view.findViewById(R.id.tv_jinliao);
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refreshLayout);
+
+        tv_anquanshengchan = (TextView) view.findViewById(R.id.tv_anquanshengchan);//安全生产
+        tv_baobiaoshijian = (TextView) view.findViewById(R.id.tv_baobiaoshijian);//报表时间
+        tv_cc_jinchang = (TextView) view.findViewById(R.id.tv_cc_jinchang);//餐厨当日进厂量
+        tv_cc_chuli = (TextView) view.findViewById(R.id.tv_cc_chuli);
+        tv_cc_yuejihua = (TextView) view.findViewById(R.id.tv_cc_yuejihua);
+        tv_cc_yuewancheng = (TextView) view.findViewById(R.id.tv_cc_yuewancheng);
+        tv_cc_wanchenglv = (TextView) view.findViewById(R.id.tv_cc_wanchenglv);
+        tv_cy_jinchang = (TextView) view.findViewById(R.id.tv_cy_jinchang);
+        tv_cy_chuli = (TextView) view.findViewById(R.id.tv_cy_chuli);
+        tv_cy_yuejihua = (TextView) view.findViewById(R.id.tv_cy_yuejihua);
+        tv_cy_yuewancheng = (TextView) view.findViewById(R.id.tv_cy_yuewancheng);
+        tv_cy_wanchenglv = (TextView) view.findViewById(R.id.tv_cy_wanchenglv);
+        tv_ty_yuejihua = (TextView) view.findViewById(R.id.tv_ty_yuejihua);
+        tv_ty_yuewancheng = (TextView) view.findViewById(R.id.tv_ty_yuewancheng);
+        tv_ty_wanchenglv = (TextView) view.findViewById(R.id.tv_ty_wanchenglv);
+        tv_cz_jinliao1 = (TextView) view.findViewById(R.id.tv_cz_jinliao1);
+        tv_cz_jinliao2 = (TextView) view.findViewById(R.id.tv_cz_jinliao2);
+        tv_cz_chanqi = (TextView) view.findViewById(R.id.tv_cz_chanqi);
+        tv_cz_yuejihua = (TextView) view.findViewById(R.id.tv_cz_yuejihua);
+        tv_cz_yuewancheng = (TextView) view.findViewById(R.id.tv_cz_yuewancheng);
+        tv_cz_wanchenglv = (TextView) view.findViewById(R.id.tv_cz_wanchenglv);
+        tv_yyd_fadian = (TextView) view.findViewById(R.id.tv_yyd_fadian);
+        tv_yyd_gongdian = (TextView) view.findViewById(R.id.tv_yyd_gongdian);
+        tv_yyd_yongdianlv = (TextView) view.findViewById(R.id.tv_yyd_yongdianlv);
+        tv_yyd_yuejihua = (TextView) view.findViewById(R.id.tv_yyd_yuejihua);
+        tv_yyd_yuewancheng = (TextView) view.findViewById(R.id.tv_yyd_yuewancheng);
+        tv_yyd_wanchenglv = (TextView) view.findViewById(R.id.tv_yyd_wanchenglv);
+        tv_yyd_richangyongdian = (TextView) view.findViewById(R.id.tv_yyd_richangyongdian);
+        tv_yyd_riwangyongdian = (TextView) view.findViewById(R.id.tv_yyd_riwangyongdian);
+
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -123,6 +162,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 initBarCharts();
             }
         });
+
+
 
     }
 
