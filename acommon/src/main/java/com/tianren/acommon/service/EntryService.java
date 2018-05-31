@@ -135,7 +135,7 @@ public class EntryService extends BaseWebService {
     }
 
     /**
-     * 录入报表数据
+     * 获取报表数据列表
      *
      * @return
      */
@@ -149,5 +149,19 @@ public class EntryService extends BaseWebService {
         return request(GETPRODATA, p, new TypeToken<BaseResponse<List<ReportBean>>>() {
         }.getType());
     }
+
+//    /**
+//     * 获取某个报表详细数据
+//     *
+//     * @return
+//     */
+//    private String GETPRODATA = TIANREN_URL + "entry/getProData";
+//
+//    public WebTask<BaseResponse<List<ReportBean>>> getProData(Integer reportId) {
+//        Map<String, Object> p = new HashMap<>();
+//        p.put("reportId", reportId);
+//        return request(GETPRODATA, p, new TypeToken<BaseResponse<List<ReportBean>>>() {
+//        }.getType());
+//    }
 
 }

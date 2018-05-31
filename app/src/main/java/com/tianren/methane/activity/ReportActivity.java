@@ -43,7 +43,7 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
         ll_back = (LinearLayout) findViewById(R.id.ll_back);
         ll_back.setOnClickListener(this);
         tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_title.setText("生产报表");
+        tv_title.setText("详细信息");
         moreIv = (ImageView) findViewById(R.id.moreIv);
         moreIv.setImageResource(R.mipmap.call_police);
         moreIv.setOnClickListener(this);
@@ -76,6 +76,7 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void onItemClick(View itemView, int position) {
                 Intent intent = new Intent(ReportActivity.this, ProductReportActivity.class);
+                intent.putExtra("reportId", adapter.getItems().get(position).getReportId());
                 startActivity(intent);
             }
         });
@@ -93,7 +94,8 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
                     }
                     if (res != null && res.getData() != null && res.getData().size() != 0) {
                         for (int i = 0; i < res.getData().size(); i++) {
-                            adapter.addItem(res.getData().get(i).getReportTime());
+                            ReportBean bean = res.getData().get(i);
+                            adapter.addItem(new ReportAdapter.ReportTempBean(bean.getReportId(), bean.getReportTime()));
                         }
                         recyclerView.loadMoreFinish(false, true);
                     } else {

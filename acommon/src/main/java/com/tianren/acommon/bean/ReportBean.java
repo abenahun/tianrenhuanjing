@@ -5,6 +5,7 @@ package com.tianren.acommon.bean;
  * @date 2018/5/29
  */
 public class ReportBean {
+    private Integer reportId;
     private Integer reportDays;//生产天数
     private String reportTime;//生产时间
 
@@ -26,6 +27,7 @@ public class ReportBean {
 
     private Double gasEnter1;//(产沼)日进料量(1号)
     private Double gasEnter2;//(产沼)日进料量(2号)
+    private Double gasDayProduce;//当日产气量
     private Double gasPlan;//(提油)月计划完成量
     private Double gasFinish;//(提油)月完成量
     private Double gasRate;//(提油)月完成率
@@ -48,6 +50,13 @@ public class ReportBean {
     private Double waterBadIntroducePlan;//（污水）月计划污水处理量
     private Double waterBadIntroduceMonth;//（污水）月污水处理量
 
+    public Integer getReportId() {
+        return reportId;
+    }
+
+    public void setReportId(Integer reportId) {
+        this.reportId = reportId;
+    }
 
     public Integer getReportDays() {
         return reportDays;
@@ -183,6 +192,14 @@ public class ReportBean {
 
     public void setGasEnter2(Double gasEnter2) {
         this.gasEnter2 = gasEnter2;
+    }
+
+    public Double getGasDayProduce() {
+        return gasDayProduce;
+    }
+
+    public void setGasDayProduce(Double gasDayProduce) {
+        this.gasDayProduce = gasDayProduce;
     }
 
     public Double getGasPlan() {

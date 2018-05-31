@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tianren.methane.R;
+import com.tianren.methane.utils.ToastUtils;
 
 /**
  * Created by Administrator on 2018/5/28.
@@ -16,6 +17,7 @@ public class ProductReportActivity extends BaseActivity implements View.OnClickL
     private LinearLayout ll_back;
     private TextView tv_title;
 
+    private Integer reportId;
     //生产天数、时间
     private TextView report_day;
     private TextView report_time;
@@ -41,7 +43,11 @@ public class ProductReportActivity extends BaseActivity implements View.OnClickL
         ll_back.setOnClickListener(this);
         tv_title = (TextView) findViewById(R.id.tv_title);
         tv_title.setText("生产报表");
-
+        reportId = getIntent().getIntExtra("reportId", -1);
+        if (reportId==-1){
+            ToastUtils.show("出现错误");
+            finish();
+        }
         report_day = (TextView) findViewById(R.id.report_day);
         report_time = (TextView) findViewById(R.id.report_time);
 
@@ -85,6 +91,12 @@ public class ProductReportActivity extends BaseActivity implements View.OnClickL
         water_bad_introduce_day = (TextView) findViewById(R.id.water_bad_introduce_day);
         water_bad_introduce_plan = (TextView) findViewById(R.id.water_bad_introduce_plan);
         water_bad_introduce_month = (TextView) findViewById(R.id.water_bad_introduce_month);
+
+        loadData();
+    }
+
+    private void loadData() {
+
     }
 
     @Override

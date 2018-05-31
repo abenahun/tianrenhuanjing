@@ -15,7 +15,7 @@ import com.tianren.methane.base.BaseRcAdapter;
  * @author Mr.Qiu
  * @date 2018/5/31
  */
-public class ReportAdapter extends BaseRcAdapter<String, ReportAdapter.MyViewHolder> {
+public class ReportAdapter extends BaseRcAdapter<ReportAdapter.ReportTempBean, ReportAdapter.MyViewHolder> {
     private LayoutInflater inflater;
 
     public ReportAdapter(Context context) {
@@ -31,8 +31,8 @@ public class ReportAdapter extends BaseRcAdapter<String, ReportAdapter.MyViewHol
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        String s = getItems().get(position);
-        holder.textView.setText(TextUtils.isEmpty(s) ? "" : s);
+        ReportTempBean bean = getItems().get(position);
+        holder.textView.setText(TextUtils.isEmpty(bean.time) ? "" : bean.time);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -42,6 +42,31 @@ public class ReportAdapter extends BaseRcAdapter<String, ReportAdapter.MyViewHol
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.textView);
         }
+    }
 
+    public static class ReportTempBean {
+        private Integer reportId;
+        private String time;
+
+        public ReportTempBean(Integer reportId, String time) {
+            this.reportId = reportId;
+            this.time = time;
+        }
+
+        public Integer getReportId() {
+            return reportId;
+        }
+
+        public void setReportId(Integer reportId) {
+            this.reportId = reportId;
+        }
+
+        public String getTime() {
+            return time;
+        }
+
+        public void setTime(String time) {
+            this.time = time;
+        }
     }
 }
