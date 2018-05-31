@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,16 +16,16 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:src="@mipmap/taifeng"
                 android:adjustViewBounds="true"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY"
+                android:src="@mipmap/taifeng" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="8dp">
 
 
                 <LinearLayout
@@ -39,32 +39,33 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@mipmap/qigui_jingao"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
                         android:text="警告"
-                        android:gravity="center"
-                        android:paddingLeft="8dp"
+                        android:textColor="@color/baojing"
                         android:textSize="@dimen/textsize20"
-                        android:textStyle="bold"
-                        android:textColor="@color/baojing"/>
+                        android:textStyle="bold" />
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="5dp"
                         android:text="台风还有72小时登录"
-                        android:gravity="center"
-                        android:paddingLeft="8dp"
-                        android:textSize="@dimen/textsize17"
                         android:textColor="@color/textblack"
-                        android:paddingTop="5dp"/>
+                        android:textSize="@dimen/textsize17" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2018-05-15 11:11:11"
                         android:gravity="center"
                         android:paddingLeft="8dp"
-                        android:textSize="@dimen/textsize13"
+                        android:paddingTop="5dp"
+                        android:text="2018-05-15 11:11:11"
                         android:textColor="@color/textgray"
-                        android:paddingTop="5dp" />
+                        android:textSize="@dimen/textsize13" />
 
                 </LinearLayout>
 
@@ -73,14 +74,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/gray_cc"/>
+                android:background="@color/gray_cc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="8dp">
 
 
                 <LinearLayout
@@ -94,57 +95,48 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@mipmap/qigui_celve"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
                         android:text="策略"
-                        android:gravity="center"
-                        android:paddingLeft="8dp"
+                        android:textColor="@color/maincolor"
                         android:textSize="@dimen/textsize20"
-                        android:textStyle="bold"
-                        android:textColor="@color/maincolor"/>
+                        android:textStyle="bold" />
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="请于48小时内固定气囊"
-                        android:gravity="center"
                         android:paddingLeft="8dp"
-                        android:textSize="@dimen/textsize17"
+                        android:paddingTop="5dp"
+                        android:text="台风大于10级 请于48小时内将气柜外膜压力充至1.5kPa"
                         android:textColor="@color/textblack"
-                        android:paddingTop="5dp"/>
+                        android:textSize="@dimen/textsize17" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2018-05-15 11:11:11"
                         android:gravity="center"
                         android:paddingLeft="8dp"
-                        android:textSize="@dimen/textsize13"
+                        android:paddingTop="5dp"
+                        android:text="2018-05-15 11:11:11"
                         android:textColor="@color/textgray"
-                        android:paddingTop="5dp" />
+                        android:textSize="@dimen/textsize13" />
 
                 </LinearLayout>
-
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/maincolor"
-                    android:text="放散"
-                    android:layout_marginLeft="8dp"
-                    android:textColor="@color/white"/>
 
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/gray_cc"/>
+                android:background="@color/gray_cc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="8dp">
 
 
                 <LinearLayout
@@ -158,32 +150,32 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@mipmap/qigui_celve"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
                         android:text="策略"
-                        android:gravity="center"
-                        android:paddingLeft="8dp"
+                        android:textColor="@color/maincolor"
                         android:textSize="@dimen/textsize20"
-                        android:textStyle="bold"
-                        android:textColor="@color/maincolor"/>
+                        android:textStyle="bold" />
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="请于24小时内固定气囊"
-                        android:gravity="center"
                         android:paddingLeft="8dp"
-                        android:textSize="@dimen/textsize17"
+                        android:paddingTop="5dp"
+                        android:text="台风大于12级 请排除沼气，固定气柜"
                         android:textColor="@color/textblack"
-                        android:paddingTop="5dp"/>
+                        android:textSize="@dimen/textsize17" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2018-05-15 11:11:11"
                         android:gravity="center"
                         android:paddingLeft="8dp"
-                        android:textSize="@dimen/textsize13"
+                        android:paddingTop="5dp"
+                        android:text="2018-05-15 11:11:11"
                         android:textColor="@color/textgray"
-                        android:paddingTop="5dp" />
+                        android:textSize="@dimen/textsize13" />
 
                 </LinearLayout>
 

@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="14dp"
-        android:text="今日脱硫量 1000Vol"
+        android:text="今日脱硫量 100m³"
         android:textColor="@color/maincolor"
         android:textSize="16sp" />
 

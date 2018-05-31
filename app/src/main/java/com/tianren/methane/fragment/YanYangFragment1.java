@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -169,11 +168,11 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
             @Override
             public void callback(boolean isok, String msg, BaseResponse<List<Map<String, String>>> res) {
                 if (isok) {
+                    spinnerAdapter.clear();
                     labList = res.getData();
                     for (int i = 0; i < labList.size(); i++) {
                         String samplingPoint = labList.get(i).get("samplingPoint");
                         spinnerAdapter.add(samplingPoint);
-                        Log.e(TAG, "callback: " + samplingPoint);
                     }
                     spinnerAdapter.notifyDataSetChanged();
 

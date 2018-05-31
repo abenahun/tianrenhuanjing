@@ -57,15 +57,21 @@ public class YanYangFragment3 extends BaseFragment {
         yAxisValues = new ArrayList<>();
         for (int i = 1; i < 10; ++i) {
             if (i == 1) {
-                xAxisValues.add("2018-04-23");
+                xAxisValues.add("04-23");
+            } else if (i == 3) {
+                xAxisValues.add("04-25");
+            } else if (i == 5) {
+                xAxisValues.add("04-28");
+            } else if (i == 7) {
+                xAxisValues.add("05-21");
             } else if (i == 9) {
-                xAxisValues.add("2018-05-23");
+                xAxisValues.add("05-23");
             } else {
                 xAxisValues.add("");
             }
             yAxisValues.add((float) (Math.random() * 30 + 40));
         }
-        setLinesChart(lineChart, xAxisValues, yAxisValues, "稳定指数", false);
+        setLinesChart(lineChart, xAxisValues, yAxisValues, "处理量：吨", false);
     }
 
 
@@ -114,8 +120,6 @@ public class YanYangFragment3 extends BaseFragment {
         lineChart.getAxisRight().setEnabled(false);
         //图例设置
         Legend legend = lineChart.getLegend();
-        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         legend.setDrawInside(false);
         legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);

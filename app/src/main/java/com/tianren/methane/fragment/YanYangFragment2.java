@@ -60,17 +60,23 @@ public class YanYangFragment2 extends BaseFragment {
         lineChart = (LineChart) view.findViewById(R.id.lineChart);
         xAxisValues = new ArrayList<>();
         yAxisValues = new ArrayList<>();
-        for (int i = 1; i < 10; ++i) {
+        for (int i = 1; i < 11; ++i) {
             if (i == 1) {
-                xAxisValues.add("2018-04-23");
+                xAxisValues.add("04-23");
+            } else if (i == 3) {
+                xAxisValues.add("04-25");
+            } else if (i == 5) {
+                xAxisValues.add("04-28");
+            } else if (i == 7) {
+                xAxisValues.add("05-21");
             } else if (i == 9) {
-                xAxisValues.add("2018-05-23");
+                xAxisValues.add("05-23");
             } else {
                 xAxisValues.add("");
             }
             yAxisValues.add((float) (Math.random() * 0.3 + 0.3));
         }
-        setLinesChart(lineChart, xAxisValues, yAxisValues, "稳定指数", false);
+        setLinesChart(lineChart, xAxisValues, yAxisValues, "单位：VFA/ALK", false);
     }
 
 
@@ -109,12 +115,20 @@ public class YanYangFragment2 extends BaseFragment {
         leftAxis.setDrawGridLines(false);
         leftAxis.setAxisMaximum(1);
         leftAxis.setAxisMinimum(0);
-        LimitLine ll1 = new LimitLine(0.5f, "标准值");
+        LimitLine ll1 = new LimitLine(0.5f, "安全值");
+        LimitLine ll2 = new LimitLine(0.3f, "很安全");
         ll1.setLineWidth(1f);
         ll1.enableDashedLine(10f, 10f, 0f);
         ll1.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
         ll1.setTextSize(8f);
+        ll1.setLineColor(Color.parseColor("#1dbe80"));
+        ll2.setLineWidth(1f);
+        ll2.enableDashedLine(10f, 10f, 0f);
+        ll2.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
+        ll2.setTextSize(8f);
+        ll2.setLineColor(Color.parseColor("#1dbe80"));
         leftAxis.addLimitLine(ll1);
+        leftAxis.addLimitLine(ll2);
         if (showSetValues) {
             leftAxis.setDrawLabels(false);//折线上显示值，则不显示坐标轴上的值
         }
@@ -125,8 +139,6 @@ public class YanYangFragment2 extends BaseFragment {
         lineChart.getAxisRight().setEnabled(false);
         //图例设置
         Legend legend = lineChart.getLegend();
-        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         legend.setDrawInside(false);
         legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
@@ -152,9 +164,9 @@ public class YanYangFragment2 extends BaseFragment {
                 LineDataSet set = (LineDataSet) lineChart.getData().getDataSetByIndex(i);
                 set.setValues(entriesList.get(i));
                 set.setLabel(title);
+
                 set.setMode(LineDataSet.Mode.CUBIC_BEZIER);//线模式为圆滑曲线（默认折线）
             }
-
             lineChart.getData().notifyDataChanged();
             lineChart.notifyDataSetChanged();
         } else {
@@ -185,7 +197,6 @@ public class YanYangFragment2 extends BaseFragment {
             } else {
                 data.setDrawValues(false);
             }
-
             lineChart.setData(data);
         }
     }

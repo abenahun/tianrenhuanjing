@@ -71,7 +71,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
-                    android:src="@mipmap/yuchuli1" />
+                    android:src="@mipmap/icon_handle" />
 
                 <TextView
 
@@ -109,7 +109,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
-                    android:src="@mipmap/yanyang" />
+                    android:src="@mipmap/icon_yanyang" />
 
                 <TextView
 
@@ -148,7 +148,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
-                    android:src="@mipmap/tuoliu" />
+                    android:src="@mipmap/icon_tuoliu" />
 
                 <TextView
 
@@ -187,7 +187,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
-                    android:src="@mipmap/qigui" />
+                    android:src="@mipmap/icon_qigui" />
 
                 <TextView
 
@@ -226,7 +226,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
-                    android:src="@mipmap/tuotan" />
+                    android:src="@mipmap/icon_tuotan" />
 
                 <TextView
 
