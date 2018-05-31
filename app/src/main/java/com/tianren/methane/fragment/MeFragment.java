@@ -33,6 +33,7 @@ import com.tianren.methane.activity.CallPoliceActivity;
 import com.tianren.methane.activity.FeedBackActivity;
 import com.tianren.methane.activity.LinkServiceActivity;
 import com.tianren.methane.activity.LoginActivity;
+import com.tianren.methane.activity.ReportActivity;
 import com.tianren.methane.activity.ResetPwdActivity;
 import com.tianren.methane.utils.SharedPreferenceUtil;
 import com.tianren.methane.view.ImgPickerPopupwindow;
@@ -75,6 +76,7 @@ public class MeFragment extends TakePhotoFragment implements View.OnClickListene
         view.findViewById(R.id.ll_aboutus).setOnClickListener(this);
         view.findViewById(R.id.ll_baojing).setOnClickListener(this);
         view.findViewById(R.id.ll_service).setOnClickListener(this);
+        view.findViewById(R.id.ll_report).setOnClickListener(this);
 
 
 //        appbar= (AppBarLayout) view.findViewById(R.id.appbar);
@@ -235,6 +237,9 @@ public class MeFragment extends TakePhotoFragment implements View.OnClickListene
                 break;
             case R.id.ll_baojing://报警信息
                 startActivity(new Intent(getActivity(), CallPoliceActivity.class));
+                break;
+            case R.id.ll_report://生产报表
+                startActivity(new Intent(getActivity(), ReportActivity.class));
                 break;
             default:
                 break;

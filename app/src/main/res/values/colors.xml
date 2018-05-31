@@ -25,6 +25,7 @@
 
     <color name="division_line">#cccccc</color>
     <color name="division_line2">#e5e5e5</color>
+    <color name="divider_more">#f2f2f2</color><!--分割块颜色-->
     <color name="transparent">#00000000</color><!--透明色 -->
     <color name="white">#FFFFFF</color><!--白色 -->
     <color name="ivory">#FFFFF0</color><!--象牙色 -->

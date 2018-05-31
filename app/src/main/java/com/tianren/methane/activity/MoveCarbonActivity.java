@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.tianren.methane.R;
 import com.tianren.methane.adapter.ModelAdapter;
 import com.tianren.methane.event.ModelEvent;
+import com.tianren.methane.utils.StringUtil;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -129,6 +130,8 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
             Intent intent7 = new Intent(MoveCarbonActivity.this, DataStatisticsActivity.class);
             intent7.putExtra("title", "脱碳走势");
             intent7.putExtra("statisticsName", "脱碳走势");
+            intent7.putExtra("tableName", "Sensor");
+            intent7.putExtra("columnName", StringUtil.humpToLine2("waterConsumption"));
             startActivity(intent7);
         }
     };

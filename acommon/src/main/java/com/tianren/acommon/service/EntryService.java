@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import com.tianren.acommon.BaseResponse;
 import com.tianren.acommon.bean.CapacityBean;
 import com.tianren.acommon.bean.ConsumptionBean;
+import com.tianren.acommon.bean.ReportBean;
 import com.tianren.acommon.remote.BaseWebService;
 import com.tianren.acommon.remote.WebTask;
 
@@ -130,6 +131,22 @@ public class EntryService extends BaseWebService {
         Map<String, Object> p = new HashMap<>();
         p.put("report", report);
         return request(ENTRYPRODATA, p, new TypeToken<BaseResponse<Boolean>>() {
+        }.getType());
+    }
+
+    /**
+     * 录入报表数据
+     *
+     * @return
+     */
+    private String GETPRODATA = TIANREN_URL + "entry/getProData";
+
+    public WebTask<BaseResponse<List<ReportBean>>> getProData(int page) {
+        Map<String, Object> p = new HashMap<>();
+        p.put("startNum", page);
+        p.put("sort", "desc");
+        p.put("searchFields", "report_id,report_time");
+        return request(GETPRODATA, p, new TypeToken<BaseResponse<List<ReportBean>>>() {
         }.getType());
     }
 

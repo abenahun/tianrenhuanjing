@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.tianren.methane">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.tianren.methane">
 
     <!-- 网络 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -62,8 +62,10 @@
         <activity android:name=".activity.InputQuantityHisActivity" />
         <activity
             android:name=".activity.ReportEntryActivity"
-            android:windowSoftInputMode="stateHidden">>
+            android:windowSoftInputMode="stateHidden">
+            >
         </activity>
+        <activity android:name=".activity.ReportActivity"></activity>
     </application>
 
 </manifest>
