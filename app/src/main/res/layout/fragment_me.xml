@@ -89,11 +89,11 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="14dp"
                         android:layout_marginRight="14dp"
-                        android:src="@mipmap/me1" />
+                        android:src="@mipmap/icon_report" />
 
                     <TextView
 
@@ -127,8 +127,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="14dp"
                         android:layout_marginRight="14dp"
                         android:src="@mipmap/me1" />
@@ -165,8 +165,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="14dp"
                         android:layout_marginRight="14dp"
                         android:src="@mipmap/me2" />
@@ -203,8 +203,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="14dp"
                         android:layout_marginRight="14dp"
                         android:src="@mipmap/me3" />
@@ -240,8 +240,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="14dp"
                         android:layout_marginRight="14dp"
                         android:src="@mipmap/me4" />
@@ -279,8 +279,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="14dp"
                         android:layout_marginRight="14dp"
                         android:src="@mipmap/me5" />

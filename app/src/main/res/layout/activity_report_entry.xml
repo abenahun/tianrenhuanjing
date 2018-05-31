@@ -95,7 +95,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="8dp"
-                android:text="厨房垃圾"
+                android:text="厨余垃圾"
                 android:textColor="@color/text1"
                 android:textSize="16sp" />
 
@@ -107,7 +107,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="8dp"
-                android:text="餐饮垃圾"
+                android:text="餐厨垃圾"
                 android:textColor="@color/text1"
                 android:textSize="16sp" />
 

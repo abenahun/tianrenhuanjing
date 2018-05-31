@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.LineChart;
 import com.tianren.acommon.BaseResponse;
 import com.tianren.acommon.bean.CapacityBean;
 import com.tianren.acommon.bean.ConsumptionBean;
@@ -22,7 +21,6 @@ import com.tianren.acommon.remote.callback.SCallBack;
 import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
 import com.tianren.methane.activity.DataStatisticsActivity;
-import com.tianren.methane.manager.LineChartManager;
 import com.tianren.methane.utils.MPChartHelper;
 import com.tianren.methane.utils.MathUtils;
 import com.tianren.methane.utils.StringUtil;
@@ -58,13 +56,23 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private TextView tv_handle1, tv_handle2, tv_produce1, tv_produce2;
     private SwipeRefreshLayout refreshLayout;
 
-    private TextView tv_anquanshengchan, tv_baobiaoshijian,
-            tv_cc_jinchang, tv_cc_chuli, tv_cc_yuejihua, tv_cc_yuewancheng, tv_cc_wanchenglv,
-            tv_cy_jinchang, tv_cy_chuli, tv_cy_yuejihua, tv_cy_yuewancheng, tv_cy_wanchenglv,
-            tv_ty_yuejihua, tv_ty_yuewancheng, tv_ty_wanchenglv,
-            tv_cz_jinliao1, tv_cz_jinliao2, tv_cz_chanqi, tv_cz_yuejihua, tv_cz_yuewancheng, tv_cz_wanchenglv,
-            tv_yyd_fadian, tv_yyd_gongdian, tv_yyd_yongdianlv, tv_yyd_yuejihua, tv_yyd_yuewancheng,
-            tv_yyd_wanchenglv, tv_yyd_richangyongdian, tv_yyd_riwangyongdian;
+    //生产天数、时间
+    private TextView report_day;
+    private TextView report_time;
+    //（厨房垃圾、餐饮垃圾）当日进厂量,当日处理量,月计划完成量,月完成量,月完成率
+    private TextView kitchen_enter, kitchen_deal, kitchen_finish_plan, kitchen_finish_data, kitchen_finish_rate;
+    private TextView repast_enter, repast_deal, repast_finish_plan, repast_finish_data, repast_finish_rate;
+    //（提油）月计划完成量,月完成量,月完成率
+    private TextView oil_finish_plan, oil_finish_data, oil_finish_rate;
+    //（产沼）日进料量(1号)，(2号),当日产气量,月计划完成量,月完成量，月完成率
+    private TextView gas_enter1, gas_enter2, gas_day_produce, gas_finish_plan, gas_finish_data, gas_finish_rate;
+    //（发、用电）日发电量,日供电量,日站用电率,月计划完成量,月完成量,
+    // 本月完成率,日厂用电量,日网用电量,月计划网用电量,网用电率
+    private TextView ele_product, ele_provide, ele_day_use_rate, ele_finish_plan, ele_finish_data,
+            ele_finish_rate, ele_use_factory_data, ele_use_net_data, ele_plan_use_data, ele_net_rate;
+    //（污水）日滤液产生量,库存,日沼液产生量,日污水处理量,月计划污水处理量,月污水处理量;
+    private TextView water_filtrate_product, water_repertory, water_gas_product, water_bad_introduce_day, water_bad_introduce_plan, water_bad_introduce_month;
+
 
     @Nullable
     @Override
@@ -127,35 +135,49 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         tv_produce2 = (TextView) view.findViewById(R.id.tv_produce2);
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refreshLayout);
 
-        tv_anquanshengchan = (TextView) view.findViewById(R.id.tv_anquanshengchan);//安全生产
-        tv_baobiaoshijian = (TextView) view.findViewById(R.id.tv_baobiaoshijian);//报表时间
-        tv_cc_jinchang = (TextView) view.findViewById(R.id.tv_cc_jinchang);//餐厨当日进厂量
-        tv_cc_chuli = (TextView) view.findViewById(R.id.tv_cc_chuli);
-        tv_cc_yuejihua = (TextView) view.findViewById(R.id.tv_cc_yuejihua);
-        tv_cc_yuewancheng = (TextView) view.findViewById(R.id.tv_cc_yuewancheng);
-        tv_cc_wanchenglv = (TextView) view.findViewById(R.id.tv_cc_wanchenglv);
-        tv_cy_jinchang = (TextView) view.findViewById(R.id.tv_cy_jinchang);
-        tv_cy_chuli = (TextView) view.findViewById(R.id.tv_cy_chuli);
-        tv_cy_yuejihua = (TextView) view.findViewById(R.id.tv_cy_yuejihua);
-        tv_cy_yuewancheng = (TextView) view.findViewById(R.id.tv_cy_yuewancheng);
-        tv_cy_wanchenglv = (TextView) view.findViewById(R.id.tv_cy_wanchenglv);
-        tv_ty_yuejihua = (TextView) view.findViewById(R.id.tv_ty_yuejihua);
-        tv_ty_yuewancheng = (TextView) view.findViewById(R.id.tv_ty_yuewancheng);
-        tv_ty_wanchenglv = (TextView) view.findViewById(R.id.tv_ty_wanchenglv);
-        tv_cz_jinliao1 = (TextView) view.findViewById(R.id.tv_cz_jinliao1);
-        tv_cz_jinliao2 = (TextView) view.findViewById(R.id.tv_cz_jinliao2);
-        tv_cz_chanqi = (TextView) view.findViewById(R.id.tv_cz_chanqi);
-        tv_cz_yuejihua = (TextView) view.findViewById(R.id.tv_cz_yuejihua);
-        tv_cz_yuewancheng = (TextView) view.findViewById(R.id.tv_cz_yuewancheng);
-        tv_cz_wanchenglv = (TextView) view.findViewById(R.id.tv_cz_wanchenglv);
-        tv_yyd_fadian = (TextView) view.findViewById(R.id.tv_yyd_fadian);
-        tv_yyd_gongdian = (TextView) view.findViewById(R.id.tv_yyd_gongdian);
-        tv_yyd_yongdianlv = (TextView) view.findViewById(R.id.tv_yyd_yongdianlv);
-        tv_yyd_yuejihua = (TextView) view.findViewById(R.id.tv_yyd_yuejihua);
-        tv_yyd_yuewancheng = (TextView) view.findViewById(R.id.tv_yyd_yuewancheng);
-        tv_yyd_wanchenglv = (TextView) view.findViewById(R.id.tv_yyd_wanchenglv);
-        tv_yyd_richangyongdian = (TextView) view.findViewById(R.id.tv_yyd_richangyongdian);
-        tv_yyd_riwangyongdian = (TextView) view.findViewById(R.id.tv_yyd_riwangyongdian);
+        report_day = (TextView) view.findViewById(R.id.report_day);
+        report_time = (TextView) view.findViewById(R.id.report_time);
+
+        kitchen_enter = (TextView) view.findViewById(R.id.kitchen_enter);
+        kitchen_deal = (TextView) view.findViewById(R.id.kitchen_deal);
+        kitchen_finish_plan = (TextView) view.findViewById(R.id.kitchen_finish_plan);
+        kitchen_finish_data = (TextView) view.findViewById(R.id.kitchen_finish_data);
+        kitchen_finish_rate = (TextView) view.findViewById(R.id.kitchen_finish_rate);
+
+        repast_enter = (TextView) view.findViewById(R.id.repast_enter);
+        repast_deal = (TextView) view.findViewById(R.id.repast_deal);
+        repast_finish_plan = (TextView) view.findViewById(R.id.repast_finish_plan);
+        repast_finish_data = (TextView) view.findViewById(R.id.repast_finish_data);
+        repast_finish_rate = (TextView) view.findViewById(R.id.repast_finish_rate);
+
+        oil_finish_plan = (TextView) view.findViewById(R.id.oil_finish_plan);
+        oil_finish_data = (TextView) view.findViewById(R.id.oil_finish_data);
+        oil_finish_rate = (TextView) view.findViewById(R.id.oil_finish_rate);
+
+        gas_enter1 = (TextView) view.findViewById(R.id.gas_enter1);
+        gas_enter2 = (TextView) view.findViewById(R.id.gas_enter2);
+        gas_day_produce = (TextView) view.findViewById(R.id.gas_day_produce);
+        gas_finish_plan = (TextView) view.findViewById(R.id.gas_finish_plan);
+        gas_finish_data = (TextView) view.findViewById(R.id.gas_finish_data);
+        gas_finish_rate = (TextView) view.findViewById(R.id.gas_finish_rate);
+
+        ele_product = (TextView) view.findViewById(R.id.ele_product);
+        ele_provide = (TextView) view.findViewById(R.id.ele_provide);
+        ele_day_use_rate = (TextView) view.findViewById(R.id.ele_day_use_rate);
+        ele_finish_plan = (TextView) view.findViewById(R.id.ele_finish_plan);
+        ele_finish_data = (TextView) view.findViewById(R.id.ele_finish_data);
+        ele_finish_rate = (TextView) view.findViewById(R.id.ele_finish_rate);
+        ele_use_factory_data = (TextView) view.findViewById(R.id.ele_use_factory_data);
+        ele_use_net_data = (TextView) view.findViewById(R.id.ele_use_net_data);
+        ele_plan_use_data = (TextView) view.findViewById(R.id.ele_plan_use_data);
+        ele_net_rate = (TextView) view.findViewById(R.id.ele_net_rate);
+
+        water_filtrate_product = (TextView) view.findViewById(R.id.water_filtrate_product);
+        water_repertory = (TextView) view.findViewById(R.id.water_repertory);
+        water_gas_product = (TextView) view.findViewById(R.id.water_gas_product);
+        water_bad_introduce_day = (TextView) view.findViewById(R.id.water_bad_introduce_day);
+        water_bad_introduce_plan = (TextView) view.findViewById(R.id.water_bad_introduce_plan);
+        water_bad_introduce_month = (TextView) view.findViewById(R.id.water_bad_introduce_month);
 
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -214,112 +236,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
         MPChartHelper.setTwoBarChart(barChart1, xAxisValues, yAxisValues1, yAxisValues2, "总收益", "总能耗");
 
-    }
-
-    private void initLineCharts() {
-
-        LineChart lineChart1;
-        lineChart1 = (LineChart) view.findViewById(R.id.line_chart1);
-//        LineChart lineChart2 = (LineChart) view.findViewById(R.id.line_chart2);
-
-        LineChartManager lineChartManager1 = new LineChartManager(lineChart1);
-//        LineChartManager lineChartManager2 = new LineChartManager(lineChart2);
-
-        //设置x轴的数据
-        ArrayList<Float> xValues = new ArrayList<>();
-        for (int i = 0; i <= 7; i++) {
-            xValues.add((float) i);
-        }
-        //设置y轴的数据()
-       /* List<List<Float>> yValues = new ArrayList<>();
-            List<Float> yValue = new ArrayList<>();
-            for (int j = 0; j <= 7; j++) {
-                yValue.add((float) (Math.random() * 80) + 200);
-            }
-        List<Float> yValue2 = new ArrayList<>();
-        for (int j = 0; j <= 7; j++) {
-            yValue2.add((float) (Math.random() * 80) + 350);
-        }
-
-        List<Float> yValue3 = new ArrayList<>();
-        for (int j = 0; j <= 7; j++) {
-            yValue3.add((float) (Math.random() * 80) + 800);
-        }
-
-        List<Float> yValue4 = new ArrayList<>();
-        for (int j = 0; j <= 7; j++) {
-            yValue4.add((float) (Math.random() * 80) + 500);
-        }
-
-            yValues.add(yValue);
-            yValues.add(yValue2);
-            yValues.add(yValue4);
-            yValues.add(yValue3);*/
-
-
-        //设置y轴的数据()
-        List<List<Float>> yValues2 = new ArrayList<>();
-
-        List<Float> yValue5 = new ArrayList<>();
-        for (int j = 0; j <= 7; j++) {
-            yValue5.add((float) (Math.random() * 80) + 1500);
-        }
-        List<Float> yValue6 = new ArrayList<>();
-        for (int j = 0; j <= 7; j++) {
-            yValue6.add((float) (Math.random() * 80) + 1100);
-        }
-
-        yValues2.add(yValue5);
-        yValues2.add(yValue6);
-
-      /*  //颜色集合
-        List<Integer> colours = new ArrayList<>();
-        colours.add(Color.BLUE);
-        colours.add(Color.GREEN);
-        colours.add(Color.RED);
-        colours.add(Color.YELLOW);
-        //线的名字集合
-        List<String> names = new ArrayList<>();
-        names.add("水耗");
-        names.add("电耗");
-        names.add("热耗");
-        names.add("总能耗");*/
-
-        //颜色集合
-        List<Integer> colours2 = new ArrayList<>();
-        colours2.add(getResources().getColor(R.color.maincolor));
-        colours2.add(getResources().getColor(R.color.orange));
-        //线的名字集合
-        List<String> names2 = new ArrayList<>();
-        names2.add("总收益");
-        names2.add("总能耗");
-
-        //创建多条折线的图表
-        lineChartManager1.showLineChart(xValues, yValues2, names2, colours2);
-        lineChartManager1.setYAxis(3000, 0, 4);
-        lineChartManager1.setDescription("经营数据表");
-
-       /* lineChartManager2.showLineChart(xValues, yValues, names, colours);
-        lineChartManager2.setYAxis(1000, 0, 5);
-        lineChartManager2.setDescription("能耗表");*/
-    }
-
-    private void initFlipper() {
-        flipper = (ViewFlipper) view.findViewById(R.id.flipper);
-        //初始化list数据
-        testList = new ArrayList();
-        testList.add(0, "气柜压力超标");
-        testList.add(1, "未持卡人员闯入报警区域内");
-        testList.add(2, "预处理搅拌机运行异常");
-        testList.add(3, "厌氧罐出现异常运转");
-        testList.add(4, "脱碳出现异常");
-        count = testList.size();
-        for (int i = 0; i < count; i++) {
-            final View ll_content = View.inflate(getActivity(), R.layout.item_flipper, null);
-            TextView tv_content = (TextView) ll_content.findViewById(R.id.tv_content);
-            tv_content.setText(testList.get(i).toString());
-            flipper.addView(ll_content);
-        }
     }
 
     @Override
@@ -382,7 +298,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 //                Intent intent7 = new Intent(getActivity(), DataStatisticsActivity.class);
 //                intent7.putExtra("title", "总效益统计");
 //                intent7.putExtra("statisticsName", "总效益统计表");
-//
 //                startActivity(intent7);
                 break;
 
@@ -403,7 +318,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 intent9.putExtra("columnName", StringUtil.humpToLine2("feedAmount"));
                 startActivity(intent9);
                 break;
-
+            default:
+                break;
         }
     }
 }

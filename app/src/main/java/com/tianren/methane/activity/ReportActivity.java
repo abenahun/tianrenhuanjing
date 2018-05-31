@@ -1,5 +1,6 @@
 package com.tianren.methane.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -74,7 +75,8 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
         recyclerView.setSwipeItemClickListener(new SwipeItemClickListener() {
             @Override
             public void onItemClick(View itemView, int position) {
-
+                Intent intent = new Intent(ReportActivity.this, ProductReportActivity.class);
+                startActivity(intent);
             }
         });
         loadData();

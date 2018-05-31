@@ -42,10 +42,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:inputType="number|numberDecimal"
-            android:maxLength="10"
             android:background="@drawable/shape_edit"
             android:hint="请输入..."
+            android:inputType="number|numberDecimal"
+            android:maxLength="10"
             android:padding="8dp"
             android:textColorHint="@color/text3"
             android:textSize="14sp" />
@@ -89,10 +89,42 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:inputType="number|numberDecimal"
-            android:maxLength="10"
             android:background="@drawable/shape_edit"
             android:hint="请输入..."
+            android:inputType="number|numberDecimal"
+            android:maxLength="10"
+            android:padding="8dp"
+            android:textColorHint="@color/text3"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="17dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="当日产气量(T)"
+            android:textColor="@color/text1"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/gas_day_produce"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:background="@drawable/shape_edit"
+            android:hint="请输入"
+            android:inputType="number|numberDecimal"
+            android:maxLength="10"
             android:padding="8dp"
             android:textColorHint="@color/text3"
             android:textSize="14sp" />
@@ -121,10 +153,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:inputType="number|numberDecimal"
-            android:maxLength="10"
             android:background="@drawable/shape_edit"
             android:hint="请输入"
+            android:inputType="number|numberDecimal"
+            android:maxLength="10"
             android:padding="8dp"
             android:textColorHint="@color/text3"
             android:textSize="14sp" />
@@ -188,9 +220,9 @@
             android:layout_weight="5"
             android:background="@drawable/shape_edit"
             android:hint="请输入"
-            android:padding="8dp"
             android:inputType="number|numberDecimal"
             android:maxLength="10"
+            android:padding="8dp"
             android:textColorHint="@color/text3"
             android:textSize="14sp" />
     </LinearLayout>

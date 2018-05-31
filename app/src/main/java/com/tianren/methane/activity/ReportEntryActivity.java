@@ -33,8 +33,8 @@ public class ReportEntryActivity extends BaseActivity implements View.OnClickLis
     private EditText repast_enter, repast_deal, repast_finish_plan, repast_finish_data, repast_finish_rate;
     //（提油）月计划完成量,月完成量,月完成率
     private EditText oil_finish_plan, oil_finish_data, oil_finish_rate;
-    //（产沼）日进料量(1号)，(2号),月计划完成量,月完成量，月完成率
-    private EditText gas_enter1, gas_enter2, gas_finish_plan, gas_finish_data, gas_finish_rate;
+    //（产沼）日进料量(1号)，(2号),当日产气量,月计划完成量,月完成量，月完成率
+    private EditText gas_enter1, gas_enter2, gas_day_produce, gas_finish_plan, gas_finish_data, gas_finish_rate;
     //（发、用电）日发电量,日供电量,日站用电率,月计划完成量,月完成量,
     // 本月完成率,日厂用电量,日网用电量,月计划网用电量,网用电率
     private EditText ele_product, ele_provide, ele_day_use_rate, ele_finish_plan, ele_finish_data,
@@ -81,6 +81,7 @@ public class ReportEntryActivity extends BaseActivity implements View.OnClickLis
 
         gas_enter1 = (EditText) findViewById(R.id.gas_enter1);
         gas_enter2 = (EditText) findViewById(R.id.gas_enter2);
+        gas_day_produce = (EditText) findViewById(R.id.gas_day_produce);
         gas_finish_plan = (EditText) findViewById(R.id.gas_finish_plan);
         gas_finish_data = (EditText) findViewById(R.id.gas_finish_data);
         gas_finish_rate = (EditText) findViewById(R.id.gas_finish_rate);
@@ -144,6 +145,7 @@ public class ReportEntryActivity extends BaseActivity implements View.OnClickLis
 
         String gasEnter1 = gas_enter1.getText().toString();
         String gasEnter2 = gas_enter2.getText().toString();
+        String gasDayProduce = gas_day_produce.getText().toString();
         String gasPlan = gas_finish_plan.getText().toString();
         String gasFinish = gas_finish_data.getText().toString();
         String gasRate = gas_finish_rate.getText().toString();
