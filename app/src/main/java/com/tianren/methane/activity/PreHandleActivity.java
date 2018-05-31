@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.tianren.methane.R;
 import com.tianren.methane.adapter.ModelAdapter;
 import com.tianren.methane.event.ModelEvent;
+import com.tianren.methane.utils.StringUtil;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -119,8 +120,10 @@ public class PreHandleActivity extends BaseActivity implements View.OnClickListe
         @Override
         public void onClick(ModelAdapter.ModelBean bean) {
             Intent intent7 = new Intent(PreHandleActivity.this, DataStatisticsActivity.class);
-            intent7.putExtra("title", "预处理走势");
-            intent7.putExtra("statisticsName", "预处理走势");
+            intent7.putExtra("title",bean.getNickName());
+            intent7.putExtra("statisticsName", bean.getNickName());
+            intent7.putExtra("tableName", "Sensor");
+            intent7.putExtra("columnName", StringUtil.humpToLine2(bean.getSensorName()));
             startActivity(intent7);
         }
     };

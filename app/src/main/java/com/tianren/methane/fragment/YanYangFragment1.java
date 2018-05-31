@@ -25,6 +25,7 @@ import com.tianren.methane.R;
 import com.tianren.methane.activity.DataStatisticsActivity;
 import com.tianren.methane.adapter.ModelAdapter;
 import com.tianren.methane.event.ModelEvent;
+import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 
@@ -253,8 +254,10 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
         @Override
         public void onClick(ModelAdapter.ModelBean bean) {
             Intent intent7 = new Intent(getActivity(), DataStatisticsActivity.class);
-            intent7.putExtra("title", "厌氧走势");
-            intent7.putExtra("statisticsName", "厌氧走势");
+            intent7.putExtra("title", bean.getNickName());
+            intent7.putExtra("statisticsName",bean.getNickName());
+            intent7.putExtra("tableName", "Sensor");
+            intent7.putExtra("columnName", StringUtil.humpToLine2(bean.getSensorName()));
             startActivity(intent7);
         }
     };

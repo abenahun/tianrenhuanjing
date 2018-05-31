@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.tianren.methane.R;
 import com.tianren.methane.adapter.ModelAdapter;
 import com.tianren.methane.event.ModelEvent;
+import com.tianren.methane.utils.StringUtil;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -122,8 +123,10 @@ public class MoveSulfurActivity extends BaseActivity implements View.OnClickList
         @Override
         public void onClick(ModelAdapter.ModelBean bean) {
             Intent intent7 = new Intent(MoveSulfurActivity.this, DataStatisticsActivity.class);
-            intent7.putExtra("title", "脱硫走势");
-            intent7.putExtra("statisticsName", "脱硫走势");
+            intent7.putExtra("title", bean.getNickName());
+            intent7.putExtra("statisticsName", bean.getNickName());
+            intent7.putExtra("tableName", "Sensor");
+            intent7.putExtra("columnName", StringUtil.humpToLine2(bean.getSensorName()));
             startActivity(intent7);
         }
     };

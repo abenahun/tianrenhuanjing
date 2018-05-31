@@ -128,10 +128,10 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
         @Override
         public void onClick(ModelAdapter.ModelBean bean) {
             Intent intent7 = new Intent(MoveCarbonActivity.this, DataStatisticsActivity.class);
-            intent7.putExtra("title", "脱碳走势");
-            intent7.putExtra("statisticsName", "脱碳走势");
+            intent7.putExtra("title", bean.getNickName());
+            intent7.putExtra("statisticsName", bean.getNickName());
             intent7.putExtra("tableName", "Sensor");
-            intent7.putExtra("columnName", StringUtil.humpToLine2("waterConsumption"));
+            intent7.putExtra("columnName", StringUtil.humpToLine2(bean.getSensorName()));
             startActivity(intent7);
         }
     };

@@ -14,6 +14,7 @@ import com.tianren.acommon.remote.callback.SCallBack;
 import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
 import com.tianren.methane.utils.MPChartHelper;
+import com.tianren.methane.utils.ToastUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -68,11 +69,15 @@ public class DataStatisticsActivity extends BaseActivity implements View.OnClick
                     setCallback(new SCallBack<BaseResponse<List<String>>>() {
                         @Override
                         public void callback(boolean isok, String msg, BaseResponse<List<String>> res) {
-                            for (int i = 0; i < res.getData().size(); ++i) {
-                                xAxisValues.add(String.valueOf(i));
-                                yAxisValues.add(Float.parseFloat(res.getData().get(i)));
+                            if (isok) {
+                                for (int i = 0; i < res.getData().size(); ++i) {
+                                    xAxisValues.add(String.valueOf(i));
+                                    yAxisValues.add(Float.parseFloat(res.getData().get(i)));
+                                }
+                                MPChartHelper.setLineChart(lineChart, xAxisValues, yAxisValues, statisticsName, true);
+                            } else {
+                                ToastUtils.show(msg);
                             }
-                            MPChartHelper.setLineChart(lineChart, xAxisValues, yAxisValues, statisticsName, true);
                         }
                     });
         }
