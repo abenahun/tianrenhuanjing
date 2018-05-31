@@ -1,7 +1,6 @@
 package com.tianren.acommon;
 
 
-import com.tianren.acommon.remote.ResultCheck;
 import com.tianren.acommon.remote.ResultHandle;
 import com.tianren.acommon.remote.WebServiceInfo;
 import com.tianren.acommon.service.AlarmService;
@@ -31,7 +30,7 @@ public class AppWsInfo extends WebServiceInfo {
                     return "服务器无法连接,请检查网络..";
                 }
                 if (t instanceof BaseResponse) {
-                    ResultCheck.checkResult(((BaseResponse) t).getResult(), ((BaseResponse) t).getMessage());
+//                    ResultCheck.checkResult(((BaseResponse) t).getResult(), ((BaseResponse) t).getMessage());
                     return ((BaseResponse) t).getMessage();
                 } else {
                     return "返回类型不正确";

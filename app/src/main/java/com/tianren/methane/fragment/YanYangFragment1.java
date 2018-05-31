@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +32,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -143,24 +141,24 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
     }
 
     private void loadRealData() {
-        List<ModelAdapter.ModelBean> list = new ArrayList<>();
-        if (sensorDataMap == null) {
-            list = null;
-        } else {
-            list.add(getModel("ph"));
-            list.add(getModel("ts"));
-            list.add(getModel("vs"));
-            list.add(getModel("vfa"));
-            list.add(getModel("alkalinity"));
-            list.add(getModel("ammoniaNitrogen"));
-            list.add(getModel("cod"));
-            for (int i = 0; i < list.size(); i++) {
-                if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
-                    adapter.addItem(list.get(i));
-                }
-            }
-            adapter.notifyDataSetChanged();
-        }
+//        List<ModelAdapter.ModelBean> list = new ArrayList<>();
+//        if (sensorDataMap == null) {
+//            list = null;
+//        } else {
+//            list.add(getModel("ph"));
+//            list.add(getModel("ts"));
+//            list.add(getModel("vs"));
+//            list.add(getModel("vfa"));
+//            list.add(getModel("alkalinity"));
+//            list.add(getModel("ammoniaNitrogen"));
+//            list.add(getModel("cod"));
+//            for (int i = 0; i < list.size(); i++) {
+//                if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
+//                    adapter.addItem(list.get(i));
+//                }
+//            }
+//            adapter.notifyDataSetChanged();
+//        }
     }
 
     private void loadLabData() {

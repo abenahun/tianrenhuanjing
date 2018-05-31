@@ -300,7 +300,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="14dp"
                             android:gravity="center"
-                            android:text="昨日总效益"
+                            android:text="昨日总收益"
                             android:textColor="@color/textgray"
                             android:textSize="14sp" />
 

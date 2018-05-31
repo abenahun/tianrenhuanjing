@@ -1,6 +1,7 @@
 package com.tianren.methane.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -165,16 +166,64 @@ public class ReportEntryActivity extends BaseActivity implements View.OnClickLis
         String waterBadIntroducePlan = water_bad_introduce_plan.getText().toString();
         String waterBadIntroduceMonth = water_bad_introduce_month.getText().toString();
         ReportBean bean = new ReportBean();
+        bean.setReportDays(TextUtils.isEmpty(reportDays) ? null : Integer.parseInt(reportDays));
+        bean.setReportTime(reportTime);
+        bean.setKitchenEnter(getD(kitchenEnter));
+        bean.setKitchenDeal(getD(kitchenDeal));
+        bean.setKitchenPlan(getD(kitchenPlan));
+        bean.setKitchenFinish(getD(kitchenFinish));
+        bean.setKitchenRate(getD(kitchenRate));
 
+        bean.setRepastEnter(getD(repastEnter));
+        bean.setRepastDeal(getD(repastDeal));
+        bean.setRepastPlan(getD(repastPlan));
+        bean.setRepastFinish(getD(repastFinish));
+        bean.setRepastRate(getD(repastRate));
+
+        bean.setOilPlan(getD(oilPlan));
+        bean.setOilFinish(getD(oilFinish));
+        bean.setOilRate(getD(oilRate));
+
+        bean.setGasEnter1(getD(gasEnter1));
+        bean.setGasEnter2(getD(gasEnter2));
+        bean.setGasFinish(getD(gasFinish));
+        bean.setGasPlan(getD(gasPlan));
+        bean.setGasRate(getD(gasRate));
+
+        bean.setEleProduct(getD(eleProduct));
+        bean.setEleProvider(getD(eleProvider));
+        bean.setEleDayUseRate(getD(eleDayUseRate));
+        bean.setElePlan(getD(elePlan));
+        bean.setEleFinish(getD(eleFinish));
+        bean.setEleDayRate(getD(eleDayRate));
+        bean.setEleUseFactoryData(getD(eleUseFactoryData));
+        bean.setEleUseNetData(getD(eleUseNetData));
+        bean.setElePlanUseData(getD(elePlanUseData));
+        bean.setEleNetRate(getD(eleNetRate));
+
+        bean.setWaterFiltrateProduct(getD(waterFiltrateProduct));
+        bean.setWaterRepertory(getD(waterRepertory));
+        bean.setWaterGasProduct(getD(waterGasProduct));
+        bean.setWaterBadIntroduceDay(getD(waterBadIntroduceDay));
+        bean.setWaterBadIntroducePlan(getD(waterBadIntroducePlan));
+        bean.setWaterBadIntroduceMonth(getD(waterBadIntroduceMonth));
         String s = new Gson().toJson(bean);
         WebServiceManage.getService(EntryService.class).entryProData(s).setCallback(new SCallBack<BaseResponse<Boolean>>() {
             @Override
             public void callback(boolean isok, String msg, BaseResponse<Boolean> res) {
                 ToastUtils.show(msg);
                 if (isok && res.getData()) {
-
+                    finish();
                 }
             }
         });
+    }
+
+    private Double getD(String s) {
+        if (TextUtils.isEmpty(s.trim())) {
+            return null;
+        } else {
+            return Double.parseDouble(s);
+        }
     }
 }

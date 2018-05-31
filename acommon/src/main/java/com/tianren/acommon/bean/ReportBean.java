@@ -48,6 +48,7 @@ public class ReportBean {
     private Double waterBadIntroducePlan;//（污水）月计划污水处理量
     private Double waterBadIntroduceMonth;//（污水）月污水处理量
 
+
     public Integer getReportDays() {
         return reportDays;
     }
@@ -288,12 +289,12 @@ public class ReportBean {
         this.eleNetRate = eleNetRate;
     }
 
-    public Double getWaterFiltrate_product() {
+    public Double getWaterFiltrateProduct() {
         return waterFiltrateProduct;
     }
 
-    public void setWaterFiltrate_product(Double waterFiltrate_product) {
-        this.waterFiltrateProduct = waterFiltrate_product;
+    public void setWaterFiltrateProduct(Double waterFiltrateProduct) {
+        this.waterFiltrateProduct = waterFiltrateProduct;
     }
 
     public Double getWaterRepertory() {
