@@ -23,10 +23,15 @@ import com.tianren.acommon.remote.callback.SCallBack;
 import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
 import com.tianren.methane.activity.DataStatisticsActivity;
+import com.tianren.methane.event.ReportEvent;
 import com.tianren.methane.utils.MPChartHelper;
 import com.tianren.methane.utils.MathUtils;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +81,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     //（污水）日滤液产生量,库存,日沼液产生量,日污水处理量,月计划污水处理量,月污水处理量;
     private TextView water_filtrate_product, water_repertory, water_gas_product, water_bad_introduce_day, water_bad_introduce_plan, water_bad_introduce_month;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
 
     @Nullable
     @Override
@@ -224,6 +234,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                         refreshLayout.setRefreshing(false);
                     }
                 });
+        loadReport();
+    }
+
+    /**
+     * 加载报表信息
+     */
+    private void loadReport() {
         WebServiceManage.getService(EntryService.class).getProItemData(-1).setCallback(new SCallBack<BaseResponse<ReportBean>>() {
             @Override
             public void callback(boolean isok, String msg, BaseResponse<ReportBean> res) {
@@ -231,7 +248,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     if (res != null && res.getData() != null) {
                         ReportBean bean = res.getData();
                         report_day.setText(bean.getReportDays() == null ? "/" : (bean.getReportDays() + ""));
-                        report_time.setText(TextUtils.isEmpty(bean.getReportTime()) ? "/" : bean.getReportTime());
+                        report_time.setText(TextUtils.isEmpty(bean.getReportTime()) ? "/" : (bean.getReportTime().split(" ")[0]));
 
                         kitchen_enter.setText(bean.getKitchenEnter() == null ? "/" : (bean.getKitchenEnter() + ""));
                         kitchen_deal.setText(bean.getKitchenDeal() == null ? "/" : (bean.getKitchenDeal() + ""));
@@ -380,4 +397,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 break;
         }
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(ReportEvent event) {
+        loadReport();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
 }

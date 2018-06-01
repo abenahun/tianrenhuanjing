@@ -18,7 +18,7 @@
             android:layout_centerVertical="true"
             android:text="首页"
             android:textColor="@color/white"
-            android:textSize="@dimen/textsize15" />
+            android:textSize="17sp" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -381,7 +381,7 @@
                             android:background="@drawable/cycle1"
                             android:gravity="center"
                             android:padding="6dp"
-                            android:text="3500元"
+                            android:text="4600"
                             android:textColor="@color/textblack"
                             android:textSize="14sp" />
                     </LinearLayout>

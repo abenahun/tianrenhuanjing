@@ -35,7 +35,7 @@
             android:layout_centerVertical="true"
             android:text="管理"
             android:textColor="@color/white"
-            android:textSize="@dimen/textsize15" />
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/tv_entry"

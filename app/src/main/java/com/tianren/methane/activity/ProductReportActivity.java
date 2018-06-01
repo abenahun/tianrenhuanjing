@@ -1,9 +1,11 @@
 package com.tianren.methane.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,12 +18,13 @@ import com.tianren.methane.R;
 import com.tianren.methane.utils.ToastUtils;
 
 /**
- * Created by Administrator on 2018/5/28.
+ * @author Administrator
+ * @date 2018/5/28
  */
-
 public class ProductReportActivity extends BaseActivity implements View.OnClickListener {
     private LinearLayout ll_back;
     private TextView tv_title;
+    private ImageView moreIv;
 
     private Integer reportId;
     //生产天数、时间
@@ -49,6 +52,10 @@ public class ProductReportActivity extends BaseActivity implements View.OnClickL
         ll_back.setOnClickListener(this);
         tv_title = (TextView) findViewById(R.id.tv_title);
         tv_title.setText("生产报表");
+        moreIv = (ImageView) findViewById(R.id.moreIv);
+        moreIv.setVisibility(View.VISIBLE);
+        moreIv.setImageResource(R.mipmap.edit);
+        moreIv.setOnClickListener(this);
         reportId = getIntent().getIntExtra("reportId", -1);
         if (reportId == -1) {
             ToastUtils.show("出现错误");
@@ -109,7 +116,7 @@ public class ProductReportActivity extends BaseActivity implements View.OnClickL
                     if (res != null && res.getData() != null) {
                         ReportBean bean = res.getData();
                         report_day.setText(bean.getReportDays() == null ? "/" : (bean.getReportDays() + ""));
-                        report_time.setText(TextUtils.isEmpty(bean.getReportTime()) ? "/" : bean.getReportTime());
+                        report_time.setText(TextUtils.isEmpty(bean.getReportTime()) ? "/" : (bean.getReportTime().split(" ")[0]));
 
                         kitchen_enter.setText(bean.getKitchenEnter() == null ? "/" : (bean.getKitchenEnter() + ""));
                         kitchen_deal.setText(bean.getKitchenDeal() == null ? "/" : (bean.getKitchenDeal() + ""));
@@ -163,6 +170,12 @@ public class ProductReportActivity extends BaseActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_back:
+                finish();
+                break;
+            case R.id.moreIv:
+                Intent intent = new Intent(ProductReportActivity.this, ReportEntryActivity.class);
+                intent.putExtra("reportId", reportId);
+                startActivity(intent);
                 finish();
                 break;
             default:

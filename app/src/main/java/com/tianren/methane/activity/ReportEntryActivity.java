@@ -1,8 +1,13 @@
 package com.tianren.methane.activity;
 
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,9 +19,14 @@ import com.tianren.acommon.remote.WebServiceManage;
 import com.tianren.acommon.remote.callback.SCallBack;
 import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
+import com.tianren.methane.event.ReportEvent;
 import com.tianren.methane.utils.DateUtil;
 import com.tianren.methane.utils.ToastUtils;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -25,6 +35,7 @@ import java.util.Date;
 public class ReportEntryActivity extends BaseActivity implements View.OnClickListener {
     private LinearLayout ll_back;
     private TextView tv_title, moreTv;
+    private int reportId = -1;
     //生产天数、时间
     private EditText report_day;
     private TextView report_time;
@@ -42,11 +53,17 @@ public class ReportEntryActivity extends BaseActivity implements View.OnClickLis
     //（污水）日滤液产生量,库存,日沼液产生量,日污水处理量,月计划污水处理量,月污水处理量;
     private EditText water_filtrate_product, water_repertory, water_gas_product, water_bad_introduce_day, water_bad_introduce_plan, water_bad_introduce_month;
 
-    @Override
+    private int mYear;
+    private int mMonth;
+    private int mDay;
+    private int hour;
+    private int minute;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_entry);
+        reportId = getIntent().getIntExtra("reportId", -1);
         initView();
     }
 
@@ -54,11 +71,22 @@ public class ReportEntryActivity extends BaseActivity implements View.OnClickLis
         ll_back = (LinearLayout) findViewById(R.id.ll_back);
         ll_back.setOnClickListener(this);
         tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_title.setText("生产报表录入");
+        if (reportId == -1) {
+            tv_title.setText("生产报表录入");
+        } else {
+            tv_title.setText("生产报表修改");
+        }
         moreTv = (TextView) findViewById(R.id.moreTv);
         moreTv.setVisibility(View.VISIBLE);
         moreTv.setText("保存");
         moreTv.setOnClickListener(this);
+
+        Calendar ca = Calendar.getInstance();
+        mYear = ca.get(Calendar.YEAR);
+        mMonth = ca.get(Calendar.MONTH);
+        mDay = ca.get(Calendar.DAY_OF_MONTH);
+        hour = ca.get(Calendar.HOUR_OF_DAY);
+        minute = ca.get(Calendar.MINUTE);
 
         report_day = (EditText) findViewById(R.id.report_day);
         report_time = (TextView) findViewById(R.id.report_time);
@@ -104,7 +132,69 @@ public class ReportEntryActivity extends BaseActivity implements View.OnClickLis
         water_bad_introduce_plan = (EditText) findViewById(R.id.water_bad_introduce_plan);
         water_bad_introduce_month = (EditText) findViewById(R.id.water_bad_introduce_month);
 
+        report_time.setOnClickListener(this);
         report_time.setText(DateUtil.format("yyyy-MM-dd HH:mm:ss", new Date()));
+        loadData();
+    }
+
+    private void loadData() {
+        if (reportId != -1) {
+            WebServiceManage.getService(EntryService.class).getProItemData(reportId).setCallback(new SCallBack<BaseResponse<ReportBean>>() {
+                @Override
+                public void callback(boolean isok, String msg, BaseResponse<ReportBean> res) {
+                    if (isok) {
+                        if (res != null && res.getData() != null) {
+                            ReportBean bean = res.getData();
+                            report_day.setText(bean.getReportDays() == null ? "" : (bean.getReportDays() + ""));
+                            report_time.setText(TextUtils.isEmpty(bean.getReportTime()) ? "" : (bean.getReportTime().split(" ")[0]));
+
+                            kitchen_enter.setText(bean.getKitchenEnter() == null ? "" : (bean.getKitchenEnter() + ""));
+                            kitchen_deal.setText(bean.getKitchenDeal() == null ? "" : (bean.getKitchenDeal() + ""));
+                            kitchen_finish_plan.setText(bean.getKitchenPlan() == null ? "" : (bean.getKitchenPlan() + ""));
+                            kitchen_finish_data.setText(bean.getKitchenFinish() == null ? "" : (bean.getKitchenFinish() + ""));
+                            kitchen_finish_rate.setText(bean.getKitchenRate() == null ? "" : (bean.getKitchenRate() + ""));
+
+                            repast_enter.setText(bean.getRepastEnter() == null ? "" : (bean.getRepastEnter() + ""));
+                            repast_deal.setText(bean.getRepastDeal() == null ? "" : (bean.getRepastDeal() + ""));
+                            repast_finish_plan.setText(bean.getRepastPlan() == null ? "" : (bean.getRepastPlan() + ""));
+                            repast_finish_data.setText(bean.getRepastFinish() == null ? "" : (bean.getRepastFinish() + ""));
+                            repast_finish_rate.setText(bean.getRepastRate() == null ? "" : (bean.getRepastRate() + ""));
+
+                            oil_finish_plan.setText(bean.getOilPlan() == null ? "" : (bean.getOilPlan() + ""));
+                            oil_finish_data.setText(bean.getOilFinish() == null ? "" : (bean.getOilFinish() + ""));
+                            oil_finish_rate.setText(bean.getOilRate() == null ? "" : (bean.getOilRate() + ""));
+
+                            gas_enter1.setText(bean.getGasEnter1() == null ? "" : (bean.getGasEnter1() + ""));
+                            gas_enter2.setText(bean.getGasEnter2() == null ? "" : (bean.getGasEnter2() + ""));
+                            gas_day_produce.setText(bean.getGasDayProduce() == null ? "" : (bean.getGasDayProduce() + ""));
+                            gas_finish_plan.setText(bean.getGasPlan() == null ? "" : (bean.getGasPlan() + ""));
+                            gas_finish_data.setText(bean.getGasFinish() == null ? "" : (bean.getGasFinish() + ""));
+                            gas_finish_rate.setText(bean.getGasRate() == null ? "" : (bean.getGasRate() + ""));
+
+                            ele_product.setText(bean.getEleProduct() == null ? "" : (bean.getEleProduct() + ""));
+                            ele_provide.setText(bean.getEleProvider() == null ? "" : (bean.getEleProvider() + ""));
+                            ele_day_use_rate.setText(bean.getEleDayUseRate() == null ? "" : (bean.getEleDayUseRate() + ""));
+                            ele_finish_plan.setText(bean.getElePlan() == null ? "" : (bean.getElePlan() + ""));
+                            ele_finish_data.setText(bean.getEleFinish() == null ? "" : (bean.getEleFinish() + ""));
+                            ele_finish_rate.setText(bean.getEleDayRate() == null ? "" : (bean.getEleDayRate() + ""));
+                            ele_use_factory_data.setText(bean.getEleUseFactoryData() == null ? "" : (bean.getEleUseFactoryData() + ""));
+                            ele_use_net_data.setText(bean.getEleUseNetData() == null ? "" : (bean.getEleUseNetData() + ""));
+                            ele_plan_use_data.setText(bean.getElePlanUseData() == null ? "" : (bean.getElePlanUseData() + ""));
+                            ele_net_rate.setText(bean.getEleNetRate() == null ? "" : (bean.getEleNetRate() + ""));
+
+                            water_filtrate_product.setText(bean.getWaterFiltrateProduct() == null ? "" : (bean.getWaterFiltrateProduct() + ""));
+                            water_repertory.setText(bean.getWaterRepertory() == null ? "" : (bean.getWaterRepertory() + ""));
+                            water_gas_product.setText(bean.getWaterGasProduct() == null ? "" : (bean.getWaterGasProduct() + ""));
+                            water_bad_introduce_day.setText(bean.getWaterBadIntroduceDay() == null ? "" : (bean.getWaterBadIntroduceDay() + ""));
+                            water_bad_introduce_plan.setText(bean.getWaterBadIntroducePlan() == null ? "" : (bean.getWaterBadIntroducePlan() + ""));
+                            water_bad_introduce_month.setText(bean.getWaterBadIntroduceMonth() == null ? "" : (bean.getWaterBadIntroduceMonth() + ""));
+                        }
+                    } else {
+                        ToastUtils.show(msg);
+                    }
+                }
+            });
+        }
     }
 
     @Override
@@ -115,6 +205,43 @@ public class ReportEntryActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.moreTv:
                 commit();
+                break;
+            case R.id.report_time:
+                final AlertDialog dialog3 = new AlertDialog.Builder(this).setView(R.layout.dialog_datepicker).show();
+                ((TextView) dialog3.findViewById(R.id.tv_title)).setText("日历");
+                Window window = dialog3.getWindow();
+                window.setGravity(Gravity.CENTER);
+                window.getDecorView().setPadding(0, 0, 0, 0);
+                WindowManager.LayoutParams lp = window.getAttributes();
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                window.setAttributes(lp);
+                final TextView tv_date_tmp = (TextView) dialog3.findViewById(R.id.tv_date_tmp);
+                DatePicker datePicker = (DatePicker) dialog3.findViewById(R.id.dp_date);
+                datePicker.setVisibility(View.VISIBLE);
+                datePicker.init(mYear, mMonth, mDay, new DatePicker.OnDateChangedListener() {
+                    @Override
+                    public void onDateChanged(DatePicker datePicker, int i, int i1, int i2) {
+                        // 获得日历实例
+                        String getDate = convertDate(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+                        tv_date_tmp.setText(getDate);
+                    }
+                });
+                dialog3.findViewById(R.id.iv_cancel).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog3.dismiss();
+                    }
+                });
+                dialog3.findViewById(R.id.iv_ok).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String text = tv_date_tmp.getText().toString();
+                        report_time.setText(TextUtils.isEmpty(text) ? convertDate(mYear, mMonth, mDay) : text);
+                        dialog3.dismiss();
+                    }
+                });
+                dialog3.findViewById(R.id.tp_time).setVisibility(View.GONE);
                 break;
             default:
                 break;
@@ -188,6 +315,7 @@ public class ReportEntryActivity extends BaseActivity implements View.OnClickLis
 
         bean.setGasEnter1(getD(gasEnter1));
         bean.setGasEnter2(getD(gasEnter2));
+        bean.setGasDayProduce(getD(gasDayProduce));
         bean.setGasFinish(getD(gasFinish));
         bean.setGasPlan(getD(gasPlan));
         bean.setGasRate(getD(gasRate));
@@ -209,16 +337,47 @@ public class ReportEntryActivity extends BaseActivity implements View.OnClickLis
         bean.setWaterBadIntroduceDay(getD(waterBadIntroduceDay));
         bean.setWaterBadIntroducePlan(getD(waterBadIntroducePlan));
         bean.setWaterBadIntroduceMonth(getD(waterBadIntroduceMonth));
-        String s = new Gson().toJson(bean);
-        WebServiceManage.getService(EntryService.class).entryProData(s).setCallback(new SCallBack<BaseResponse<Boolean>>() {
-            @Override
-            public void callback(boolean isok, String msg, BaseResponse<Boolean> res) {
-                ToastUtils.show(msg);
-                if (isok && res.getData()) {
-                    finish();
+        if (reportId == -1) {
+            String s = new Gson().toJson(bean);
+            WebServiceManage.getService(EntryService.class).entryProData(s).setCallback(new SCallBack<BaseResponse<Boolean>>() {
+                @Override
+                public void callback(boolean isok, String msg, BaseResponse<Boolean> res) {
+                    ToastUtils.show(msg);
+                    if (isok && res.getData()) {
+                        EventBus.getDefault().post(new ReportEvent());
+                        finish();
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            bean.setReportId(reportId);
+            String s = new Gson().toJson(bean);
+            WebServiceManage.getService(EntryService.class).updateProData(s).setCallback(new SCallBack<BaseResponse<Boolean>>() {
+                @Override
+                public void callback(boolean isok, String msg, BaseResponse<Boolean> res) {
+                    ToastUtils.show(msg);
+                    if (isok && res.getData()) {
+                        EventBus.getDefault().post(new ReportEvent());
+                        finish();
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * 日期转换
+     *
+     * @param year
+     * @param month
+     * @param day
+     * @return
+     */
+    private String convertDate(int year, int month, int day) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return simpleDateFormat.format(calendar.getTime());
     }
 
     private Double getD(String s) {

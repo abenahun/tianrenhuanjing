@@ -32,7 +32,7 @@ public class ReportAdapter extends BaseRcAdapter<ReportAdapter.ReportTempBean, R
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         ReportTempBean bean = getItems().get(position);
-        holder.textView.setText(TextUtils.isEmpty(bean.time) ? "" : bean.time);
+        holder.textView.setText(TextUtils.isEmpty(bean.time) ? "" : ((bean.time.split(" ")[0])));
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

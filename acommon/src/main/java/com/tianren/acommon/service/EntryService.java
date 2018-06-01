@@ -135,6 +135,20 @@ public class EntryService extends BaseWebService {
     }
 
     /**
+     * 更新某个报表详细数据
+     *
+     * @return
+     */
+    private String UPDATEPRODATA = TIANREN_URL + "entry/updateProData";
+
+    public WebTask<BaseResponse<Boolean>> updateProData(String report) {
+        Map<String, Object> p = new HashMap<>();
+        p.put("report", report);
+        return request(UPDATEPRODATA, p, new TypeToken<BaseResponse<Boolean>>() {
+        }.getType());
+    }
+
+    /**
      * 获取报表数据列表
      *
      * @return
