@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.tianren.acommon.BaseResponse;
 import com.tianren.acommon.bean.CapacityBean;
 import com.tianren.acommon.bean.ConsumptionBean;
+import com.tianren.acommon.bean.ReportBean;
 import com.tianren.acommon.remote.WebServiceManage;
 import com.tianren.acommon.remote.callback.SCallBack;
 import com.tianren.acommon.service.EntryService;
@@ -24,6 +26,7 @@ import com.tianren.methane.activity.DataStatisticsActivity;
 import com.tianren.methane.utils.MPChartHelper;
 import com.tianren.methane.utils.MathUtils;
 import com.tianren.methane.utils.StringUtil;
+import com.tianren.methane.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -221,6 +224,61 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                         refreshLayout.setRefreshing(false);
                     }
                 });
+        WebServiceManage.getService(EntryService.class).getProItemData(-1).setCallback(new SCallBack<BaseResponse<ReportBean>>() {
+            @Override
+            public void callback(boolean isok, String msg, BaseResponse<ReportBean> res) {
+                if (isok) {
+                    if (res != null && res.getData() != null) {
+                        ReportBean bean = res.getData();
+                        report_day.setText(bean.getReportDays() == null ? "/" : (bean.getReportDays() + ""));
+                        report_time.setText(TextUtils.isEmpty(bean.getReportTime()) ? "/" : bean.getReportTime());
+
+                        kitchen_enter.setText(bean.getKitchenEnter() == null ? "/" : (bean.getKitchenEnter() + ""));
+                        kitchen_deal.setText(bean.getKitchenDeal() == null ? "/" : (bean.getKitchenDeal() + ""));
+                        kitchen_finish_plan.setText(bean.getKitchenPlan() == null ? "/" : (bean.getKitchenPlan() + ""));
+                        kitchen_finish_data.setText(bean.getKitchenFinish() == null ? "/" : (bean.getKitchenFinish() + ""));
+                        kitchen_finish_rate.setText(bean.getKitchenRate() == null ? "/" : (bean.getKitchenRate() + ""));
+
+                        repast_enter.setText(bean.getRepastEnter() == null ? "/" : (bean.getRepastEnter() + ""));
+                        repast_deal.setText(bean.getRepastDeal() == null ? "/" : (bean.getRepastDeal() + ""));
+                        repast_finish_plan.setText(bean.getRepastPlan() == null ? "/" : (bean.getRepastPlan() + ""));
+                        repast_finish_data.setText(bean.getRepastFinish() == null ? "/" : (bean.getRepastFinish() + ""));
+                        repast_finish_rate.setText(bean.getRepastRate() == null ? "/" : (bean.getRepastRate() + ""));
+
+                        oil_finish_plan.setText(bean.getOilPlan() == null ? "/" : (bean.getOilPlan() + ""));
+                        oil_finish_data.setText(bean.getOilFinish() == null ? "/" : (bean.getOilFinish() + ""));
+                        oil_finish_rate.setText(bean.getOilRate() == null ? "/" : (bean.getOilRate() + ""));
+
+                        gas_enter1.setText(bean.getGasEnter1() == null ? "/" : (bean.getGasEnter1() + ""));
+                        gas_enter2.setText(bean.getGasEnter2() == null ? "/" : (bean.getGasEnter2() + ""));
+                        gas_day_produce.setText(bean.getGasDayProduce() == null ? "/" : (bean.getGasDayProduce() + ""));
+                        gas_finish_plan.setText(bean.getGasPlan() == null ? "/" : (bean.getGasPlan() + ""));
+                        gas_finish_data.setText(bean.getGasFinish() == null ? "/" : (bean.getGasFinish() + ""));
+                        gas_finish_rate.setText(bean.getGasRate() == null ? "/" : (bean.getGasRate() + ""));
+
+                        ele_product.setText(bean.getEleProduct() == null ? "/" : (bean.getEleProduct() + ""));
+                        ele_provide.setText(bean.getEleProvider() == null ? "/" : (bean.getEleProvider() + ""));
+                        ele_day_use_rate.setText(bean.getEleDayUseRate() == null ? "/" : (bean.getEleDayUseRate() + ""));
+                        ele_finish_plan.setText(bean.getElePlan() == null ? "/" : (bean.getElePlan() + ""));
+                        ele_finish_data.setText(bean.getEleFinish() == null ? "/" : (bean.getEleFinish() + ""));
+                        ele_finish_rate.setText(bean.getEleDayRate() == null ? "/" : (bean.getEleDayRate() + ""));
+                        ele_use_factory_data.setText(bean.getEleUseFactoryData() == null ? "/" : (bean.getEleUseFactoryData() + ""));
+                        ele_use_net_data.setText(bean.getEleUseNetData() == null ? "/" : (bean.getEleUseNetData() + ""));
+                        ele_plan_use_data.setText(bean.getElePlanUseData() == null ? "/" : (bean.getElePlanUseData() + ""));
+                        ele_net_rate.setText(bean.getEleNetRate() == null ? "/" : (bean.getEleNetRate() + ""));
+
+                        water_filtrate_product.setText(bean.getWaterFiltrateProduct() == null ? "/" : (bean.getWaterFiltrateProduct() + ""));
+                        water_repertory.setText(bean.getWaterRepertory() == null ? "/" : (bean.getWaterRepertory() + ""));
+                        water_gas_product.setText(bean.getWaterGasProduct() == null ? "/" : (bean.getWaterGasProduct() + ""));
+                        water_bad_introduce_day.setText(bean.getWaterBadIntroduceDay() == null ? "/" : (bean.getWaterBadIntroduceDay() + ""));
+                        water_bad_introduce_plan.setText(bean.getWaterBadIntroducePlan() == null ? "/" : (bean.getWaterBadIntroducePlan() + ""));
+                        water_bad_introduce_month.setText(bean.getWaterBadIntroduceMonth() == null ? "/" : (bean.getWaterBadIntroduceMonth() + ""));
+                    }
+                } else {
+                    ToastUtils.show(msg);
+                }
+            }
+        });
     }
 
     private void initBarCharts() {

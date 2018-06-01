@@ -150,18 +150,18 @@ public class EntryService extends BaseWebService {
         }.getType());
     }
 
-//    /**
-//     * 获取某个报表详细数据
-//     *
-//     * @return
-//     */
-//    private String GETPRODATA = TIANREN_URL + "entry/getProData";
-//
-//    public WebTask<BaseResponse<List<ReportBean>>> getProData(Integer reportId) {
-//        Map<String, Object> p = new HashMap<>();
-//        p.put("reportId", reportId);
-//        return request(GETPRODATA, p, new TypeToken<BaseResponse<List<ReportBean>>>() {
-//        }.getType());
-//    }
+    /**
+     * 获取某个报表详细数据
+     *
+     * @return
+     */
+    private String GETPROITEMDATA = TIANREN_URL + "entry/getProItemData";
+
+    public WebTask<BaseResponse<ReportBean>> getProItemData(Integer reportId) {
+        Map<String, Object> p = new HashMap<>();
+        p.put("reportId", reportId);
+        return request(GETPROITEMDATA, p, new TypeToken<BaseResponse<ReportBean>>() {
+        }.getType());
+    }
 
 }

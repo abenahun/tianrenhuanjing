@@ -103,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="当日进厂量（T）"
+                android:text="当日进厂量(T)"
                 android:textColor="@color/pro_textgray"
                 android:textSize="@dimen/textsize13" />
 
@@ -135,7 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="当日处理量（T）"
+                android:text="当日处理量(T)"
                 android:textColor="@color/pro_textgray"
                 android:textSize="@dimen/textsize13" />
 
@@ -181,7 +181,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="月计划完成量（T）"
+                android:text="月计划完成量(T)"
                 android:textColor="@color/pro_textgray"
                 android:textSize="@dimen/textsize13" />
 
@@ -214,7 +214,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="月完成量（T）"
+                android:text="月完成量(T)"
                 android:textColor="@color/pro_textgray"
                 android:textSize="@dimen/textsize13" />
 
@@ -293,7 +293,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="当日进厂量（T）"
+                android:text="当日进厂量(T)"
                 android:textColor="@color/pro_textgray"
                 android:textSize="@dimen/textsize13" />
 
@@ -326,7 +326,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="当日处理量（T）"
+                android:text="当日处理量(T)"
                 android:textColor="@color/pro_textgray"
                 android:textSize="@dimen/textsize13" />
 
@@ -372,7 +372,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="月计划完成量（T）"
+                android:text="月计划完成量(T)"
                 android:textColor="@color/pro_textgray"
                 android:textSize="@dimen/textsize13" />
 
@@ -405,7 +405,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="月完成量（T）"
+                android:text="月完成量(T)"
                 android:textColor="@color/pro_textgray"
                 android:textSize="@dimen/textsize13" />
 
@@ -484,7 +484,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="月计划完成量（T）"
+                android:text="月计划完成量(T)"
                 android:textColor="@color/pro_textgray"
                 android:textSize="@dimen/textsize13" />
 
@@ -517,7 +517,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="月完成量（T）"
+                android:text="月完成量(T)"
                 android:textColor="@color/pro_textgray"
                 android:textSize="@dimen/textsize13" />
 
@@ -1196,7 +1196,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="日滤液产生量（T）"
+                android:text="日滤液产生量(T)"
                 android:textColor="@color/pro_textgray"
                 android:textSize="@dimen/textsize13" />
 
@@ -1228,7 +1228,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="库存（T）"
+                android:text="库存(T)"
                 android:textColor="@color/pro_textgray"
                 android:textSize="@dimen/textsize13" />
 
@@ -1260,7 +1260,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="日沼液产生量（T）"
+                android:text="日沼液产生量(T)"
                 android:textColor="@color/pro_textgray"
                 android:textSize="@dimen/textsize13" />
 
@@ -1305,7 +1305,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="日污水处理量（T）"
+                android:text="日污水处理量(T)"
                 android:textColor="@color/pro_textgray"
                 android:textSize="@dimen/textsize13" />
 
@@ -1338,7 +1338,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="月计划污水处理量（T）"
+                android:text="月计划污水处理量(T)"
                 android:textColor="@color/pro_textgray"
                 android:textSize="@dimen/textsize13" />
 
@@ -1371,7 +1371,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="月污水处理量（T）"
+                android:text="月污水处理量(T)"
                 android:textColor="@color/pro_textgray"
                 android:textSize="@dimen/textsize13" />
 
