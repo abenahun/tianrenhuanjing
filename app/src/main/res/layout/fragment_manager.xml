@@ -67,8 +67,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
                     android:src="@mipmap/icon_handle" />
@@ -105,8 +105,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
                     android:src="@mipmap/icon_yanyang" />
@@ -144,8 +144,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
                     android:src="@mipmap/icon_tuoliu" />
@@ -183,8 +183,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
                     android:src="@mipmap/icon_qigui" />
@@ -222,8 +222,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
                     android:src="@mipmap/icon_tuotan" />
@@ -261,7 +261,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="24dp"
+                    android:layout_width="30dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
@@ -270,7 +270,7 @@
                 <TextView
 
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:paddingLeft="25dp"
