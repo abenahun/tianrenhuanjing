@@ -50,7 +50,7 @@ public class MoveCarbonActivity extends BaseActivity implements View.OnClickList
         ll_back = (LinearLayout) findViewById(R.id.ll_back);
         ll_back.setOnClickListener(this);
         tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_title.setText("脱碳");
+        tv_title.setText("脱碳单元");
         moreIv = (ImageView) findViewById(R.id.moreIv);
         moreIv.setImageResource(R.mipmap.call_police);
         moreIv.setOnClickListener(this);

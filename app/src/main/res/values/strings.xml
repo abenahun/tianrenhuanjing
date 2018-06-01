@@ -19,13 +19,13 @@
     <string name="renyuanguiji">查看人员轨迹</string>
 
     <string name="shouyunjiance">收运监测</string>
-    <string name="yuchuli">预处理</string>
-    <string name="yanyang">智能厌氧反应罐</string>
-    <string name="tuoliu">脱硫</string>
-    <string name="tuotan">脱碳</string>
-    <string name="qigui">智能气柜</string>
+    <string name="yuchuli">预处理单元</string>
+    <string name="yanyang">厌氧单元</string>
+    <string name="tuoliu">脱硫单元</string>
+    <string name="tuotan">脱碳单元</string>
+    <string name="qigui">储气单元</string>
     <string name="liuliangjiance">流量监测</string>
-    <string name="youjifei">有机肥</string>
+    <string name="youjifei">有机肥制造单元</string>
 
     <string name="jingjixiaoyi">经济效益</string>
     <string name="nenghaofenxi">能耗分析</string>
