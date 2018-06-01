@@ -4,10 +4,9 @@
     android:layout_height="match_parent"
     tools:context="com.tianren.methane.fragment.YanYangFragment1">
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/lineChart"
+    <com.github.mikephil.charting.charts.RadarChart
+        android:id="@+id/chart1"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_margin="5dp" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>
