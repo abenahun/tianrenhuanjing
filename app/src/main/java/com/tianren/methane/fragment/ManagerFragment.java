@@ -48,7 +48,7 @@ public class ManagerFragment extends BaseFragment implements View.OnClickListene
         ll_yuchuli.setOnClickListener(this);
 
         ll_tuoliu = (LinearLayout) view.findViewById(R.id.ll_tuoliu);
-        ll_tuoliu.setOnClickListener(this);
+//        ll_tuoliu.setOnClickListener(this);
 
         ll_tuotan = (LinearLayout) view.findViewById(R.id.ll_tuotan);
 //        ll_tuotan.setOnClickListener(this);

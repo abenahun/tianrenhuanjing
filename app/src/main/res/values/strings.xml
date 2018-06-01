@@ -20,10 +20,10 @@
 
     <string name="shouyunjiance">收运监测</string>
     <string name="yuchuli">预处理</string>
-    <string name="yanyang">厌氧</string>
+    <string name="yanyang">智能厌氧反应罐</string>
     <string name="tuoliu">脱硫</string>
     <string name="tuotan">脱碳</string>
-    <string name="qigui">气柜</string>
+    <string name="qigui">智能气柜</string>
     <string name="liuliangjiance">流量监测</string>
     <string name="youjifei">有机肥</string>
 
