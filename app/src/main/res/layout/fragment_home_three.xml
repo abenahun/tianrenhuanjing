@@ -375,8 +375,8 @@
 
                         <TextView
                             android:id="@+id/youzhiEarnings"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="14dp"
                             android:background="@drawable/cycle1"
@@ -405,8 +405,8 @@
 
                         <TextView
                             android:id="@+id/zhaozhaEarnings"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="14dp"
                             android:background="@drawable/cycle1"

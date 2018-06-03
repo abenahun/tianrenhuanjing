@@ -111,7 +111,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    private void showAd(){
+    private void showAd() {
         /**
          * 创建广告活动管理对象
          */
@@ -141,39 +141,6 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
-//        Map<String, Object> parameters = new HashMap<>();
-//        novate = new Novate.Builder(this)
-//                .connectTimeout(8)
-//                .baseUrl(BaseWebService.BASE_URL)
-//                .addLog(true)
-//                .build();
-//
-//        novate.post(Constant.ENTRYSTATIC_URL, parameters,
-//                new MyBaseSubscriber<ResponseBody>(MainActivity.this) {
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        if (!TextUtils.isEmpty(e.getMessage())) {
-//                            ToastUtils.show(e.getMessage());
-//                        }
-//                        sensorDataMap = null;
-//                    }
-//
-//                    @Override
-//                    public void onNext(ResponseBody responseBody) {
-//                        try {
-//                            String jstr = new String(responseBody.bytes());
-//                            if (StringUtil.isEmpty(jstr)) {
-//                                sensorDataMap = null;
-//                            } else {
-//                                Gson gson = new Gson();
-//                                sensorDataMap = gson.fromJson(jstr, new TypeToken<Map<String, SensorBean>>() {
-//                                }.getType());
-//                            }
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                });
     }
 
     private void initViews() {
@@ -184,6 +151,7 @@ public class MainActivity extends BaseActivity {
         mAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.setAdapter(mAdapter);
+        mViewPager.setOffscreenPageLimit(3);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
@@ -199,11 +167,11 @@ public class MainActivity extends BaseActivity {
             tab.setCustomView(view);
 
             TextView tvTitle = (TextView) view.findViewById(R.id.tv_tab);
+            tvTitle.setTextSize(12);
             tvTitle.setText(tabTitlees[i]);
             ImageView imgTab = (ImageView) view.findViewById(R.id.img_tab);
             imgTab.setImageResource(tabImgs[i]);
             tabLayout.addTab(tab);
-
         }
     }
 
