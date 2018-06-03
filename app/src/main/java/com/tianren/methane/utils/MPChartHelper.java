@@ -353,7 +353,7 @@ public class MPChartHelper {
                 return format.format(date);
             }
         });
-
+        xAxis.setLabelRotationAngle(-40);
         //y轴设置
         YAxis leftAxis = barChart.getAxisLeft();
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
