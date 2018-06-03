@@ -2,7 +2,6 @@ package com.tianren.methane.utils;
 
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
@@ -382,7 +381,7 @@ public class MPChartHelper {
         legend.setTextSize(12f);
 
         //设置柱状图数据
-        setTwoBarChartData(barChart, xAxisValue, yAxisValue1, yAxisValue2, bartilte1, bartitle2, "单位：元");
+        setTwoBarChartData(barChart, xAxisValue, yAxisValue1, yAxisValue2, bartilte1, bartitle2);
 
         barChart.animateX(1500);//数据显示动画，从左往右依次显示
         barChart.invalidate();
@@ -391,7 +390,7 @@ public class MPChartHelper {
     /**
      * 设置柱状图数据源
      */
-    private static void setTwoBarChartData(BarChart barChart, List<Integer> xAxisValue, List<Float> yAxisValue1, List<Float> yAxisValue2, String bartilte1, String bartitle2, String unit) {
+    private static void setTwoBarChartData(BarChart barChart, List<Integer> xAxisValue, List<Float> yAxisValue1, List<Float> yAxisValue2, String bartilte1, String bartitle2) {
         float groupSpace = 0.04f;
         float barSpace = 0.03f;
         float barWidth = 0.45f;
@@ -422,13 +421,6 @@ public class MPChartHelper {
             ArrayList<IBarDataSet> dataSets = new ArrayList<>();
             dataSets.add(dataset1);
             dataSets.add(dataset2);
-            if (!TextUtils.isEmpty(unit)) {
-                ArrayList<BarEntry> entries3 = new ArrayList<>();
-                entries3.add(new BarEntry(0, 0));
-                dataset3 = new BarDataSet(entries3, unit);
-                dataset3.setColor(Color.parseColor("#F14C00"));
-                dataSets.add(dataset3);
-            }
             BarData data = new BarData(dataSets);
             data.setValueTextSize(10f);
             data.setBarWidth(0.9f);

@@ -354,9 +354,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         xAxisValues.add(7);
         yAxisValues1.add((float) (71500));
         yAxisValues2.add((float) (4502));
-
-        MPChartHelper.setTwoBarChart(barChart1, xAxisValues, yAxisValues1, yAxisValues2, "总收益", "总能耗");
-
+        MPChartHelper.setTwoBarChart(barChart1, xAxisValues, yAxisValues1, yAxisValues2, "总收益(元)", "总能耗(元)");
     }
 
     @Override
