@@ -34,8 +34,10 @@ import com.tianren.methane.common.MyValueFormatter;
 import com.tianren.methane.common.StringAxisValueFormatter;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -325,7 +327,7 @@ public class MPChartHelper {
      * @param bartilte1
      * @param bartitle2
      */
-    public static void setTwoBarChart(BarChart barChart, List<Integer> xAxisValue,
+    public static void setTwoBarChart(BarChart barChart, List<Float> xAxisValue,
                                       List<Float> yAxisValue1, List<Float> yAxisValue2,
                                       String bartilte1, String bartitle2) {
         barChart.getDescription().setEnabled(false);//设置描述
@@ -346,7 +348,9 @@ public class MPChartHelper {
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float v, AxisBase axisBase) {
-                return String.valueOf((int) v);
+                Date date = new Date((long) v);
+                SimpleDateFormat format = new SimpleDateFormat("MM-dd");
+                return format.format(date);
             }
         });
 
@@ -390,7 +394,7 @@ public class MPChartHelper {
     /**
      * 设置柱状图数据源
      */
-    private static void setTwoBarChartData(BarChart barChart, List<Integer> xAxisValue, List<Float> yAxisValue1, List<Float> yAxisValue2, String bartilte1, String bartitle2) {
+    private static void setTwoBarChartData(BarChart barChart, List<Float> xAxisValue, List<Float> yAxisValue1, List<Float> yAxisValue2, String bartilte1, String bartitle2) {
         float groupSpace = 0.04f;
         float barSpace = 0.03f;
         float barWidth = 0.45f;
@@ -435,10 +439,10 @@ public class MPChartHelper {
         }
 
         barChart.getBarData().setBarWidth(barWidth);
-        barChart.getXAxis().setAxisMinimum(xAxisValue.get(0));
+        barChart.getXAxis().setAxisMinimum(1);
         // barData.getGroupWith(...) is a helper that calculates the width each group needs based on the provided parameters
-        barChart.getXAxis().setAxisMaximum(barChart.getBarData().getGroupWidth(groupSpace, barSpace) * xAxisValue.size() + xAxisValue.get(0));
-        barChart.groupBars(xAxisValue.get(0), groupSpace, barSpace);
+        barChart.getXAxis().setAxisMaximum(8);
+        barChart.groupBars(1, groupSpace, barSpace);
     }
 
 
