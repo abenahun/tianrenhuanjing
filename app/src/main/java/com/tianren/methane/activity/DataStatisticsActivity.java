@@ -71,7 +71,7 @@ public class DataStatisticsActivity extends BaseActivity implements View.OnClick
                         public void callback(boolean isok, String msg, BaseResponse<List<String>> res) {
                             if (isok) {
                                 for (int i = 0; i < res.getData().size(); ++i) {
-                                    xAxisValues.add(String.valueOf(i));
+                                    xAxisValues.add("05-" + (i > 9 ? i : ("0" + i)));
                                     yAxisValues.add(Float.parseFloat(res.getData().get(i)));
                                 }
                                 MPChartHelper.setLineChart(lineChart, xAxisValues, yAxisValues, "单位：" + unit, true);

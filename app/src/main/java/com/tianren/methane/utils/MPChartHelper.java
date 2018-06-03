@@ -68,7 +68,7 @@ public class MPChartHelper {
      * @param barChart
      * @param xAxisValue
      * @param yAxisValue
-     * @param title 图例文字
+     * @param title         图例文字
      * @param xAxisTextSize x轴标签字体大小
      * @param barColor
      */
@@ -593,8 +593,6 @@ public class MPChartHelper {
     }
 
 
-
-
     /**
      * 单线单y轴图。
      *
@@ -611,18 +609,18 @@ public class MPChartHelper {
         List<String> titles = new ArrayList<>();
         titles.add(title);
 
-        setLinesChart(lineChart, xAxisValue, entriesList, titles, showSetValues,null);
+        setLinesChart(lineChart, xAxisValue, entriesList, titles, showSetValues, null);
     }
 
     /**
      * 绘制线图，默认最多绘制三种颜色。所有线均依赖左侧y轴显示。
      *
      * @param lineChart
-     * @param xAxisValue x轴的轴
-     * @param yXAxisValues y轴的值
-     * @param titles 每一个数据系列的标题
+     * @param xAxisValue    x轴的轴
+     * @param yXAxisValues  y轴的值
+     * @param titles        每一个数据系列的标题
      * @param showSetValues 是否在折线上显示数据集的值。true为显示，此时y轴上的数值不可见，否则相反。
-     * @param lineColors 线的颜色数组。为null时取默认颜色，此时最多绘制三种颜色。
+     * @param lineColors    线的颜色数组。为null时取默认颜色，此时最多绘制三种颜色。
      */
     public static void setLinesChart(LineChart lineChart, List<String> xAxisValue,
                                      List<List<Float>> yXAxisValues,
@@ -638,6 +636,7 @@ public class MPChartHelper {
         IAxisValueFormatter xAxisFormatter = new StringAxisValueFormatter(xAxisValue);
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setLabelRotationAngle(-60);
         xAxis.setDrawGridLines(false);
         xAxis.setGranularity(1f);
         xAxis.setLabelCount(xAxisValue.size());
@@ -666,7 +665,7 @@ public class MPChartHelper {
         legend.setTextSize(12f);
 
         //设置柱状图数据
-        setLinesChartData(lineChart, yXAxisValues, titles, showSetValues,lineColors);
+        setLinesChartData(lineChart, yXAxisValues, titles, showSetValues, lineColors);
 
         lineChart.setExtraOffsets(10, 30, 20, 10);
         lineChart.animateX(1500);//数据显示动画，从左往右依次显示
@@ -699,7 +698,7 @@ public class MPChartHelper {
 
             for (int i = 0; i < entriesList.size(); ++i) {
                 LineDataSet set = new LineDataSet(entriesList.get(i), titles.get(i));
-                if(lineColors!=null){
+                if (lineColors != null) {
                     set.setColor(lineColors[i % entriesList.size()]);
                     set.setCircleColor(lineColors[i % entriesList.size()]);
                     set.setCircleColorHole(Color.WHITE);
