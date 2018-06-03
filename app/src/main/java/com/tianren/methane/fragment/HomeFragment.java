@@ -303,11 +303,27 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         xAxisValues = new ArrayList<>();
         yAxisValues1 = new ArrayList<>();
         yAxisValues2 = new ArrayList<>();
-        for (int i = 1; i < 8; ++i) {
-            xAxisValues.add(i);
-            yAxisValues1.add((float) (Math.random() * 80 + 1500));
-            yAxisValues2.add((float) (Math.random() * 80 + 1000));
-        }
+        xAxisValues.add(1);
+        yAxisValues1.add((float) (58000));
+        yAxisValues2.add((float) (4511));
+        xAxisValues.add(2);
+        yAxisValues1.add((float) (57001));
+        yAxisValues2.add((float) (4533));
+        xAxisValues.add(3);
+        yAxisValues1.add((float) (59055));
+        yAxisValues2.add((float) (4702));
+        xAxisValues.add(4);
+        yAxisValues1.add((float) (57000));
+        yAxisValues2.add((float) (4402));
+        xAxisValues.add(5);
+        yAxisValues1.add((float) (58000));
+        yAxisValues2.add((float) (4302));
+        xAxisValues.add(6);
+        yAxisValues1.add((float) (60000));
+        yAxisValues2.add((float) (4202));
+        xAxisValues.add(7);
+        yAxisValues1.add((float) (58500));
+        yAxisValues2.add((float) (4502));
 
         MPChartHelper.setTwoBarChart(barChart1, xAxisValues, yAxisValues1, yAxisValues2, "总收益", "总能耗");
 
