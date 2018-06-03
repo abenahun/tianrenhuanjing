@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -294,7 +295,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                         water_bad_introduce_month.setText(bean.getWaterBadIntroduceMonth() == null ? "/" : (bean.getWaterBadIntroduceMonth() + ""));
 
                         Double d_air = bean.getGasDayProduce() == null ? 0d : (bean.getGasDayProduce() * 1.5);
-                        airEarnings.setText(d_air == 0d ? "/元" : (d_air + "元"));
+                        airEarnings.setText(Html.fromHtml((d_air == 0d ? "/" : d_air) + "<font><small>元</small></font>"));
                         Double d_butie;
                         if (bean.getKitchenEnter() == null && bean.getRepastEnter() == null) {
                             d_butie = 0d;
@@ -305,11 +306,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                         } else {
                             d_butie = (bean.getKitchenEnter() + bean.getRepastEnter()) * 120;
                         }
-                        butieEarnings.setText(d_butie == 0d ? "/元" : (d_air + "元"));
+                        butieEarnings.setText(Html.fromHtml((d_butie == 0d ? "/" : d_air) + "<font><small>元</small></font>"));
                         Double d_oil = bean.getOilFinish() == null ? 0d : (bean.getOilFinish() * 3500);
-                        youzhiEarnings.setText(d_oil == 0d ? "/元" : (0d + "元"));
-                        zhaozhaEarnings.setText("0元");
-                        allEarnings.setText(d_air + d_butie + d_oil + "元");
+                        youzhiEarnings.setText(Html.fromHtml((d_oil == 0d ? "/" : 0d) + "<font><small>元</small></font>"));
+                        zhaozhaEarnings.setText((Html.fromHtml("0.0<font><small>元</small></font>")));
+                        allEarnings.setText(Html.fromHtml(d_air + d_butie + d_oil + "<font><small>元</small></font>"));
 
                         waterConsume.setText("1.02吨");
                         eleConsume.setText(bean.getEleUseFactoryData() == null ? "/" : (bean.getEleUseFactoryData() + "kw"));

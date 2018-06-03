@@ -313,7 +313,7 @@
                             android:gravity="center"
                             android:padding="6dp"
                             android:text="0元"
-                            android:textColor="@color/maincolor"
+                            android:textColor="@color/textblack"
                             android:textSize="@dimen/textsize18" />
                     </LinearLayout>
 

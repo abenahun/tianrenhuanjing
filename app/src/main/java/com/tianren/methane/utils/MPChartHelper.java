@@ -403,7 +403,7 @@ public class MPChartHelper {
             entries1.add(new BarEntry(xAxisValue.get(i), yAxisValue1.get(i)));
             entries2.add(new BarEntry(xAxisValue.get(i), yAxisValue2.get(i)));
         }
-        BarDataSet dataset1, dataset2, dataset3;
+        BarDataSet dataset1, dataset2;
         if (barChart.getData() != null && barChart.getData().getDataSetCount() > 0) {
             dataset1 = (BarDataSet) barChart.getData().getDataSetByIndex(0);
             dataset2 = (BarDataSet) barChart.getData().getDataSetByIndex(1);
