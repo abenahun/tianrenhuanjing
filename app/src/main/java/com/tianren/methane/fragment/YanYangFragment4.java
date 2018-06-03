@@ -153,7 +153,7 @@ public class YanYangFragment4 extends BaseFragment {
 
 
 
-        RadarData data = new RadarData(set2);
+        RadarData data = new RadarData(set1,set2);
         // 数据字体大小
         data.setValueTextSize(8f);
         // 是否绘制Y值到图表
