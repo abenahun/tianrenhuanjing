@@ -307,20 +307,20 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                             d_butie = (bean.getKitchenEnter() + bean.getRepastEnter()) * 120;
                         }
                         butieEarnings.setText(Html.fromHtml((d_butie == 0d ? "/" : d_air) + "<font><small>元</small></font>"));
-                        Double d_oil = bean.getOilFinish() == null ? 0d : (bean.getOilFinish() * 3500);
+                        Double d_oil = bean.getOilFinish() == null ? 0d : (bean.getOilFinish() * 3500 / 30);
                         youzhiEarnings.setText(Html.fromHtml((d_oil == 0d ? "/" : d_oil) + "<font><small>元</small></font>"));
                         zhaozhaEarnings.setText((Html.fromHtml("0.0<font><small>元</small></font>")));
                         allEarnings.setText(Html.fromHtml(d_air + d_butie + d_oil + "<font><small>元</small></font>"));
 
                         waterConsume.setText("1.02吨");
-                        eleConsume.setText(bean.getEleUseFactoryData() == null ? "/" : (bean.getEleUseFactoryData() + "kw"));
+                        eleConsume.setText(bean.getEleUseFactoryData() == null ? "/" : (MathUtils.scale2(bean.getEleUseFactoryData()) + "kw"));
                         airConsume.setText("-");
-                        allConsume.setText(((bean.getEleUseFactoryData() == null ? 0d : (bean.getEleUseFactoryData() * 0.65)) + 2) + "元");
+                        allConsume.setText(MathUtils.scale2(((bean.getEleUseFactoryData() == null ? 0d : (bean.getEleUseFactoryData() * 0.65)) + 2)) + "元");
 
-                        tv_kitchen_enter.setText(bean.getKitchenEnter() == null ? "/" : (bean.getKitchenEnter() + "吨"));
-                        tv_repast_enter.setText(bean.getRepastEnter() == null ? "/" : (bean.getRepastEnter() + "吨"));
-                        tv_produce_air.setText(bean.getGasDayProduce() == null ? "/" : (bean.getGasDayProduce() + "m³"));
-                        tv_produce_youzhi.setText(bean.getOilFinish() == null ? "/" : (bean.getOilFinish() + "吨"));
+                        tv_kitchen_enter.setText(bean.getKitchenEnter() == null ? "/" : (MathUtils.scale2(bean.getKitchenEnter()) + "吨"));
+                        tv_repast_enter.setText(bean.getRepastEnter() == null ? "/" : (MathUtils.scale2(bean.getRepastEnter()) + "吨"));
+                        tv_produce_air.setText(bean.getGasDayProduce() == null ? "/" : (MathUtils.scale2(bean.getGasDayProduce()) + "m³"));
+                        tv_produce_youzhi.setText(bean.getOilFinish() == null ? "/" : (MathUtils.scale2(bean.getOilFinish()) + "吨"));
                     }
                 } else {
                     ToastUtils.show(msg);

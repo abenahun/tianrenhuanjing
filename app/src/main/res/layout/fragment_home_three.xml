@@ -369,7 +369,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             android:gravity="center"
-                            android:text="油脂月收益"
+                            android:text="油脂收益"
                             android:textColor="@color/textgray"
                             android:textSize="14sp" />
 
