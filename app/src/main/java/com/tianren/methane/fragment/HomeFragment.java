@@ -59,9 +59,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private LinearLayout ll_runningstatus, ll_zongnenghao, ll_shuihao,
             ll_dianhao, ll_rehao, ll_chanqixiaoyi,
             ll_zongxiaoyi, ll_chandianxiaoyi, ll_jinliaoliang;
-    private TextView allConsume, waterConsume, eleConsume, hotConsume;
-    private TextView airEarnings, eleEarnings, allEarnings;
-    private TextView tv_handle1, tv_handle2, tv_produce1, tv_produce2;
+    private TextView allConsume, waterConsume, eleConsume, airConsume;
+    private TextView airEarnings, butieEarnings, youzhiEarnings, zhaozhaEarnings, allEarnings;
+    private TextView tv_kitchen_enter, tv_repast_enter, tv_produce_air, tv_produce_youzhi;
     private SwipeRefreshLayout refreshLayout;
 
     //生产天数、时间
@@ -102,7 +102,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initBarCharts();
-        loadData();
+        loadReport();
     }
 
     private void initView() {
@@ -138,14 +138,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         allConsume = (TextView) view.findViewById(R.id.allConsume);
         waterConsume = (TextView) view.findViewById(R.id.waterConsume);
         eleConsume = (TextView) view.findViewById(R.id.eleConsume);
-        hotConsume = (TextView) view.findViewById(R.id.hotConsume);
+        airConsume = (TextView) view.findViewById(R.id.airConsume);
         airEarnings = (TextView) view.findViewById(R.id.airEarnings);
-        eleEarnings = (TextView) view.findViewById(R.id.eleEarnings);
+        butieEarnings = (TextView) view.findViewById(R.id.butieEarnings);
+        youzhiEarnings = (TextView) view.findViewById(R.id.youzhiEarnings);
+        zhaozhaEarnings = (TextView) view.findViewById(R.id.zhaozhaEarnings);
         allEarnings = (TextView) view.findViewById(R.id.allEarnings);
-        tv_handle1 = (TextView) view.findViewById(R.id.tv_handle1);
-        tv_handle2 = (TextView) view.findViewById(R.id.tv_handle2);
-        tv_produce1 = (TextView) view.findViewById(R.id.tv_produce1);
-        tv_produce2 = (TextView) view.findViewById(R.id.tv_produce2);
+        tv_kitchen_enter = (TextView) view.findViewById(R.id.tv_kitchen_enter);
+        tv_repast_enter = (TextView) view.findViewById(R.id.tv_repast_enter);
+        tv_produce_air = (TextView) view.findViewById(R.id.tv_produce_air);
+        tv_produce_youzhi = (TextView) view.findViewById(R.id.tv_produce_youzhi);
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refreshLayout);
 
         report_day = (TextView) view.findViewById(R.id.report_day);
@@ -195,7 +197,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                loadData();
+                loadReport();
                 initBarCharts();
             }
         });
@@ -213,7 +215,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                             Double gasProduction = res.getData().get(0).getGasProduction();
                             airEarnings.setText((gasProduction.equals(0) ? "0" : (MathUtils.scale(gasProduction) + "")) + "元");
                             Double powerGeneration = res.getData().get(0).getPowerGeneration();
-                            eleEarnings.setText((powerGeneration.equals(0) ? "0" : (MathUtils.scale(powerGeneration) + "")) + "元");
+                            butieEarnings.setText((powerGeneration.equals(0) ? "0" : (MathUtils.scale(powerGeneration) + "")) + "元");
                             allEarnings.setText(MathUtils.scale((gasProduction + powerGeneration + 3500)) + "元");
                         }
                     }
@@ -290,6 +292,34 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                         water_bad_introduce_day.setText(bean.getWaterBadIntroduceDay() == null ? "/" : (bean.getWaterBadIntroduceDay() + ""));
                         water_bad_introduce_plan.setText(bean.getWaterBadIntroducePlan() == null ? "/" : (bean.getWaterBadIntroducePlan() + ""));
                         water_bad_introduce_month.setText(bean.getWaterBadIntroduceMonth() == null ? "/" : (bean.getWaterBadIntroduceMonth() + ""));
+
+                        Double d_air = bean.getGasDayProduce() == null ? 0d : (bean.getGasDayProduce() * 1.5);
+                        airEarnings.setText(d_air == 0d ? "/元" : (d_air + "元"));
+                        Double d_butie;
+                        if (bean.getKitchenEnter() == null && bean.getRepastEnter() == null) {
+                            d_butie = 0d;
+                        } else if (bean.getKitchenEnter() != null && bean.getRepastEnter() == null) {
+                            d_butie = bean.getKitchenEnter() * 120;
+                        } else if (bean.getKitchenEnter() == null && bean.getRepastEnter() != null) {
+                            d_butie = bean.getRepastEnter() * 120;
+                        } else {
+                            d_butie = (bean.getKitchenEnter() + bean.getRepastEnter()) * 120;
+                        }
+                        butieEarnings.setText(d_butie == 0d ? "/元" : (d_air + "元"));
+                        Double d_oil = bean.getOilFinish() == null ? 0d : (bean.getOilFinish() * 3500);
+                        youzhiEarnings.setText(d_oil == 0d ? "/元" : (0d + "元"));
+                        zhaozhaEarnings.setText("0元");
+                        allEarnings.setText(d_air + d_butie + d_oil + "元");
+
+                        waterConsume.setText("1.02吨");
+                        eleConsume.setText(bean.getEleUseFactoryData() == null ? "/" : (bean.getEleUseFactoryData() + "kw"));
+                        airConsume.setText("-");
+                        allConsume.setText(((bean.getEleUseFactoryData() == null ? 0d : (bean.getEleUseFactoryData() * 0.65)) + 2) + "元");
+
+                        tv_kitchen_enter.setText(bean.getKitchenEnter() == null ? "/" : (bean.getKitchenEnter() + "吨"));
+                        tv_repast_enter.setText(bean.getRepastEnter() == null ? "/" : (bean.getRepastEnter() + "吨"));
+                        tv_produce_air.setText(bean.getGasDayProduce() == null ? "/" : (bean.getGasDayProduce() + "m³"));
+                        tv_produce_youzhi.setText(bean.getOilFinish() == null ? "/" : (bean.getOilFinish() + "吨"));
                     }
                 } else {
                     ToastUtils.show(msg);
@@ -304,25 +334,25 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         yAxisValues1 = new ArrayList<>();
         yAxisValues2 = new ArrayList<>();
         xAxisValues.add(1);
-        yAxisValues1.add((float) (58000));
+        yAxisValues1.add((float) (68000));
         yAxisValues2.add((float) (4511));
         xAxisValues.add(2);
-        yAxisValues1.add((float) (57001));
+        yAxisValues1.add((float) (77001));
         yAxisValues2.add((float) (4533));
         xAxisValues.add(3);
-        yAxisValues1.add((float) (59055));
+        yAxisValues1.add((float) (69055));
         yAxisValues2.add((float) (4702));
         xAxisValues.add(4);
-        yAxisValues1.add((float) (57000));
+        yAxisValues1.add((float) (77000));
         yAxisValues2.add((float) (4402));
         xAxisValues.add(5);
-        yAxisValues1.add((float) (58000));
+        yAxisValues1.add((float) (68000));
         yAxisValues2.add((float) (4302));
         xAxisValues.add(6);
-        yAxisValues1.add((float) (60000));
+        yAxisValues1.add((float) (70340));
         yAxisValues2.add((float) (4202));
         xAxisValues.add(7);
-        yAxisValues1.add((float) (58500));
+        yAxisValues1.add((float) (71500));
         yAxisValues2.add((float) (4502));
 
         MPChartHelper.setTwoBarChart(barChart1, xAxisValues, yAxisValues1, yAxisValues2, "总收益", "总能耗");
