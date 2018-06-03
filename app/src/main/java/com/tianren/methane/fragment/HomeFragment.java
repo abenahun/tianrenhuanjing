@@ -110,10 +110,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         tv_luru.setOnClickListener(this);*/
 
         ll_runningstatus = (LinearLayout) view.findViewById(R.id.ll_runningstatus);
-        ll_runningstatus.setOnClickListener(this);
+//        ll_runningstatus.setOnClickListener(this);
+        ll_jinliaoliang = (LinearLayout) view.findViewById(R.id.ll_jinliaoliang);
+//        ll_jinliaoliang.setOnClickListener(this);
 
         ll_zongnenghao = (LinearLayout) view.findViewById(R.id.ll_zongnenghao);
-        ll_zongnenghao.setOnClickListener(this);
+//        ll_zongnenghao.setOnClickListener(this);
 
         ll_shuihao = (LinearLayout) view.findViewById(R.id.ll_shuihao);
         ll_shuihao.setOnClickListener(this);
@@ -122,19 +124,17 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         ll_dianhao.setOnClickListener(this);
 
         ll_rehao = (LinearLayout) view.findViewById(R.id.ll_rehao);
-        ll_rehao.setOnClickListener(this);
+//        ll_rehao.setOnClickListener(this);
 
         ll_chanqixiaoyi = (LinearLayout) view.findViewById(R.id.ll_chanqixiaoyi);
         ll_chanqixiaoyi.setOnClickListener(this);
 
         ll_zongxiaoyi = (LinearLayout) view.findViewById(R.id.ll_zongxiaoyi);
-        ll_zongxiaoyi.setOnClickListener(this);
+//        ll_zongxiaoyi.setOnClickListener(this);
 
         ll_chandianxiaoyi = (LinearLayout) view.findViewById(R.id.ll_chandianxiaoyi);
         ll_chandianxiaoyi.setOnClickListener(this);
 
-        ll_jinliaoliang = (LinearLayout) view.findViewById(R.id.ll_jinliaoliang);
-        ll_jinliaoliang.setOnClickListener(this);
         allConsume = (TextView) view.findViewById(R.id.allConsume);
         waterConsume = (TextView) view.findViewById(R.id.waterConsume);
         eleConsume = (TextView) view.findViewById(R.id.eleConsume);
@@ -318,24 +318,38 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.ll_runningstatus:
                 Intent intent = new Intent(getActivity(), DataStatisticsActivity.class);
-                intent.putExtra("title", "提油量统计");
-                intent.putExtra("statisticsName", "提油量统计表");
+                intent.putExtra("title", "产品产量统计");
+                intent.putExtra("unit", "");
                 intent.putExtra("tableName", "Capacity");
                 intent.putExtra("columnName", StringUtil.humpToLine2("liftingCapacity"));
                 startActivity(intent);
                 break;
+            case R.id.ll_jinliaoliang:
+                Intent intent9 = new Intent(getActivity(), DataStatisticsActivity.class);
+                intent9.putExtra("title", "进料量统计");
+                intent9.putExtra("unit", "");
+                intent9.putExtra("tableName", "Consumption");
+                intent9.putExtra("columnName", StringUtil.humpToLine2("feedAmount"));
+                startActivity(intent9);
+                break;
 
             case R.id.ll_zongnenghao:
-//                Intent intent2 = new Intent(getActivity(), DataStatisticsActivity.class);
-//                intent2.putExtra("title", "总能耗统计");
-//                intent2.putExtra("statisticsName", "总能耗统计表");
-//                startActivity(intent2);
+                Intent intent2 = new Intent(getActivity(), DataStatisticsActivity.class);
+                intent2.putExtra("title", "总能耗统计");
+                intent2.putExtra("unit", "元");
+                startActivity(intent2);
+                break;
+            case R.id.ll_zongxiaoyi:
+                Intent intent7 = new Intent(getActivity(), DataStatisticsActivity.class);
+                intent7.putExtra("title", "总效益统计");
+                intent7.putExtra("unit", "元");
+                startActivity(intent7);
                 break;
 
             case R.id.ll_shuihao:
                 Intent intent3 = new Intent(getActivity(), DataStatisticsActivity.class);
                 intent3.putExtra("title", "水耗统计");
-                intent3.putExtra("statisticsName", "水耗统计表");
+                intent3.putExtra("unit", "吨");
                 intent3.putExtra("tableName", "Consumption");
                 intent3.putExtra("columnName", StringUtil.humpToLine2("waterConsumption"));
                 startActivity(intent3);
@@ -344,7 +358,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.ll_dianhao:
                 Intent intent4 = new Intent(getActivity(), DataStatisticsActivity.class);
                 intent4.putExtra("title", "电耗统计");
-                intent4.putExtra("statisticsName", "电耗统计表");
+                intent4.putExtra("unit", "kw");
                 intent4.putExtra("tableName", "Consumption");
                 intent4.putExtra("columnName", StringUtil.humpToLine2("powerConsumption"));
                 startActivity(intent4);
@@ -353,7 +367,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.ll_rehao:
                 Intent intent5 = new Intent(getActivity(), DataStatisticsActivity.class);
                 intent5.putExtra("title", "热耗统计");
-                intent5.putExtra("statisticsName", "热耗统计表");
+                intent5.putExtra("unit", "");
                 intent5.putExtra("tableName", "Consumption");
                 intent5.putExtra("columnName", StringUtil.humpToLine2("airConsumption"));
                 startActivity(intent5);
@@ -363,35 +377,19 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.ll_chanqixiaoyi:
                 Intent intent6 = new Intent(getActivity(), DataStatisticsActivity.class);
                 intent6.putExtra("title", "产气效益统计");
-                intent6.putExtra("statisticsName", "产气效益统计表");
+                intent6.putExtra("unit", "元");
                 intent6.putExtra("tableName", "Capacity");
                 intent6.putExtra("columnName", StringUtil.humpToLine2("gasProduction"));
                 startActivity(intent6);
                 break;
 
-            case R.id.ll_zongxiaoyi:
-//                Intent intent7 = new Intent(getActivity(), DataStatisticsActivity.class);
-//                intent7.putExtra("title", "总效益统计");
-//                intent7.putExtra("statisticsName", "总效益统计表");
-//                startActivity(intent7);
-                break;
-
             case R.id.ll_chandianxiaoyi:
                 Intent intent8 = new Intent(getActivity(), DataStatisticsActivity.class);
                 intent8.putExtra("title", "产电效益统计");
-                intent8.putExtra("statisticsName", "产电效益统计表");
+                intent8.putExtra("unit", "元");
                 intent8.putExtra("tableName", "Capacity");
                 intent8.putExtra("columnName", StringUtil.humpToLine2("powerGeneration"));
                 startActivity(intent8);
-                break;
-
-            case R.id.ll_jinliaoliang:
-                Intent intent9 = new Intent(getActivity(), DataStatisticsActivity.class);
-                intent9.putExtra("title", "进料量统计");
-                intent9.putExtra("statisticsName", "进料量统计表");
-                intent9.putExtra("tableName", "Consumption");
-                intent9.putExtra("columnName", StringUtil.humpToLine2("feedAmount"));
-                startActivity(intent9);
                 break;
             default:
                 break;

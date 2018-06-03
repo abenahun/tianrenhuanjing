@@ -124,7 +124,7 @@ public class MoveSulfurActivity extends BaseActivity implements View.OnClickList
         public void onClick(ModelAdapter.ModelBean bean) {
             Intent intent7 = new Intent(MoveSulfurActivity.this, DataStatisticsActivity.class);
             intent7.putExtra("title", bean.getNickName());
-            intent7.putExtra("statisticsName", bean.getNickName());
+            intent7.putExtra("unit", "吨");
             intent7.putExtra("tableName", "Sensor");
             intent7.putExtra("columnName", StringUtil.humpToLine2(bean.getSensorName()));
             startActivity(intent7);

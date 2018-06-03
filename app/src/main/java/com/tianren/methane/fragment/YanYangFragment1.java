@@ -255,7 +255,7 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
         public void onClick(ModelAdapter.ModelBean bean) {
             Intent intent7 = new Intent(getActivity(), DataStatisticsActivity.class);
             intent7.putExtra("title", bean.getNickName());
-            intent7.putExtra("statisticsName",bean.getNickName());
+            intent7.putExtra("unit", "m³");
             intent7.putExtra("tableName", "Sensor");
             intent7.putExtra("columnName", StringUtil.humpToLine2(bean.getSensorName()));
             startActivity(intent7);

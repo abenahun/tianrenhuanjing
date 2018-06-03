@@ -33,7 +33,7 @@ public class DataStatisticsActivity extends BaseActivity implements View.OnClick
     private List<Float> yAxisValues;
     private LinearLayout ll_back;
     private TextView tv_title;
-    private String statisticsName, title, tableName, columnName;
+    private String unit, title, tableName, columnName;
     private Bundle bundle;
 
     @Override
@@ -49,7 +49,7 @@ public class DataStatisticsActivity extends BaseActivity implements View.OnClick
         Intent intent = getIntent();
         bundle = intent.getExtras();
         title = bundle.getString("title");
-        statisticsName = bundle.getString("statisticsName");
+        unit = bundle.getString("unit");
         tableName = intent.getStringExtra("tableName");
         columnName = intent.getStringExtra("columnName");
         lineChart = (LineChart) findViewById(R.id.lineChart);
@@ -74,7 +74,7 @@ public class DataStatisticsActivity extends BaseActivity implements View.OnClick
                                     xAxisValues.add(String.valueOf(i));
                                     yAxisValues.add(Float.parseFloat(res.getData().get(i)));
                                 }
-                                MPChartHelper.setLineChart(lineChart, xAxisValues, yAxisValues, statisticsName, true);
+                                MPChartHelper.setLineChart(lineChart, xAxisValues, yAxisValues, "单位：" + unit, true);
                             } else {
                                 ToastUtils.show(msg);
                             }

@@ -82,16 +82,6 @@ public class QiGuiFragment1 extends BaseFragment implements View.OnClickListener
 
     private void loadData() {
         List<ModelAdapter.ModelBean> list = new ArrayList<>();
-//        ModelAdapter.ModelBean bean1 = new ModelAdapter.ModelBean("", "设计容量", "2000", -1d, 1d, "m³");
-//        ModelAdapter.ModelBean bean2 = new ModelAdapter.ModelBean("", "当前储气", "空数据", -1d, 1d, "m³");
-//        ModelAdapter.ModelBean bean3 = new ModelAdapter.ModelBean("", "内膜高度", "空数据", -1d, 1d, "m³");
-//        ModelAdapter.ModelBean bean4 = new ModelAdapter.ModelBean("", "内膜压力", "空数据", -1d, 1d, "m³");
-//        ModelAdapter.ModelBean bean5 = new ModelAdapter.ModelBean("", "运行状态", "空数据", -1d, 1d, "m³");
-//        list.add(bean1);
-//        list.add(bean2);
-//        list.add(bean3);
-//        list.add(bean4);
-//        list.add(bean5);
         if (sensorDataMap == null) {
             list = null;
         } else {
@@ -165,8 +155,8 @@ public class QiGuiFragment1 extends BaseFragment implements View.OnClickListener
         @Override
         public void onClick(ModelAdapter.ModelBean bean) {
             Intent intent7 = new Intent(getActivity(), DataStatisticsActivity.class);
-            intent7.putExtra("title",bean.getNickName());
-            intent7.putExtra("statisticsName", bean.getNickName());
+            intent7.putExtra("title", bean.getNickName());
+            intent7.putExtra("unit", "m³");
             intent7.putExtra("tableName", "Sensor");
             intent7.putExtra("columnName", StringUtil.humpToLine2(bean.getSensorName()));
             startActivity(intent7);

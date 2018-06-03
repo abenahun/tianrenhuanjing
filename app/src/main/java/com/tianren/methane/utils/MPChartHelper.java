@@ -659,8 +659,6 @@ public class MPChartHelper {
 
         //图例设置
         Legend legend = lineChart.getLegend();
-        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         legend.setDrawInside(false);
         legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
