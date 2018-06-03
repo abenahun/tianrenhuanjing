@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/maincolor">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="首页"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="14dp"
+            app:srcCompat="@mipmap/location" />
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageView2"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/imageView2"
+            android:text="湖州"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize13" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingRight="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="餐厨项目"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize13" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/icon_xia" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="14dp"
+                    android:paddingTop="14dp">
+
+                    <LinearLayout
+                        android:id="@+id/ll_zongnenghao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:src="@mipmap/zongnenghao" />
+
+                        <TextView
+                            android:id="@+id/allConsume"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/textblack"
+                            android:textSize="@dimen/textsize17" />
+
+
+                        <TextView
+                            android:id="@+id/tv_jingji"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:drawablePadding="12dp"
+                            android:text="昨日总能耗"
+                            android:textColor="@color/textgray"
+                            android:textSize="@dimen/textsize13" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_shuihao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:src="@mipmap/shuihao" />
+
+                        <TextView
+                            android:id="@+id/waterConsume"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0吨"
+                            android:textColor="@color/textblack"
+                            android:textSize="@dimen/textsize17" />
+
+
+                        <TextView
+                            android:id="@+id/tv_nenghao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:drawablePadding="12dp"
+                            android:gravity="center"
+                            android:text="水耗"
+                            android:textColor="@color/textgray"
+                            android:textSize="@dimen/textsize13" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_dianhao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:src="@mipmap/dianhao" />
+
+
+                        <TextView
+                            android:id="@+id/eleConsume"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0kw"
+                            android:textColor="@color/textblack"
+                            android:textSize="@dimen/textsize17" />
+
+
+                        <TextView
+                            android:id="@+id/tv_tongji"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:drawablePadding="12dp"
+                            android:gravity="center"
+                            android:text="电耗"
+                            android:textColor="@color/textgray"
+                            android:textSize="@dimen/textsize13" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_rehao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:src="@mipmap/rehao" />
+
+                        <TextView
+                            android:id="@+id/airConsume"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-"
+                            android:textColor="@color/textblack"
+                            android:textSize="@dimen/textsize17" />
+
+                        <TextView
+                            android:id="@+id/tv_ribao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:drawablePadding="12dp"
+                            android:gravity="center"
+                            android:text="气耗"
+                            android:textColor="@color/textgray"
+                            android:textSize="@dimen/textsize13" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/backcolor"
+                    android:orientation="vertical">
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/bar_chart1"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_margin="5dp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/mPieChart"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/ll_jinliaoliang"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="餐厨垃圾："
+                                android:textColor="@color/textgray"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_kitchen_enter"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="152.87吨"
+                                android:textColor="@color/maincolor"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="厨余垃圾："
+                                android:textColor="@color/textgray"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_repast_enter"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="91.50吨"
+                                android:textColor="@color/maincolor"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="处理量"
+                            android:textColor="@color/textblack"
+                            android:textSize="@dimen/textsize15" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/backcolor" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_runningstatus"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="沼气产量："
+                                android:textColor="@color/textgray"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_produce_air"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="11125m³"
+                                android:textColor="@color/maincolor"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="油脂产量："
+                                android:textColor="@color/textgray"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_produce_youzhi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="89吨"
+                                android:textColor="@color/maincolor"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="产品产量"
+                            android:textColor="@color/textblack"
+                            android:textSize="@dimen/textsize15" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/line_chart2"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:visibility="gone" />
+
+                <include layout="@layout/include_report" />
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>
