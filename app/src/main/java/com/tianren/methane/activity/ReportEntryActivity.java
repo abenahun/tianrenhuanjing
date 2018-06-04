@@ -27,7 +27,6 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * @author qiushengtao
@@ -56,8 +55,6 @@ public class ReportEntryActivity extends BaseActivity implements View.OnClickLis
     private int mYear;
     private int mMonth;
     private int mDay;
-    private int hour;
-    private int minute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,11 +79,10 @@ public class ReportEntryActivity extends BaseActivity implements View.OnClickLis
         moreTv.setOnClickListener(this);
 
         Calendar ca = Calendar.getInstance();
+        ca.add(Calendar.DAY_OF_MONTH, -1);
         mYear = ca.get(Calendar.YEAR);
         mMonth = ca.get(Calendar.MONTH);
         mDay = ca.get(Calendar.DAY_OF_MONTH);
-        hour = ca.get(Calendar.HOUR_OF_DAY);
-        minute = ca.get(Calendar.MINUTE);
 
         report_day = (EditText) findViewById(R.id.report_day);
         report_time = (TextView) findViewById(R.id.report_time);
@@ -133,7 +129,7 @@ public class ReportEntryActivity extends BaseActivity implements View.OnClickLis
         water_bad_introduce_month = (EditText) findViewById(R.id.water_bad_introduce_month);
 
         report_time.setOnClickListener(this);
-        report_time.setText(DateUtil.format("yyyy-MM-dd HH:mm:ss", new Date()));
+        report_time.setText(DateUtil.format("yyyy-MM-dd", ca.getTime()));
         loadData();
     }
 
