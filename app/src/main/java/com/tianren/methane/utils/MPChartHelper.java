@@ -2,6 +2,7 @@ package com.tianren.methane.utils;
 
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
@@ -47,6 +48,7 @@ import java.util.Set;
 
 public class MPChartHelper {
 
+    private static final String TAG = "MPChartHelper";
     public static final int[] PIE_COLORS = {
             Color.rgb(181, 194, 202), Color.rgb(129, 216, 200), Color.rgb(241, 214, 145),
             Color.rgb(108, 176, 223), Color.rgb(195, 221, 155), Color.rgb(251, 215, 191),
@@ -325,7 +327,7 @@ public class MPChartHelper {
      * @param bartilte1
      * @param bartitle2
      */
-    public static void setTwoBarChart(BarChart barChart, List<Integer> xAxisValue,
+    public static void setTwoBarChart(BarChart barChart, final List<String> xAxisValue,
                                       List<Float> yAxisValue1, List<Float> yAxisValue2,
                                       String bartilte1, String bartitle2) {
         barChart.getDescription().setEnabled(false);//设置描述
@@ -346,7 +348,13 @@ public class MPChartHelper {
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float v, AxisBase axisBase) {
-                return String.valueOf(v);
+                int v1 = (int) v;
+                if (v1 < 8 && v1 > 0) {
+                    return xAxisValue.get(v1 - 1);
+                } else {
+                    Log.e(TAG, "getFormattedValue: " + v);
+                    return String.valueOf(v);
+                }
             }
         });
         xAxis.setLabelRotationAngle(-40);
@@ -381,7 +389,7 @@ public class MPChartHelper {
         legend.setTextSize(12f);
 
         //设置柱状图数据
-        setTwoBarChartData(barChart, xAxisValue, yAxisValue1, yAxisValue2, bartilte1, bartitle2);
+        setTwoBarChartData(barChart, yAxisValue1, yAxisValue2, bartilte1, bartitle2);
 
         barChart.animateX(1500);//数据显示动画，从左往右依次显示
         barChart.invalidate();
@@ -390,7 +398,7 @@ public class MPChartHelper {
     /**
      * 设置柱状图数据源
      */
-    private static void setTwoBarChartData(BarChart barChart, List<Integer> xAxisValue, List<Float> yAxisValue1, List<Float> yAxisValue2, String bartilte1, String bartitle2) {
+    private static void setTwoBarChartData(BarChart barChart, List<Float> yAxisValue1, List<Float> yAxisValue2, String bartilte1, String bartitle2) {
         float groupSpace = 0.04f;
         float barSpace = 0.03f;
         float barWidth = 0.45f;
@@ -400,8 +408,8 @@ public class MPChartHelper {
         ArrayList<BarEntry> entries2 = new ArrayList<>();
 
         for (int i = 0, n = yAxisValue1.size(); i < n; ++i) {
-            entries1.add(new BarEntry(xAxisValue.get(i), yAxisValue1.get(i)));
-            entries2.add(new BarEntry(xAxisValue.get(i), yAxisValue2.get(i)));
+            entries1.add(new BarEntry(i, yAxisValue1.get(i)));
+            entries2.add(new BarEntry(i, yAxisValue2.get(i)));
         }
         BarDataSet dataset1, dataset2;
         if (barChart.getData() != null && barChart.getData().getDataSetCount() > 0) {

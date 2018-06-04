@@ -53,7 +53,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private TextView tv_luru;
     private BarChart barChart1;
 
-    private List<Integer> xAxisValues;
+    private List<String> xAxisValues;
     private List<Float> yAxisValues1;
     private List<Float> yAxisValues2;
 
@@ -335,25 +335,25 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         xAxisValues = new ArrayList<>();
         yAxisValues1 = new ArrayList<>();
         yAxisValues2 = new ArrayList<>();
-        xAxisValues.add(1);
+        xAxisValues.add("05-28");
         yAxisValues1.add((float) (68000));
         yAxisValues2.add((float) (4511));
-        xAxisValues.add(2);
+        xAxisValues.add("05-29");
         yAxisValues1.add((float) (77001));
         yAxisValues2.add((float) (4533));
-        xAxisValues.add(3);
+        xAxisValues.add("05-30");
         yAxisValues1.add((float) (69055));
         yAxisValues2.add((float) (4702));
-        xAxisValues.add(4);
+        xAxisValues.add("05-31");
         yAxisValues1.add((float) (77000));
         yAxisValues2.add((float) (4402));
-        xAxisValues.add(5);
+        xAxisValues.add("06-01");
         yAxisValues1.add((float) (68000));
         yAxisValues2.add((float) (4302));
-        xAxisValues.add(6);
+        xAxisValues.add("06-02");
         yAxisValues1.add((float) (70340));
         yAxisValues2.add((float) (4202));
-        xAxisValues.add(7);
+        xAxisValues.add("06-03");
         yAxisValues1.add((float) (71500));
         yAxisValues2.add((float) (4502));
         MPChartHelper.setTwoBarChart(barChart1, xAxisValues, yAxisValues1, yAxisValues2, "总收益(元)", "总能耗(元)");

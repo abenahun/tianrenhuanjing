@@ -28,7 +28,6 @@ import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
 import com.tianren.methane.activity.DataStatisticsActivity;
 import com.tianren.methane.event.ReportEvent;
-import com.tianren.methane.utils.MPChartHelper;
 import com.tianren.methane.utils.MathUtils;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
@@ -388,7 +387,7 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
         xAxisValues.add(7);
         yAxisValues1.add((float) (71500));
         yAxisValues2.add((float) (4502));
-        MPChartHelper.setTwoBarChart(barChart1, xAxisValues, yAxisValues1, yAxisValues2, "总收益(元)", "总能耗(元)");
+//        MPChartHelper.setTwoBarChart(barChart1, xAxisValues, yAxisValues1, yAxisValues2, "总收益(元)", "总能耗(元)");
     }
 
     @Override
