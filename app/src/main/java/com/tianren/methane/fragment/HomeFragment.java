@@ -325,6 +325,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 } else {
                     ToastUtils.show(msg);
                 }
+                refreshLayout.setRefreshing(false);
             }
         });
     }
