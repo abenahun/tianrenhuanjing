@@ -99,13 +99,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         return view;
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initBarCharts();
-        loadReport();
-    }
-
     private void initView() {
         /*tv_luru = (TextView) view.findViewById(R.id.tv_luru);
         tv_luru.setOnClickListener(this);*/
@@ -203,7 +196,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             }
         });
 
-
+        initBarCharts();
+        loadReport();
     }
 
     private void loadData() {
