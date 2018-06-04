@@ -34,10 +34,8 @@ import com.tianren.methane.common.MyValueFormatter;
 import com.tianren.methane.common.StringAxisValueFormatter;
 
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -327,7 +325,7 @@ public class MPChartHelper {
      * @param bartilte1
      * @param bartitle2
      */
-    public static void setTwoBarChart(BarChart barChart, List<Float> xAxisValue,
+    public static void setTwoBarChart(BarChart barChart, List<Integer> xAxisValue,
                                       List<Float> yAxisValue1, List<Float> yAxisValue2,
                                       String bartilte1, String bartitle2) {
         barChart.getDescription().setEnabled(false);//设置描述
@@ -348,9 +346,7 @@ public class MPChartHelper {
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float v, AxisBase axisBase) {
-                Date date = new Date((long) v);
-                SimpleDateFormat format = new SimpleDateFormat("MM-dd");
-                return format.format(date);
+                return String.valueOf(v);
             }
         });
         xAxis.setLabelRotationAngle(-40);
@@ -394,7 +390,7 @@ public class MPChartHelper {
     /**
      * 设置柱状图数据源
      */
-    private static void setTwoBarChartData(BarChart barChart, List<Float> xAxisValue, List<Float> yAxisValue1, List<Float> yAxisValue2, String bartilte1, String bartitle2) {
+    private static void setTwoBarChartData(BarChart barChart, List<Integer> xAxisValue, List<Float> yAxisValue1, List<Float> yAxisValue2, String bartilte1, String bartitle2) {
         float groupSpace = 0.04f;
         float barSpace = 0.03f;
         float barWidth = 0.45f;
