@@ -340,7 +340,7 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
                             d_butie = (bean.getKitchenEnter() + bean.getRepastEnter()) * 120;
                         }
                         butieEarnings.setText(Html.fromHtml((d_butie == 0d ? "/" : d_air) + "<font><small>元</small></font>"));
-                        Double d_oil = bean.getOilFinish() == null ? 0d : (bean.getOilFinish() * 3500 / 30);
+                        Double d_oil = bean.getOilFinish() == null ? 0d : (bean.getOilFinish() * 3500);
                         youzhiEarnings.setText(Html.fromHtml((d_oil == 0d ? "/" : d_oil) + "<font><small>元</small></font>"));
                         zhaozhaEarnings.setText((Html.fromHtml("0.0<font><small>元</small></font>")));
                         allEarnings.setText(Html.fromHtml(d_air + d_butie + d_oil + "<font><small>元</small></font>"));
