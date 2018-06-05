@@ -37,6 +37,7 @@ import com.tianren.methane.utils.MathUtils;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 
+import org.bouncycastle.jcajce.provider.symmetric.DES;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -234,6 +235,9 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
         //设置图列标识的形状
         mPiechart.getLegend().setForm(Legend.LegendForm.CIRCLE);
         mPiechart.setCenterText("总收益："+allEarnings+"元");
+        Description des = new Description();
+        des.setText("");
+        mPiechart.setDescription(des);
         /*//设置图表描述的字体
         mPiechart.setDesetDescriptionTextSize(14);
         //设置图表描述的位置
