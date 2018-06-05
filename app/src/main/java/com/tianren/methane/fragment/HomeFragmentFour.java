@@ -68,7 +68,6 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
             ll_dianhao, ll_rehao, ll_chanqixiaoyi,
             ll_zongxiaoyi, ll_chandianxiaoyi, ll_jinliaoliang;
     private TextView allConsume, waterConsume, eleConsume, airConsume;
-    private TextView airEarnings, butieEarnings, youzhiEarnings, zhaozhaEarnings, allEarnings;
     private TextView tv_kitchen_enter, tv_repast_enter, tv_produce_air, tv_produce_youzhi;
     private SwipeRefreshLayout refreshLayout;
 
@@ -150,11 +149,7 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
         waterConsume = (TextView) view.findViewById(R.id.waterConsume);
         eleConsume = (TextView) view.findViewById(R.id.eleConsume);
         airConsume = (TextView) view.findViewById(R.id.airConsume);
-        airEarnings = (TextView) view.findViewById(R.id.airEarnings);
-        butieEarnings = (TextView) view.findViewById(R.id.butieEarnings);
-        youzhiEarnings = (TextView) view.findViewById(R.id.youzhiEarnings);
-        zhaozhaEarnings = (TextView) view.findViewById(R.id.zhaozhaEarnings);
-        allEarnings = (TextView) view.findViewById(R.id.allEarnings);
+
         tv_kitchen_enter = (TextView) view.findViewById(R.id.tv_kitchen_enter);
         tv_repast_enter = (TextView) view.findViewById(R.id.tv_repast_enter);
         tv_produce_air = (TextView) view.findViewById(R.id.tv_produce_air);
@@ -227,19 +222,18 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
         mPiechart.animateX(1400);
         //使用百分比
         mPiechart.setUsePercentValues(true);
+        mPiechart.setHoleRadius(50f); //半径
         //设置图列可见
         mPiechart.getLegend().setEnabled(true);
         //设置图列标识的大小
-        mPiechart.getLegend().setFormSize(14);
+        mPiechart.getLegend().setFormSize(10);
         //设置图列标识文字的大小
-        mPiechart.getLegend().setTextSize(14);
+        mPiechart.getLegend().setTextSize(10);
         //设置图列的位置
-        mPiechart.getLegend().setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
+        mPiechart.getLegend().setPosition(Legend.LegendPosition.ABOVE_CHART_RIGHT);
         //设置图列标识的形状
         mPiechart.getLegend().setForm(Legend.LegendForm.CIRCLE);
-        //设置图表描述
-        mPiechart.setDescription(new Description());
-        mPiechart.setContentDescription("总收益："+allEarnings);
+        mPiechart.setCenterText("总收益："+allEarnings+"元");
         /*//设置图表描述的字体
         mPiechart.setDesetDescriptionTextSize(14);
         //设置图表描述的位置
@@ -271,55 +265,21 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
         entrys.add(entry4);
 
         //饼图数据集
-        PieDataSet dataset = new PieDataSet(entrys, "收益分析");
+        PieDataSet dataset = new PieDataSet(entrys, "");
         //设置饼状图Item之间的间隙
         dataset.setSliceSpace(3f);
         //饼图Item被选中时变化的距离
         dataset.setSelectionShift(10f);
         //颜色填充
         dataset.setColors(new int[]{Color.rgb(81, 134, 201),
-                Color.rgb(283, 147, 114),
+                Color.rgb(238, 147, 114),
                 Color.rgb(128, 217, 199),
                 Color.rgb(56, 196, 217)});
         //数据填充
         PieData piedata = new PieData(dataset);
         //设置饼图上显示数据的字体大小
-        piedata.setValueTextSize(15);
+        piedata.setValueTextSize(13);
         mPiechart.setData(piedata);
-    }
-
-    private void loadData() {
-        WebServiceManage.getService(EntryService.class).getCapacity().
-                setCallback(new SCallBack<BaseResponse<List<CapacityBean>>>() {
-                    @Override
-                    public void callback(boolean isok, String msg, BaseResponse<List<CapacityBean>> res) {
-                        Log.e("isok", "callback: " + isok);
-                        if (isok) {
-                            Double gasProduction = res.getData().get(0).getGasProduction();
-                            airEarnings.setText((gasProduction.equals(0) ? "0" : (MathUtils.scale(gasProduction) + "")) + "元");
-                            Double powerGeneration = res.getData().get(0).getPowerGeneration();
-                            butieEarnings.setText((powerGeneration.equals(0) ? "0" : (MathUtils.scale(powerGeneration) + "")) + "元");
-                            allEarnings.setText(MathUtils.scale((gasProduction + powerGeneration + 3500)) + "元");
-                        }
-                    }
-                });
-        WebServiceManage.getService(EntryService.class).getConsumptionData().
-                setCallback(new SCallBack<BaseResponse<List<ConsumptionBean>>>() {
-                    @Override
-                    public void callback(boolean isok, String msg, BaseResponse<List<ConsumptionBean>> res) {
-                        if (isok) {
-                            Double waterConsumption = res.getData().get(0).getWaterConsumption();
-                            waterConsume.setText(waterConsumption.equals(0) ? "0" : (MathUtils.scale2(waterConsumption) + "") + "吨");
-                            Double powerConsumption = res.getData().get(0).getPowerConsumption();
-                            eleConsume.setText(powerConsumption.equals(0) ? "0" : (MathUtils.scale2(powerConsumption) + "") + "kw");
-                            Double airConsumption = res.getData().get(0).getAirConsumption();
-//                            hotConsume.setText(airConsumption.equals(0) ? "0" : (MathUtils.scale2(airConsumption) + "") + "m³");
-                            allConsume.setText(MathUtils.scale2((waterConsumption + powerConsumption + airConsumption)) + "元");
-                        }
-                        refreshLayout.setRefreshing(false);
-                    }
-                });
-        loadReport();
     }
 
     /**
@@ -378,7 +338,6 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
                         water_bad_introduce_month.setText(bean.getWaterBadIntroduceMonth() == null ? "/" : (bean.getWaterBadIntroduceMonth() + ""));
 
                         Double d_air = bean.getGasDayProduce() == null ? 0d : (bean.getGasDayProduce() * 1.5);
-                        airEarnings.setText(Html.fromHtml((d_air == 0d ? "/" : d_air) + "<font><small>元</small></font>"));
                         Double d_butie = 0.0;
                         if (bean.getKitchenEnter() == null && bean.getRepastEnter() == null) {
                             d_butie = 0d;
@@ -389,13 +348,11 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
                         } else {
                             d_butie = (bean.getKitchenEnter() + bean.getRepastEnter()) * 120;
                         }
-                        butieEarnings.setText(Html.fromHtml((d_butie == 0d ? "/" : d_air) + "<font><small>元</small></font>"));
                         Double d_oil = bean.getOilFinish() == null ? 0d : (bean.getOilFinish() * 3500);
-                        youzhiEarnings.setText(Html.fromHtml((d_oil == 0d ? "/" : d_oil) + "<font><small>元</small></font>"));
-                        zhaozhaEarnings.setText((Html.fromHtml("0.0<font><small>元</small></font>")));
-                        allEarnings.setText(Html.fromHtml(d_air + d_butie + d_oil + "<font><small>元</small></font>"));
                         Double d_all = d_air + d_butie + d_oil;
                         initPieView(d_air.floatValue(),d_butie.floatValue(),d_oil.floatValue(),0.0f,d_all.floatValue());
+
+//                        initPieView(100.2f,500.3f,800.6f,400.5f,210.3f);
 
                         waterConsume.setText("1.02吨");
                         eleConsume.setText(bean.getEleUseFactoryData() == null ? "/" : (MathUtils.scale2(bean.getEleUseFactoryData()) + "kw"));
