@@ -2,7 +2,6 @@ package com.tianren.methane.utils;
 
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
@@ -352,7 +351,6 @@ public class MPChartHelper {
                 if (v1 < 8 && v1 > 0) {
                     return xAxisValue.get(v1 - 1);
                 } else {
-                    Log.e(TAG, "getFormattedValue: " + v);
                     return String.valueOf(v);
                 }
             }

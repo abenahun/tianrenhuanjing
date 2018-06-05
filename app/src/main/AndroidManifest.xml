@@ -33,7 +33,9 @@
         <activity android:name=".activity.ListActivity" />
         <activity android:name=".activity.QiGuiActivity" />
         <activity android:name=".activity.DataEntryActivity" />
-        <activity android:name=".activity.EntryYanYangActivity" />
+        <activity
+            android:name=".activity.EntryYanYangActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".activity.EntryProductionCostActivity" />
         <activity android:name=".activity.EntryProductionBenefitActivity" />
         <activity android:name=".activity.YanYangActivity" />
@@ -62,9 +64,7 @@
         <activity android:name=".activity.InputQuantityHisActivity" />
         <activity
             android:name=".activity.ReportEntryActivity"
-            android:windowSoftInputMode="stateHidden">
-            >
-        </activity>
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity android:name=".activity.ReportActivity"></activity>
     </application>
 
