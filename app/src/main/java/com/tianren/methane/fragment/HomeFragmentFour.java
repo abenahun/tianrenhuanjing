@@ -1,6 +1,7 @@
 package com.tianren.methane.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -18,6 +19,9 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.tianren.acommon.BaseResponse;
 import com.tianren.acommon.bean.CapacityBean;
 import com.tianren.acommon.bean.ConsumptionBean;
@@ -28,6 +32,7 @@ import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
 import com.tianren.methane.activity.DataStatisticsActivity;
 import com.tianren.methane.event.ReportEvent;
+import com.tianren.methane.utils.MPChartHelper;
 import com.tianren.methane.utils.MathUtils;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
@@ -55,7 +60,7 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
     private TextView tv_luru;
     private BarChart barChart1;
 
-    private List<Integer> xAxisValues;
+    private List<String> xAxisValues;
     private List<Float> yAxisValues1;
     private List<Float> yAxisValues2;
 
@@ -84,7 +89,8 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
     //（污水）日滤液产生量,库存,日沼液产生量,日污水处理量,月计划污水处理量,月污水处理量;
     private TextView water_filtrate_product, water_repertory, water_gas_product, water_bad_introduce_day, water_bad_introduce_plan, water_bad_introduce_month;
     private PieChart mPiechart;
-
+    private String[] Stars = new String[]{"1颗星", "2颗星", "3颗星", "4颗星"};
+    private int[] number = new int[]{1, 2, 3, 4};
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +113,7 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
         super.onViewCreated(view, savedInstanceState);
         initBarCharts();
         loadReport();
+
     }
 
     private void initView() {
@@ -130,14 +137,14 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
         ll_rehao = (LinearLayout) view.findViewById(R.id.ll_rehao);
 //        ll_rehao.setOnClickListener(this);
 
-        ll_chanqixiaoyi = (LinearLayout) view.findViewById(R.id.ll_chanqixiaoyi);
+        /*ll_chanqixiaoyi = (LinearLayout) view.findViewById(R.id.ll_chanqixiaoyi);
         ll_chanqixiaoyi.setOnClickListener(this);
 
         ll_zongxiaoyi = (LinearLayout) view.findViewById(R.id.ll_zongxiaoyi);
 //        ll_zongxiaoyi.setOnClickListener(this);
 
         ll_chandianxiaoyi = (LinearLayout) view.findViewById(R.id.ll_chandianxiaoyi);
-        ll_chandianxiaoyi.setOnClickListener(this);
+        ll_chandianxiaoyi.setOnClickListener(this);*/
 
         allConsume = (TextView) view.findViewById(R.id.allConsume);
         waterConsume = (TextView) view.findViewById(R.id.waterConsume);
@@ -212,8 +219,10 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
     /**
      * 初始化图表
      */
-    private void initPieView() {
-//        setData();
+    private void initPieView(Float airEarnings,Float butieEarnings,
+                             Float youzhiEarnings,Float zhaozhaEarnings,
+                             Float allEarnings) {
+        setData(butieEarnings,youzhiEarnings,zhaozhaEarnings,airEarnings);
         //设置X轴的动画
         mPiechart.animateX(1400);
         //使用百分比
@@ -230,12 +239,53 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
         mPiechart.getLegend().setForm(Legend.LegendForm.CIRCLE);
         //设置图表描述
         mPiechart.setDescription(new Description());
-        //设置图表描述的字体
-      /*  mPiechart.setDesetDescriptionTextSize(14);
+        mPiechart.setContentDescription("总收益："+allEarnings);
+        /*//设置图表描述的字体
+        mPiechart.setDesetDescriptionTextSize(14);
         //设置图表描述的位置
         mPiechart.setDescriptionPosition(950, 950);*/
         //设置是否可转动
-        mPiechart.setRotationEnabled(true);
+        mPiechart.setRotationEnabled(false);
+    }
+
+    /**
+     * 图表设置数据
+     */
+    private void setData(Float butieEarnings,
+                         Float youzhiEarnings,
+                         Float zhaozhaEarnings,
+                         Float airEarnings) {
+        //设置标题
+        ArrayList<String> titles = new ArrayList<>();
+        for (int i = 0; i < Stars.length; i++) {
+            titles.add(Stars[i]);
+        }
+        List<PieEntry> entrys = new ArrayList<>();
+        PieEntry entry1 = new PieEntry(butieEarnings,"补贴收益");
+        entrys.add(entry1);
+        PieEntry entry2 = new PieEntry(youzhiEarnings,"油脂收益");
+        entrys.add(entry2);
+        PieEntry entry3 = new PieEntry(zhaozhaEarnings,"沼渣收益");
+        entrys.add(entry3);
+        PieEntry entry4 = new PieEntry(airEarnings,"沼气收益");
+        entrys.add(entry4);
+
+        //饼图数据集
+        PieDataSet dataset = new PieDataSet(entrys, "收益分析");
+        //设置饼状图Item之间的间隙
+        dataset.setSliceSpace(3f);
+        //饼图Item被选中时变化的距离
+        dataset.setSelectionShift(10f);
+        //颜色填充
+        dataset.setColors(new int[]{Color.rgb(81, 134, 201),
+                Color.rgb(283, 147, 114),
+                Color.rgb(128, 217, 199),
+                Color.rgb(56, 196, 217)});
+        //数据填充
+        PieData piedata = new PieData(dataset);
+        //设置饼图上显示数据的字体大小
+        piedata.setValueTextSize(15);
+        mPiechart.setData(piedata);
     }
 
     private void loadData() {
@@ -274,6 +324,7 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
 
     /**
      * 加载报表信息
+     *
      */
     private void loadReport() {
         WebServiceManage.getService(EntryService.class).getProItemData(-1).setCallback(new SCallBack<BaseResponse<ReportBean>>() {
@@ -328,7 +379,7 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
 
                         Double d_air = bean.getGasDayProduce() == null ? 0d : (bean.getGasDayProduce() * 1.5);
                         airEarnings.setText(Html.fromHtml((d_air == 0d ? "/" : d_air) + "<font><small>元</small></font>"));
-                        Double d_butie;
+                        Double d_butie = 0.0;
                         if (bean.getKitchenEnter() == null && bean.getRepastEnter() == null) {
                             d_butie = 0d;
                         } else if (bean.getKitchenEnter() != null && bean.getRepastEnter() == null) {
@@ -343,6 +394,8 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
                         youzhiEarnings.setText(Html.fromHtml((d_oil == 0d ? "/" : d_oil) + "<font><small>元</small></font>"));
                         zhaozhaEarnings.setText((Html.fromHtml("0.0<font><small>元</small></font>")));
                         allEarnings.setText(Html.fromHtml(d_air + d_butie + d_oil + "<font><small>元</small></font>"));
+                        Double d_all = d_air + d_butie + d_oil;
+                        initPieView(d_air.floatValue(),d_butie.floatValue(),d_oil.floatValue(),0.0f,d_all.floatValue());
 
                         waterConsume.setText("1.02吨");
                         eleConsume.setText(bean.getEleUseFactoryData() == null ? "/" : (MathUtils.scale2(bean.getEleUseFactoryData()) + "kw"));
@@ -366,28 +419,28 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
         xAxisValues = new ArrayList<>();
         yAxisValues1 = new ArrayList<>();
         yAxisValues2 = new ArrayList<>();
-        xAxisValues.add(1);
+        xAxisValues.add("05-28");
         yAxisValues1.add((float) (68000));
         yAxisValues2.add((float) (4511));
-        xAxisValues.add(2);
+        xAxisValues.add("05-29");
         yAxisValues1.add((float) (77001));
         yAxisValues2.add((float) (4533));
-        xAxisValues.add(3);
+        xAxisValues.add("05-30");
         yAxisValues1.add((float) (69055));
         yAxisValues2.add((float) (4702));
-        xAxisValues.add(4);
+        xAxisValues.add("05-31");
         yAxisValues1.add((float) (77000));
         yAxisValues2.add((float) (4402));
-        xAxisValues.add(5);
+        xAxisValues.add("06-01");
         yAxisValues1.add((float) (68000));
         yAxisValues2.add((float) (4302));
-        xAxisValues.add(6);
+        xAxisValues.add("06-02");
         yAxisValues1.add((float) (70340));
         yAxisValues2.add((float) (4202));
-        xAxisValues.add(7);
+        xAxisValues.add("06-03");
         yAxisValues1.add((float) (71500));
         yAxisValues2.add((float) (4502));
-//        MPChartHelper.setTwoBarChart(barChart1, xAxisValues, yAxisValues1, yAxisValues2, "总收益(元)", "总能耗(元)");
+        MPChartHelper.setTwoBarChart(barChart1, xAxisValues, yAxisValues1, yAxisValues2, "总收益(元)", "总能耗(元)");
     }
 
     @Override
