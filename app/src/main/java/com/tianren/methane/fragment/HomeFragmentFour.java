@@ -221,7 +221,7 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
         //设置X轴的动画
         mPiechart.animateX(1400);
         //使用百分比
-        mPiechart.setUsePercentValues(true);
+        mPiechart.setUsePercentValues(false);
         mPiechart.setHoleRadius(50f); //半径
         //设置图列可见
         mPiechart.getLegend().setEnabled(true);
@@ -230,7 +230,7 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
         //设置图列标识文字的大小
         mPiechart.getLegend().setTextSize(10);
         //设置图列的位置
-        mPiechart.getLegend().setPosition(Legend.LegendPosition.ABOVE_CHART_RIGHT);
+        mPiechart.getLegend().setPosition(Legend.LegendPosition.ABOVE_CHART_CENTER);
         //设置图列标识的形状
         mPiechart.getLegend().setForm(Legend.LegendForm.CIRCLE);
         mPiechart.setCenterText("总收益："+allEarnings+"元");
@@ -259,8 +259,8 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
         entrys.add(entry1);
         PieEntry entry2 = new PieEntry(youzhiEarnings,"油脂收益");
         entrys.add(entry2);
-        PieEntry entry3 = new PieEntry(zhaozhaEarnings,"沼渣收益");
-        entrys.add(entry3);
+        /*PieEntry entry3 = new PieEntry(zhaozhaEarnings,"沼渣收益");
+        entrys.add(entry3);*/
         PieEntry entry4 = new PieEntry(airEarnings,"沼气收益");
         entrys.add(entry4);
 
