@@ -7,9 +7,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.widget.TextView;
 
 import com.tianren.methane.R;
 
@@ -19,7 +19,7 @@ import com.tianren.methane.R;
  * 带下箭头的文本框。
  */
 
-public class ArrowTextView extends TextView {
+public class ArrowTextView extends AppCompatTextView {
 
     private float radius;
     private float arrowWidth;
@@ -36,7 +36,7 @@ public class ArrowTextView extends TextView {
         radius = typedArray.getDimension(R.styleable.ArrowTextView_radius, 0);
         arrowWidth = typedArray.getDimension(R.styleable.ArrowTextView_arrowWidth, 0);
         arrowHeight = typedArray.getDimension(R.styleable.ArrowTextView_arrowHeight, 0);
-        color = typedArray.getColor(R.styleable.ArrowTextView_bg, Color.RED);
+        color = typedArray.getColor(R.styleable.ArrowTextView_bg, Color.WHITE);
     }
 
     public ArrowTextView(Context context, AttributeSet attrs, int defStyle) {
@@ -113,8 +113,8 @@ public class ArrowTextView extends TextView {
         float xRight = xMiddle + arrowWidth / 2;
         float yBottom = height + arrowHeight;
         path.moveTo(xMiddle, yBottom);
-        path.lineTo(xLeft, height-1);
-        path.lineTo(xRight, height-1);
+        path.lineTo(xLeft, height - 1);
+        path.lineTo(xRight, height - 1);
         path.lineTo(xMiddle, yBottom);
         path.close();
         canvas.drawPath(path, paint);

@@ -133,7 +133,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/gray_cc" />
+                android:background="@color/division_line2" />
 
             <LinearLayout
                 android:id="@+id/ll_qigui"
@@ -211,7 +211,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/gray_cc" />
+                android:background="@color/division_line2" />
 
             <LinearLayout
                 android:id="@+id/ll_tuoliu"
@@ -250,7 +250,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/gray_cc" />
+                android:background="@color/division_line2" />
 
             <LinearLayout
                 android:id="@+id/ll_youjifei"

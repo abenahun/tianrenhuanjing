@@ -116,7 +116,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/gray_cc" />
+                    android:background="@color/division_line2" />
 
                 <LinearLayout
                     android:id="@+id/ll_baojing"
@@ -154,7 +154,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/gray_cc" />
+                    android:background="@color/division_line2" />
 
                 <LinearLayout
                     android:id="@+id/ll_resetpwd"
@@ -192,7 +192,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/gray_cc" />
+                    android:background="@color/division_line2" />
 
                 <LinearLayout
                     android:id="@+id/ll_feedback"
@@ -268,7 +268,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/gray_cc" />
+                    android:background="@color/division_line2" />
 
                 <LinearLayout
                     android:id="@+id/ll_aboutus"

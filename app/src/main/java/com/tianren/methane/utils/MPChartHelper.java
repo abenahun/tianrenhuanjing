@@ -336,7 +336,6 @@ public class MPChartHelper {
 
         MPChartMarkerView markerView = new MPChartMarkerView(barChart.getContext(), R.layout.custom_marker_view);
         barChart.setMarker(markerView);
-
         //x坐标轴设置
         XAxis xAxis = barChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
