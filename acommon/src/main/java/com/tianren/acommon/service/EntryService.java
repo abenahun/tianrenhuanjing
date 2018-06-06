@@ -102,7 +102,7 @@ public class EntryService extends BaseWebService {
 
     public WebTask<BaseResponse<Boolean>> entryAnaerobicTankData(String anaerobicTankData) {
         Map<String, Object> p = new HashMap<>();
-        p.put("caanaerobicTankDatapacity", anaerobicTankData);
+        p.put("anaerobicTankData", anaerobicTankData);
         return request(ENTRYANAEROBICTANKDATA, p, new TypeToken<BaseResponse<Boolean>>() {
         }.getType());
     }

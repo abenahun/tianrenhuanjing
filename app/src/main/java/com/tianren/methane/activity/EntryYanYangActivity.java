@@ -33,7 +33,6 @@ import com.tianren.methane.bean.AnaerobicTankBean;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -205,11 +204,7 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
         bean.setAlkalinity(jiandu);
         bean.setSamplingPoint(spinners.get(spinner.getSelectedItemPosition()).toString());
         bean.setAmmoniaNitrogen(andan);
-        try {
-            bean.setEntryTime(StringUtil.stringToDate(tv_time.getText().toString(), "yyyy-MM-dd HH:mm:ss"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        bean.setEntryTime(tv_time.getText().toString());
         WebServiceManage.getService(EntryService.class).entryAnaerobicTankData(gson.toJson(bean).toString()).setCallback(new SCallBack<BaseResponse<Boolean>>() {
             @Override
             public void callback(boolean isok, String msg, BaseResponse<Boolean> res) {

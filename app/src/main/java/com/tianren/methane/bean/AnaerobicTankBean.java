@@ -1,7 +1,5 @@
 package com.tianren.methane.bean;
 
-import java.util.Date;
-
 /**
  * User: Lee
  * Date: 2018/4/3 0003
@@ -9,21 +7,33 @@ import java.util.Date;
  * Desc: 神兽保佑代码无bug
  */
 public class AnaerobicTankBean {
-    private String ph;
-    private String ts;
-    private String vfa;
-    private String vs;
-    private String cod;
-    private String alkalinity;//碱度
-    private String ammoniaNitrogen;//氨氮
-    private String samplingPoint;//取样点
-    private Date entryTime;
+    private Integer anaerobicTankId;
 
-    public Date getEntryTime() {
+    private String samplingPoint;
+
+    private String ph;
+
+    private String ts;
+
+    private String vs;
+
+    private String vfa;
+
+    private String alkalinity;
+
+    private String ammoniaNitrogen;
+
+    private String cod;
+
+    private String entryTime;
+
+    private String addTime;
+
+    public String getEntryTime() {
         return entryTime;
     }
 
-    public void setEntryTime(Date entryTime) {
+    public void setEntryTime(String entryTime) {
         this.entryTime = entryTime;
     }
 
