@@ -47,8 +47,8 @@
 
     <style name="CustomTab" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/chartreuse</item>
-        <item name="tabTextColor">@color/tan</item>
-        <item name="tabSelectedTextColor">@color/red</item>
+        <item name="tabTextColor">@color/text3</item>
+        <item name="tabSelectedTextColor">@color/maincolor</item>
         <item name="tabIndicatorHeight">0dp</item>
     </style>
     <!--
