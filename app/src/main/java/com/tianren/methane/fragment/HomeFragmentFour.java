@@ -5,9 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.text.Html;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +21,6 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.tianren.acommon.BaseResponse;
-import com.tianren.acommon.bean.CapacityBean;
-import com.tianren.acommon.bean.ConsumptionBean;
 import com.tianren.acommon.bean.ReportBean;
 import com.tianren.acommon.remote.WebServiceManage;
 import com.tianren.acommon.remote.callback.SCallBack;
@@ -37,7 +33,6 @@ import com.tianren.methane.utils.MathUtils;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 
-import org.bouncycastle.jcajce.provider.symmetric.DES;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -91,6 +86,7 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
     private PieChart mPiechart;
     private String[] Stars = new String[]{"1颗星", "2颗星", "3颗星", "4颗星"};
     private int[] number = new int[]{1, 2, 3, 4};
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -215,10 +211,10 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
     /**
      * 初始化图表
      */
-    private void initPieView(Float airEarnings,Float butieEarnings,
-                             Float youzhiEarnings,Float zhaozhaEarnings,
+    private void initPieView(Float airEarnings, Float butieEarnings,
+                             Float youzhiEarnings, Float zhaozhaEarnings,
                              Float allEarnings) {
-        setData(butieEarnings,youzhiEarnings,zhaozhaEarnings,airEarnings);
+        setData(butieEarnings, youzhiEarnings, zhaozhaEarnings, airEarnings);
         //设置X轴的动画
         mPiechart.animateX(1400);
         //使用百分比
@@ -234,7 +230,7 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
         mPiechart.getLegend().setPosition(Legend.LegendPosition.ABOVE_CHART_CENTER);
         //设置图列标识的形状
         mPiechart.getLegend().setForm(Legend.LegendForm.CIRCLE);
-        mPiechart.setCenterText("总收益："+allEarnings+"元");
+        mPiechart.setCenterText("总收益：" + allEarnings + "元");
         Description des = new Description();
         des.setText("");
         mPiechart.setDescription(des);
@@ -259,13 +255,13 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
             titles.add(Stars[i]);
         }
         List<PieEntry> entrys = new ArrayList<>();
-        PieEntry entry1 = new PieEntry(butieEarnings,"补贴收益");
+        PieEntry entry1 = new PieEntry(butieEarnings, "补贴收益");
         entrys.add(entry1);
-        PieEntry entry2 = new PieEntry(youzhiEarnings,"油脂收益");
+        PieEntry entry2 = new PieEntry(youzhiEarnings, "油脂收益");
         entrys.add(entry2);
         /*PieEntry entry3 = new PieEntry(zhaozhaEarnings,"沼渣收益");
         entrys.add(entry3);*/
-        PieEntry entry4 = new PieEntry(airEarnings,"沼气收益");
+        PieEntry entry4 = new PieEntry(airEarnings, "沼气收益");
         entrys.add(entry4);
 
         //饼图数据集
@@ -288,7 +284,6 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
 
     /**
      * 加载报表信息
-     *
      */
     private void loadReport() {
         WebServiceManage.getService(EntryService.class).getProItemData(-1).setCallback(new SCallBack<BaseResponse<ReportBean>>() {
@@ -354,7 +349,7 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
                         }
                         Double d_oil = bean.getOilFinish() == null ? 0d : (bean.getOilFinish() * 3500);
                         Double d_all = d_air + d_butie + d_oil;
-                        initPieView(d_air.floatValue(),d_butie.floatValue(),d_oil.floatValue(),0.0f,d_all.floatValue());
+                        initPieView(d_air.floatValue(), d_butie.floatValue(), d_oil.floatValue(), 0.0f, d_all.floatValue());
 
 //                        initPieView(100.2f,500.3f,800.6f,400.5f,210.3f);
 
@@ -371,6 +366,7 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
                 } else {
                     ToastUtils.show(msg);
                 }
+                refreshLayout.setRefreshing(false);
             }
         });
     }
