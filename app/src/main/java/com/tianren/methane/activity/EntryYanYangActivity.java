@@ -94,8 +94,8 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
 
         //数据源
         spinners = new ArrayList<>();
-        spinners.add("取样点1");
-        spinners.add("取样点2");
+        spinners.add("1#CSTR");
+        spinners.add("2#CSTR");
 
         //设置ArrayAdapter内置的item样式-这里是单行显示样式
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
