@@ -25,8 +25,7 @@ import com.tianren.acommon.service.DetailedDataService;
 import com.tianren.methane.R;
 import com.tianren.methane.bean.DevInfo;
 import com.tianren.methane.constant.MsgDefCtrl;
-import com.tianren.methane.fragment.HomeFragment;
-import com.tianren.methane.fragment.HomeFragmentFour;
+import com.tianren.methane.fragment.HomeFragmentFive;
 import com.tianren.methane.fragment.ManagerFragment;
 import com.tianren.methane.fragment.MeFragment;
 import com.tianren.methane.jniutils.ParseDataFromDev;
@@ -49,7 +48,7 @@ public class MainActivity extends BaseActivity {
                     R.drawable.tab_zixun_select_drawable,
                     R.drawable.tab_wode_select_drawable};
     private final Fragment[] TAB_FRAGMENTS = new Fragment[]
-            {new HomeFragmentFour(), new ManagerFragment(), new MeFragment()};
+            {new HomeFragmentFive(), new ManagerFragment(), new MeFragment()};
     //Tab 数目
     private MyViewPagerAdapter mAdapter;
     private ViewPager mViewPager;

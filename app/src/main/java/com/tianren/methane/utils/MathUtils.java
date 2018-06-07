@@ -19,6 +19,11 @@ public class MathUtils {
         return df.format(f);
     }
 
+    public static String scale1(Double f) {
+        DecimalFormat df = new DecimalFormat("#0.0");
+        return df.format(f);
+    }
+
     public static String scale(Double f) {
         DecimalFormat df = new DecimalFormat("#0");
         return df.format(f);
