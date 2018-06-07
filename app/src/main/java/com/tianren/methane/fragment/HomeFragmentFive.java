@@ -35,6 +35,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -83,6 +84,7 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
 
     private TextView airEarnings, butieEarnings, youzhiEarnings, zhaozhaEarnings, allEarnings;
     private TextView airEarningsPer, butieEarningsPer, youzhiEarningsPer, zhaozhaEarningsPer, allEarningsPer;
+    private TextView tv_all_earn, tv_all_cost;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -151,6 +153,9 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
         waterConsume = (TextView) view.findViewById(R.id.waterConsume);
         eleConsume = (TextView) view.findViewById(R.id.eleConsume);
         airConsume = (TextView) view.findViewById(R.id.airConsume);
+
+        tv_all_earn = (TextView) view.findViewById(R.id.tv_all_earn);
+        tv_all_cost = (TextView) view.findViewById(R.id.tv_all_cost);
 
         tv_kitchen_enter = (TextView) view.findViewById(R.id.tv_kitchen_enter);
         tv_repast_enter = (TextView) view.findViewById(R.id.tv_repast_enter);
@@ -279,7 +284,8 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
                         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                         try {
                             Calendar calendar = Calendar.getInstance();
-                            calendar.setTime(format.parse(bean.getReportTime()));
+                            Date time = format.parse(bean.getReportTime());
+                            calendar.setTime(time);
                             int c = calendar.get(Calendar.DAY_OF_MONTH);
                             Double d_oil = bean.getOilFinish() == null ? 0d : (bean.getOilFinish() * 3500 / c);
                             butieEarnings.setText(Html.fromHtml((d_butie == 0d ? "/" : MathUtils.scale1(d_butie)) + "<font><small>元</small></font>"));
@@ -302,7 +308,9 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
                             tv_repast_enter.setText(bean.getRepastEnter() == null ? "/" : (MathUtils.scale2(bean.getRepastEnter()) + "吨"));
                             tv_produce_air.setText(bean.getGasDayProduce() == null ? "/" : (MathUtils.scale2(bean.getGasDayProduce()) + "m³"));
                             tv_produce_youzhi.setText(bean.getOilFinish() == null ? "/" : (MathUtils.scale2(bean.getOilFinish()) + "吨"));
-
+                            String ss = new SimpleDateFormat("MM-dd").format(time);
+                            tv_all_cost.setText("(" + ss + ")");
+                            tv_all_earn.setText("(" + ss + ")");
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
