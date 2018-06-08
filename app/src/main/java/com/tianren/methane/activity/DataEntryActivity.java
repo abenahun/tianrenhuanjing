@@ -15,7 +15,7 @@ import com.tianren.methane.R;
 
 public class DataEntryActivity extends BaseActivity implements View.OnClickListener {
 
-    private LinearLayout ll_yanyang, ll_chengben, ll_xiaoyi, ll_back, ll_enter, ll_statement;
+    private LinearLayout ll_yanyang, ll_chengben, ll_xiaoyi, ll_back, ll_enter, ll_statement, ll_hydrolysis;
     private TextView tv_title;
 
     @Override
@@ -37,17 +37,18 @@ public class DataEntryActivity extends BaseActivity implements View.OnClickListe
         ll_xiaoyi = (LinearLayout) findViewById(R.id.ll_xiaoyi);
         ll_enter = (LinearLayout) findViewById(R.id.ll_enter);
         ll_statement = (LinearLayout) findViewById(R.id.ll_statement);
+        ll_hydrolysis = (LinearLayout) findViewById(R.id.ll_hydrolysis);
 
         ll_yanyang.setOnClickListener(this);
         ll_chengben.setOnClickListener(this);
         ll_xiaoyi.setOnClickListener(this);
         ll_enter.setOnClickListener(this);
         ll_statement.setOnClickListener(this);
+        ll_hydrolysis.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-
         switch (v.getId()) {
             case R.id.ll_back:
                 finish();
@@ -74,6 +75,10 @@ public class DataEntryActivity extends BaseActivity implements View.OnClickListe
             case R.id.ll_statement:
                 Intent intent5 = new Intent(DataEntryActivity.this, ReportEntryActivity.class);
                 startActivity(intent5);
+                break;
+            case R.id.ll_hydrolysis:
+                Intent intent6 = new Intent(DataEntryActivity.this, HydrolysisEntryActivity.class);
+                startActivity(intent6);
                 break;
             default:
                 break;

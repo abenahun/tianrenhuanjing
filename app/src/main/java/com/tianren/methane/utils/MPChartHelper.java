@@ -423,7 +423,7 @@ public class MPChartHelper {
             dataset2 = new BarDataSet(entries2, bartitle2);
 
             dataset1.setColor(Color.rgb(129, 216, 200));
-            dataset2.setColor(Color.rgb(181, 194, 202));
+            dataset2.setColor(Color.parseColor("#5186c9"));
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<>();
             dataSets.add(dataset1);
@@ -441,6 +441,7 @@ public class MPChartHelper {
             barChart.setData(data);
         }
         barChart.getBarData().setBarWidth(barWidth);
+        barChart.setBackgroundColor(Color.WHITE);
         barChart.getXAxis().setAxisMinimum(1);
         // barData.getGroupWith(...) is a helper that calculates the width each group needs based on the provided parameters
         barChart.getXAxis().setAxisMaximum(8);

@@ -64,8 +64,9 @@
         <activity android:name=".activity.InputQuantityHisActivity" />
         <activity
             android:name=".activity.ReportEntryActivity"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity android:name=".activity.ReportActivity"></activity>
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activity.ReportActivity" />
+        <activity android:name=".activity.HydrolysisEntryActivity"></activity>
     </application>
 
 </manifest>

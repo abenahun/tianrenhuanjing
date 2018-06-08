@@ -76,18 +76,23 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/pro_bg"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white"
                     android:orientation="horizontal"
                     android:paddingBottom="14dp"
                     android:paddingTop="14dp">
 
                     <LinearLayout
                         android:id="@+id/ll_zongnenghao"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -133,7 +138,7 @@
 
                     <LinearLayout
                         android:id="@+id/ll_shuihao"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -171,7 +176,7 @@
 
                     <LinearLayout
                         android:id="@+id/ll_dianhao"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -205,12 +210,11 @@
                             android:textColor="@color/textgray"
                             android:textSize="@dimen/textsize13" />
 
-
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/ll_rehao"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -242,7 +246,6 @@
                             android:textColor="@color/textgray"
                             android:textSize="@dimen/textsize13" />
 
-
                     </LinearLayout>
 
                 </LinearLayout>
@@ -257,19 +260,20 @@
                         android:id="@+id/bar_chart1"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:layout_margin="5dp" />
-
+                        android:layout_margin="8dp" />
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
                     android:paddingLeft="14dp"
-                    android:paddingRight="14dp">
+                    android:paddingRight="14dp"
+                    android:paddingTop="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -299,6 +303,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:background="@color/white"
                     android:paddingBottom="20dp"
                     android:paddingLeft="14dp"
@@ -579,9 +585,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@color/white"
                     android:orientation="horizontal"
+                    android:paddingBottom="10dp"
                     android:paddingTop="10dp">
 
                     <LinearLayout
@@ -595,43 +603,49 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:orientation="vertical">
 
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="餐厨垃圾："
-                                android:textColor="@color/textgray"
-                                android:textSize="14sp" />
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/tv_kitchen_enter"
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="餐厨垃圾："
+                                    android:textColor="@color/textgray"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_kitchen_enter"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="152.87吨"
+                                    android:textColor="@color/maincolor"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="152.87吨"
-                                android:textColor="@color/maincolor"
-                                android:textSize="14sp" />
-                        </LinearLayout>
+                                android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="厨余垃圾："
+                                    android:textColor="@color/textgray"
+                                    android:textSize="14sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="厨余垃圾："
-                                android:textColor="@color/textgray"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tv_repast_enter"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="91.50吨"
-                                android:textColor="@color/maincolor"
-                                android:textSize="14sp" />
+                                <TextView
+                                    android:id="@+id/tv_repast_enter"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="91.50吨"
+                                    android:textColor="@color/maincolor"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
                         </LinearLayout>
 
 
@@ -660,43 +674,49 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:orientation="vertical">
 
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="沼气产量："
-                                android:textColor="@color/textgray"
-                                android:textSize="14sp" />
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/tv_produce_air"
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="沼气产量："
+                                    android:textColor="@color/textgray"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_produce_air"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="11125m³"
+                                    android:textColor="@color/maincolor"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="11125m³"
-                                android:textColor="@color/maincolor"
-                                android:textSize="14sp" />
-                        </LinearLayout>
+                                android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="油脂产量："
+                                    android:textColor="@color/textgray"
+                                    android:textSize="14sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="油脂产量："
-                                android:textColor="@color/textgray"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tv_produce_youzhi"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="89吨"
-                                android:textColor="@color/maincolor"
-                                android:textSize="14sp" />
+                                <TextView
+                                    android:id="@+id/tv_produce_youzhi"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="89吨"
+                                    android:textColor="@color/maincolor"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
                         </LinearLayout>
 
                         <TextView
