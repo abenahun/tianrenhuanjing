@@ -263,8 +263,8 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
                         water_bad_introduce_day.setText(bean.getWaterBadIntroduceDay() == null ? "/" : (bean.getWaterBadIntroduceDay() + ""));
                         water_bad_introduce_plan.setText(bean.getWaterBadIntroducePlan() == null ? "/" : (bean.getWaterBadIntroducePlan() + ""));
                         water_bad_introduce_month.setText(bean.getWaterBadIntroduceMonth() == null ? "/" : (bean.getWaterBadIntroduceMonth() + ""));
-                        Double d_air = bean.getGasDayProduce() == null ? 0d : (bean.getGasDayProduce() * 1.5);
-                        airEarnings.setText(d_air == 0d ? "/" : (MathUtils.scale1(d_air) + ""));
+                        Double d_ele = bean.getEleProvider() == null ? 0d : (bean.getEleProvider() * 0.65);
+                        airEarnings.setText(d_ele == 0d ? "/" : (MathUtils.scale1(d_ele) + ""));
                         Double d_butie = 0.0;
                         if (bean.getKitchenEnter() == null && bean.getRepastEnter() == null) {
                             d_butie = 0d;
@@ -285,10 +285,10 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
                             butieEarnings.setText(d_butie == 0d ? "/" : (MathUtils.scale1(d_butie)) + "");
                             youzhiEarnings.setText(d_oil == 0d ? "/" : (MathUtils.scale1(d_oil)) + "");
                             zhaozhaEarnings.setText("0.0");
-                            double totle = d_air + d_butie + d_oil;
+                            double totle = d_ele + d_butie + d_oil - 2;
                             allEarnings.setText(Html.fromHtml(MathUtils.scale1(totle) + "<font><small>元</small></font>"));
 
-                            airEarningsPer.setText(MathUtils.scale1((d_air / totle) * 100) + "%");
+                            airEarningsPer.setText(MathUtils.scale1((d_ele / totle) * 100) + "%");
                             butieEarningsPer.setText(MathUtils.scale1((d_butie / totle) * 100) + "%");
                             youzhiEarningsPer.setText(MathUtils.scale1((d_oil / totle) * 100) + "%");
                             zhaozhaEarningsPer.setText("0%");

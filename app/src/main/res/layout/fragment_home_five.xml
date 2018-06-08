@@ -17,7 +17,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="湖州餐厨垃圾处理中心"
-        android:textColor="@color/white"
+            android:textColor="@color/white"
             android:textSize="17sp" />
 
         <ImageView
@@ -38,18 +38,18 @@
             android:layout_marginStart="5dp"
             android:layout_toRightOf="@+id/imageView2"
             android:text="湖州"
-            android:visibility="gone"
             android:textColor="@color/white"
-            android:textSize="@dimen/textsize13" />
+            android:textSize="@dimen/textsize13"
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:gravity="center"
-            android:visibility="gone"
             android:orientation="horizontal"
-            android:paddingRight="14dp">
+            android:paddingRight="14dp"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,17 +87,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="14dp"
                     android:paddingRight="14dp"
-                    android:paddingTop="20dp">
+                    android:paddingTop="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="总收益"
+                        android:text="今日利润"
                         android:textColor="@color/text1"
                         android:textSize="16sp" />
 
@@ -119,16 +120,18 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
+                    android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:paddingBottom="20dp"
-                    android:paddingLeft="14dp"
-                    android:paddingRight="14dp"
-                    android:paddingTop="20dp">
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp">
 
                     <LinearLayout
                         android:id="@+id/ll_zhaoqixiaoyi"
@@ -152,9 +155,16 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:text="元"
+                                android:textColor="@color/text1"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:text=" / "
                                 android:textColor="@color/text1"
-                                android:textSize="14sp" />
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/airEarningsPer"
@@ -162,7 +172,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="30%"
                                 android:textColor="@color/text1"
-                                android:textSize="12sp" />
+                                android:textSize="10sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -187,7 +197,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="沼气收益"
+                            android:text="发电收益"
                             android:textColor="@color/text3"
                             android:textSize="11sp" />
                     </LinearLayout>
@@ -216,9 +226,16 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:text="元"
+                                android:textColor="@color/text1"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:text=" / "
                                 android:textColor="@color/text1"
-                                android:textSize="14sp" />
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/youzhiEarningsPer"
@@ -226,7 +243,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="30%"
                                 android:textColor="@color/text1"
-                                android:textSize="12sp" />
+                                android:textSize="10sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -280,9 +297,16 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:text="元"
+                                android:textColor="@color/text1"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:text=" / "
                                 android:textColor="@color/text1"
-                                android:textSize="14sp" />
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/butieEarningsPer"
@@ -290,7 +314,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="30%"
                                 android:textColor="@color/text1"
-                                android:textSize="12sp" />
+                                android:textSize="10sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -344,9 +368,16 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:text="元"
+                                android:textColor="@color/text1"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:text=" / "
                                 android:textColor="@color/text1"
-                                android:textSize="14sp" />
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/zhaozhaEarningsPer"
@@ -354,7 +385,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="0%"
                                 android:textColor="@color/text1"
-                                android:textSize="12sp" />
+                                android:textSize="10sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -395,11 +426,6 @@
                         android:src="@mipmap/sector" />
                 </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:background="@color/divider_more" />
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -408,8 +434,8 @@
                     android:layout_marginTop="8dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    android:paddingBottom="14dp"
-                    android:paddingTop="14dp">
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp">
 
                     <LinearLayout
                         android:id="@+id/ll_zongnenghao"
@@ -417,7 +443,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -587,7 +614,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:background="@color/white"
@@ -729,9 +755,7 @@
                             android:text="产品产量"
                             android:textColor="@color/textblack"
                             android:textSize="@dimen/textsize15" />
-
                     </LinearLayout>
-
                 </LinearLayout>
 
                 <com.github.mikephil.charting.charts.LineChart
