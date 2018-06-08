@@ -58,9 +58,8 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
     private List<Float> yAxisValues1;
     private List<Float> yAxisValues2;
 
-    private LinearLayout ll_runningstatus, ll_zongnenghao, ll_shuihao,
-            ll_dianhao, ll_rehao, ll_chanqixiaoyi,
-            ll_zongxiaoyi, ll_chandianxiaoyi, ll_jinliaoliang;
+    private LinearLayout ll_runningstatus, ll_jinliaoliang, ll_shuihao,
+            ll_dianhao;
     private TextView allConsume, waterConsume, eleConsume, airConsume;
     private TextView tv_kitchen_enter, tv_repast_enter, tv_produce_air, tv_produce_youzhi;
     private SwipeRefreshLayout refreshLayout;
@@ -85,6 +84,8 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
     private TextView airEarnings, butieEarnings, youzhiEarnings, zhaozhaEarnings, allEarnings;
     private TextView airEarningsPer, butieEarningsPer, youzhiEarningsPer, zhaozhaEarningsPer, allEarningsPer;
     private TextView tv_all_earn, tv_all_cost;
+
+    private LinearLayout ll_zhaoqixiaoyi, ll_youzhixiaoyi, ll_bietiexiaoyi;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -114,12 +115,9 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
         /*tv_luru = (TextView) view.findViewById(R.id.tv_luru);
         tv_luru.setOnClickListener(this);*/
         ll_runningstatus = (LinearLayout) view.findViewById(R.id.ll_runningstatus);
-//        ll_runningstatus.setOnClickListener(this);
+        ll_runningstatus.setOnClickListener(this);
         ll_jinliaoliang = (LinearLayout) view.findViewById(R.id.ll_jinliaoliang);
-//        ll_jinliaoliang.setOnClickListener(this);
-
-        ll_zongnenghao = (LinearLayout) view.findViewById(R.id.ll_zongnenghao);
-//        ll_zongnenghao.setOnClickListener(this);
+        ll_jinliaoliang.setOnClickListener(this);
 
         ll_shuihao = (LinearLayout) view.findViewById(R.id.ll_shuihao);
         ll_shuihao.setOnClickListener(this);
@@ -127,17 +125,6 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
         ll_dianhao = (LinearLayout) view.findViewById(R.id.ll_dianhao);
         ll_dianhao.setOnClickListener(this);
 
-        ll_rehao = (LinearLayout) view.findViewById(R.id.ll_rehao);
-//        ll_rehao.setOnClickListener(this);
-
-        /*ll_chanqixiaoyi = (LinearLayout) view.findViewById(R.id.ll_chanqixiaoyi);
-        ll_chanqixiaoyi.setOnClickListener(this);
-
-        ll_zongxiaoyi = (LinearLayout) view.findViewById(R.id.ll_zongxiaoyi);
-//        ll_zongxiaoyi.setOnClickListener(this);
-
-        ll_chandianxiaoyi = (LinearLayout) view.findViewById(R.id.ll_chandianxiaoyi);
-        ll_chandianxiaoyi.setOnClickListener(this);*/
         airEarnings = (TextView) view.findViewById(R.id.airEarnings);
         butieEarnings = (TextView) view.findViewById(R.id.butieEarnings);
         youzhiEarnings = (TextView) view.findViewById(R.id.youzhiEarnings);
@@ -207,6 +194,13 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
         water_bad_introduce_plan = (TextView) view.findViewById(R.id.water_bad_introduce_plan);
         water_bad_introduce_month = (TextView) view.findViewById(R.id.water_bad_introduce_month);
 
+        ll_zhaoqixiaoyi = (LinearLayout) view.findViewById(R.id.ll_zhaoqixiaoyi);
+        ll_youzhixiaoyi = (LinearLayout) view.findViewById(R.id.ll_youzhixiaoyi);
+        ll_bietiexiaoyi = (LinearLayout) view.findViewById(R.id.ll_bietiexiaoyi);
+        ll_zhaoqixiaoyi.setOnClickListener(this);
+        ll_youzhixiaoyi.setOnClickListener(this);
+        ll_bietiexiaoyi.setOnClickListener(this);
+
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -270,7 +264,7 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
                         water_bad_introduce_plan.setText(bean.getWaterBadIntroducePlan() == null ? "/" : (bean.getWaterBadIntroducePlan() + ""));
                         water_bad_introduce_month.setText(bean.getWaterBadIntroduceMonth() == null ? "/" : (bean.getWaterBadIntroduceMonth() + ""));
                         Double d_air = bean.getGasDayProduce() == null ? 0d : (bean.getGasDayProduce() * 1.5);
-                        airEarnings.setText(Html.fromHtml((d_air == 0d ? "/" : MathUtils.scale1(d_air)) + "<font><small>元</small></font>"));
+                        airEarnings.setText(d_air == 0d ? "/" : (MathUtils.scale1(d_air) + ""));
                         Double d_butie = 0.0;
                         if (bean.getKitchenEnter() == null && bean.getRepastEnter() == null) {
                             d_butie = 0d;
@@ -288,9 +282,9 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
                             calendar.setTime(time);
                             int c = calendar.get(Calendar.DAY_OF_MONTH);
                             Double d_oil = bean.getOilFinish() == null ? 0d : (bean.getOilFinish() * 3500 / c);
-                            butieEarnings.setText(Html.fromHtml((d_butie == 0d ? "/" : MathUtils.scale1(d_butie)) + "<font><small>元</small></font>"));
-                            youzhiEarnings.setText(Html.fromHtml((d_oil == 0d ? "/" : MathUtils.scale1(d_oil)) + "<font><small>元</small></font>"));
-                            zhaozhaEarnings.setText((Html.fromHtml("0.0<font><small>元</small></font>")));
+                            butieEarnings.setText(d_butie == 0d ? "/" : (MathUtils.scale1(d_butie)) + "");
+                            youzhiEarnings.setText(d_oil == 0d ? "/" : (MathUtils.scale1(d_oil)) + "");
+                            zhaozhaEarnings.setText("0.0");
                             double totle = d_air + d_butie + d_oil;
                             allEarnings.setText(Html.fromHtml(MathUtils.scale1(totle) + "<font><small>元</small></font>"));
 
@@ -328,27 +322,27 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
         xAxisValues = new ArrayList<>();
         yAxisValues1 = new ArrayList<>();
         yAxisValues2 = new ArrayList<>();
-        xAxisValues.add("05-28");
-        yAxisValues1.add((float) (68000));
-        yAxisValues2.add((float) (4511));
-        xAxisValues.add("05-29");
-        yAxisValues1.add((float) (77001));
-        yAxisValues2.add((float) (4533));
-        xAxisValues.add("05-30");
-        yAxisValues1.add((float) (69055));
-        yAxisValues2.add((float) (4702));
         xAxisValues.add("05-31");
-        yAxisValues1.add((float) (77000));
-        yAxisValues2.add((float) (4402));
+        yAxisValues1.add((float) (44715));
+        yAxisValues2.add((float) (5511));
         xAxisValues.add("06-01");
-        yAxisValues1.add((float) (68000));
-        yAxisValues2.add((float) (4302));
+        yAxisValues1.add((float) (47615));
+        yAxisValues2.add((float) (5533));
         xAxisValues.add("06-02");
-        yAxisValues1.add((float) (70340));
-        yAxisValues2.add((float) (4202));
+        yAxisValues1.add((float) (40169));
+        yAxisValues2.add((float) (5702));
         xAxisValues.add("06-03");
-        yAxisValues1.add((float) (71500));
-        yAxisValues2.add((float) (4502));
+        yAxisValues1.add((float) (44856));
+        yAxisValues2.add((float) (4402));
+        xAxisValues.add("06-04");
+        yAxisValues1.add((float) (50632));
+        yAxisValues2.add((float) (5302));
+        xAxisValues.add("06-05");
+        yAxisValues1.add((float) (45256));
+        yAxisValues2.add((float) (5202));
+        xAxisValues.add("06-06");
+        yAxisValues1.add((float) (43109));
+        yAxisValues2.add((float) (5736.95));
         MPChartHelper.setTwoBarChart(barChart1, xAxisValues, yAxisValues1, yAxisValues2, "总收益(元)", "总能耗(元)");
     }
 
@@ -413,15 +407,6 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
 
                 break;
 
-            case R.id.ll_chanqixiaoyi:
-                Intent intent6 = new Intent(getActivity(), DataStatisticsActivity.class);
-                intent6.putExtra("title", "产气效益统计");
-                intent6.putExtra("unit", "元");
-                intent6.putExtra("tableName", "Capacity");
-                intent6.putExtra("columnName", StringUtil.humpToLine2("gasProduction"));
-                startActivity(intent6);
-                break;
-
             case R.id.ll_chandianxiaoyi:
                 Intent intent8 = new Intent(getActivity(), DataStatisticsActivity.class);
                 intent8.putExtra("title", "产电效益统计");
@@ -429,6 +414,12 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
                 intent8.putExtra("tableName", "Capacity");
                 intent8.putExtra("columnName", StringUtil.humpToLine2("powerGeneration"));
                 startActivity(intent8);
+                break;
+            case R.id.ll_zhaoqixiaoyi:
+                break;
+            case R.id.ll_youzhixiaoyi:
+                break;
+            case R.id.ll_bietiexiaoyi:
                 break;
             default:
                 break;

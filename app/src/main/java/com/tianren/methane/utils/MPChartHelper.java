@@ -438,7 +438,6 @@ public class MPChartHelper {
 
             barChart.setData(data);
         }
-
         barChart.getBarData().setBarWidth(barWidth);
         barChart.getXAxis().setAxisMinimum(1);
         // barData.getGroupWith(...) is a helper that calculates the width each group needs based on the provided parameters

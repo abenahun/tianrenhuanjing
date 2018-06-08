@@ -118,6 +118,7 @@
                                 android:text="总能耗 "
                                 android:textColor="@color/textgray"
                                 android:textSize="@dimen/textsize13" />
+
                             <TextView
                                 android:id="@+id/tv_all_cost"
                                 android:layout_width="wrap_content"
@@ -264,7 +265,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
                     android:paddingLeft="14dp"
@@ -305,6 +306,7 @@
                     android:paddingTop="20dp">
 
                     <LinearLayout
+                        android:id="@+id/ll_zhaoqixiaoyi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toLeftOf="@+id/image"
@@ -366,6 +368,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_youzhixiaoyi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -374,7 +377,8 @@
 
                         <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right">
 
                             <TextView
                                 android:id="@+id/youzhiEarnings"
@@ -422,12 +426,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="right"
                             android:text="油脂收益"
                             android:textColor="@color/text3"
                             android:textSize="11sp" />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_bietiexiaoyi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
@@ -499,7 +505,8 @@
 
                         <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right">
 
                             <TextView
                                 android:id="@+id/zhaozhaEarnings"
@@ -547,6 +554,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="right"
                             android:text="沼渣收益"
                             android:textColor="@color/text3"
                             android:textSize="11sp" />
@@ -562,14 +570,19 @@
                         android:src="@mipmap/sector" />
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:background="@color/divider_more" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
 
                     <LinearLayout
                         android:id="@+id/ll_jinliaoliang"
