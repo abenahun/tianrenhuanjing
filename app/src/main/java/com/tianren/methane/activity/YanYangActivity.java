@@ -33,7 +33,7 @@ public class YanYangActivity extends BaseActivity implements View.OnClickListene
     private ImageView moreIv;
 
     private TabLayout mTabLayout;
-    private final String[] TAB_TITLES = new String[]{"工艺流程", "稳定指数", "智能进料", "聚类分析", "智能搅拌", "产气排名"};
+    private final String[] TAB_TITLES = new String[]{"工艺流程", "稳定指数", "智能进料", "聚类分析", "智能搅拌", "日达标率"};
     private final Fragment[] TAB_FRAGMENTS = new Fragment[]
             {new YanYangFragment1(), new YanYangFragment2(), new YanYangFragment3(), new YanYangFragment4(), new YanYangFragment5(), new YanYangFragment6()};
     private MyViewPagerAdapter mAdapter;

@@ -386,7 +386,6 @@ public class MPChartHelper {
         legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
         legend.setForm(Legend.LegendForm.SQUARE);
         legend.setTextSize(12f);
-
         //设置柱状图数据
         setTwoBarChartData(barChart, yAxisValue1, yAxisValue2, bartilte1, bartitle2);
 
@@ -424,7 +423,6 @@ public class MPChartHelper {
 
             dataset1.setColor(Color.rgb(129, 216, 200));
             dataset2.setColor(Color.parseColor("#5186c9"));
-
             ArrayList<IBarDataSet> dataSets = new ArrayList<>();
             dataSets.add(dataset1);
             dataSets.add(dataset2);
