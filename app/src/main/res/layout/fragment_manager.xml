@@ -300,7 +300,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
-                    android:src="@mipmap/youjifei" />
+                    android:src="@mipmap/shebei" />
 
                 <TextView
 
@@ -338,7 +338,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
-                    android:src="@mipmap/youjifei" />
+                    android:src="@mipmap/nenghao" />
 
                 <TextView
 
