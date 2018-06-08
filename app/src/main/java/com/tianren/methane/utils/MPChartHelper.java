@@ -354,7 +354,9 @@ public class MPChartHelper {
                 }
             }
         });
-        xAxis.setLabelRotationAngle(-40);
+        xAxis.setLabelRotationAngle(0);
+        xAxis.setTextColor(Color.parseColor("#8f8f8f"));
+        xAxis.setTextSize(10);
         //y轴设置
         YAxis leftAxis = barChart.getAxisLeft();
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);

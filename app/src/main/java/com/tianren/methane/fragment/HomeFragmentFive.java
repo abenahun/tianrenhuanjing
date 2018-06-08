@@ -115,9 +115,9 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
         /*tv_luru = (TextView) view.findViewById(R.id.tv_luru);
         tv_luru.setOnClickListener(this);*/
         ll_runningstatus = (LinearLayout) view.findViewById(R.id.ll_runningstatus);
-        ll_runningstatus.setOnClickListener(this);
+//        ll_runningstatus.setOnClickListener(this);
         ll_jinliaoliang = (LinearLayout) view.findViewById(R.id.ll_jinliaoliang);
-        ll_jinliaoliang.setOnClickListener(this);
+//        ll_jinliaoliang.setOnClickListener(this);
 
         ll_shuihao = (LinearLayout) view.findViewById(R.id.ll_shuihao);
         ll_shuihao.setOnClickListener(this);
@@ -360,7 +360,7 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
             case R.id.ll_jinliaoliang:
                 Intent intent9 = new Intent(getActivity(), DataStatisticsActivity.class);
                 intent9.putExtra("title", "进料量统计");
-                intent9.putExtra("unit", "");
+                intent9.putExtra("unit", "吨");
                 intent9.putExtra("tableName", "Consumption");
                 intent9.putExtra("columnName", StringUtil.humpToLine2("feedAmount"));
                 startActivity(intent9);
