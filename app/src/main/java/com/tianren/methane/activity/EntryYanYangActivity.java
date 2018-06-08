@@ -139,7 +139,6 @@ public class EntryYanYangActivity extends BaseActivity implements View.OnClickLi
             case R.id.tv_time:
                 //时间选择器
                 pvTime.show();
-
                 break;
         }
     }
