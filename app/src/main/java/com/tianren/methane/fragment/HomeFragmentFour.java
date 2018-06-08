@@ -231,7 +231,7 @@ public class HomeFragmentFour extends BaseFragment implements View.OnClickListen
         mPiechart.getLegend().setPosition(Legend.LegendPosition.ABOVE_CHART_CENTER);
         //设置图列标识的形状
         mPiechart.getLegend().setForm(Legend.LegendForm.CIRCLE);
-        mPiechart.setCenterText("5月1日\n总收益："+allEarnings+"元");
+        mPiechart.setCenterText("6月7日\n总收益："+allEarnings+"元");
 //        mPiechart.setCenterTextColor(Color.rgb(128, 217, 199));
         Description des = new Description();
         des.setText("");

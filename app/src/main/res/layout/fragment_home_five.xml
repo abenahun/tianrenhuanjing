@@ -16,8 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="首页"
-            android:textColor="@color/white"
+            android:text="湖州餐厨垃圾处理中心"
+        android:textColor="@color/white"
             android:textSize="17sp" />
 
         <ImageView
@@ -27,6 +27,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="14dp"
+            android:visibility="gone"
             app:srcCompat="@mipmap/location" />
 
         <TextView
@@ -37,6 +38,7 @@
             android:layout_marginStart="5dp"
             android:layout_toRightOf="@+id/imageView2"
             android:text="湖州"
+            android:visibility="gone"
             android:textColor="@color/white"
             android:textSize="@dimen/textsize13" />
 
@@ -45,6 +47,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:gravity="center"
+            android:visibility="gone"
             android:orientation="horizontal"
             android:paddingRight="14dp">
 
@@ -250,18 +253,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/backcolor"
-                    android:orientation="vertical">
-
-                    <com.github.mikephil.charting.charts.BarChart
-                        android:id="@+id/bar_chart1"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_margin="8dp" />
-                </LinearLayout>
 
 
                 <LinearLayout
@@ -730,6 +721,20 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/backcolor"
+                    android:orientation="vertical">
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/bar_chart1"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_margin="8dp" />
+                </LinearLayout>
+
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/line_chart2"
