@@ -19,7 +19,7 @@ import okhttp3.ResponseBody;
  * @date 2018/4/23
  */
 public class BaseWebService {
-    //    public static final String BASE_URL = "http://192.168.2.251:8080/";
+    //        public static final String BASE_URL = "http://192.168.2.251:8080/";
 //    public static final String TIANREN_URL = "";
 //    public static final String BASE_URL = "http://engineerlee.top:8080/";
     public static final String TIANREN_URL = "tianren/";
@@ -77,7 +77,8 @@ public class BaseWebService {
                     public void onError(Throwable e) {
                         Throwable throwable = NovateException.handleException(e);
                         if (webTask.getCallback() != null) {
-                            webTask.getCallback().callback(false, throwable.getMessage(), null);
+                            webTask.getCallback().callback(false, throwable.getMessage().equals("连接失败")
+                                    ? "服务器连接异常，请稍后再试" : throwable.getMessage(), null);
                         }
                     }
 
