@@ -33,9 +33,9 @@ public class QiGuiActivity extends BaseActivity implements View.OnClickListener 
     private ImageView moreIv;
 
     private TabLayout mTabLayout;
-    private final String[] TAB_TITLES = new String[]{"数据统计", "效益报告", "智能抗灾", "智能安防"};
+    private final String[] TAB_TITLES = new String[]{"数据统计", "智能抗灾", "智能安防"};
     private final Fragment[] TAB_FRAGMENTS = new Fragment[]
-            {new QiGuiFragment1(), new QiGuiFragment2(), new QiGuiFragment3(), new QiGuiFragment4()};
+            {new QiGuiFragment1(), new QiGuiFragment3(), new QiGuiFragment4()};
     private QiGuiActivity.MyViewPagerAdapter mAdapter;
     private ViewPager mViewPager;
 

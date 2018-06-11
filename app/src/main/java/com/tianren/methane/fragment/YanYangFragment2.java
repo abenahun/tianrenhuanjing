@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +22,24 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ViewPortHandler;
+import com.google.gson.Gson;
+import com.tianren.acommon.BaseResponse;
+import com.tianren.acommon.bean.AnaerobicTankBean;
+import com.tianren.acommon.bean.BaseBean;
+import com.tianren.acommon.bean.ReportBean;
+import com.tianren.acommon.remote.WebServiceManage;
+import com.tianren.acommon.remote.callback.SCallBack;
+import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
+import com.tianren.methane.adapter.ReportAdapter;
 import com.tianren.methane.common.MPChartMarkerView;
 import com.tianren.methane.common.StringAxisValueFormatter;
+import com.tianren.methane.utils.DataCaculateUtils;
+import com.tianren.methane.utils.DateUtil;
 import com.tianren.methane.utils.StringUtil;
+import com.tianren.methane.utils.ToastUtils;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,21 +76,52 @@ public class YanYangFragment2 extends BaseFragment {
         yAxisValues = new ArrayList<>();
         for (int i = 1; i < 11; ++i) {
             if (i == 1) {
-                xAxisValues.add("04-23");
+                xAxisValues.add("05-31");
             } else if (i == 3) {
-                xAxisValues.add("04-25");
+                xAxisValues.add("06-2");
             } else if (i == 5) {
-                xAxisValues.add("04-28");
+                xAxisValues.add("06-5");
             } else if (i == 7) {
-                xAxisValues.add("05-21");
+                xAxisValues.add("06-8");
             } else if (i == 9) {
-                xAxisValues.add("05-23");
+                xAxisValues.add("06-11");
             } else {
                 xAxisValues.add("");
             }
-            yAxisValues.add((float) (Math.random() * 0.3 + 0.3));
+            if (i==7){
+                yAxisValues.add(1.9f);
+            }else{
+                yAxisValues.add((float) (Math.random() * 0.3 + 1));
+            }
+
         }
-        setLinesChart(lineChart, xAxisValues, yAxisValues, "单位：VFA/ALK", false);
+        setLinesChart(lineChart, xAxisValues, yAxisValues, "稳定指数", false);
+
+        loadData("vfa,alkalinity",DateUtil.getPastDate(7), DateUtil.getNowDate());
+    }
+
+    private void loadData(String searchFields, String startTime,String endTime) {
+        WebServiceManage.getService(EntryService.class).getChartData(searchFields,startTime,endTime).
+                setCallback(new SCallBack<BaseResponse<List<BaseBean>>>() {
+            @Override
+            public void callback(boolean isok, String msg, BaseResponse<List<BaseBean>> res) {
+                Log.e("syl",res.toString());
+                if (isok) {
+
+                    if (res.getResult()){
+                        ArrayList<AnaerobicTankBean> list = new ArrayList<AnaerobicTankBean>();
+                       /* if(AnaerobicTankBean instanceof list) {
+                            list = (ArrayList<AnaerobicTankBean>)list;
+                        }*/
+
+                    }else {
+                        ToastUtils.show(msg);
+                    }
+                } else {
+                    ToastUtils.show(msg);
+                }
+            }
+        });
     }
 
 
@@ -113,9 +158,9 @@ public class YanYangFragment2 extends BaseFragment {
         YAxis leftAxis = lineChart.getAxisLeft();
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setDrawGridLines(false);
-        leftAxis.setAxisMaximum(1);
+        leftAxis.setAxisMaximum(2);
         leftAxis.setAxisMinimum(0);
-        LimitLine ll1 = new LimitLine(0.5f, "安全值");
+        LimitLine ll1 = new LimitLine(1.5f, "安全值");
         LimitLine ll2 = new LimitLine(0.3f, "很安全");
         ll1.setLineWidth(1f);
         ll1.enableDashedLine(10f, 10f, 0f);

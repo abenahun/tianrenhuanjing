@@ -31,7 +31,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
 
     private static final int GO_HOME = 1000;
     private static final int GO_GUIDE = 1001;
-    // 延迟4�?
+    // 延迟4s
     private static final long SPLASH_DELAY_MILLIS = 2000;
 
     private static final String SHAREDPREFERENCES_NAME = "first_pref";
@@ -46,11 +46,10 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
     private boolean ifReceFailMsg = false;     //是否接收到登录失败的消息
     private boolean isChinese = true;           //是否为中文模式
     private final String httpKey = "lzky";
-    /**6
+    /**
      * Handler:跳转到不同界面
      */
     private Handler mHandler = new Handler() {
-
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {

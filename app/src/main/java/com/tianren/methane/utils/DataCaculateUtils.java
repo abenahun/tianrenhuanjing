@@ -197,6 +197,7 @@ public class DataCaculateUtils {
 		Log.e(TAG, minute_washer+"分");
 		return minute_washer;
 	}
-	
-	
+
+
+
 }

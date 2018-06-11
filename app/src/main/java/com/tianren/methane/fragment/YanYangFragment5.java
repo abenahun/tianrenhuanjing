@@ -54,21 +54,46 @@ public class YanYangFragment5 extends BaseFragment {
         lineChart = (LineChart) view.findViewById(R.id.lineChart);
         xAxisValues = new ArrayList<>();
         yAxisValues = new ArrayList<>();
-        for (int i = 1; i < 10; ++i) {
-            if (i == 1) {
-                xAxisValues.add("04-23");
+        for (int i = 0; i < 30; ++i) {
+
+            if (i == 0) {
+                xAxisValues.add("05-15");
             } else if (i == 3) {
-                xAxisValues.add("04-25");
-            } else if (i == 5) {
-                xAxisValues.add("04-28");
+                xAxisValues.add("05-20");
             } else if (i == 7) {
-                xAxisValues.add("05-21");
-            } else if (i == 9) {
-                xAxisValues.add("05-23");
-            } else {
+                xAxisValues.add("05-25");
+            } else if (i == 11) {
+                xAxisValues.add("05-30");
+            } else if (i == 15) {
+                xAxisValues.add("06-1");
+            } else if (i == 19) {
+                xAxisValues.add("06-5");
+            } else if (i == 23) {
+                xAxisValues.add("06-10");
+            } else if (i == 27) {
+                xAxisValues.add("06-15");
+            }else{
                 xAxisValues.add("");
             }
-            yAxisValues.add((float) (Math.random() * 30 + 40));
+            if (i==1){
+                yAxisValues.add(15f);
+            }else if (i==2){
+                yAxisValues.add(8f);
+            }else if (i==3){
+                yAxisValues.add(12f);
+            }else if (i==9){
+                yAxisValues.add(9f);
+            }else if (i==10){
+                yAxisValues.add(8f);
+            }else if (i==11){
+                yAxisValues.add(9f);
+            }else if (i==16){
+                yAxisValues.add(9f);
+            }else if (i==21){
+                yAxisValues.add(11f);
+            }else{
+                yAxisValues.add(10f);
+            }
         }
         setLinesChart(lineChart, xAxisValues, yAxisValues, "进料量：吨", false);
     }
@@ -107,7 +132,7 @@ public class YanYangFragment5 extends BaseFragment {
         YAxis leftAxis = lineChart.getAxisLeft();
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setDrawGridLines(false);
-        leftAxis.setAxisMaximum(80);
+        leftAxis.setAxisMaximum(20);
         leftAxis.setAxisMinimum(0);
         if (showSetValues) {
             leftAxis.setDrawLabels(false);//折线上显示值，则不显示坐标轴上的值

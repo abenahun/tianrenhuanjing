@@ -22,6 +22,7 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.tianren.methane.R;
 import com.tianren.methane.common.MPChartMarkerView;
 import com.tianren.methane.common.StringAxisValueFormatter;
+import com.tianren.methane.utils.MPChartHelper;
 import com.tianren.methane.utils.StringUtil;
 
 import java.util.ArrayList;
@@ -55,23 +56,22 @@ public class YanYangFragment3 extends BaseFragment {
         lineChart = (LineChart) view.findViewById(R.id.lineChart);
         xAxisValues = new ArrayList<>();
         yAxisValues = new ArrayList<>();
-        for (int i = 1; i < 10; ++i) {
-            if (i == 1) {
-                xAxisValues.add("04-23");
-            } else if (i == 3) {
-                xAxisValues.add("04-25");
-            } else if (i == 5) {
-                xAxisValues.add("04-28");
-            } else if (i == 7) {
-                xAxisValues.add("05-21");
-            } else if (i == 9) {
-                xAxisValues.add("05-23");
-            } else {
-                xAxisValues.add("");
+        for (int i = 0; i < 25; ++i) {
+           /* if ((i & 1) != 0){
+            }else{}*/
+
+                xAxisValues.add(""+i);
+            if (i==0 || i==5 || i==6 || i==11 || i==12
+                    || i==17 || i==18|| i==23 || i==24){
+                yAxisValues.add(0f);
+            }else{
+                yAxisValues.add(14f);
             }
-            yAxisValues.add((float) (Math.random() * 30 + 40));
+
         }
         setLinesChart(lineChart, xAxisValues, yAxisValues, "处理量：吨", false);
+
+//        MPChartHelper.setLineChart(lineChart, xAxisValues, yAxisValues, "处理量：吨" , true);
     }
 
 
@@ -108,7 +108,7 @@ public class YanYangFragment3 extends BaseFragment {
         YAxis leftAxis = lineChart.getAxisLeft();
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setDrawGridLines(false);
-        leftAxis.setAxisMaximum(80);
+        leftAxis.setAxisMaximum(21);
         leftAxis.setAxisMinimum(0);
         if (showSetValues) {
             leftAxis.setDrawLabels(false);//折线上显示值，则不显示坐标轴上的值

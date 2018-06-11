@@ -673,7 +673,10 @@ public class MPChartHelper {
         lineChart.animateX(1500);//数据显示动画，从左往右依次显示
     }
 
-    private static void setLinesChartData(LineChart lineChart, List<List<Float>> yXAxisValues, List<String> titles, boolean showSetValues, int[] lineColors) {
+    private static void setLinesChartData(LineChart lineChart,
+                                          List<List<Float>> yXAxisValues,
+                                          List<String> titles,
+                                          boolean showSetValues, int[] lineColors) {
 
         List<List<Entry>> entriesList = new ArrayList<>();
         for (int i = 0; i < yXAxisValues.size(); ++i) {
@@ -834,7 +837,7 @@ public class MPChartHelper {
             @Override
             public String getFormattedValue(float v, AxisBase axisBase) {
                 if (v < 0 || v > (xAxisValues.size() - 1))//使得两侧柱子完全显示
-                    return "";
+                { return "";}
                 return xAxisValues.get((int) v);
             }
         });

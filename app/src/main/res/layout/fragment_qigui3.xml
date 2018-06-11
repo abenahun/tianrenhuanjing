@@ -50,10 +50,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:paddingLeft="8dp"
                         android:paddingTop="5dp"
-                        android:text="台风还有72小时登录"
+                        android:text="台风还有72小时登录该地区，尽快消纳柜中沼气"
                         android:textColor="@color/textblack"
                         android:textSize="@dimen/textsize17" />
 
@@ -63,7 +62,7 @@
                         android:gravity="center"
                         android:paddingLeft="8dp"
                         android:paddingTop="5dp"
-                        android:text="2018-05-15 11:11:11"
+                        android:text="2018-05-17 12:44:55"
                         android:textColor="@color/textgray"
                         android:textSize="@dimen/textsize13" />
 
@@ -108,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="8dp"
                         android:paddingTop="5dp"
-                        android:text="台风大于10级 请于48小时内将气柜外膜压力充至1.5kPa"
+                        android:text="请于48小时内将气柜消纳完毕"
                         android:textColor="@color/textblack"
                         android:textSize="@dimen/textsize17" />
 
@@ -118,7 +117,7 @@
                         android:gravity="center"
                         android:paddingLeft="8dp"
                         android:paddingTop="5dp"
-                        android:text="2018-05-15 11:11:11"
+                        android:text="2018-05-18 12:44:55"
                         android:textColor="@color/textgray"
                         android:textSize="@dimen/textsize13" />
 
@@ -163,7 +162,7 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="8dp"
                         android:paddingTop="5dp"
-                        android:text="台风大于12级 请排除沼气，固定气柜"
+                        android:text="台风大于12级 请于24小时排除沼气，固定气柜"
                         android:textColor="@color/textblack"
                         android:textSize="@dimen/textsize17" />
 
@@ -173,7 +172,7 @@
                         android:gravity="center"
                         android:paddingLeft="8dp"
                         android:paddingTop="5dp"
-                        android:text="2018-05-15 11:11:11"
+                        android:text="2018-05-19 12:44:55"
                         android:textColor="@color/textgray"
                         android:textSize="@dimen/textsize13" />
 

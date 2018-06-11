@@ -1,6 +1,6 @@
 package com.tianren.acommon.bean;
 
-public class AnaerobicTank {
+public class AnaerobicTankBean {
     private Integer anaerobicTankId;
 
     private String samplingPoint;
@@ -23,7 +23,7 @@ public class AnaerobicTank {
 
     private String addTime;
 
-    public AnaerobicTank() {
+    public AnaerobicTankBean() {
 
     }
 
