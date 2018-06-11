@@ -87,6 +87,7 @@
             android:layout_marginLeft="14dp"
             android:layout_weight="1"
             android:text="泰安餐厨项目#1"
+            android:visibility="gone"
             android:textColor="@color/textblack"
             android:textSize="15sp" />
 
