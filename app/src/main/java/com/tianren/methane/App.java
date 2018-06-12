@@ -3,6 +3,7 @@ package com.tianren.methane;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.util.DisplayMetrics;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -48,7 +49,11 @@ public class App extends Application {
         initDisplayOpinion();
         Fresco.initialize(this);//初始化
     }
-
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
     //广告工具初始化参数
     private void initDisplayOpinion() {
         DisplayMetrics dm = getResources().getDisplayMetrics();
