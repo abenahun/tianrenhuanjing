@@ -55,7 +55,7 @@ public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAda
                 Double max = bean.getSuitableMaximum();
                 holder.range.setText(min + "～" + max + " " + sensorUnit);
                 double data = Double.parseDouble(bean.getData());
-                if (data > min && data < max) {
+                if (data > min && data <= max) {
                     holder.content.setTextColor(context.getResources().getColor(R.color.green));
                 } else {
                     holder.content.setTextColor(Color.RED);

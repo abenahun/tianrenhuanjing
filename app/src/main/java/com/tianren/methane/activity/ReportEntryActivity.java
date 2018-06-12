@@ -338,10 +338,12 @@ public class ReportEntryActivity extends BaseActivity implements View.OnClickLis
             WebServiceManage.getService(EntryService.class).entryProData(s).setCallback(new SCallBack<BaseResponse<Boolean>>() {
                 @Override
                 public void callback(boolean isok, String msg, BaseResponse<Boolean> res) {
-                    ToastUtils.show(msg);
                     if (isok && res.getData()) {
+                        ToastUtils.show("录入成功");
                         EventBus.getDefault().post(new ReportEvent());
                         finish();
+                    } else {
+                        ToastUtils.show(msg);
                     }
                 }
             });
