@@ -22,24 +22,19 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ViewPortHandler;
-import com.google.gson.Gson;
 import com.tianren.acommon.BaseResponse;
 import com.tianren.acommon.bean.AnaerobicTankBean;
-import com.tianren.acommon.bean.BaseBean;
-import com.tianren.acommon.bean.ReportBean;
+import com.tianren.acommon.bean.GetAnerobicListBean;
 import com.tianren.acommon.remote.WebServiceManage;
 import com.tianren.acommon.remote.callback.SCallBack;
 import com.tianren.acommon.service.EntryService;
 import com.tianren.methane.R;
-import com.tianren.methane.adapter.ReportAdapter;
 import com.tianren.methane.common.MPChartMarkerView;
 import com.tianren.methane.common.StringAxisValueFormatter;
-import com.tianren.methane.utils.DataCaculateUtils;
 import com.tianren.methane.utils.DateUtil;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +69,7 @@ public class YanYangFragment2 extends BaseFragment {
         lineChart = (LineChart) view.findViewById(R.id.lineChart);
         xAxisValues = new ArrayList<>();
         yAxisValues = new ArrayList<>();
-        for (int i = 1; i < 11; ++i) {
+        /*for (int i = 1; i < 11; ++i) {
             if (i == 1) {
                 xAxisValues.add("05-31");
             } else if (i == 3) {
@@ -94,25 +89,29 @@ public class YanYangFragment2 extends BaseFragment {
                 yAxisValues.add((float) (Math.random() * 0.3 + 1));
             }
 
-        }
-        setLinesChart(lineChart, xAxisValues, yAxisValues, "稳定指数", false);
+        }*/
+
 
         loadData("vfa,alkalinity",DateUtil.getPastDate(7), DateUtil.getNowDate());
     }
 
     private void loadData(String searchFields, String startTime,String endTime) {
         WebServiceManage.getService(EntryService.class).getChartData(searchFields,startTime,endTime).
-                setCallback(new SCallBack<BaseResponse<List<BaseBean>>>() {
+                setCallback(new SCallBack<BaseResponse<List<AnaerobicTankBean>>>() {
             @Override
-            public void callback(boolean isok, String msg, BaseResponse<List<BaseBean>> res) {
-                Log.e("syl",res.toString());
+            public void callback(boolean isok, String msg, BaseResponse<List<AnaerobicTankBean>> res) {
                 if (isok) {
-
                     if (res.getResult()){
-                        ArrayList<AnaerobicTankBean> list = new ArrayList<AnaerobicTankBean>();
-                       /* if(AnaerobicTankBean instanceof list) {
-                            list = (ArrayList<AnaerobicTankBean>)list;
-                        }*/
+                        List<AnaerobicTankBean> list = res.getData();
+
+                        for (int i = 0;i < list.size();i++){
+                            yAxisValues.add((float)(list.get(i).getVfa()/list.get(i).getAlkalinity())*3.3f);
+                            xAxisValues.add(i+"");
+
+                        }
+
+                        setLinesChart(lineChart, xAxisValues, yAxisValues, "稳定指数", false);
+
 
                     }else {
                         ToastUtils.show(msg);

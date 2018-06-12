@@ -5,7 +5,6 @@ import android.util.Log;
 import com.google.gson.reflect.TypeToken;
 import com.tianren.acommon.BaseResponse;
 import com.tianren.acommon.bean.AnaerobicTankBean;
-import com.tianren.acommon.bean.BaseBean;
 import com.tianren.acommon.bean.CapacityBean;
 import com.tianren.acommon.bean.ConsumptionBean;
 import com.tianren.acommon.bean.ReportBean;
@@ -188,14 +187,14 @@ public class EntryService extends BaseWebService {
      */
     private String GETCHAERTDATA= TIANREN_URL + "anaerobicTank/getChartData";
 
-    public WebTask<BaseResponse<List<BaseBean>>>
+    public WebTask<BaseResponse<List<AnaerobicTankBean>>>
     getChartData(String searchFields, String startTime,String endTime) {
         Map<String, Object> p = new HashMap<>();
         p.put("startTime", startTime);
         p.put("endTime", endTime);
         p.put("sort", "desc");
         p.put("searchFields", searchFields);
-        return request(GETCHAERTDATA, p, new TypeToken<BaseResponse<List<BaseBean>>>() {
+        return request(GETCHAERTDATA, p, new TypeToken<BaseResponse<List<AnaerobicTankBean>>>() {
         }.getType());
 
 //        http://iot.tianren.com:8080/tianren/anaerobicTank/getChartData?startTime=2018-06-08&endTime=2018-06-11&sort=desc&searchFields=vfa,alkalinity

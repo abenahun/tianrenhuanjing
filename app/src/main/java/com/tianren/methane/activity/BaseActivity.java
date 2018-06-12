@@ -1,14 +1,22 @@
 package com.tianren.methane.activity;
 
+import android.annotation.TargetApi;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.tianren.methane.App;
+import com.tianren.methane.R;
 import com.tianren.methane.bean.DevInfo;
+import com.tianren.methane.manager.SystemBarTintManager;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -19,12 +27,55 @@ import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 
 public abstract class BaseActivity extends AppCompatActivity {
-
+    protected SystemBarTintManager mTintManager;  //定义个管理器
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((App) getApplication()).addActivities(this);
+        // 沉浸式
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setStatusBar(true);
+            setTranslucentStatus(true);
+            mTintManager = new SystemBarTintManager(this);
+            mTintManager.setStatusBarTintEnabled(true);
+            mTintManager.setStatusBarTintColor(getResources().getColor(R.color.transparent));
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            setTranslucentStatus(true);
+            mTintManager = new SystemBarTintManager(this);
+            mTintManager.setStatusBarTintEnabled(true);
+            mTintManager.setStatusBarTintColor(getResources().getColor(R.color.transparent));
+        }
+
     }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void setStatusBar(boolean navi) {
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.TRANSPARENT);
+        if (navi) {
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN// 状态栏不会被隐藏但activity布局会扩展到状态栏所在位置
+//					| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION// 导航栏不会被隐藏但activity布局会扩展到导航栏所在位置
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//			window.setNavigationBarColor(Color.TRANSPARENT);
+        } else {
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    protected void setTranslucentStatus(boolean on) {
+        Window win = getWindow();
+        WindowManager.LayoutParams winParams = win.getAttributes();
+        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+        if (on) {
+            winParams.flags |= bits;
+        } else {
+            winParams.flags &= ~bits;
+        }
+        win.setAttributes(winParams);
+    }
+
 
     TextWatcher textWatcher = new TextWatcher() {
         @Override
@@ -41,7 +92,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         public void afterTextChanged(Editable edt) {
             String temp = edt.toString();
             int posDot = temp.indexOf(".");
-            if (posDot <= 0) return;
+            if (posDot <= 0){ return;}
             if (temp.length() - posDot - 1 > 2) {
                 edt.delete(posDot + 3, posDot + 4);
             }
