@@ -96,39 +96,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:minWidth="70dp"
+            android:layout_marginLeft="8dp"
             android:text="名称"
+            android:gravity="center"
             android:textColor="@color/textgray"
             android:textSize="15sp" />
 
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
             android:text="含量"
+            android:gravity="center"
             android:textColor="@color/textgray"
             android:textSize="15sp" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="正常值范围" />
+            android:gravity="center"
+            android:text="正常值范围"
+            android:textColor="@color/textgray"
+            android:layout_marginRight="8dp"
+            android:textSize="15sp"/>
 
-
-        <TextView
-            android:layout_width="45dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="14dp" />
 
     </LinearLayout>
 </LinearLayout>
