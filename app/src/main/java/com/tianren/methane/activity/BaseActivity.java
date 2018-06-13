@@ -33,7 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ((App) getApplication()).addActivities(this);
         // 沉浸式
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+       /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setStatusBar(true);
             setTranslucentStatus(true);
             mTintManager = new SystemBarTintManager(this);
@@ -44,7 +44,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             mTintManager = new SystemBarTintManager(this);
             mTintManager.setStatusBarTintEnabled(true);
             mTintManager.setStatusBarTintColor(getResources().getColor(R.color.transparent));
-        }
+        }*/
 
     }
 
