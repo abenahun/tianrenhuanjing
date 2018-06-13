@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:text="月计划完成量(T)"
+            android:text="月计划完成率(%)"
             android:textColor="@color/text1"
             android:textSize="14sp" />
 
@@ -27,10 +27,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:inputType="number|numberDecimal"
-            android:maxLength="10"
             android:background="@drawable/shape_edit"
             android:hint="请输入"
+            android:inputType="number|numberDecimal"
+            android:maxLength="10"
             android:padding="8dp"
             android:textColorHint="@color/text3"
             android:textSize="14sp" />
@@ -57,12 +57,12 @@
         <EditText
             android:id="@+id/oil_finish_data"
             android:layout_width="0dp"
-            android:inputType="number|numberDecimal"
-            android:maxLength="10"
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:background="@drawable/shape_edit"
             android:hint="请输入"
+            android:inputType="number|numberDecimal"
+            android:maxLength="10"
             android:padding="8dp"
             android:textColorHint="@color/text3"
             android:textSize="14sp" />
