@@ -285,7 +285,7 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
                             butieEarnings.setText(d_butie == 0d ? "/" : (MathUtils.scale1(d_butie)) + "");
                             youzhiEarnings.setText(d_oil == 0d ? "/" : (MathUtils.scale1(d_oil)) + "");
                             zhaozhaEarnings.setText("0.0");
-                            double totle = d_ele + d_butie + d_oil - 2;
+                            double totle = d_ele + d_butie + d_oil - 2 - 335;
                             allEarnings.setText(Html.fromHtml(MathUtils.scale1(totle) + "<font><small>元</small></font>"));
 
                             airEarningsPer.setText(MathUtils.scale1((d_ele / totle) * 100) + "%");
@@ -295,7 +295,7 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
 
                             waterConsume.setText("1.02吨");
                             eleConsume.setText(bean.getEleUseFactoryData() == null ? "/" : (MathUtils.scale2(bean.getEleUseFactoryData()) + "kw"));
-                            airConsume.setText("-");
+                            airConsume.setText("5.3吨");
                             allConsume.setText(MathUtils.scale2(((bean.getEleUseFactoryData() == null ? 0d : (bean.getEleUseFactoryData() * 0.65)) + 2)) + "元");
 
                             tv_kitchen_enter.setText(bean.getKitchenEnter() == null ? "/" : (MathUtils.scale2(bean.getKitchenEnter()) + "吨"));
