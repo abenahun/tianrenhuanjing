@@ -35,7 +35,10 @@ import com.tianren.methane.utils.DateUtil;
 import com.tianren.methane.utils.StringUtil;
 import com.tianren.methane.utils.ToastUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.tianren.methane.utils.MPChartHelper.LINE_FILL_COLORS;
@@ -95,7 +98,7 @@ public class YanYangFragment2 extends BaseFragment {
         loadData("vfa,alkalinity",DateUtil.getPastDate(7), DateUtil.getNowDate());
     }
 
-    private void loadData(String searchFields, String startTime,String endTime) {
+    private void loadData(String searchFields, final String startTime,final String endTime) {
         WebServiceManage.getService(EntryService.class).getChartData(searchFields,startTime,endTime).
                 setCallback(new SCallBack<BaseResponse<List<AnaerobicTankBean>>>() {
             @Override
@@ -106,9 +109,18 @@ public class YanYangFragment2 extends BaseFragment {
 
                         for (int i = 0;i < list.size();i++){
                             yAxisValues.add((float)(list.get(i).getVfa()/list.get(i).getAlkalinity())*3.3f);
-                            xAxisValues.add(i+"");
-
                         }
+                        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");//小写的mm表示的是分钟
+                        Date startAt= null;
+                        Date endAt= null;
+                        try {
+                            startAt = sdf.parse(startTime);
+                            endAt = sdf.parse(endTime);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        xAxisValues = DateUtil.queryData(startAt,endAt);
 
                         setLinesChart(lineChart, xAxisValues, yAxisValues, "稳定指数", false);
 

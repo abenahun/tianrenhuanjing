@@ -4,11 +4,15 @@ import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+
+import static com.bigkoo.pickerview.view.WheelTime.dateFormat;
 
 /**
  * Created by lulu on 17/1/4.
@@ -190,4 +194,24 @@ public class DateUtil {
         return simpleDateFormat.format(date);
     }
 
+    /**
+     * 给定开始和结束时间，遍历之间的所有日期
+     *
+     * @param startAt 开始时间，例：2017-04-04
+     * @param endAt   结束时间，例：2017-04-11
+     * @return 返回日期数组
+     */
+    public static List<String> queryData(Date startAt, Date endAt) {
+        List<String> dates = new ArrayList<>();
+        Calendar start = Calendar.getInstance();
+        start.setTime(startAt);
+        Calendar end = Calendar.getInstance();
+        end.setTime(endAt);
+        SimpleDateFormat sdf=new SimpleDateFormat("MM-dd");
+        while (start.before(end) || start.equals(end)) {
+            dates.add(sdf.format(start.getTime()));
+            start.add(Calendar.DAY_OF_YEAR, 1);
+        }
+        return dates;
+    }
 }
