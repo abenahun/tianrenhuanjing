@@ -70,25 +70,19 @@ public class PreHandleActivity extends BaseActivity implements View.OnClickListe
         if (sensorDataMap == null) {
             list = null;
         } else {
-            list.add(getModel("d42"));
-            list.add(getModel("d46"));
-            list.add(getModel("d51"));
-            list.add(getModel("d52"));
-            list.add(getModel("d53"));
-            list.add(getModel("d54"));
-            list.add(getModel("d55"));
-            list.add(getModel("d56"));
-            list.add(getModel("d57"));
-            list.add(getModel("d58"));
-            list.add(getModel("d59"));
-            list.add(getModel("d60"));
-            list.add(getModel("d61"));
-            list.add(getModel("d62"));
-            list.add(getModel("d63"));
-            list.add(getModel("d64"));
-            list.add(getModel("d65"));
-            list.add(getModel("d66"));
-            list.add(getModel("d67"));
+            list.add(getModel("d73"));
+            list.add(getModel("d74"));
+            list.add(getModel("d71"));
+            list.add(getModel("d75"));
+            list.add(getModel("d83"));
+            list.add(getModel("d96"));
+            list.add(getModel("d79"));
+            list.add(getModel("d102"));
+            list.add(getModel("d104"));
+            list.add(getModel("d106"));
+            list.add(getModel("d98"));
+            list.add(getModel("d85"));
+            list.add(getModel("d101"));
             for (int i = 0; i < list.size(); i++) {
                 if (!TextUtils.isEmpty(list.get(i).getNickName().trim()) && !TextUtils.isEmpty(list.get(i).getData())) {
                     adapter.addItem(list.get(i));
