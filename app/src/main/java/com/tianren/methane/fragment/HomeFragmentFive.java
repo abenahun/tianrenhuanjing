@@ -293,9 +293,9 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
                             youzhiEarningsPer.setText(MathUtils.scale1((d_oil / totle) * 100) + "%");
                             zhaozhaEarningsPer.setText("0%");
 
-                            waterConsume.setText("1.02吨");
-                            eleConsume.setText(bean.getEleUseFactoryData() == null ? "/" : (MathUtils.scale2(bean.getEleUseFactoryData()) + "kw"));
-                            airConsume.setText("5.3吨");
+                            waterConsume.setText("1T");
+                            eleConsume.setText(bean.getEleUseFactoryData() == null ? "/" : (MathUtils.scale(bean.getEleUseFactoryData()) + "kWh"));
+                            airConsume.setText("5T");
                             allConsume.setText(MathUtils.scale2(((bean.getEleUseFactoryData() == null ? 0d : (bean.getEleUseFactoryData() * 0.65)) + 2)) + "元");
 
                             tv_kitchen_enter.setText(bean.getKitchenEnter() == null ? "/" : (MathUtils.scale2(bean.getKitchenEnter()) + "吨"));

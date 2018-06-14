@@ -543,7 +543,7 @@
                             android:id="@+id/eleConsume"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0kw"
+                            android:text="0千瓦时"
                             android:textColor="@color/textblack"
                             android:textSize="@dimen/textsize17" />
 
