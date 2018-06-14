@@ -263,7 +263,8 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
                         water_bad_introduce_day.setText(bean.getWaterBadIntroduceDay() == null ? "/" : (bean.getWaterBadIntroduceDay() + ""));
                         water_bad_introduce_plan.setText(bean.getWaterBadIntroducePlan() == null ? "/" : (bean.getWaterBadIntroducePlan() + ""));
                         water_bad_introduce_month.setText(bean.getWaterBadIntroduceMonth() == null ? "/" : (bean.getWaterBadIntroduceMonth() + ""));
-                        Double d_ele = bean.getEleProvider() == null ? 0d : (bean.getEleProvider() * 0.65);
+//                        Double d_ele = bean.getEleProvider() == null ? 0d : (bean.getEleProvider() * 0.65);
+                        Double d_ele = 12210 * 0.65;
                         airEarnings.setText(d_ele == 0d ? "/" : (MathUtils.scale1(d_ele) + ""));
                         Double d_butie = 0.0;
                         if (bean.getKitchenEnter() == null && bean.getRepastEnter() == null) {
@@ -296,7 +297,8 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
                             waterConsume.setText("1T");
                             eleConsume.setText(bean.getEleUseFactoryData() == null ? "/" : (MathUtils.scale(bean.getEleUseFactoryData()) + "kWh"));
                             airConsume.setText("5T");
-                            allConsume.setText(MathUtils.scale2(((bean.getEleUseFactoryData() == null ? 0d : (bean.getEleUseFactoryData() * 0.65)) + 2)) + "元");
+//                            allConsume.setText(MathUtils.scale2(((bean.getEleUseFactoryData() == null ? 0d : (bean.getEleUseFactoryData() * 0.65)) + 2)) + "元");
+                            allConsume.setText(MathUtils.scale2((12210 * 0.65) + 2) + "元");
 
                             tv_kitchen_enter.setText(bean.getKitchenEnter() == null ? "/" : (MathUtils.scale2(bean.getKitchenEnter()) + "吨"));
                             tv_repast_enter.setText(bean.getRepastEnter() == null ? "/" : (MathUtils.scale2(bean.getRepastEnter()) + "吨"));
