@@ -65,8 +65,9 @@ public class PreHandleActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void loadData() {
-
         List<ModelAdapter.ModelBean> list = new ArrayList<>();
+        adapter.clear();
+        adapter.notifyDataSetChanged();
         if (sensorDataMap == null) {
             list = null;
         } else {
@@ -88,6 +89,7 @@ public class PreHandleActivity extends BaseActivity implements View.OnClickListe
                     adapter.addItem(list.get(i));
                 }
             }
+            adapter.notifyDataSetChanged();
         }
     }
 

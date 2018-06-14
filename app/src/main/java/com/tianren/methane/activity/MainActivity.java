@@ -25,6 +25,7 @@ import com.tianren.acommon.service.DetailedDataService;
 import com.tianren.methane.R;
 import com.tianren.methane.bean.DevInfo;
 import com.tianren.methane.constant.MsgDefCtrl;
+import com.tianren.methane.event.ModelEvent;
 import com.tianren.methane.fragment.HomeFragmentFive;
 import com.tianren.methane.fragment.ManagerFragment;
 import com.tianren.methane.fragment.MeFragment;
@@ -33,6 +34,8 @@ import com.tianren.methane.service.SipService;
 import com.tianren.methane.utils.ToastUtils;
 import com.uuch.adlibrary.AdManager;
 import com.uuch.adlibrary.bean.AdInfo;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -208,6 +211,14 @@ public class MainActivity extends BaseActivity {
         }
     };
 
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            getDeviceModel();
+        }
+    };
+
     /**
      * 获取当前各种类型的数据集合
      */
@@ -218,6 +229,13 @@ public class MainActivity extends BaseActivity {
             public void callback(boolean isok, String msg, BaseResponse<Map<String, String>> res) {
                 if (isok) {
                     modelMap = res.getData();
+                    EventBus.getDefault().post(new ModelEvent());
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            handler.sendEmptyMessage(100);
+                        }
+                    }, 5000);
                 } else {
                     ToastUtils.show("数据获取失败");
                 }
@@ -309,5 +327,11 @@ public class MainActivity extends BaseActivity {
                 "d48:9.97\n" +
                 "d49:3.01\n" +
                 "d50:100.45";
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeMessages(100);
     }
 }

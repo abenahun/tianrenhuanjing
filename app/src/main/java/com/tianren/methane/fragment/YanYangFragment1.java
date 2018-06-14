@@ -145,6 +145,8 @@ public class YanYangFragment1 extends BaseFragment implements View.OnClickListen
 
     private void loadRealData() {
         List<ModelAdapter.ModelBean> list = new ArrayList<>();
+        adapter.clear();
+        adapter.notifyDataSetChanged();
         if (sensorDataMap == null) {
             list = null;
         } else {

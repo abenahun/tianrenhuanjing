@@ -82,6 +82,8 @@ public class QiGuiFragment1 extends BaseFragment implements View.OnClickListener
 
     private void loadData() {
         List<ModelAdapter.ModelBean> list = new ArrayList<>();
+        adapter.clear();
+        adapter.notifyDataSetChanged();
         if (sensorDataMap == null) {
             list = null;
         } else {
@@ -100,6 +102,7 @@ public class QiGuiFragment1 extends BaseFragment implements View.OnClickListener
                 }
             }
         }
+        adapter.notifyDataSetChanged();
     }
 
     public ModelAdapter.ModelBean getModel(String s) {
