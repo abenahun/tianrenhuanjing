@@ -592,7 +592,7 @@
                             android:layout_weight="1"
                             android:drawablePadding="12dp"
                             android:gravity="center"
-                            android:text="蒸气量"
+                            android:text="蒸汽量"
                             android:textColor="@color/textgray"
                             android:textSize="@dimen/textsize13" />
 
