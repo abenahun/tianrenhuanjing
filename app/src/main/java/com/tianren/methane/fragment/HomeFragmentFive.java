@@ -282,11 +282,13 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
                             Date time = format.parse(bean.getReportTime());
                             calendar.setTime(time);
                             int c = calendar.get(Calendar.DAY_OF_MONTH);
-                            Double d_oil = bean.getOilFinish() == null ? 0d : (bean.getOilFinish() * 3500 / c);
+//                            Double d_oil = bean.getOilFinish() == null ? 0d : (bean.getOilFinish() * 3500 / c);
+                            Double d_oil = 6533d;
                             butieEarnings.setText(d_butie == 0d ? "/" : (MathUtils.scale1(d_butie)) + "");
                             youzhiEarnings.setText(d_oil == 0d ? "/" : (MathUtils.scale1(d_oil)) + "");
                             zhaozhaEarnings.setText("0.0");
-                            double totle = d_ele + d_butie + d_oil - 2 - 335;
+//                            double totle = d_ele + d_butie + d_oil - 2 - 335;
+                            double totle = 41791;
                             allEarnings.setText(Html.fromHtml(MathUtils.scale1(totle) + "<font><small>元</small></font>"));
 
                             airEarningsPer.setText(MathUtils.scale1((d_ele / totle) * 100) + "%");
