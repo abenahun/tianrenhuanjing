@@ -18,7 +18,8 @@
             android:layout_marginTop="14dp"
             android:text="今日预处理 1000L"
             android:textColor="@color/maincolor"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -39,8 +40,8 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="名称"
                 android:gravity="center"
+                android:text="名称"
                 android:textColor="@color/textgray"
                 android:textSize="15sp" />
 
@@ -48,19 +49,19 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="含量"
                 android:gravity="center"
+                android:text="含量"
                 android:textColor="@color/textgray"
                 android:textSize="15sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
                 android:gravity="center"
                 android:text="正常值范围"
                 android:textColor="@color/textgray"
-                android:layout_marginRight="8dp"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
 
         </LinearLayout>
     </LinearLayout>
