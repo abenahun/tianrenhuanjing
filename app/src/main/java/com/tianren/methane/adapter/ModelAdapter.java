@@ -58,7 +58,7 @@ public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAda
                 if (data > min && data <= max) {
                     holder.content.setTextColor(context.getResources().getColor(R.color.green));
                 } else {
-                    holder.content.setTextColor(Color.RED);
+                    holder.content.setTextColor(Color.YELLOW);
                 }
                 holder.content.setText((TextUtils.isEmpty(bean.getData()) ? "" : bean.getData()) + " " + (TextUtils.isEmpty(sensorUnit) ? "" : sensorUnit));
             } catch (Exception e) {
