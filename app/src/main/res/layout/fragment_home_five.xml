@@ -341,7 +341,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="补贴收益"
+                            android:text="其它"
                             android:textColor="@color/text3"
                             android:textSize="11sp" />
                     </LinearLayout>
@@ -652,7 +652,7 @@
                                     android:id="@+id/tv_kitchen_enter"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="152.87吨"
+                                    android:text="0.0吨"
                                     android:textColor="@color/maincolor"
                                     android:textSize="14sp" />
                             </LinearLayout>
@@ -673,7 +673,7 @@
                                     android:id="@+id/tv_repast_enter"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="91.50吨"
+                                    android:text="0.0吨"
                                     android:textColor="@color/maincolor"
                                     android:textSize="14sp" />
                             </LinearLayout>
@@ -723,7 +723,7 @@
                                     android:id="@+id/tv_produce_air"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="11125m³"
+                                    android:text="0.0m³"
                                     android:textColor="@color/maincolor"
                                     android:textSize="14sp" />
                             </LinearLayout>
@@ -744,7 +744,7 @@
                                     android:id="@+id/tv_produce_youzhi"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="89吨"
+                                    android:text="0.0吨"
                                     android:textColor="@color/maincolor"
                                     android:textSize="14sp" />
                             </LinearLayout>

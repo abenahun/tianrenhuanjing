@@ -269,11 +269,11 @@ public class HomeFragmentFive extends BaseFragment implements View.OnClickListen
                         if (bean.getKitchenEnter() == null && bean.getRepastEnter() == null) {
                             d_butie = 0d;
                         } else if (bean.getKitchenEnter() != null && bean.getRepastEnter() == null) {
-                            d_butie = bean.getKitchenEnter() * 120;
+                            d_butie = bean.getKitchenEnter() * 167;
                         } else if (bean.getKitchenEnter() == null && bean.getRepastEnter() != null) {
-                            d_butie = bean.getRepastEnter() * 120;
+                            d_butie = bean.getRepastEnter() * 167;
                         } else {
-                            d_butie = (bean.getKitchenEnter() + bean.getRepastEnter()) * 120;
+                            d_butie = (bean.getKitchenEnter() + bean.getRepastEnter()) * 167;
                         }
                         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                         try {
