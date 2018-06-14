@@ -92,7 +92,6 @@ public class QiGuiFragment1 extends BaseFragment implements View.OnClickListener
             list.add(getModel("d6"));
             list.add(getModel("d5"));
             list.add(getModel("d4"));
-            list.add(getModel("d2"));
         }
         if (list != null) {
             for (int i = 0; i < list.size(); i++) {
