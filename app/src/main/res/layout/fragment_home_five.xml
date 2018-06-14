@@ -504,7 +504,7 @@
                             android:id="@+id/waterConsume"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0吨"
+                            android:text="0T"
                             android:textColor="@color/textblack"
                             android:textSize="@dimen/textsize17" />
 
@@ -543,7 +543,7 @@
                             android:id="@+id/eleConsume"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0千瓦时"
+                            android:text="0kWh"
                             android:textColor="@color/textblack"
                             android:textSize="@dimen/textsize17" />
 
@@ -580,7 +580,7 @@
                             android:id="@+id/airConsume"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0.0吨"
+                            android:text="0.0T"
                             android:textColor="@color/textblack"
                             android:textSize="@dimen/textsize17" />
 
