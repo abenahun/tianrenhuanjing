@@ -108,7 +108,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="(02-15)"
+                        android:text="(00-00)"
                         android:textColor="@color/text1"
                         android:textSize="12sp" />
 
@@ -116,7 +116,7 @@
                         android:id="@+id/allEarnings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="￥81560.9"
+                        android:text="￥0.00"
                         android:textColor="@color/text1"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -150,7 +150,7 @@
                                 android:id="@+id/airEarnings"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="8902.0"
+                                android:text="0.0"
                                 android:textColor="@color/text1"
                                 android:textSize="14sp" />
 
@@ -221,7 +221,7 @@
                                 android:id="@+id/youzhiEarnings"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="45500.0"
+                                android:text="0.0"
                                 android:textColor="@color/text1"
                                 android:textSize="14sp" />
 
@@ -292,7 +292,7 @@
                                 android:id="@+id/butieEarnings"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="27158.0"
+                                android:text="0.0"
                                 android:textColor="@color/text1"
                                 android:textSize="14sp" />
 
@@ -580,7 +580,7 @@
                             android:id="@+id/airConsume"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="5.3吨"
+                            android:text="0.0吨"
                             android:textColor="@color/textblack"
                             android:textSize="@dimen/textsize17" />
 
