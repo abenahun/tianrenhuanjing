@@ -17,6 +17,9 @@
     <color name="pro_textblack">#2e2e2e</color>
     <color name="pro_linecolor">#eeeeee</color>
 
+    <color name="me_textblack">#414141</color>
+    <color name="prolist_textgray">#8c8c8c</color>
+
 
     <color name="background">#f0f1f5</color>
     <color name="background2">#f9f9fb</color>

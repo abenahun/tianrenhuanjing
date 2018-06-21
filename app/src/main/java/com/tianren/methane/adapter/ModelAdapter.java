@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.tianren.methane.R;
 import com.tianren.methane.base.BaseRcAdapter;
+import com.tianren.methane.utils.ToastUtils;
 
 /**
  * Created by Mr.Qiu on 2018\4\14 0014.
@@ -29,6 +30,12 @@ public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAda
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.item_model, parent, false);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         return new MyViewHolder(view);
     }
 
@@ -82,6 +89,13 @@ public class ModelAdapter extends BaseRcAdapter<ModelAdapter.ModelBean, ModelAda
             content = (TextView) itemView.findViewById(R.id.content);
             range = (TextView) itemView.findViewById(R.id.range);
             trend_tv = (TextView) itemView.findViewById(R.id.trend_tv);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ToastUtils.show("11111111111111111");
+                }
+            });
         }
     }
 

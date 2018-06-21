@@ -61,7 +61,7 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
         refreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.useDefaultLoadMore();
-        recyclerView.addItemDecoration(new RecycleViewDivider(this, LinearLayoutManager.VERTICAL, 20, getResources().getColor(R.color.divider_more)));
+//        recyclerView.addItemDecoration(new RecycleViewDivider(this, LinearLayoutManager.VERTICAL, 20, getResources().getColor(R.color.divider_more)));
         recyclerView.setItemViewSwipeEnabled(false);
         recyclerView.setAdapter(adapter);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
