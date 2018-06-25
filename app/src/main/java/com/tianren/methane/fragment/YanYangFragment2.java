@@ -5,12 +5,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
@@ -24,7 +24,6 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.tianren.acommon.BaseResponse;
 import com.tianren.acommon.bean.AnaerobicTankBean;
-import com.tianren.acommon.bean.GetAnerobicListBean;
 import com.tianren.acommon.remote.WebServiceManage;
 import com.tianren.acommon.remote.callback.SCallBack;
 import com.tianren.acommon.service.EntryService;
@@ -163,8 +162,12 @@ public class YanYangFragment2 extends BaseFragment {
         xAxis.setGranularity(1f);
         xAxis.setLabelCount(xAxisValue.size());
         /*xAxis.setAxisLineWidth(2f);*/
-        xAxis.setValueFormatter(xAxisFormatter);
-
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return StringUtil.double2String(value, 1);
+            }
+        });
         //y轴设置
         YAxis leftAxis = lineChart.getAxisLeft();
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
