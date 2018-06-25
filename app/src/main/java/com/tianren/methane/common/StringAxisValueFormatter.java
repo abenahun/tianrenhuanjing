@@ -16,14 +16,18 @@ public class StringAxisValueFormatter implements IAxisValueFormatter {
 
     /**
      * 对字符串类型的坐标轴标记进行格式化
+     *
      * @param strs
      */
-    public StringAxisValueFormatter(List<String> strs){
-        this.mStrs =strs;
+    public StringAxisValueFormatter(List<String> strs) {
+        this.mStrs = strs;
     }
 
     @Override
     public String getFormattedValue(float v, AxisBase axisBase) {
-        return mStrs.get((int)v);
+        if (mStrs.size() == 1) {
+            return mStrs.get(0);
+        }
+        return mStrs.get((int) v);
     }
 }

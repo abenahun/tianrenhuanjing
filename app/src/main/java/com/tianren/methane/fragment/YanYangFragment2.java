@@ -5,12 +5,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
@@ -94,44 +94,46 @@ public class YanYangFragment2 extends BaseFragment {
         }*/
 
 
-        loadData("vfa,alkalinity",DateUtil.getPastDate(7), DateUtil.getNowDate());
+        loadData("vfa,alkalinity,entry_time", DateUtil.getPastDate(7), DateUtil.getNowDate());
     }
 
-    private void loadData(String searchFields, final String startTime,final String endTime) {
-        WebServiceManage.getService(EntryService.class).getChartData(searchFields,startTime,endTime).
+    private void loadData(String searchFields, final String startTime, final String endTime) {
+        WebServiceManage.getService(EntryService.class).getChartData(searchFields, startTime, endTime).
                 setCallback(new SCallBack<BaseResponse<List<AnaerobicTankBean>>>() {
-            @Override
-            public void callback(boolean isok, String msg, BaseResponse<List<AnaerobicTankBean>> res) {
-                if (isok) {
-                    if (res.getResult()){
-                        List<AnaerobicTankBean> list = res.getData();
-
-                        for (int i = 0;i < list.size();i++){
-                            yAxisValues.add((float)(list.get(i).getVfa()/list.get(i).getAlkalinity())*3.3f);
+                    @Override
+                    public void callback(boolean isok, String msg, BaseResponse<List<AnaerobicTankBean>> res) {
+                        if (isok) {
+                            if (res.getResult()) {
+                                List<AnaerobicTankBean> list = res.getData();
+                                if (list != null && list.size() != 0) {
+                                    for (int i = 0; i < list.size(); i++) {
+                                        yAxisValues.add((float) (list.get(i).getVfa() / list.get(i).getAlkalinity()) * 3.3f);
+                                    }
+                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//小写的mm表示的是分钟
+                                    Date startAt = null;
+                                    Date endAt = null;
+                                    try {
+                                        startAt = sdf.parse(res.getData().get(res.getData().size() - 1).getEntryTime());
+                                        endAt = sdf.parse(res.getData().get(0).getEntryTime());
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
+                                    xAxisValues = DateUtil.queryData(startAt, endAt);
+                                    for (int i = 0; i < xAxisValues.size(); i++) {
+                                        Log.e("000000", "callback: " + xAxisValues.get(i));
+                                    }
+                                    setLinesChart(lineChart, xAxisValues, yAxisValues, "稳定指数", false);
+                                } else {
+                                    ToastUtils.show("最近七天暂无数据");
+                                }
+                            } else {
+                                ToastUtils.show(msg);
+                            }
+                        } else {
+                            ToastUtils.show(msg);
                         }
-                        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");//小写的mm表示的是分钟
-                        Date startAt= null;
-                        Date endAt= null;
-                        try {
-                            startAt = sdf.parse(startTime);
-                            endAt = sdf.parse(endTime);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-
-                        xAxisValues = DateUtil.queryData(startAt,endAt);
-
-                        setLinesChart(lineChart, xAxisValues, yAxisValues, "稳定指数", false);
-
-
-                    }else {
-                        ToastUtils.show(msg);
                     }
-                } else {
-                    ToastUtils.show(msg);
-                }
-            }
-        });
+                });
     }
 
 
@@ -162,12 +164,7 @@ public class YanYangFragment2 extends BaseFragment {
         xAxis.setGranularity(1f);
         xAxis.setLabelCount(xAxisValue.size());
         /*xAxis.setAxisLineWidth(2f);*/
-        xAxis.setValueFormatter(new IAxisValueFormatter() {
-            @Override
-            public String getFormattedValue(float value, AxisBase axis) {
-                return StringUtil.double2String(value, 1);
-            }
-        });
+        xAxis.setValueFormatter(xAxisFormatter);
         //y轴设置
         YAxis leftAxis = lineChart.getAxisLeft();
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
